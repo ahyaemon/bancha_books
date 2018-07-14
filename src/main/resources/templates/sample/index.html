@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head :: head('sample')"></head>
+<body>
+    <header th:replace="header :: header"></header>
+    <hr>
+
+    <h2>Sample Page</h2>
+    <p>Personテーブルをいじるだけのサンプルページ</p>
+
+    <section>
+        <h3>INSERT</h3>
+        <form action="/sample/insert" th:object="${personForm}" method="post">
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="field-error">名前おかしくない？</p>
+            NAME: <input type="text"  th:field="*{name}" />
+            COMMENT: <input type="text" th:field="*{comment}" />
+            <button type="submit">INSERT</button>
+        </form>
+    </section>
+
+    <section>
+        <h3>SELECT</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>COMMENT</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="personForm: ${personForms}">
+                    <td th:text="${personForm.personId}"></td>
+                    <td th:text="${personForm.name}"></td>
+                    <td th:text="${personForm.comment}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h3>UPDATE</h3>
+        <form action="/sample/update" th:object="${personForm}" method="post">
+            ID: <input type="text"  th:field="*{personId}" />
+            NAME: <input type="text"  th:field="*{name}" />
+            COMMENT: <input type="text" th:field="*{comment}" />
+            <button type="submit">UPDATE</button>
+        </form>
+    </section>
+
+    <section>
+        <h3>DELETE</h3>
+        <form action="/sample/delete" th:object="${personForm}" method="post">
+            ID: <input type="text"  th:field="*{personId}" />
+            <button type="submit">DELETE</button>
+        </form>
+    </section>
+
+    <hr>
+    <a href="/">Menu</a>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head :: head('book')"></head>
+<body>
+    <header th:replace="header :: header"></header>
+    <hr>
+    <section>
+        <h2 th:text="${bookItem.name}"></h2>
+        <span th:text="${bookItem.author}"></span>
+    </section>
+    <section>
+        <div th:each="sentenceItem: ${sentenceItems}" th:with="sid=${sentenceItem.sentenceId}" th:id="'sentence-item-'+${sid}">
+            <section class="sec-sentence" th:onclick="'openComment(' + ${sid} + ')'">
+                <p th:text="${sentenceItem.sentence}" th:classappend="${sentenceItem.hasComment()} ? 'b'"></p>
+            </section>
+            <section class="sec-comment" style="display: none;">
+                <div class="comment-list" th:with="commentItems=${sentenceItem.commentItems}">
+                    <p th:replace="book/comment :: comment"></p>
+                </div>
+                <div class="aform-comment">
+                    <input class="input-name" type="text" placeholder="名前">
+                    <br>
+                    <textarea class="input-comment" placeholder="コメント"></textarea>
+                        <button class="input-submit" type="button" th:onclick="'submitComment(' + ${sid} + ')'">GO</button>
+                </div>
+            </section>
+        </div>
+    </section>
+
+    <hr />
+    <a href="/bookmenu/">Book Menu</a>
+    <a href="/">Menu</a>
+
+    <script src="/lib/jquery/jquery-3.0.0.min.js"></script>
+    <script src="/js/book.js"></script>
+</body>
+</html>

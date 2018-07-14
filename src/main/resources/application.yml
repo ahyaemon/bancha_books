@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/bancha}
+    username: ${DB_USERNAME:bancha}
+    password: ${DB_PASSWORD:bancha}
+    driverClassName: org.postgresql.Driver
+  thymeleaf:
+    cache: false
+
+doma:
+  dialect: postgres
+
+#server:
+#  port: 8081
