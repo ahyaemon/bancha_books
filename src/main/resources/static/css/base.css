@@ -26,3 +26,37 @@ p{
     width: 80px;
     height: 70px;
 }
+
+.sec-content{
+    margin: 20px;
+}
+
+.sentence-item{
+    margin: 10px 0 0 0;
+}
+
+/**
+*/
+.bancha-card .siimple-card-header{
+    background-color: rgb(59, 42, 32);
+    color: white !important;
+}
+
+.bancha-card .siimple-card-body{
+    background-color: rgb(209, 198, 186);
+}
+
+.bancha-input-text{
+    background-color: white !important;
+}
+.bancha-nav{
+    background-color: rgb(114, 170, 143) !important;
+}
+.bancha-jumbotron{
+    background-color: rgb(71, 116, 94) !important;
+}
+
+.bancha-red{
+    background-color: rgb(148, 54, 54);
+    color: white;
+}

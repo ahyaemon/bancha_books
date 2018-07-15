@@ -41,7 +41,7 @@ class BookController(
         val comment= commentForm.toComment()
         service.createComment(sentenceId, comment)
 
-        val commentItems: List<CommentItem> = service.getComments(sentenceId).map{ CommentItem(it) }
+        val commentItems= service.getComments(sentenceId).map{ CommentItem(it) }
         model.addAttribute("commentItems", commentItems)
         return "book/comment :: comment"
     }

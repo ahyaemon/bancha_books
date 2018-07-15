@@ -2,61 +2,96 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('sample')"></head>
 <body>
-    <header th:replace="header :: header"></header>
-    <hr>
+    <div th:replace="nav :: nav"></div>
+    <div class="bancha-jumbotron siimple-jumbotron siimple-jumbotron--purple siimple-jumbotron--fluid">
+        <div class="siimple-jumbotron-title">Sample Page</div>
+        <div class="siimple-jumbotron-subtitle">Personテーブルをいじるだけのサンプルページ</div>
+    </div>
+    
+    <div class="siimple-card bancha-card" style="max-width: 800px; margin-top: 10px;">
+        <div class="siimple-card-header">INSERT</div>        
+        <div class="siimple-card-body">
+            <form action="/sample/insert" th:object="${personForm}" method="post">
+                <div class="siimple-form">
+                    <div class="siimple-field">
+                        <div class="siimple-field-label">Name</div>
+                        <input type="text" class="siimple-input bancha-input-text" placeholder="名前" th:field="*{name}" />        
+                        <div class="siimple-field-helper">空欄はだめだよ</div>
+                    </div>
+                    <div class="siimple-field">
+                        <div class="siimple-field-label">Comment</div>
+                        <input type="text" class="siimple-input bancha-input-text" placeholder="コメント" th:field="*{comment}" />        
+                    </div>
+                    <div class="siimple-field">
+                        <button class="siimple-btn bancha-red" type="submit">INSERT</button>
+                    </div>
+                </div>
+            </form>       
+        </div>
+    </div>
+    
+    <div class="siimple-card bancha-card" style="max-width: 800px;">
+        <div class="siimple-card-header">SELECT</div>        
+        <div class="siimple-card-body">
+            <div class="siimple-table" style="background-color: white;">
+                <div class="siimple-table-header">
+                    <div class="siimple-table-row">
+                        <div class="siimple-table-cell">ID</div>
+                        <div class="siimple-table-cell">NAME</div>
+                        <div class="siimple-table-cell">COMMENT</div>
+                    </div>
+                </div>
+                <div class="siimple-table-body">
+                    <div class="siimple-table-row" th:each="personForm: ${personForms}">
+                        <div class="siimple-table-cell" th:text="${personForm.personId}"></div>
+                        <div class="siimple-table-cell" th:text="${personForm.name}"></div>
+                        <div class="siimple-table-cell" th:text="${personForm.comment}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h2>Sample Page</h2>
-    <p>Personテーブルをいじるだけのサンプルページ</p>
+    <div class="siimple-card bancha-card" style="max-width: 800px;">
+        <div class="siimple-card-header">UPDATE</div>        
+        <div class="siimple-card-body">
+            <form action="/sample/update" th:object="${personForm}" method="post">
+                <div class="siimple-form">
+                    <div class="siimple-field">
+                        <div class="siimple-field-label">ID</div>
+                        <input type="text" class="siimple-input bancha-input-text" placeholder="ID" th:field="*{personId}" />        
+                    </div>
+                    <div class="siimple-field">
+                        <div class="siimple-field-label">NAME</div>
+                        <input type="text" class="siimple-input bancha-input-text" placeholder="名前" th:field="*{name}" />        
+                    </div>
+                    <div class="siimple-field">
+                        <div class="siimple-field-label">COMMENT</div>
+                        <input type="text" class="siimple-input bancha-input-text" placeholder="コメント" th:field="*{name}" />        
+                    </div>
+                    <div class="siimple-field">
+                        <button class="siimple-btn bancha-red" type="submit">UPDATE</button>
+                    </div>
+                </div>
+            </form>        
+        </div>
+    </div>
 
-    <section>
-        <h3>INSERT</h3>
-        <form action="/sample/insert" th:object="${personForm}" method="post">
-            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="field-error">名前おかしくない？</p>
-            NAME: <input type="text"  th:field="*{name}" />
-            COMMENT: <input type="text" th:field="*{comment}" />
-            <button type="submit">INSERT</button>
-        </form>
-    </section>
-
-    <section>
-        <h3>SELECT</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>NAME</th>
-                    <th>COMMENT</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="personForm: ${personForms}">
-                    <td th:text="${personForm.personId}"></td>
-                    <td th:text="${personForm.name}"></td>
-                    <td th:text="${personForm.comment}"></td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section>
-        <h3>UPDATE</h3>
-        <form action="/sample/update" th:object="${personForm}" method="post">
-            ID: <input type="text"  th:field="*{personId}" />
-            NAME: <input type="text"  th:field="*{name}" />
-            COMMENT: <input type="text" th:field="*{comment}" />
-            <button type="submit">UPDATE</button>
-        </form>
-    </section>
-
-    <section>
-        <h3>DELETE</h3>
-        <form action="/sample/delete" th:object="${personForm}" method="post">
-            ID: <input type="text"  th:field="*{personId}" />
-            <button type="submit">DELETE</button>
-        </form>
-    </section>
-
-    <hr>
-    <a href="/">Menu</a>
+    <div class="siimple-card bancha-card" style="max-width: 800px;">
+        <div class="siimple-card-header">DELETE</div>        
+        <div class="siimple-card-body">
+            <form action="/sample/delete" th:object="${personForm}" method="post">
+                <div class="siimple-form">
+                    <div class="siimple-field">
+                        <div class="siimple-field-label">ID</div>
+                        <input type="text" class="siimple-input bancha-input-text" placeholder="ID" th:field="*{personId}" />        
+                    </div>
+                    <div class="siimple-field">
+                        <button class="siimple-btn bancha-red" type="submit">DELETE</button>
+                    </div>
+                </div>
+            </form>        
+        </div>
+    </div>
 </body>
 </html>

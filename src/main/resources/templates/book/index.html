@@ -2,14 +2,14 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('book')"></head>
 <body>
-    <header th:replace="header :: header"></header>
-    <hr>
-    <section>
-        <h2 th:text="${bookItem.name}"></h2>
-        <span th:text="${bookItem.author}"></span>
-    </section>
-    <section>
-        <div th:each="sentenceItem: ${sentenceItems}" th:with="sid=${sentenceItem.sentenceId}" th:id="'sentence-item-'+${sid}">
+    <div th:replace="nav :: nav"></div>
+    <div class="bancha-jumbotron siimple-jumbotron siimple-jumbotron--purple siimple-jumbotron--fluid">
+        <div class="siimple-jumbotron-title" th:text="${bookItem.name}"></div>
+        <div class="siimple-jumbotron-subtitle" th:text="${bookItem.author}"></div>
+    </div>
+    
+    <section class="sec-content">
+        <div th:each="sentenceItem: ${sentenceItems}" th:with="sid=${sentenceItem.sentenceId}" th:id="'sentence-item-'+${sid}" class="sentence-item">
             <section class="sec-sentence" th:onclick="'openComment(' + ${sid} + ')'">
                 <p th:text="${sentenceItem.sentence}" th:classappend="${sentenceItem.hasComment()} ? 'b'"></p>
             </section>
@@ -26,10 +26,6 @@
             </section>
         </div>
     </section>
-
-    <hr />
-    <a href="/bookmenu/">Book Menu</a>
-    <a href="/">Menu</a>
 
     <script src="/lib/jquery/jquery-3.0.0.min.js"></script>
     <script src="/js/book.js"></script>
