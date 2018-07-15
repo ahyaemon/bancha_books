@@ -2,8 +2,11 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('book select')"></head>
 <body>
-    <header th:replace="header :: header"></header>
-    <hr>
+    <div th:replace="nav :: nav"></div>
+    <div class="bancha-jumbotron siimple-jumbotron siimple-jumbotron--purple siimple-jumbotron--fluid">
+        <div class="siimple-jumbotron-title">Book Menu</div>
+        <div class="siimple-jumbotron-subtitle">読みたい本を選ぶのじゃ</div>
+    </div>
     <section>
         <h2>Book Menu</h2>
         <ul>
@@ -16,8 +19,5 @@
             </li>
         </ul>
     </section>
-
-    <hr />
-    <a href="/">Menu</a>
 </body>
 </html>
