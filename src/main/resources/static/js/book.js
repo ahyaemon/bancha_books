@@ -1,42 +1,37 @@
-function openComment(elem){
-    var id = elem.id;
-    var sentenceId = id.split("-")[1];
-    var $commentSection = $("#comment-" + sentenceId);
-    var display = $commentSection.css("display");
-    if(display == "none"){
-        $commentSection.css("display", "block");
-    }
-    else{
-        $commentSection.css("display", "none");
-    }
+function openComment(sentenceId){
+    var $commentSection = $("#sentence-item-" + sentenceId).find(".sec-comment");
+    $commentSection.css("display", 
+        $commentSection.css("display") == "none" ? "block": "none");
 }
 
-function submitComment(elem){
-    var id = elem.id;
-    var sentenceId = id.split("-")[2];
-    var name = $("#input-name-" + sentenceId).val();
-    var comment = $("#input-comment-" + sentenceId).val();
+function submitComment(sentenceId){
+    var $sentenceItem = $("#sentence-item-" + sentenceId);
+    var name = $sentenceItem.find(".input-name").val();
+    var comment = $sentenceItem.find(".input-comment").val();
     var data = {
         'sentenceId': sentenceId,
         'name':name,
         'comment':comment
     };
     data = JSON.stringify(data);
+    doAjax("/book/createComment", data, function(data, status, xhr){
+        $sentenceItem.find(".comment-list").html(data);
+        console.log("SUCCESS!!");
+        console.log({data:data, status:status, xhr:xhr});
+    });
+}
 
+function doAjax(url, data, fnDone){
     $.ajax({
-        url:'/book/createComment',
+        url: url,
         type:'POST',
         data: data,
         dataType: "html",
         contentType: 'application/json',
     })
-    .done( (data, status, xhr) => {
-        $("#comment-list-" + sentenceId).html(data);
-        console.log("SUCCESS!!");
-        console.log({data:data, status:status, xhr:xhr});
-    })
+    .done(fnDone)
     .fail( (e) => {
         console.log("ERROR!!");
         console.log(e);
-    })
+    })    
 }
