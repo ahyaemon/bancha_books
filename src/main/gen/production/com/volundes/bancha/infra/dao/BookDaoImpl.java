@@ -2,7 +2,7 @@ package com.volundes.bancha.infra.dao;
 
 /** */
 @org.springframework.stereotype.Component()
-@javax.annotation.Generated(value = { "Doma", "2.19.2" }, date = "2018-07-11T21:33:37.938+0900")
+@javax.annotation.Generated(value = { "Doma", "2.19.2" }, date = "2018-07-16T12:45:47.860+0900")
 public class BookDaoImpl extends org.seasar.doma.internal.jdbc.dao.AbstractDao implements com.volundes.bancha.infra.dao.BookDao {
 
     static {
