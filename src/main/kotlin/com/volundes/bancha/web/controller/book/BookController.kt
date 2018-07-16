@@ -1,6 +1,5 @@
 package com.volundes.bancha.web.controller.book
 
-import com.volundes.bancha.domain.dto.Comment
 import com.volundes.bancha.domain.service.BookService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 class BookController(
         private val service: BookService
 ) {
+
     @RequestMapping("/")
     fun noisbn(): String{
         return "redirect:/bookmenu/"
