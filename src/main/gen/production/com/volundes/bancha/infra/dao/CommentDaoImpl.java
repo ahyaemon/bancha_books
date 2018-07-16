@@ -2,7 +2,7 @@ package com.volundes.bancha.infra.dao;
 
 /** */
 @org.springframework.stereotype.Component()
-@javax.annotation.Generated(value = { "Doma", "2.19.2" }, date = "2018-07-12T22:11:12.834+0900")
+@javax.annotation.Generated(value = { "Doma", "2.19.2" }, date = "2018-07-16T12:45:47.890+0900")
 public class CommentDaoImpl extends org.seasar.doma.internal.jdbc.dao.AbstractDao implements com.volundes.bancha.infra.dao.CommentDao {
 
     static {

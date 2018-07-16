@@ -1,7 +1,7 @@
 package com.volundes.bancha.infra.entity;
 
 /** */
-@javax.annotation.Generated(value = { "Doma", "2.19.2" }, date = "2018-07-11T21:36:06.763+0900")
+@javax.annotation.Generated(value = { "Doma", "2.19.2" }, date = "2018-07-16T12:45:47.695+0900")
 public final class _SentenceEntity extends org.seasar.doma.jdbc.entity.AbstractEntityType<com.volundes.bancha.infra.entity.SentenceEntity> {
 
     static {
