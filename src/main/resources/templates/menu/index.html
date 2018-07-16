@@ -4,16 +4,18 @@
 <body>
     <div th:replace="nav :: nav"></div>
     <div class="bancha-jumbotron siimple-jumbotron siimple-jumbotron--purple siimple-jumbotron--fluid">
-        <div class="siimple-jumbotron-title">Menu</div>
+        <div class="siimple-jumbotron-title">Bancha Home</div>
         <div class="siimple-jumbotron-subtitle">ここからすべてが始まる</div>
     </div>
 
     <section>
-        <ul>
+        <ul class="bancha-ul">
             <li><a href="/bookmenu/">Books</a></li>
-            <li><a href="/sample/">Sample Page</a></li>
-            <li><a href="/about/">About</a></li>
+            <li><a href="/sample/">サンプル</a></li>
+            <li><a href="/about/">このページについて</a></li>
+            <li><a href="/">ログイン</a></li>
         </ul>
+        <p class="siimple-p">ログイン機能は何もできていない</p>
     </section>
     <div th:replace="footer :: footer"></div>
 </body>

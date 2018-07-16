@@ -8,13 +8,11 @@
         <div class="siimple-jumbotron-subtitle">読みたい本を選ぶのじゃ</div>
     </div>
     <section>
-        <h2>Book Menu</h2>
-        <ul>
+        <ul class="bancha-ul">
             <li th:each="bookMenuItem: ${bookMenuItems}">
                 <a th:href="'/book/' + ${bookMenuItem.bookId}">
-                    <span th:text="${bookMenuItem.bookId} + '. '"></span>
                     <span th:text="${bookMenuItem.name}"></span>
-                    <span th:text="'(' + ${bookMenuItem.author} + ')'"></span>
+                    <span th:text="' - ' + ${bookMenuItem.author}"></span>
                 </a>
             </li>
         </ul>
