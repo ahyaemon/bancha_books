@@ -16,6 +16,7 @@ https://banchabooks.herokuapp.com/
 - postgresql 9.6.2
 - flyway 5.1.4
 - siimple.css 3.1.0
+- quartz scheduler
 
 ### 2.3 Doma2 + intellij の開発について
 アノテーション解釈のため、プロジェクトインポート後にintellij側でいくつか設定が必要。  
