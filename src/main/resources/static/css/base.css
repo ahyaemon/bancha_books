@@ -76,5 +76,13 @@ footer i{
 }
 
 .bancha-ul a{
-    color: #222;
+    color: #444;
+}
+
+.bancha-bread a{
+    color: #888;
+}
+
+.bancha-bread .here{
+    color: #444;
 }

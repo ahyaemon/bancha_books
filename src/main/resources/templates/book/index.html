@@ -8,6 +8,12 @@
         <div class="siimple-jumbotron-subtitle" th:text="${bookItem.author}"></div>
     </div>
     
+    <div class="siimple-breadcrumb bancha-bread">
+        <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+        <div class="siimple-breadcrumb-item"><a href="/bookmenu/">Books</a></div>
+        <div class="siimple-breadcrumb-item here" th:text="${bookItem.name}"></div>
+    </div>
+    
     <section class="sec-content">
         <div th:each="sentenceItem: ${sentenceItems}" th:with="sid=${sentenceItem.sentenceId}" th:id="'sentence-item-'+${sid}" class="sentence-item">
             <section class="sec-sentence" th:onclick="'openComment(' + ${sid} + ')'">
