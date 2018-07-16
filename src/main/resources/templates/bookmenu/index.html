@@ -4,9 +4,15 @@
 <body>
     <div th:replace="nav :: nav"></div>
     <div class="bancha-jumbotron siimple-jumbotron siimple-jumbotron--purple siimple-jumbotron--fluid">
-        <div class="siimple-jumbotron-title">Book Menu</div>
+        <div class="siimple-jumbotron-title">Books</div>
         <div class="siimple-jumbotron-subtitle">読みたい本を選ぶのじゃ</div>
     </div>
+
+    <div class="siimple-breadcrumb bancha-bread">
+        <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+        <div class="siimple-breadcrumb-item here">Books</div>
+    </div>
+        
     <section>
         <ul class="bancha-ul">
             <li th:each="bookMenuItem: ${bookMenuItems}">
