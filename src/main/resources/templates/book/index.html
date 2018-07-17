@@ -13,21 +13,30 @@
         <div class="siimple-breadcrumb-item"><a href="/bookmenu/">Books</a></div>
         <div class="siimple-breadcrumb-item here" th:text="${bookItem.name}"></div>
     </div>
-    
+
     <section class="sec-content">
-        <div th:each="sentenceItem: ${sentenceItems}" th:with="sid=${sentenceItem.sentenceId}" th:id="'sentence-item-'+${sid}" class="sentence-item">
+        <div th:each="sentenceItem: ${sentenceItems}" th:with="sid=${sentenceItem.sentenceId}" 
+            th:id="'sentence-item-'+${sid}" class="sentence-item">
             <section class="sec-sentence" th:onclick="'openComment(' + ${sid} + ')'">
                 <p th:text="${sentenceItem.sentence}" th:classappend="${sentenceItem.hasComment()} ? 'b'"></p>
             </section>
-            <section class="sec-comment" style="display: none;">
+            <section class="siimple-card sec-comment" style="display: none;">
                 <div class="comment-list" th:with="commentItems=${sentenceItem.commentItems}">
                     <p th:replace="book/comment :: comment"></p>
                 </div>
-                <div class="aform-comment">
-                    <input class="input-name" type="text" placeholder="名前">
-                    <br>
-                    <textarea class="input-comment" placeholder="コメント"></textarea>
-                        <button class="input-submit" type="button" th:onclick="'submitComment(' + ${sid} + ')'">GO</button>
+                <div class="siimple-rule comment-rule"></div>
+                <div class="aform-comment siimple-form">
+                    <div class="siimple-field">
+                        <input class="input-name bancha-input-text siimple-input" type="text" placeholder="名前">
+                    </div>
+                    <div class="siimple-field">
+                        <textarea class="siimple-textarea bancha-input-textarea siimple-textarea-fuild input-comment" 
+                            placeholder="コメント"></textarea>
+                    </div>
+                    <div class="siimple-field">
+                        <button class="siimple-btn bancha-red input-submit" type="button" 
+                            th:onclick="'submitComment(' + ${sid} + ')'">投稿</button>
+                    </div>
                 </div>
             </section>
         </div>
