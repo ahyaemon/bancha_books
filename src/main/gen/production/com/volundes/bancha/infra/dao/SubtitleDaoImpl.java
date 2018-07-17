@@ -2,7 +2,7 @@ package com.volundes.bancha.infra.dao;
 
 /** */
 @org.springframework.stereotype.Component()
-@javax.annotation.Generated(value = { "Doma", "2.19.2" }, date = "2018-07-17T07:51:26.379+0900")
+@javax.annotation.Generated(value = { "Doma", "2.19.2" }, date = "2018-07-17T22:12:10.547+0900")
 public class SubtitleDaoImpl extends org.seasar.doma.internal.jdbc.dao.AbstractDao implements com.volundes.bancha.infra.dao.SubtitleDao {
 
     static {
