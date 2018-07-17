@@ -1,7 +1,15 @@
 function openComment(sentenceId){
-    var $commentSection = $("#sentence-item-" + sentenceId).find(".sec-comment");
-    $commentSection.css("display", 
-        $commentSection.css("display") == "none" ? "block": "none");
+    var cls = "sentence-item-selected";
+    var $sentenceItem = $("#sentence-item-" + sentenceId);
+    var $commentSection = $sentenceItem.find(".sec-comment");
+    if($sentenceItem.hasClass(cls)){
+        $sentenceItem.removeClass(cls);
+        $commentSection.css("display", "none");
+    }
+    else{
+        $sentenceItem.addClass(cls);
+        $commentSection.css("display", "block");        
+    }
 }
 
 function submitComment(sentenceId){

@@ -1,7 +1,7 @@
 package com.volundes.bancha.infra.entity;
 
 /** */
-@javax.annotation.Generated(value = { "Doma", "2.19.2" }, date = "2018-07-17T07:51:26.200+0900")
+@javax.annotation.Generated(value = { "Doma", "2.19.2" }, date = "2018-07-17T22:12:10.453+0900")
 public final class _SubtitleEntity extends org.seasar.doma.jdbc.entity.AbstractEntityType<com.volundes.bancha.infra.entity.SubtitleEntity> {
 
     static {
