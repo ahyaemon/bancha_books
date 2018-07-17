@@ -11,11 +11,6 @@ p{
     font-weight: bold;
 }
 
-.sec-comment{
-    margin-left: 20px;
-    padding-left: 10px;
-    border-left: 4px solid grey;
-}
 
 .aform-comment{
     margin-top: 10px;
@@ -58,15 +53,21 @@ footer i{
 .bancha-input-text{
     background-color: white !important;
 }
+
+.bancha-input-textarea{
+    background-color: white !important;
+}
+
 .bancha-nav{
     background-color: rgb(114, 170, 143) !important;
 }
+
 .bancha-jumbotron{
     background-color: rgb(71, 116, 94) !important;
 }
 
 .bancha-red{
-    background-color: rgb(148, 54, 54);
+    background-color: rgb(161, 76, 76);
     color: white;
 }
 
@@ -85,4 +86,25 @@ footer i{
 
 .bancha-bread .here{
     color: #444;
+}
+
+/**
+* コメントフォーム
+*/
+.sentence-item-selected{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(227, 233, 243);
+}
+
+.sentence-item-selected .sec-sentence{
+    font-weight: bold;
+}
+
+.sentence-item-selected .comment-list{
+    margin: 10px;    
+}
+
+.sentence-item-selected .comment-rule{
+    background-color: rgb(186, 187, 214);
 }
