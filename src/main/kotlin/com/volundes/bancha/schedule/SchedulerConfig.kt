@@ -24,7 +24,7 @@ class SchedulerConfig(
                 .newTrigger()
                 .withIdentity("trigger1", "group1")
                 .startNow()
-                .withSchedule(CronScheduleBuilder.cronSchedule("0 0/1 * * * ?"))
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 0/20 * * * ?"))
                 .build()
         scheduler.scheduleJob(jobDetail, trigger)
         scheduler.start()
