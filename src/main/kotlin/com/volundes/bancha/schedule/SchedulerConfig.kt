@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Profile
 
 @Configuration
-@Profile("dev") // TODO 一旦devでも有効にしておく
+@Profile("production") // TODO 一旦devでも有効にしておく
 class SchedulerConfig {
 
     @Bean
