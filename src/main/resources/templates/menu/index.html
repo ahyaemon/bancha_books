@@ -2,26 +2,60 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('menu')"></head>
 <body>
-    <div th:replace="nav :: nav"></div>
-    <div class="bancha-jumbotron siimple-jumbotron siimple-jumbotron--purple siimple-jumbotron--fluid">
-        <div class="siimple-jumbotron-title">Bancha Home</div>
-        <div class="siimple-jumbotron-subtitle" th:text="${subtitle}"></div>
-    </div>
-
-    <div class="siimple-breadcrumb bancha-bread">
-        <div class="siimple-breadcrumb-item here">Home</div>
-    </div>
-
-    <section>
-        <ul class="bancha-ul">
-            <li><a href="/bookmenu/">Books</a></li>
-            <li><a href="/sample/">サンプル</a></li>
-            <li><a href="/about/">このページについて</a></li>
-            <li><a href="/donation/">寄付<span class="siimple-tag siimple-tag--error" style="margin-left: 4px;">COME ON!!</span></a></li>
-            <li><a href="/">サインイン</a></li>
-        </ul>
-        <p class="siimple-p">サインイン機能は何もできていない</p>
+    <section class="sec-header">
+        <div th:replace="nav :: nav"></div>
     </section>
-    <div th:replace="footer :: footer"></div>
+
+    <section class="sec-title">
+        <div class="bancha-jumbotron siimple-jumbotron siimple-jumbotron--purple siimple-jumbotron--fluid">
+            <div class="siimple-jumbotron-title">Bancha Home</div>
+            <div class="siimple-jumbotron-subtitle" th:text="${subtitle}"></div>
+        </div>            
+    </section>
+
+    <section class="sec-pankuzu">
+        <div class="siimple-breadcrumb bancha-bread">
+            <div class="siimple-breadcrumb-item here">Home</div>
+        </div>        
+    </section>
+    
+    <section class="sec-content">
+        <a href="/bookmenu/">
+            <div class="siimple-card bancha-card bancha-back-blue">
+                <div class="siimple-card-body">
+                    <div class="siimple-card-title">Books</div>
+                    <div class="siimple-card-subtitle">メインコンテンツ</div>
+                </div>
+            </div>
+        </a>
+        <a href="/sample/">
+            <div class="siimple-card bancha-card bancha-back-blue">
+                <div class="siimple-card-body">
+                    <div class="siimple-card-title">Sample</div>
+                    <div class="siimple-card-subtitle">サンプルページ、いつか消す</div>
+                </div>
+            </div>
+        </a>
+        <a href="/about/">
+            <div class="siimple-card bancha-card bancha-back-blue">
+                <div class="siimple-card-body">
+                    <div class="siimple-card-title">About</div>
+                    <div class="siimple-card-subtitle">このページについて</div>
+                </div>
+            </div>
+        </a>
+        <a href="/donation/">
+            <div class="siimple-card bancha-card bancha-back-blue">
+                <div class="siimple-card-body">
+                    <div class="siimple-card-title">Donation</div>
+                    <div class="siimple-card-subtitle">寄付</div>
+                </div>
+            </div>
+        </a>
+    </section>
+
+    <section class="sec-footer">
+        <div th:replace="footer :: footer"></div>
+    </section>
 </body>
 </html>
