@@ -2,28 +2,37 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('book select')"></head>
 <body>
-    <div th:replace="nav :: nav"></div>
-    <div class="bancha-jumbotron siimple-jumbotron siimple-jumbotron--purple siimple-jumbotron--fluid">
-        <div class="siimple-jumbotron-title">Books</div>
-        <div class="siimple-jumbotron-subtitle" th:text="${subtitle}"></div>
-    </div>
-
-    <div class="siimple-breadcrumb bancha-bread">
-        <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-        <div class="siimple-breadcrumb-item here">Books</div>
-    </div>
-        
-    <section>
-        <ul class="bancha-ul">
-            <li th:each="bookMenuItem: ${bookMenuItems}">
-                <a th:href="'/book/' + ${bookMenuItem.bookId}">
-                    <span th:text="${bookMenuItem.name}"></span>
-                    <span th:text="' - ' + ${bookMenuItem.author}"></span>
-                </a>
-            </li>
-        </ul>
+    <section class="sec-header">
+        <div th:replace="nav :: nav"></div>
     </section>
 
-    <div th:replace="footer :: footer"></div>
+    <section class="sec-title">
+        <div class="bancha-jumbotron siimple-jumbotron siimple-jumbotron--purple siimple-jumbotron--fluid">
+            <div class="siimple-jumbotron-title">Books</div>
+            <div class="siimple-jumbotron-subtitle" th:text="${subtitle}"></div>
+        </div>
+    </section>
+
+    <section class="sec-pankuzu">
+        <div class="siimple-breadcrumb bancha-bread">
+            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+            <div class="siimple-breadcrumb-item here">Books</div>
+        </div>
+    </section>
+        
+    <section class="sec-content">
+        <a th:each="bookMenuItem: ${bookMenuItems}" th:href="'/book/' + ${bookMenuItem.bookId}">
+            <div class="siimple-card bancha-card bancha-back-yellow">
+                <div class="siimple-card-body">
+                    <div class="siimple-card-title" th:text="${bookMenuItem.name}"></div>
+                    <div class="siimple-card-subtitle" th:text="${bookMenuItem.author}"></div>
+                </div>
+            </div>
+        </a>
+    </section>
+        
+    <section class="sec-footer">
+        <div th:replace="footer :: footer"></div>
+    </section>
 </body>
 </html>
