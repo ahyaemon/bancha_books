@@ -17,4 +17,8 @@ public interface SubtitleDao {
     @Select
     @Transactional
     List<SubtitleEntity> selectByTitleCd(String titleCd);
+
+    @Select
+    @Transactional
+    List<SubtitleEntity> select();
 }
