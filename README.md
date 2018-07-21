@@ -15,6 +15,7 @@ https://banchabooks.herokuapp.com/
 
 ### 2.2 使用ライブラリ
 - springboot 2.0.3
+- spring security
 - Doma2 2.19.2
 - postgresql 9.6.2
 - flyway 5.1.4
