@@ -1,7 +1,15 @@
-<div th:fragment="nav" class="bancha-nav siimple-navbar siimple-navbar--primary siimple-navbar--fluid">
-    <a class="siimple-navbar-title" href="/">Bancha</a>
-    <a class="siimple-navbar-subtitle" href="/">v0.0.1</a>
+<div th:fragment="normal">
+    <div class="siimple-navbar siimple-navbar--fluid blightgreen" th:include="nav :: nav"></div>
+</div>
+
+<div th:fragment="admin">
+    <div class="siimple-navbar siimple-navbar--fluid blightred" th:include="nav :: nav"></div>            
+</div>
+
+<div th:fragment="nav">
+    <a class="siimple-navbar-title white" href="/">Bancha</a>
+    <a class="siimple-navbar-subtitle white" href="/">v0.0.1</a>
     <div class="siimple--float-right">
-        <a class="siimple-navbar-item" href="/">Sign in</a>
-    </div>
+        <a class="siimple-navbar-item white" href="/">Sign in</a>
+    </div>    
 </div>

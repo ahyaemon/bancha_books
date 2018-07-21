@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="head :: head('menu')"></head>
+<head th:replace="head :: head('管理者メニュー')"></head>
 <body>
-    <section class="sec-header">
-        <div th:replace="nav :: nav"></div>
-    </section>
-
-    <section class="sec-title">
-        <div class="bancha-jumbotron siimple-jumbotron siimple-jumbotron--purple siimple-jumbotron--fluid">
-            <div class="siimple-jumbotron-title">Admin Menu</div>
-            <div class="siimple-jumbotron-subtitle">管理しちゃう？</div>
-        </div>            
-    </section>
+    <section class="sec-header" th:include="nav :: admin"></section>
+    
+    <section class="sec-title" th:include="title :: admin(title='Admin Menu', subtitle='管理しちゃう？')"></section>
 
     <section class="sec-pankuzu">
         <div class="siimple-breadcrumb bancha-bread">
