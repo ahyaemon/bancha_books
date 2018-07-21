@@ -55,16 +55,21 @@ dependencies {
 	compile "org.springframework.boot:spring-boot-starter-jdbc"
 	compile "org.springframework.boot:spring-boot-starter-thymeleaf"
 	compile "org.springframework.boot:spring-boot-starter-web"
+	compile "org.springframework.boot:spring-boot-starter-quartz"
+    compile "org.springframework.boot:spring-boot-starter-security"
+
 	compile "com.fasterxml.jackson.module:jackson-module-kotlin"
 	compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 	compile "org.jetbrains.kotlin:kotlin-reflect"
+
+	// flyway
     compile "org.flywaydb:flyway-core:${flywayVersion}"
-	compile('org.springframework.boot:spring-boot-starter-quartz')
 
 	// Doma2
 	compile "org.seasar.doma.boot:doma-spring-boot-starter:1.1.1"
 	compile "org.seasar.doma:doma:${domaVersion}"
 
+	// Postgresql
 	runtime "org.postgresql:postgresql"
 	testCompile "org.springframework.boot:spring-boot-starter-test"
 }
