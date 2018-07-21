@@ -1,16 +1,28 @@
 spring:
   profiles:
-    active: dev
-  datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/bancha}
-    username: ${DB_USERNAME:bancha}
-    password: ${DB_PASSWORD:bancha}
-    driverClassName: org.postgresql.Driver
+    active: production
   thymeleaf:
     cache: false
 
 doma:
   dialect: postgres
 
-#server:
-#  port: 8081
+---
+
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bancha
+    username: bancha
+    password: bancha
+    driverClassName: org.postgresql.Driver
+
+---
+
+spring:
+  profiles: production
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/bancha}
+    username: ${DB_USERNAME:bancha}
+    password: ${DB_PASSWORD:bancha}
+    driverClassName: org.postgresql.Driver
