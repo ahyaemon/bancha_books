@@ -1,17 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="head :: head('sample')"></head>
+<head th:replace="head :: head('Sample')"></head>
 <body>
-    <div th:replace="nav :: nav"></div>
-    <div class="bancha-jumbotron siimple-jumbotron siimple-jumbotron--purple siimple-jumbotron--fluid">
-        <div class="siimple-jumbotron-title">Sample Page</div>
-        <div class="siimple-jumbotron-subtitle">Personテーブルをいじるだけのサンプルページ</div>
-    </div>
+    <section class="sec-header" th:include="nav :: normal"></section>
     
-    <div class="siimple-breadcrumb bancha-bread">
-        <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-        <div class="siimple-breadcrumb-item here">サンプルページ</div>
-    </div>    
+    <section class="sec-title" th:include="title :: normal(title='Sample Page', subtitle='Personテーブルをいじるだけのサンプルページ')"></section>
 
     <div class="siimple-card bancha-card bancha-card-sample" style="margin-top: 10px;">
         <div class="siimple-card-header">INSERT</div>        
