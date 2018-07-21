@@ -1,12 +1,7 @@
-package com.volundes.bancha.config
+package com.volundes.bancha.config.security
 
-import org.apache.catalina.core.ApplicationContext
-import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Profile
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
-import org.springframework.security.config.annotation.authentication.configuration.GlobalAuthenticationConfigurerAdapter
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.builders.WebSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
@@ -19,23 +14,6 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder
 class WebSecurityConfig(
         private val userDetailsService: UserDetailsService
 ) : WebSecurityConfigurerAdapter(){
-
-    @SuppressWarnings("deprecation")
-    @Bean
-    fun passwordEncoder2(): NoOpPasswordEncoder{
-        return NoOpPasswordEncoder.getInstance() as NoOpPasswordEncoder
-    }
-
-    @Bean
-    fun passwordEncoder(): BCryptPasswordEncoder{
-        return BCryptPasswordEncoder()
-    }
-
-    override fun configure(auth: AuthenticationManagerBuilder){
-        val passwordEncoder = passwordEncoder()
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder)
-    }
 
     /**
      * 静的コンテンツのアクセスはすべて許可
