@@ -11,7 +11,6 @@ p{
     font-weight: bold;
 }
 
-
 .aform-comment{
     margin-top: 10px;
 }
@@ -70,12 +69,14 @@ footer i{
     background-color: white !important;
 }
 
-.bancha-nav{
+.bancha-nav-green{
     background-color: rgb(114, 170, 143) !important;
+    color: white !important;
 }
 
-.bancha-jumbotron{
-    background-color: rgb(71, 116, 94) !important;
+.bancha-jumbotron-green{
+    background-color: rgb(71, 116, 94);
+    color: white;
 }
 
 .bancha-red{
@@ -119,4 +120,27 @@ footer i{
 
 .sentence-item-selected .comment-rule{
     background-color: rgb(186, 187, 214);
+}
+
+/**
+ * 色
+ */
+.bgreen{
+    background-color: rgb(71, 116, 94) !important;
+}
+
+.blightgreen{
+    background-color: rgb(114, 170, 143) !important;
+}
+
+.bred{
+    background-color: rgb(161, 76, 76) !important;
+}
+
+.blightred{
+    background-color: rgb(206, 108, 108) !important;
+}
+
+.white{
+    color: white;
 }
