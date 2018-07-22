@@ -6,4 +6,20 @@
 開発環境の作成
 ======================================
 
-開発環境の作成方法についてまとめる
+sphinx環境の作成
+
+::
+
+  pip install sphinx
+
+themeの取得
+
+::
+
+  pip install sphinx_rtd_theme
+
+ビルド
+
+::
+
+  make html

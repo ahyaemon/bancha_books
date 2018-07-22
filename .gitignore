@@ -27,3 +27,6 @@
 
 ### Doma2 ###
 /src/main/gen/
+
+### Sphinx ###
+/doc/_build/
