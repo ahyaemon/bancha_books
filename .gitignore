@@ -29,4 +29,4 @@
 /src/main/gen/
 
 ### Sphinx ###
-/doc/_build/
+/sphinx/_build/
