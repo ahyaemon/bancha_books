@@ -23,3 +23,10 @@ themeの取得
 ::
 
   make html
+
+作成されたhtmlをdocsフォルダにコピー
+
+::
+
+  copydocs
+

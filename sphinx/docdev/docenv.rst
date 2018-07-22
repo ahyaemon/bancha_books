@@ -28,5 +28,5 @@ themeの取得
 
 ::
 
-  copy
+  copydocs
 
