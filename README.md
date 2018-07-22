@@ -14,16 +14,16 @@ https://banchabooks.herokuapp.com/
 ※ java10 でやったら動かなかった
 
 ### 2.2 使用ライブラリ
+#### バック側
 - springboot 2.0.3
 - spring security
 - quartz scheduler
 - Doma2 2.19.2
-
 - postgresql 9.6.2
 - flyway 5.1.4
 
+#### フロント側
 - siimple.css 3.1.0
-
 - anime.js 2.2.0
 
 ### 2.3 Doma2 + intellij の開発について
