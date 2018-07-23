@@ -23,7 +23,7 @@ class BookController(
             @PathVariable("bookId") bookId: String,
             model: Model
     ): String{
-        val bookItem = BookItem(service.getBookInfo(bookId))
+        val bookItem = BookItem(service.getBookByBookId(bookId))
         model.addAttribute("bookItem", bookItem)
 
         val sentenceItems = service.getSentences(bookId).map{ SentenceItem(it) }
