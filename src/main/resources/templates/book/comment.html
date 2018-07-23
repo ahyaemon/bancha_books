@@ -1,8 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <body>
-    <div>
-        <p th:fragment="comment" th:each="commentItem: ${commentItems}" th:text="|${commentItem.commentName}: ${commentItem.comment}|"></p>
+    <div th:fragment="comment">
+        <!-- /* 投稿済みコメント */-->
+        <section class="sec-comments">
+            <div class="comment-list">
+                <p th:each="commentItem: ${commentItems}" 
+                    th:text="|${commentItem.commentName}: ${commentItem.comment}|"></p>
+            </div>
+        </section>
+
+        <!--/* 区切り線 */-->
+        <div class="siimple-rule comment-rule"></div>
+
+        <!--/* コメント投稿フォーム */-->
+        <section class="sec-comment-form">
+            <form th:object="${commentForm}">
+                <ul><li th:each="error: ${#fields.detailedErrors()}" th:text="${error.message}"></li></ul>                    
+                
+                <div class="siimple-field">
+                    <input class="input-name bancha-input-text siimple-input" 
+                        type="text" placeholder="名前" th:field="*{name}">
+                </div>
+                <div class="siimple-field">
+                    <textarea class="siimple-textarea bancha-input-textarea siimple-textarea-fuild input-comment" 
+                        placeholder="コメント" th:field="*{comment}"></textarea>
+                </div>
+                <div class="siimple-field">
+                    <button class="siimple-btn bancha-red input-submit" type="button" 
+                        th:onclick="'submitComment(' + ${sid} + ')'">投稿</button>
+                </div>            
+            </form>    
+        </section>
     </div>
 </body>
 </html>

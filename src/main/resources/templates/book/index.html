@@ -15,30 +15,26 @@
     </section>
 
     <section class="sec-content">
-        <div th:each="sentenceItem: ${sentenceItems}" th:with="sid=${sentenceItem.sentenceId}" 
+        <div th:each="sentenceForm, stat: ${sentenceForms}" th:with="sid=${sentenceForm.sentenceId}" 
             th:id="'sentence-item-'+${sid}" class="sentence-item">
-            <section class="sec-sentence" th:onclick="'openComment(' + ${sid} + ')'">
-                <p th:text="${sentenceItem.sentence}" th:classappend="${sentenceItem.hasComment()} ? 'b'"></p>
-            </section>
-            <section class="siimple-card sec-comment" style="display: none;">
-                <div class="comment-list" th:with="commentItems=${sentenceItem.commentItems}">
-                    <p th:replace="book/comment :: comment"></p>
-                </div>
-                <div class="siimple-rule comment-rule"></div>
-                <div class="aform-comment siimple-form">
-                    <div class="siimple-field">
-                        <input class="input-name bancha-input-text siimple-input" type="text" placeholder="名前">
+            <!--/* クリック前、文のみ表示されている状態 */-->
+            <div class="sentence-close" th:onclick="'openSentence(' + ${sid} + ')'">
+                <p th:text="${sentenceForm.sentence}" th:classappend="${sentenceForm.hasComment()} ? 'b'"></p>
+            </div>
+
+            <!--/* クリック後、文が展開されてコメントが表示されている状態 */-->
+            <div class="sentence-open" style="display: none;">
+                <!-- /* 文 */-->
+                <section class="sec-sentence">
+                    <div  th:onclick="'closeSentence(' + ${sid} + ')'">
+                        <p th:text="${sentenceForm.sentence}" class="b"></p>
                     </div>
-                    <div class="siimple-field">
-                        <textarea class="siimple-textarea bancha-input-textarea siimple-textarea-fuild input-comment" 
-                            placeholder="コメント"></textarea>
-                    </div>
-                    <div class="siimple-field">
-                        <button class="siimple-btn bancha-red input-submit" type="button" 
-                            th:onclick="'submitComment(' + ${sid} + ')'">投稿</button>
-                    </div>
-                </div>
-            </section>
+                </section>
+
+                <!--/* 投稿済みコメント & 投稿フォーム */-->
+                <!--/* ajaxでコメント投稿後に内容を更新するため、別フラグメントに分けておく */-->
+                <div class="comment-part" th:include="book/comment :: comment" th:with="commentItems=${sentenceForm.commentItems}"></div>
+            </div>
         </div>
     </section>
 
