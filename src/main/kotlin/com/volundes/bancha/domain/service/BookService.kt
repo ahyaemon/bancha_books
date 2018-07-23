@@ -1,6 +1,6 @@
 package com.volundes.bancha.domain.service
 
-import com.volundes.bancha.domain.dto.BookInfo
+import com.volundes.bancha.domain.dto.Book
 import com.volundes.bancha.domain.dto.Comment
 import com.volundes.bancha.domain.dto.Sentence
 import com.volundes.bancha.domain.repository.BookRepository
@@ -15,8 +15,8 @@ class BookService(
         return repository.getSentences(bookId)
     }
 
-    fun getBookInfo(bookId: String): BookInfo {
-        return repository.getBookInfo(bookId)
+    fun getBookByBookId(bookId: String): Book {
+        return repository.getBookByBookId(bookId)
     }
 
     fun createComment(sentenceId: Long, comment: Comment) {

@@ -28,8 +28,12 @@ class BookRepository(
         return sentenceMapper.toSentences(summaries)
     }
 
-    fun getBookInfo(bookId: String): BookInfo {
-        return bookMapper.toBookInfo(bookDao.selectByBookId(Integer.parseInt(bookId)))
+    fun getBookByBookId(bookId: String): Book {
+        return bookMapper.toBook(bookDao.selectByBookId(Integer.parseInt(bookId)))
+    }
+
+    fun getBooks(): List<Book>{
+        return bookMapper.toBook(bookDao.select())
     }
 
     fun insertComment(sentenceId: Long, comment: Comment) {

@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.controller.book
 
-import com.volundes.bancha.domain.dto.BookInfo
+import com.volundes.bancha.domain.dto.Book
 
 class BookItem(
         var bookId: Long?,
@@ -8,5 +8,5 @@ class BookItem(
         var author: String,
         var isbn: String
 ) {
-    constructor(bookInfo: BookInfo): this(bookInfo.bookId, bookInfo.name, bookInfo.author, bookInfo.isbn)
+    constructor(book: Book): this(book.bookId, book.name, book.author, book.isbn)
 }

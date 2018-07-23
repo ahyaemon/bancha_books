@@ -1,7 +1,6 @@
 package com.volundes.bancha.infra.mapper
 
 import com.volundes.bancha.domain.dto.Book
-import com.volundes.bancha.domain.dto.BookInfo
 import com.volundes.bancha.domain.dto.BookMenu
 import com.volundes.bancha.infra.entity.BookEntity
 import org.springframework.stereotype.Component
@@ -25,7 +24,8 @@ class BookInfraMapper{
         return BookMenu(entity.bookId, entity.name, entity.author, entity.isbn)
     }
 
-    fun toBookInfo(entity: BookEntity): BookInfo {
-        return BookInfo(entity.bookId, entity.name, entity.author, entity.isbn)
+    fun toBook(entities: List<BookEntity>): List<Book> {
+        return entities.map{Book(it.bookId, it.name, it.author, it.isbn)}
     }
+
 }
