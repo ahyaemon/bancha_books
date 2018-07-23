@@ -2,11 +2,11 @@ package com.volundes.bancha.web.controller.book
 
 import com.volundes.bancha.domain.dto.Sentence
 
-data class SentenceItem(
+data class SentenceForm(
         var sentenceId: Long,
         var sentence: String,
-        val commentItems: List<CommentItem>,
-        val rubyItems: List<RubyItem>
+        var commentItems: List<CommentItem>,
+        var rubyItems: List<RubyItem>
 ) {
 
     constructor(sentence: Sentence): this(
