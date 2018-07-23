@@ -3,7 +3,7 @@ package com.volundes.bancha.infra.entity;
 import org.seasar.doma.*;
 
 @Entity
-@Table(name = "comment")
+@Table(name = "subtitle")
 public class SubtitleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

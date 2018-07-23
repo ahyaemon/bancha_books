@@ -3,7 +3,7 @@ package com.volundes.bancha.infra.entity;
 import org.seasar.doma.*;
 
 @Entity
-@Table(name = "book")
+@Table(name = "sentence")
 public class SentenceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

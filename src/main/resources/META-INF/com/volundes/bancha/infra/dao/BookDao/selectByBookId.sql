@@ -1,6 +1,13 @@
 SELECT
-  *
+  b.book_id,
+  b.name as name,
+  a.name as author,
+  b.isbn
 FROM
-  book
+  book b
+  INNER JOIN
+    author a
+	ON
+	  b.author_id = a.author_id
 WHERE
-  book_id = /* bookId */0
+  b.book_id = /* bookId */1
