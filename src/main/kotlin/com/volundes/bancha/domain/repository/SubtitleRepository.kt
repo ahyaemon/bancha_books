@@ -11,9 +11,12 @@ class SubtitleRepository(
         private val mapper: SubtitleInfraMapper
 ) {
 
-    private val subtitles = mapper.toSubtitle( dao.select())
+    private var subtitles: List<Subtitle> = emptyList()
 
     fun selectByTitleCd(titleCd: String): List<Subtitle>{
+        if(subtitles.isEmpty()){
+            subtitles = mapper.toSubtitle( dao.select())
+        }
         return subtitles.filter{ it.titleCd == titleCd }
     }
 

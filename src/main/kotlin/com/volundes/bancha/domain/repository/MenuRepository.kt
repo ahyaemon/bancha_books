@@ -11,9 +11,12 @@ class MenuRepository(
         private val menuMapper: MenuInfraMapper
 ) {
 
-    private val menus = menuMapper.toMenu(menuDao.select())
+    private var menus: List<Menu> = emptyList()
 
     fun get(): List<Menu>{
+        if(menus.isEmpty()) {
+            menus = menuMapper.toMenu(menuDao.select())
+        }
         return menus
     }
 
