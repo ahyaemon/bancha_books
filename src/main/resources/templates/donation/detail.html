@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head :: head('寄付詳細')"></head>
+<body>
+    <section class="sec-header" th:include="nav :: normal"></section>
+    
+    <section class="sec-title" th:include="title :: normal(title='Donation', subtitle='謝謝')"></section>
+
+    <section class="sec-pankuzu">
+        <div class="siimple-breadcrumb bancha-bread">
+            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+            <div class="siimple-breadcrumb-item "><a href="/donation/">寄付</a></div>
+            <div class="siimple-breadcrumb-item here">寄付詳細</div>
+        </div>
+    </section>
+
+    <section class="sec-content">
+        <div class="siimple-table" style="background-color: white;">
+            <div class="siimple-table-header">
+                <div class="siimple-table-row">
+                    <div class="siimple-table-cell">名前</div>
+                    <div class="siimple-table-cell">コメント</div>
+                    <div class="siimple-table-cell">寄付金額</div>
+                </div>
+            </div>
+            <div class="siimple-table-body">
+                <div class="siimple-table-row" th:each="item: ${donationItems}">
+                    <div class="siimple-table-cell" th:text="${item.name}"></div>
+                    <div class="siimple-table-cell" th:text="${item.comment}"></div>
+                    <div class="siimple-table-cell number-format" th:text="${item.amount}"></div>
+                </div>
+            </div>
+        </div>
+    
+    </section>
+
+    <section class="sec-footer">
+        <div th:replace="footer :: footer"></div>
+    </section>    
+
+    <script th:inline="javascript">
+        var donated = /*[[${donated}]]*/ false;
+    </script>
+    <script src="/lib/jquery/jquery-3.0.0.min.js"></script>
+    <script src="/lib/anime-2.2.0/anime.min.js"></script>
+    <script src="/js/base.js"></script>
+    <script src="/js/donation.js"></script>
+</body>
+</html>

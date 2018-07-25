@@ -11,6 +11,10 @@ p{
     font-weight: bold;
 }
 
+.u{
+    text-decoration: underline;
+}
+
 .aform-comment{
     margin-top: 10px;
 }
@@ -143,4 +147,12 @@ footer i{
 
 .white{
     color: white;
+}
+
+.green{
+    color: rgb(71, 116, 94) !important;
+}
+
+.red{
+    color: rgb(161, 76, 76) !important;
 }

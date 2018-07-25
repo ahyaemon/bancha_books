@@ -1,5 +1,5 @@
 # bancha_books
-masterの更新で、herokuに自動デプロイされる  
+herokuブランチの更新で、herokuに自動デプロイされる  
 https://banchabooks.herokuapp.com/
 
 ## 1. 概要
