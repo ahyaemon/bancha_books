@@ -11,8 +11,14 @@ class DonationInfraMapper {
 
     fun toEntity(donation: Donation): DonationEntity{
         val entity = DonationEntity()
+        entity.name = donation.name
+        entity.comment = donation.comment
         entity.amount = donation.amount
         return entity
+    }
+
+    fun toDonation(entities: List<DonationEntity>): List<Donation> {
+        return entities.map{ Donation(it.name, it.comment, it.amount) }
     }
 
 }

@@ -19,4 +19,8 @@ class DonationService(
         return repository.sum()
     }
 
+    fun getDonations(): List<Donation> {
+        return repository.get()
+    }
+
 }
