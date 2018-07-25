@@ -23,10 +23,10 @@ class DonationController(
 
     @RequestMapping("/")
     fun index(model: Model): String{
-        val testPayForm = TestPayForm()
+        val testPayForm = TestPayForm("", "", "0")
         model.addAttribute("testPayForm", testPayForm)
 
-        val totalAmount = service.sum()
+        val totalAmount = service.sum().toString()
         model.addAttribute("totalAmount", totalAmount)
         model.addAttribute("donated", false)
 
@@ -50,6 +50,16 @@ class DonationController(
         model.addAttribute("totalAmount", totalAmount)
         model.addAttribute("donated", true)
         return "donation/index"
+    }
+
+    @RequestMapping("/detail")
+    fun detail(
+            model: Model
+    ): String{
+        val donations = service.getDonations()
+        val donationItems = donations.map{ DonationItem(it)}
+        model.addAttribute("donationItems", donationItems)
+        return "donation/detail"
     }
 
 }

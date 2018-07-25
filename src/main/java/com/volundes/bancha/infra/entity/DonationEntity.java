@@ -6,6 +6,12 @@ import org.seasar.doma.*;
 @Table(name = "donation")
 public class DonationEntity {
 
+    @Column(name="name")
+    public String name;
+
+    @Column(name="comment")
+    public String comment;
+
     @Column(name = "amount")
     public Long amount;
 
