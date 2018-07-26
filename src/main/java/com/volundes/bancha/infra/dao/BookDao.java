@@ -1,6 +1,7 @@
 package com.volundes.bancha.infra.dao;
 
 import com.volundes.bancha.infra.entity.BookEntity;
+import com.volundes.bancha.infra.entity.InsertBookEntity;
 import org.jetbrains.annotations.NotNull;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.List;
 public interface BookDao {
     @Insert
     @Transactional
-    int insert(BookEntity entity);
+    int insert(InsertBookEntity entity);
 
     @Select
     @Transactional
@@ -28,4 +29,7 @@ public interface BookDao {
 
     @Select
     BookEntity selectByBookId(int bookId);
+
+    @Select
+    Long selectBookIdByNameAndAuthor(String name, String author);
 }

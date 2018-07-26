@@ -1,10 +1,12 @@
 package com.volundes.bancha.infra.mapper
 
 import com.volundes.bancha.domain.dto.Comment
+import com.volundes.bancha.domain.dto.InsertBook
 import com.volundes.bancha.domain.dto.Ruby
 import com.volundes.bancha.domain.dto.Sentence
 import com.volundes.bancha.infra.entity.BookSummaryEntity
 import com.volundes.bancha.infra.entity.CommentEntity
+import com.volundes.bancha.infra.entity.SentenceEntity
 import com.volundes.bancha.infra.entity.SentenceSummaryEntity
 import org.springframework.stereotype.Component
 
@@ -32,6 +34,15 @@ class SentenceInfraMapper {
 
     fun toComment(entities: List<CommentEntity>): List<Comment> {
         return entities.map{ Comment(it.commentId, it.name, it.comment) }
+    }
+
+    fun toSentenceEntities(bookId: Long, sentences: List<Sentence>): List<SentenceEntity> {
+        return sentences.map{
+            val entity = SentenceEntity()
+            entity.bookId = bookId
+            entity.sentence = it.sentence
+            entity
+        }
     }
 
 }

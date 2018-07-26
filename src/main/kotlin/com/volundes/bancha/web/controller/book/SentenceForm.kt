@@ -3,7 +3,7 @@ package com.volundes.bancha.web.controller.book
 import com.volundes.bancha.domain.dto.Sentence
 
 data class SentenceForm(
-        var sentenceId: Long,
+        var sentenceId: Long?,
         var sentence: String,
         var commentItems: List<CommentItem>,
         var rubyItems: List<RubyItem>
