@@ -8,4 +8,9 @@ window.onload = function(){
             direction: 'normal',
         });
     }
+
+    $('div[name="yen"]').click(function(e) {
+        let yen = $(e.currentTarget).data('yen');
+        $("#amount").val(yen);
+    });
 }
