@@ -1,31 +1,23 @@
 package com.volundes.bancha.infra.dao;
 
-import com.volundes.bancha.infra.entity.BookSummaryEntity;
+import com.volundes.bancha.infra.entity.AuthorEntity;
 import com.volundes.bancha.infra.entity.CommentEntity;
-import com.volundes.bancha.infra.entity.SentenceEntity;
-import com.volundes.bancha.infra.entity.SentenceSummaryEntity;
 import org.jetbrains.annotations.NotNull;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @AnnotateWith(annotations = {
         @Annotation(target = AnnotationTarget.CLASS, type = Component.class),
         @Annotation(target = AnnotationTarget.CONSTRUCTOR, type = Autowired.class) })
 @Dao
-public interface SentenceDao {
+public interface AuthorDao {
     @Select
     @Transactional
-    List<BookSummaryEntity> selectBookSummaryByBookId(int bookId);
+    AuthorEntity selectByName(String name);
 
-    @Select
+    @Insert
     @Transactional
-    List<CommentEntity> selectCommentBySentenceId(long sentenceId);
-
-    @BatchInsert
-    @Transactional
-    int[] insert(List<SentenceEntity> entities);
+    int insert(AuthorEntity authorEntity);
 }
