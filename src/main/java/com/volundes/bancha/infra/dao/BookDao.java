@@ -24,10 +24,6 @@ public interface BookDao {
     List<BookEntity> select();
 
     @Select
-    @Transactional
-    BookEntity selectByIsbn(String isbn);
-
-    @Select
     BookEntity selectByBookId(int bookId);
 
     @Select

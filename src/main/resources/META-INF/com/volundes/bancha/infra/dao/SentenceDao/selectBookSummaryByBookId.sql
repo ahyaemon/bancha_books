@@ -2,7 +2,6 @@ SELECT
   b.book_id,
   b.name AS name,
   a.name AS author,
-  b.isbn,
   s.sentence_id,
   s.sentence,
   c.comment_id,

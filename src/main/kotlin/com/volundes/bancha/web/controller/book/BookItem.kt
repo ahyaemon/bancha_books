@@ -5,8 +5,7 @@ import com.volundes.bancha.domain.dto.Book
 class BookItem(
         var bookId: Long?,
         var name: String,
-        var author: String,
-        var isbn: String
+        var author: String
 ) {
-    constructor(book: Book): this(book.bookId, book.name, book.author, book.isbn)
+    constructor(book: Book): this(book.bookId, book.name, book.author)
 }

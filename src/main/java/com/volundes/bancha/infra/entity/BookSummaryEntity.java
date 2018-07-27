@@ -16,9 +16,6 @@ public class BookSummaryEntity {
     @Column(name = "author")
     public String author;
 
-    @Column(name = "isbn")
-    public String isbn;
-
     @Column(name = "sentence_id")
     public Long sentenceId;
 

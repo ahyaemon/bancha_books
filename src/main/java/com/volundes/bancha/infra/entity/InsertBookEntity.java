@@ -16,6 +16,4 @@ public class InsertBookEntity {
     @Column(name = "author_id")
     public Long authorId;
 
-    @Column(name = "isbn")
-    public String isbn;
 }

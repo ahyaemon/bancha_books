@@ -14,7 +14,6 @@ class BookInfraMapper{
         entity.bookId = book.bookId
         entity.name = book.name
         entity.author = book.author
-        entity.isbn = book.isbn
         return entity
     }
 
@@ -23,12 +22,11 @@ class BookInfraMapper{
         entity.bookId = book.bookId
         entity.name = book.name
         entity.author = book.author
-        entity.isbn = ""
         return entity
     }
 
     fun toBook(entity: BookEntity): Book{
-        return Book(entity.bookId, entity.name, entity.author, entity.isbn)
+        return Book(entity.bookId, entity.name, entity.author)
     }
 
     fun toBook(entities: List<BookEntity>): List<Book> {
@@ -36,7 +34,7 @@ class BookInfraMapper{
     }
 
     fun toBookMenu(entity: BookEntity): BookMenu {
-        return BookMenu(entity.bookId, entity.name, entity.author, entity.isbn)
+        return BookMenu(entity.bookId, entity.name, entity.author)
     }
 
     fun toInsertBookEntity(insertBook: InsertBook, authorId: Long): InsertBookEntity {

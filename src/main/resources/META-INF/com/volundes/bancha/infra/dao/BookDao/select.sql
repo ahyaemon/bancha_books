@@ -1,8 +1,7 @@
 SELECT
   b.book_id,
   b.name as name,
-  a.name as author,
-  b.isbn
+  a.name as author
 FROM
   book b
   INNER JOIN
