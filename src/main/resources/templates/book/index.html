@@ -19,7 +19,7 @@
             th:id="'sentence-item-'+${sid}" class="sentence-item">
             <!--/* クリック前、文のみ表示されている状態 */-->
             <div class="sentence-close" th:onclick="'openSentence(' + ${sid} + ')'">
-                <p th:text="${sentenceForm.sentence}" th:classappend="${sentenceForm.hasComment()} ? 'b'"></p>
+                <p th:utext="${sentenceForm.sentence}" th:classappend="${sentenceForm.hasComment()} ? 'b'"></p>
             </div>
 
             <!--/* クリック後、文が展開されてコメントが表示されている状態 */-->
@@ -27,7 +27,7 @@
                 <!-- /* 文 */-->
                 <section class="sec-sentence">
                     <div  th:onclick="'closeSentence(' + ${sid} + ')'">
-                        <p th:text="${sentenceForm.sentence}" class="b"></p>
+                        <p th:utext="${sentenceForm.sentence}" class="b"></p>
                     </div>
                 </section>
 

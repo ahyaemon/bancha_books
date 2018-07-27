@@ -4,6 +4,7 @@ buildscript {
 		springBootVersion = '2.0.3.RELEASE'
         domaVersion = '2.19.2'
         flywayVersion = '5.1.4'
+		jsoupVersion = '1.11.3'
 	}
 	repositories {
 		mavenCentral()
@@ -62,6 +63,9 @@ dependencies {
 	compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 	compile "org.jetbrains.kotlin:kotlin-reflect"
 
+	// jsoup(HTML parser)
+    compile "org.jsoup:jsoup:${jsoupVersion}"
+
 	// flyway
     compile "org.flywaydb:flyway-core:${flywayVersion}"
 
@@ -72,6 +76,7 @@ dependencies {
 	// Postgresql
 	runtime "org.postgresql:postgresql"
 	testCompile "org.springframework.boot:spring-boot-starter-test"
+
 }
 
 flyway {

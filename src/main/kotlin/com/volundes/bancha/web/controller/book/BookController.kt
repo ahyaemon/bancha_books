@@ -15,11 +15,6 @@ class BookController(
         private val service: BookService
 ) {
 
-    @RequestMapping("/")
-    fun noisbn(): String{
-        return "redirect:/bookmenu/"
-    }
-
     @RequestMapping("/{bookId}")
     fun index(
             @PathVariable("bookId") bookId: String,
@@ -37,7 +32,7 @@ class BookController(
         return "book/index"
     }
 
-    @RequestMapping(value="/createComment", produces=["text/plain;charset=UTF-8"])
+    @RequestMapping(value=["/createComment"], produces=["text/plain;charset=UTF-8"])
     fun createComment(
             @RequestBody @Validated commentForm: CommentForm,
             result: BindingResult,
