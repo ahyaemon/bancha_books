@@ -15,16 +15,15 @@ class FlywayCleanConfig(
     @Autowired
     fun flywayClean(){
         val flyway = Flyway()
-        flyway.setDataSource(dataSource)
+        flyway.dataSource = dataSource
 
         // バージョンが違う場合、cleanする
         try{
             flyway.validate()
         }
         catch(e: FlywayException){
-            flyway.clean()
+            flyway.clean() // TODO ログに出す
         }
-
     }
 
 }
