@@ -16,7 +16,7 @@
     <section class="sec-content">
         <div class="siimple-h1">
             <span>現在の寄付総額: </span>
-            <span th:text="${totalAmount}" class="number-format"></span>
+            <span id="total-donation" data-from="0" th:data-to="${totalAmount}"></span>
             <span>円</span>
             <span class="u"></span>
             <a href="/donation/detail">
@@ -99,6 +99,7 @@
         var donated = /*[[${donated}]]*/ false;
     </script>
     <script src="/lib/jquery/jquery-3.0.0.min.js"></script>
+    <script src="/lib/jquery/jquery.countTo.js"></script>
     <script src="/lib/anime-2.2.0/anime.min.js"></script>
     <script src="/js/base.js"></script>
     <script src="/js/donation.js"></script>

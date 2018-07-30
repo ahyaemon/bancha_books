@@ -13,4 +13,12 @@ window.onload = function(){
         let yen = $(e.currentTarget).data('yen');
         $("#amount").val(yen);
     });
+
+    $('#total-donation').countTo({
+        speed: 2500,
+        formatter: function (value, options) {
+            const formatter = new Intl.NumberFormat('ja-JP');
+            return formatter.format(value);
+        }
+    });
 }
