@@ -17,8 +17,7 @@ class AccountRepository(
         private val accountInfraMapper: AccountInfraMapper
         ) {
 
-    fun getByUsername(name: String): Account{
-        return accountInfraMapper.toAccount(accountDao.selectByName(name))
-    }
+    fun getByUsername(name: String) =
+            accountInfraMapper.toAccount(accountDao.selectByName(name))
 
 }
