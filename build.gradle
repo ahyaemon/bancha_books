@@ -77,6 +77,8 @@ dependencies {
 	runtime "org.postgresql:postgresql"
 	testCompile "org.springframework.boot:spring-boot-starter-test"
 
+	// reflection
+	compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
 }
 
 flyway {

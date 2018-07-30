@@ -1,28 +1,52 @@
 package com.volundes.bancha.domain.service.admin
 
-import com.volundes.bancha.domain.dto.Csv
-import com.volundes.bancha.domain.repository.BookRepository
+import com.volundes.bancha.infra.dao.CommentDao
+import com.volundes.bancha.infra.dao.DonationDao
+import com.volundes.bancha.infra.entity.CommentEntity
+import com.volundes.bancha.infra.entity.DonationEntity
+import org.seasar.doma.Table
+import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Service
 
+/*
+Entityを操作するため、Daoを直接呼び出す
+ */
 @Service
 class AdminService(
-        private val bookRepository: BookRepository
+        private val applicationContext: ApplicationContext
 ) {
+    private val targets = mapOf(
+            Pair(CommentDao::class.java, CommentEntity::class.java),
+            Pair(DonationDao::class.java, DonationEntity::class.java)
+    )
 
     fun getDataList(): List<Data>{
-        // commentEntityで試す
-        val data1 = getCommentData("comment1")
-        val data2 = getCommentData("comment2")
-        return arrayListOf(data1, data2)
-    }
+        val dataList = targets.map{ entry ->
+            val daoClass = entry.key
+            val entityClass = entry.value
 
-    private fun getCommentData(filename: String): Data{
-        val commentEntities = bookRepository.getCommentEntities()
-        val titles = Record(arrayListOf("comment_id", "sentence_id", "name", "comment"))
-        val records = commentEntities.map{
-            Record(arrayListOf(it.commentId.toString(), it.sentenceId.toString(), it.name, it.comment))
+            // name
+            val annotation = entityClass.getAnnotation(Table::class.java) as Table
+            val name = annotation.name
+
+            // titles
+            val titles = Record(entityClass.fields.map{ it.name })
+
+            // records
+            val dao = applicationContext.getBean(daoClass)
+            val selectMethod = daoClass.getMethod("select")
+            val entities = selectMethod(dao) as List<Any>
+            val records = entities.map{ entity ->
+                val values = entityClass.fields.map{ field ->
+                    field.get(entity).toString()
+                }
+                Record(values)
+            }
+
+            // data
+            Data(name, titles, records)
         }
-        return Data(filename, titles, records)
-    }
 
+        return dataList
+    }
 }
