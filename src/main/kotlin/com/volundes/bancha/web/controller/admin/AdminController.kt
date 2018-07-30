@@ -10,7 +10,6 @@ import java.io.BufferedOutputStream
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 import javax.servlet.http.HttpServletResponse
-import javax.xml.ws.Response
 
 @Controller
 @RequestMapping("/admin")
@@ -31,10 +30,11 @@ class AdminController(
     @RequestMapping("/download/dml")
     fun downloadRestoreDml(): ResponseEntity<ByteArray>{
         val headers = HttpHeaders()
-        headers.add("Content-Type", "text/csv; charset=MS932")
+        headers.add("Content-Type", "text/csv; charset=UTF-8")
         headers.setContentDispositionFormData("filename", "dml.sql")
 
-        val dml = service.getDml()
+        val dataList = service.getDataList()
+        val dml = dataList.map{ it.toDml() }.reduce{ a, b -> "$a\n$b"}
         return ResponseEntity(dml.toByteArray(), headers, HttpStatus.OK)
     }
 
@@ -43,23 +43,21 @@ class AdminController(
             response: HttpServletResponse
     ) {
         // zipダウンロード用の情報をresponseにセット
-        response.contentType = "application/octet-stream;charset=MS932"
+        response.contentType = "application/octet-stream;charset=UTF-8"
         response.setHeader("Content-Disposition", "attachment; filename=restore.zip")
         response.setHeader("Content-Transfer-Encoding", "binary")
 
-        // zip作成
         val os = response.outputStream
-        val zos = ZipOutputStream(BufferedOutputStream(os))
-
-        // csvのセット
-        val csvs = service.getCsvs()
-        csvs.forEach {
-            val ze = ZipEntry(it.name)
+        val bos = BufferedOutputStream(os)
+        val zos = ZipOutputStream(bos)
+        val dataList = service.getDataList()
+        dataList.forEach {
+            val ze = ZipEntry("${it.name}.csv")
             zos.putNextEntry(ze)
-            zos.write(it.toText().toByteArray())
+            zos.write(it.toCsv().toByteArray())
             zos.closeEntry()
-         }
+        }
         zos.close()
-
     }
+
 }

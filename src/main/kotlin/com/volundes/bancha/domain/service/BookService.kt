@@ -24,7 +24,7 @@ class BookService(
     }
 
     fun getComments(sentenceId: Long): List<Comment> {
-        return repository.getComments(sentenceId)
+        return repository.getCommentsBySentenceId(sentenceId)
     }
 
 }

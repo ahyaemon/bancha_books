@@ -6,6 +6,7 @@ import com.volundes.bancha.infra.dao.BookDao
 import com.volundes.bancha.infra.dao.CommentDao
 import com.volundes.bancha.infra.dao.SentenceDao
 import com.volundes.bancha.infra.entity.BookEntity
+import com.volundes.bancha.infra.entity.CommentEntity
 import com.volundes.bancha.infra.mapper.AuthorInfraMapper
 import com.volundes.bancha.infra.mapper.BookInfraMapper
 import com.volundes.bancha.infra.mapper.CommentInfraMapper
@@ -46,9 +47,18 @@ class BookRepository(
         commentDao.insert(entity)
     }
 
-    fun getComments(sentenceId: Long): List<Comment> {
+    fun getCommentsBySentenceId(sentenceId: Long): List<Comment> {
         val entities = sentenceDao.selectCommentBySentenceId(sentenceId)
         return sentenceMapper.toComment(entities)
+    }
+
+    fun getComments(): List<Comment> {
+        val entities = commentDao.select()
+        return sentenceMapper.toComment(entities)
+    }
+
+    fun getCommentEntities(): List<CommentEntity>{
+        return commentDao.select()
     }
 
     fun addBook(insertBook: InsertBook){

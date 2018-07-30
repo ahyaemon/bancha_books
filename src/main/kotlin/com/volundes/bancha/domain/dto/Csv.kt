@@ -7,7 +7,10 @@ data class Csv(
 ) {
 
     fun toText(): String{
-        return "a,b,c"
+        val header = titles.reduce{ a, b -> "$a,$b" }
+        val content = rows.reduce{ a, b -> "$a\n$b" }
+        val text = "$header\n$content"
+        return text
     }
 
 }
