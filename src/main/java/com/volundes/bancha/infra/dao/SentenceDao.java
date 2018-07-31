@@ -3,8 +3,6 @@ package com.volundes.bancha.infra.dao;
 import com.volundes.bancha.infra.entity.BookSummaryEntity;
 import com.volundes.bancha.infra.entity.CommentEntity;
 import com.volundes.bancha.infra.entity.SentenceEntity;
-import com.volundes.bancha.infra.entity.SentenceSummaryEntity;
-import org.jetbrains.annotations.NotNull;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,6 +15,11 @@ import java.util.List;
         @Annotation(target = AnnotationTarget.CONSTRUCTOR, type = Autowired.class) })
 @Dao
 public interface SentenceDao {
+
+    @Select
+    @Transactional
+    List<SentenceEntity> select();
+
     @Select
     @Transactional
     List<BookSummaryEntity> selectBookSummaryByBookId(int bookId);
@@ -28,4 +31,5 @@ public interface SentenceDao {
     @BatchInsert
     @Transactional
     int[] insert(List<SentenceEntity> entities);
+
 }

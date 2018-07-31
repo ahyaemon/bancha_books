@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.dao;
 
-import com.volundes.bancha.infra.entity.CommentEntity;
+import com.volundes.bancha.infra.entity.UnrestoreEntity;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,12 +12,10 @@ import java.util.List;
         @Annotation(target = AnnotationTarget.CLASS, type = Component.class),
         @Annotation(target = AnnotationTarget.CONSTRUCTOR, type = Autowired.class) })
 @Dao
-public interface CommentDao {
-    @Insert
-    @Transactional
-    int insert(CommentEntity entity);
+public interface RestoreDao {
 
-    @Select
+    @Script
     @Transactional
-    List<CommentEntity> select();
+    void restore();
+
 }

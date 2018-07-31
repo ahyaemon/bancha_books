@@ -11,13 +11,8 @@ class MenuRepository(
         private val menuMapper: MenuInfraMapper
 ) {
 
-    private var menus: List<Menu> = emptyList()
+    private val menus by lazy { menuMapper.toMenu(menuDao.select()) }
 
-    fun get(): List<Menu>{
-        if(menus.isEmpty()) {
-            menus = menuMapper.toMenu(menuDao.select())
-        }
-        return menus
-    }
+    fun get() = menus
 
 }

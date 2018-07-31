@@ -27,11 +27,6 @@ class DonationRepository(
         }
     }
 
-    fun get(): List<Donation> {
-        val entities = donationDao.select()
-        val donations = mapper.toDonation(entities)
-        return donations
-
-    }
+    fun get() = mapper.toDonation(donationDao.select())
 
 }

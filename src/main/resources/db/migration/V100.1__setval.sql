@@ -7,3 +7,4 @@ select setval ('subtitle_subtitle_id_seq', 1000);
 select setval ('account_account_id_seq', 1000);
 select setval ('author_author_id_seq', 1000);
 select setval ('menu_menu_id_seq', 1000);
+select setval ('donation_donation_id_seq', 1000);

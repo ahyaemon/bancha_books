@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 @Component
 class CommentInfraMapper {
 
-    fun toEntity(sentenceId: Long, comment: Comment): CommentEntity{
+    fun toEntity(sentenceId: Long, comment: Comment): CommentEntity {
         val entity = CommentEntity()
         entity.commentId = comment.commentId
         entity.sentenceId = sentenceId

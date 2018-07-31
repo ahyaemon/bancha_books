@@ -15,9 +15,7 @@ class PersonRepository(
         personDao.insert(mapper.toPersonEntity(person))
     }
 
-    fun select(): List<Person> {
-        return personDao.select().map { mapper.toPerson(it) }
-    }
+    fun select() = personDao.select().map { mapper.toPerson(it) }
 
     fun update(person: Person) {
         personDao.update(mapper.toPersonEntity(person))
