@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>#63 デプロイ時のDB初期化対策を考える &mdash; bancha alpha ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="#78 遅延初期化をうまいこと使う" href="issue78.html" />
+    <link rel="prev" title="Issue対応" href="index.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> bancha
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../docdev/index.html">ドキュメント開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appdev/index.html">アプリケーション開発</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Issue対応</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">#63 デプロイ時のDB初期化対策を考える</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">問題</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">対応</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="issue78.html">#78 遅延初期化をうまいこと使う</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">bancha</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Issue対応</a> &raquo;</li>
+        
+      <li>#63 デプロイ時のDB初期化対策を考える</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/issue/issue63.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="db">
+<h1>#63 デプロイ時のDB初期化対策を考える<a class="headerlink" href="#db" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><a class="reference external" href="https://github.com/ahyaemon/bancha_books/issues/63">https://github.com/ahyaemon/bancha_books/issues/63</a></p>
+<div class="section" id="id1">
+<h2>問題<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>スキーマの変更や初期データの変更がある場合、herokuにそのままデプロイするとflywayMigrateで失敗する。</p>
+<p>⇒ migrateの前にcleanすればいいのでは？</p>
+<p>⇒ そうすると、commentやdonationなどのデータが消えてしまう。</p>
+</div>
+<div class="section" id="id2">
+<h2>対応<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>以下の2点の実装。</p>
+<ol class="arabic simple">
+<li>復元用データのエクスポート機能</li>
+<li>復元用スクリプト（restore.script）を META-INF/ ~ /RestoreDao/restore.stript に置くことで、復元を実行する</li>
+</ol>
+<p>アプリケーション起動時の流れは以下。</p>
+<ul class="simple">
+<li>更新がない場合：なにもしない</li>
+<li>更新がある場合：<ol class="arabic">
+<li>clean</li>
+<li>migrate</li>
+<li>初期投入データテーブルへのデータインサート</li>
+<li>restore.scriptからデータの復元</li>
+</ol>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p class="last">flywayにて投入する初期データは、復元用データに含めない。
+（含めると二重でインサートになってしまう。）
+そのため、DBに初期データ判断用の専用のテーブルを作成し、復元用データエクスポート時に初期データは除外する。</p>
+</div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">FlywayCleanConfig.kt</span><a class="headerlink" href="#id3" title="このコードへのパーマリンク">¶</a></div>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="k">fun</span> <span class="nf">initDB</span><span class="p">(){</span>
+    <span class="k">val</span> <span class="py">flyway</span> <span class="p">=</span> <span class="n">Flyway</span><span class="p">()</span>
+    <span class="n">flyway</span><span class="p">.</span><span class="n">dataSource</span> <span class="p">=</span> <span class="n">dataSource</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">flyway</span><span class="p">.</span><span class="n">notUpdated</span><span class="p">()){</span>
+        <span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Skipping flyway clean and migration.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="p">}</span>
+
+    <span class="n">flyway</span><span class="p">.</span><span class="n">clean</span><span class="p">()</span>
+    <span class="n">flyway</span><span class="p">.</span><span class="n">migrate</span><span class="p">()</span>
+
+    <span class="k">try</span><span class="p">{</span>
+        <span class="n">unrestoreRepository</span><span class="p">.</span><span class="n">init</span><span class="p">()</span>
+        <span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Creating unrestore data success.&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">Exception</span><span class="p">){</span>
+        <span class="n">logger</span><span class="p">.</span><span class="n">warn</span><span class="p">(</span><span class="s">&quot;Failed to create unrestore data.&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">try</span><span class="p">{</span>
+        <span class="n">restoreRepository</span><span class="p">.</span><span class="n">restore</span><span class="p">()</span>
+        <span class="n">logger</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;Restore data success.&quot;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">e</span><span class="p">:</span> <span class="n">Exception</span><span class="p">){</span>
+        <span class="n">logger</span><span class="p">.</span><span class="n">warn</span><span class="p">(</span><span class="s">&quot;Failed to restore data.&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="issue78.html" class="btn btn-neutral float-right" title="#78 遅延初期化をうまいこと使う" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Issue対応" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ahyaemon.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'alpha',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

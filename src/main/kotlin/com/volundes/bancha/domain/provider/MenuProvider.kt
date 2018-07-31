@@ -12,8 +12,6 @@ class MenuProvider(
         private val menuRepository: MenuRepository
 ) {
 
-    fun get(): List<Menu> {
-        return menuRepository.get()
-    }
+    fun get() = menuRepository.get()
 
 }

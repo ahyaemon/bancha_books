@@ -12,4 +12,5 @@ Banchaは本の文章に対してコメントができるサービスです。
 
   docdev/index
   appdev/index
+  issue/index
 

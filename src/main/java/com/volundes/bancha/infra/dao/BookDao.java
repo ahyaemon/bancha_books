@@ -21,7 +21,11 @@ public interface BookDao {
 
     @Select
     @Transactional
-    List<BookEntity> select();
+    List<InsertBookEntity> select();
+
+    @Select
+    @Transactional
+    List<BookEntity> selectWithAuthor();
 
     @Select
     BookEntity selectByBookId(int bookId);

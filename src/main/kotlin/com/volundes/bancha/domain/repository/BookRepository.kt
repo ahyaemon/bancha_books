@@ -5,7 +5,7 @@ import com.volundes.bancha.infra.dao.AuthorDao
 import com.volundes.bancha.infra.dao.BookDao
 import com.volundes.bancha.infra.dao.CommentDao
 import com.volundes.bancha.infra.dao.SentenceDao
-import com.volundes.bancha.infra.entity.BookEntity
+import com.volundes.bancha.infra.entity.CommentEntity
 import com.volundes.bancha.infra.mapper.AuthorInfraMapper
 import com.volundes.bancha.infra.mapper.BookInfraMapper
 import com.volundes.bancha.infra.mapper.CommentInfraMapper
@@ -24,9 +24,7 @@ class BookRepository(
         private val authorMapper: AuthorInfraMapper
         ) {
 
-    fun getBookMenus(): List<BookMenu>{
-        return bookDao.select().map{ bookMapper.toBookMenu(it)}
-    }
+    fun getBookMenus() = bookDao.selectWithAuthor().map{ bookMapper.toBookMenu(it)}
 
     fun getSentences(bookId: String): List<Sentence> {
         val summaries = sentenceDao.selectBookSummaryByBookId(Integer.parseInt(bookId))
@@ -37,18 +35,20 @@ class BookRepository(
         return bookMapper.toBook(bookDao.selectByBookId(Integer.parseInt(bookId)))
     }
 
-    fun getBooks(): List<Book>{
-        return bookMapper.toBook(bookDao.select())
-    }
+    fun getBooks() = bookMapper.toBook(bookDao.selectWithAuthor())
 
     fun insertComment(sentenceId: Long, comment: Comment) {
         val entity = commentMapper.toEntity(sentenceId, comment)
         commentDao.insert(entity)
     }
 
-    fun getComments(sentenceId: Long): List<Comment> {
+    fun getCommentsBySentenceId(sentenceId: Long): List<Comment> {
         val entities = sentenceDao.selectCommentBySentenceId(sentenceId)
         return sentenceMapper.toComment(entities)
+    }
+
+    fun getCommentEntities(): List<CommentEntity>{
+        return commentDao.select()
     }
 
     fun addBook(insertBook: InsertBook){

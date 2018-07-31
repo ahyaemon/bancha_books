@@ -30,6 +30,26 @@
                 </div>
             </div>
         </a>
+        <a href="/admin/download/dml" onclick="downloadRestoreDml()">
+            <form id="download-restore-dml-form" action="/admin/download/restore" method="POST">
+                <div class="siimple-card bancha-card bancha-back-blue">
+                    <div class="siimple-card-body">
+                        <div class="siimple-card-title">Download DML For restore(restore.script)</div>
+                        <div class="siimple-card-subtitle">データ復元用DMLのダウンロード</div>
+                    </div>
+                </div>
+            </form>
+        </a>
+        <a href="/admin/download/csv" onclick="downloadRestoreCsv()">
+            <form id="download-restore-csv-form" action="/admin/download/restore" method="POST">
+                <div class="siimple-card bancha-card bancha-back-blue">
+                    <div class="siimple-card-body">
+                        <div class="siimple-card-title">Download CSV for Restore(restore.zip)</div>
+                        <div class="siimple-card-subtitle">データ復元用CSVのダウンロード</div>
+                    </div>
+                </div>
+            </form>
+        </a>
         <a href="/admin/logout">
             <div class="siimple-card bancha-card bancha-back-blue">
                 <div class="siimple-card-body">
@@ -43,5 +63,8 @@
     <section class="sec-footer">
         <div th:replace="footer :: footer"></div>
     </section>
+
+    <script src="/lib/jquery/jquery-3.0.0.min.js"></script>
+    <script src="/js/admin/menu.js"></script>
 </body>
 </html>

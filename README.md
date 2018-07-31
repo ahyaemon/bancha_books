@@ -29,6 +29,9 @@ https://ahyaemon.github.io/bancha_books/
 - siimple.css 3.1.0
 - anime.js 2.2.0
 
+#### ドキュメント
+- sphinx
+
 ### 2.3 Doma2 + intellij の開発について
 アノテーション解釈のため、プロジェクトインポート後にintellij側でいくつか設定が必要。  
 https://doma.readthedocs.io/ja/latest/getting-started-idea/
