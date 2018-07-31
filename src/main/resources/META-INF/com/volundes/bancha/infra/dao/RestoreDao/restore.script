@@ -1,0 +1,12 @@
+INSERT INTO comment
+  (sentence_id,name,comment) VALUES
+  ('11','testman','testcomment'),
+  ('11','testman','testcomment'),
+  ('4','あいうえお','かきくけこ')
+;
+
+INSERT INTO donation
+  (name,comment,amount) VALUES
+  ('','','100000'),
+  ('','','100000')
+;

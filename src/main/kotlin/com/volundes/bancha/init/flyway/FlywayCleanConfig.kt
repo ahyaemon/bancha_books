@@ -1,5 +1,6 @@
 package com.volundes.bancha.init.flyway
 
+import com.volundes.bancha.domain.repository.RestoreRepository
 import com.volundes.bancha.domain.repository.UnrestoreRepository
 import com.volundes.bancha.infra.dao.CommentDao
 import org.flywaydb.core.Flyway
@@ -14,7 +15,8 @@ import javax.sql.DataSource
 @Configuration
 class FlywayCleanConfig(
         private val dataSource: DataSource,
-        private val unrestoreRepository: UnrestoreRepository
+        private val unrestoreRepository: UnrestoreRepository,
+        private val restoreRepository: RestoreRepository
 ) {
 
     private val logger = LoggerFactory.getLogger(FlywayCleanConfig::class.java)
@@ -40,7 +42,22 @@ class FlywayCleanConfig(
 
         flyway.clean()
         flyway.migrate()
-        unrestoreRepository.init()
+
+        try{
+            unrestoreRepository.init()
+            logger.info("Creating unrestore data success.")
+        }
+        catch(e: Exception){
+            logger.warn("Failed to create unrestore data.", e)
+        }
+
+        try{
+            restoreRepository.restore()
+            logger.info("Restore data success.")
+        }
+        catch(e: Exception){
+            logger.warn("Failed to restore data.", e)
+        }
     }
 
     fun Flyway.notUpdated():Boolean{
