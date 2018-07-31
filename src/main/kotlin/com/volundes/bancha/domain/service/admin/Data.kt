@@ -6,7 +6,14 @@ data class Data(
         private val records: List<Record>
 ) {
 
+    /**
+     * レコードが無い場合、空のデータを返す
+     */
     fun toDml(): String{
+        if(records.isEmpty()){
+            return ""
+        }
+
         val header = titles.joinComma()
         val prefix = "INSERT INTO $name\n  ($header) VALUES"
         val values = records
@@ -16,10 +23,18 @@ data class Data(
         return dml
     }
 
+    /**
+     * レコードが無い場合、ヘッダーのみのデータを返す
+     */
     fun toCsv(): String{
         val header = titles.joinComma()
-        val rows = records.joinToString("\n"){ it.joinComma() }
-        val csv = header + "\n" + rows + "\n"
+        val csv = when(records.isEmpty()){
+            true -> header + "\n"
+            false -> {
+                val rows = records.joinToString("\n"){ it.joinComma() }
+                header + "\n" + rows + "\n"
+            }
+        }
 
         return csv
     }
