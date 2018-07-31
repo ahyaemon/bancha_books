@@ -1,6 +1,5 @@
 package com.volundes.bancha.infra.dao;
 
-import com.volundes.bancha.infra.entity.CommentEntity;
 import com.volundes.bancha.infra.entity.SubtitleEntity;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;

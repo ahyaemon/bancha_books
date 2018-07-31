@@ -1,4 +1,5 @@
 SELECT
   *
 FROM
-  book
+  sentence
+  

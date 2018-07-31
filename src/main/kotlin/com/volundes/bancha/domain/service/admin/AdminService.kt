@@ -1,10 +1,6 @@
 package com.volundes.bancha.domain.service.admin
 
-import com.volundes.bancha.infra.dao.CommentDao
-import com.volundes.bancha.infra.dao.DonationDao
 import com.volundes.bancha.infra.dao.UnrestoreDao
-import com.volundes.bancha.infra.entity.CommentEntity
-import com.volundes.bancha.infra.entity.DonationEntity
 import com.volundes.bancha.init.flyway.RestoreTargetMapHolder
 import org.seasar.doma.Column
 import org.seasar.doma.Id

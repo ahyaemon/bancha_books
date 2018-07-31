@@ -35,10 +35,10 @@ class FlywayCleanConfig(
         val flyway = Flyway()
         flyway.dataSource = dataSource
 
-        if(flyway.notUpdated()){
-            logger.info("Skipping flyway clean and migration.")
-            return
-        }
+//        if(flyway.notUpdated()){
+//            logger.info("Skipping flyway clean and migration.")
+//            return
+//        }
 
         flyway.clean()
         flyway.migrate()

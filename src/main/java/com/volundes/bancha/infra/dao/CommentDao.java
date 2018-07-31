@@ -1,7 +1,6 @@
 package com.volundes.bancha.infra.dao;
 
 import com.volundes.bancha.infra.entity.CommentEntity;
-import org.jetbrains.annotations.NotNull;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

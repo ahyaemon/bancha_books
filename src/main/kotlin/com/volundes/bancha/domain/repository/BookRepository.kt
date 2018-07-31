@@ -24,7 +24,7 @@ class BookRepository(
         private val authorMapper: AuthorInfraMapper
         ) {
 
-    fun getBookMenus() = bookDao.select().map{ bookMapper.toBookMenu(it)}
+    fun getBookMenus() = bookDao.selectWithAuthor().map{ bookMapper.toBookMenu(it)}
 
     fun getSentences(bookId: String): List<Sentence> {
         val summaries = sentenceDao.selectBookSummaryByBookId(Integer.parseInt(bookId))
@@ -35,7 +35,7 @@ class BookRepository(
         return bookMapper.toBook(bookDao.selectByBookId(Integer.parseInt(bookId)))
     }
 
-    fun getBooks() = bookMapper.toBook(bookDao.select())
+    fun getBooks() = bookMapper.toBook(bookDao.selectWithAuthor())
 
     fun insertComment(sentenceId: Long, comment: Comment) {
         val entity = commentMapper.toEntity(sentenceId, comment)
