@@ -8,10 +8,10 @@ data class Data(
 
     fun toDml(): String{
         val header = titles.joinComma()
-        val prefix = "INSERT $name ($header) VALUES"
+        val prefix = "INSERT INTO $name\n  ($header) VALUES"
         val values = records
-                .joinToString(",\n"){ "(" + it.joinCommaWithQuote() + ")" }
-        val dml = prefix + "\n" + values + ";\n"
+                .joinToString(",\n"){ "  (" + it.joinCommaWithQuote() + ")" }
+        val dml = prefix + "\n" + values + "\n;\n"
 
         return dml
     }
@@ -19,7 +19,7 @@ data class Data(
     fun toCsv(): String{
         val header = titles.joinComma()
         val rows = records.joinToString("\n"){ it.joinComma() }
-        val csv = header + "\n" + rows
+        val csv = header + "\n" + rows + "\n"
 
         return csv
     }

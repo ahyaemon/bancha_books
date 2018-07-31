@@ -6,6 +6,11 @@ import org.seasar.doma.*;
 @Table(name = "donation")
 public class DonationEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="donation_id")
+    public Long donationId;
+
     @Column(name="name")
     public String name;
 

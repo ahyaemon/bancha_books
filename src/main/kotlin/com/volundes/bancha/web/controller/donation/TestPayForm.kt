@@ -14,9 +14,9 @@ data class TestPayForm(
 
     fun toDonation(): Donation{
         if(amount == null){
-            return Donation(name, comment, 0)
+            return Donation(null, name, comment, 0)
         }
-        return Donation(name, comment, amount.toLong())
+        return Donation(null, name, comment, amount.toLong())
     }
 
 }

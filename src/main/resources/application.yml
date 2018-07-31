@@ -3,6 +3,8 @@ spring:
     active: dev
   thymeleaf:
     cache: false
+  flyway:
+    enabled: false
 
 doma:
   dialect: postgres

@@ -18,7 +18,7 @@ class DonationInfraMapper {
     }
 
     fun toDonation(entities: List<DonationEntity>): List<Donation> {
-        return entities.map{ Donation(it.name, it.comment, it.amount) }
+        return entities.map{ Donation(it.donationId, it.name, it.comment, it.amount) }
     }
 
 }
