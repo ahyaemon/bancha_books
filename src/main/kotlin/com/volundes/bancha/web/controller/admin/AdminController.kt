@@ -31,7 +31,7 @@ class AdminController(
     fun downloadRestoreDml(): ResponseEntity<ByteArray>{
         val headers = HttpHeaders()
         headers.add("Content-Type", "text/csv; charset=UTF-8")
-        headers.setContentDispositionFormData("filename", "dml.sql")
+        headers.setContentDispositionFormData("filename", "restore.script")
 
         val dataList = service.getDataList()
         val dml = dataList.map{ it.toDml() }.reduce{ a, b -> "$a\n$b"}
