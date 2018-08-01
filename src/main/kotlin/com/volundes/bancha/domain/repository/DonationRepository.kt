@@ -1,12 +1,8 @@
 package com.volundes.bancha.domain.repository
 
 import com.volundes.bancha.domain.dto.Donation
-import com.volundes.bancha.infra.dao.PersonDao
-import com.volundes.bancha.infra.entity.PersonEntity
-import com.volundes.bancha.domain.dto.Person
 import com.volundes.bancha.infra.dao.DonationDao
 import com.volundes.bancha.infra.mapper.DonationInfraMapper
-import com.volundes.bancha.infra.mapper.PersonInfraMapper
 import org.springframework.stereotype.Repository
 
 @Repository
