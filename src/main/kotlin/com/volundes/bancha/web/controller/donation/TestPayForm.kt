@@ -12,11 +12,6 @@ data class TestPayForm(
         var amount: String = "0"
 ){
 
-    fun toDonation(): Donation{
-        if(amount == null){
-            return Donation(null, name, comment, 0)
-        }
-        return Donation(null, name, comment, amount.toLong())
-    }
+    fun toDonation() = Donation(null, name, comment, amount.toLong())
 
 }

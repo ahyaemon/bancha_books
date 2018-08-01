@@ -53,6 +53,7 @@ class AdminService(
                     .map{ it.id }
             val dao = applicationContext.getBean(daoClass)
             val selectMethod = daoClass.getMethod("select")
+            @Suppress("UNCHECKED_CAST")
             val entities = selectMethod(dao) as List<Any>
             val records = entities
                     .filterNot{ entity ->

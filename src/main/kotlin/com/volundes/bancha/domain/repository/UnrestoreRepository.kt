@@ -25,6 +25,7 @@ class UnrestoreRepository(
             // entities
             val dao = applicationContext.getBean(daoClass)
             val selectMethod = daoClass.getMethod("select")
+            @Suppress("UNCHECKED_CAST")
             val entities = selectMethod(dao) as List<Any>
 
             // UnrestoreEntityを作成し、INSERTする
