@@ -1,8 +1,7 @@
 package com.volundes.bancha.infra.repository
 
-import com.volundes.bancha.domain.dto.*
-import com.volundes.bancha.infra.dao.*
-import com.volundes.bancha.infra.mapper.*
+import com.volundes.bancha.infra.dao.MenuDao
+import com.volundes.bancha.infra.mapper.MenuInfraMapper
 import org.springframework.stereotype.Repository
 
 @Repository
