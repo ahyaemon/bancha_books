@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.dto.InsertBook
+import com.volundes.bancha.domain.admin.insertbook.InsertBook
 import com.volundes.bancha.infra.entity.AuthorEntity
 import org.springframework.stereotype.Component
 

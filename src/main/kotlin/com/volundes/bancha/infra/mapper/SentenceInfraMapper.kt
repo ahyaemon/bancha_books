@@ -1,8 +1,8 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.dto.Comment
-import com.volundes.bancha.domain.dto.Ruby
-import com.volundes.bancha.domain.dto.Sentence
+import com.volundes.bancha.domain.book.Comment
+import com.volundes.bancha.domain.book.Ruby
+import com.volundes.bancha.domain.book.Sentence
 import com.volundes.bancha.infra.entity.BookSummaryEntity
 import com.volundes.bancha.infra.entity.CommentEntity
 import com.volundes.bancha.infra.entity.SentenceEntity
