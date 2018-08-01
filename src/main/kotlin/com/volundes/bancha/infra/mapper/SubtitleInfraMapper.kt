@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.dto.Subtitle
+import com.volundes.bancha.domain.subtitle.Subtitle
 import com.volundes.bancha.infra.entity.SubtitleEntity
 import org.springframework.stereotype.Component
 
