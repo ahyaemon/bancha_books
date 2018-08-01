@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping
 @Controller
 @RequestMapping("/about")
 class AboutController(
-        private val service: BookMenuService,
         private val subtitleProvider: SubtitleProvider
 ) {
 
@@ -22,6 +21,11 @@ class AboutController(
     @RequestMapping("/")
     fun index(model: Model): String{
         return "about/index"
+    }
+
+    @RequestMapping("/creator")
+    fun us(): String {
+        return "about/creator"
     }
 
 }
