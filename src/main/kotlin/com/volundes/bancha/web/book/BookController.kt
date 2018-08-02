@@ -24,7 +24,7 @@ class BookController(
         val bookItem = BookItem(book)
         model.addAttribute("bookItem", bookItem)
 
-        val commentForm = CommentForm()
+        val commentForm = CommentForm(null, "", "")
         model.addAttribute("commentForm", commentForm)
 
         return "book/index"
@@ -50,7 +50,7 @@ class BookController(
         val commentItems= service.getComments(sentenceId).map{ CommentItem(it) }
         model.addAttribute("commentItems", commentItems)
 
-        val newCommentForm = CommentForm(sentenceId = sentenceId)
+        val newCommentForm = CommentForm(sentenceId, "", "")
         model.addAttribute("commentForm", newCommentForm)
 
         return "book/comment :: comment"

@@ -5,18 +5,17 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
 
 data class CommentForm (
-        var sentenceId: Long? = null,
+        val sentenceId: Long? = null,
 
-        @get:NotBlank(message="名前が無い分け無いだろう")
-        @get:Size(max = 255, message="名前長すぎない？")
-        var name: String = "",
+        @get:NotBlank(message="{CommentForm.name.NotBlank}")
+        @get:Size(max = 255, message="{CommentForm.name.Size}")
+        val name: String,
 
-        @get:NotBlank(message="コメントが無い分け無いだろう")
-        @get:Size(max = 255, message="コメント長すぎない？")
-        var comment: String = ""
+        @get:NotBlank(message="{CommentForm.comment.NotBlank}")
+        @get:Size(max = 255, message="{CommentForm.comment.Size}")
+        val comment: String
 ){
 
-    fun toComment(): Comment { return Comment(null, name, comment)
-    }
+    fun toComment() =  Comment(null, name, comment)
 
 }
