@@ -56,15 +56,15 @@
                         <ul><li th:each="error: ${#fields.detailedErrors()}" th:text="${error.message}"></li></ul>
                         <div class="siimple-field">
                             <div class="siimple-field-label">名前</div>
-                            <input class="siimple-input" type="text" placeholder="円" th:field="*{name}">
+                            <input class="siimple-input" type="text" th:field="*{name}">
                         </div>
                         <div class="siimple-field">
                             <div class="siimple-field-label">コメント</div>
-                            <input class="siimple-input" type="text" placeholder="円" th:field="*{comment}">
+                            <input class="siimple-input" type="text" th:field="*{comment}">
                         </div>
                         <div class="siimple-field">
-                            <div class="siimple-field-label">金額</div>
-                            <input class="siimple-input" type="text" placeholder="円" th:field="*{amount}">
+                            <div class="siimple-field-label">金額（円）</div>
+                            <input class="siimple-input" type="text" th:field="*{amount}">
                         </div>
                         <div class="siimple-field">
                             <div name="yen" data-yen="1000" class="siimple-btn siimple-btn--purple">1,000円</div>
