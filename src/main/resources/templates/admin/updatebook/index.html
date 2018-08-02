@@ -25,10 +25,10 @@
                 </div>
             </div>
             <div class="siimple-table-body">
-                <div class="siimple-table-row" th:each="bookItem: ${bookItems}">
-                    <div class="siimple-table-cell" th:text="${bookItem.bookId}"></div>
-                    <div class="siimple-table-cell" th:text="${bookItem.name}"></div>
-                    <div class="siimple-table-cell" th:text="${bookItem.author}"></div>
+                <div class="siimple-table-row" th:each="updateBookItem: ${updateBookItems}">
+                    <div class="siimple-table-cell" th:text="${updateBookItem.bookId}"></div>
+                    <div class="siimple-table-cell" th:text="${updateBookItem.name}"></div>
+                    <div class="siimple-table-cell" th:text="${updateBookItem.author}"></div>
                     <div class="siimple-table-cell">
                         <button class="siimple-btn blightgreen white" type="submit">EDIT</button>
                     </div>

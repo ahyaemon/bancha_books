@@ -4,7 +4,7 @@ import org.seasar.doma.*;
 
 @Entity
 @Table(name = "book")
-public class BookEntity {
+public class BookInfoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
@@ -13,7 +13,7 @@ public class BookEntity {
     @Column(name = "name")
     public String name;
 
-    @Column(name = "author_id")
-    public Long authorId;
+    @Column(name = "author")
+    public String author;
 
 }

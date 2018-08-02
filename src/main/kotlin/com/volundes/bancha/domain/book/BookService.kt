@@ -8,11 +8,7 @@ class BookService(
         private val repository: BookRepository
 ) {
 
-    fun getSentences(bookId: String): List<Sentence> {
-        return repository.getSentences(bookId)
-    }
-
-    fun getBookByBookId(bookId: String): Book {
+    fun getBookByBookId(bookId: Long): Book {
         return repository.getBookByBookId(bookId)
     }
 
