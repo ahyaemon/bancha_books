@@ -6,7 +6,7 @@
         <section class="sec-comments">
             <div class="comment-list">
                 <p th:each="commentItem: ${commentItems}" 
-                    th:text="|${commentItem.commentName}: ${commentItem.comment}|"></p>
+                    th:text="|${commentItem.name}: ${commentItem.comment}|"></p>
             </div>
         </section>
 

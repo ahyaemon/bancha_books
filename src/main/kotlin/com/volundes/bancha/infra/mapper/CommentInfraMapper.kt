@@ -11,7 +11,7 @@ class CommentInfraMapper {
         val entity = CommentEntity()
         entity.commentId = comment.commentId
         entity.sentenceId = sentenceId
-        entity.name = comment.commentName
+        entity.name = comment.name
         entity.comment = comment.comment
         return entity
     }

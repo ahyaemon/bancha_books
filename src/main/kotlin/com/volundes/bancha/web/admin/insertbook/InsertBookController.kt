@@ -31,7 +31,7 @@ class InsertBookController(
             result: BindingResult
     ): String{
         val rawBook = createRowBook(htmlBookUploadForm)
-        service.addFile(rawBook)
+        service.addBook(rawBook)
         return "admin/insertbook/index"
     }
 

@@ -13,8 +13,11 @@ public class BookSummaryEntity {
     @Column(name = "name")
     public String name;
 
-    @Column(name = "author")
-    public String author;
+    @Column(name = "author_id")
+    public Long authorId;
+
+    @Column(name = "author_name")
+    public String authorName;
 
     @Column(name = "sentence_id")
     public Long sentenceId;
@@ -30,14 +33,5 @@ public class BookSummaryEntity {
 
     @Column(name = "comment")
     public String comment;
-
-    @Column(name = "ruby_id")
-    public Long rubyId;
-
-    @Column(name = "kanji")
-    public String kanji;
-
-    @Column(name= "ruby")
-    public String ruby;
 
 }

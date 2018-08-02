@@ -1,14 +1,12 @@
 package com.volundes.bancha.infra.repository
 
-import com.volundes.bancha.domain.admin.insertbook.InsertBook
 import com.volundes.bancha.domain.book.Book
+import com.volundes.bancha.domain.book.BookInfo
 import com.volundes.bancha.domain.book.Comment
-import com.volundes.bancha.domain.book.Sentence
 import com.volundes.bancha.infra.dao.AuthorDao
 import com.volundes.bancha.infra.dao.BookDao
 import com.volundes.bancha.infra.dao.CommentDao
 import com.volundes.bancha.infra.dao.SentenceDao
-import com.volundes.bancha.infra.entity.CommentEntity
 import com.volundes.bancha.infra.mapper.AuthorInfraMapper
 import com.volundes.bancha.infra.mapper.BookInfraMapper
 import com.volundes.bancha.infra.mapper.CommentInfraMapper
@@ -25,20 +23,15 @@ class BookRepository(
         private val sentenceMapper: SentenceInfraMapper,
         private val commentMapper: CommentInfraMapper,
         private val authorMapper: AuthorInfraMapper
-        ) {
+) {
 
-    fun getBookMenus() = bookDao.selectWithAuthor().map{ bookMapper.toBookMenu(it)}
+    fun getBookMenus() = bookDao.selectBookMenu().map{ bookMapper.toBookMenu(it)}
 
-    fun getSentences(bookId: String): List<Sentence> {
-        val summaries = sentenceDao.selectBookSummaryByBookId(Integer.parseInt(bookId))
-        return sentenceMapper.toSentences(summaries)
+    fun getBookByBookId(bookId: Long): Book {
+        val bookSummaryEntity = bookDao.selectBookSummaryByBookId(bookId)
+        val book = bookMapper.toBook(bookSummaryEntity)
+        return book
     }
-
-    fun getBookByBookId(bookId: String): Book {
-        return bookMapper.toBook(bookDao.selectByBookId(Integer.parseInt(bookId)))
-    }
-
-    fun getBooks() = bookMapper.toBook(bookDao.selectWithAuthor())
 
     fun insertComment(sentenceId: Long, comment: Comment) {
         val entity = commentMapper.toEntity(sentenceId, comment)
@@ -50,21 +43,12 @@ class BookRepository(
         return sentenceMapper.toComment(entities)
     }
 
-    fun getCommentEntities(): List<CommentEntity>{
-        return commentDao.select()
-    }
-
-    fun addBook(insertBook: InsertBook){
-        // InsertBook
-        //   - AuthorEntity
-        //   - InsertBookEntity TODO BookEntity になおす
-        //   - SentenceEntity
-
+    fun addBook(book: Book){
         // Author
-        val authorEntityInDB = authorDao.selectByName(insertBook.author)
+        val authorEntityInDB = authorDao.selectByName(book.author.name)
         val authorExists = authorEntityInDB != null
         if(!authorExists){
-            val authorEntity = authorMapper.toAuthorEntity(insertBook)
+            val authorEntity = authorMapper.toAuthorEntity(book.author)
             authorDao.insert(authorEntity)
         }
         val authorId =
@@ -72,18 +56,25 @@ class BookRepository(
                     authorEntityInDB.authorId
                 }
                 else{
-                    authorDao.selectByName(insertBook.author).authorId
+                    // 一旦INSERTしたものを抜き出し、IDを得る
+                    // TODO トランザクションレベルの考慮が必要？
+                    authorDao.selectByName(book.author.name).authorId
                 }
 
         // Book
-        val insertBookEntity = bookMapper.toInsertBookEntity(insertBook, authorId)
-        bookDao.insert(insertBookEntity)
+        val bookEntity = bookMapper.toBookEntity(book, authorId)
+        bookDao.insert(bookEntity)
 
         //Sentence
-        val insertedBookId = bookDao.selectBookIdByNameAndAuthor(insertBook.name, insertBook.author)
+        val insertedBookId = bookDao.selectBookIdByNameAndAuthorId(book.name, authorId)
         val sentenceEntities = sentenceMapper
-                .toSentenceEntities(insertedBookId, insertBook.sentences)
+                .toSentenceEntities(insertedBookId, book.sentences)
         sentenceDao.insert(sentenceEntities)
+    }
+
+    fun getBookInfos(): List<BookInfo> {
+        val bookInfoEntities = bookDao.selectBookInfos()
+        return bookMapper.toBookInfos(bookInfoEntities)
     }
 
 }
