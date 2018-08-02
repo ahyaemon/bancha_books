@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>#78 遅延初期化をうまいこと使う &mdash; bancha alpha ドキュメント</title>
+  <title>開発方法 &mdash; bancha alpha ドキュメント</title>
   
 
   
@@ -28,7 +28,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="prev" title="#63 デプロイ時のDB初期化対策を考える" href="issue63.html" /> 
+    <link rel="next" title="アプリケーション開発" href="../appdev/index.html" />
+    <link rel="prev" title="開発環境の作成" href="create_env.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -78,14 +79,13 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../docdev/index.html">ドキュメント開発</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../appdev/index.html">アプリケーション開発</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Issue対応</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="issue3.html">#3 ルビの表示方法を検討する</a></li>
-<li class="toctree-l2"><a class="reference internal" href="issue63.html">#63 デプロイ時のDB初期化対策を考える</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">#78 遅延初期化をうまいこと使う</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">ドキュメント開発</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="create_env.html">開発環境の作成</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">開発方法</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../appdev/index.html">アプリケーション開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../issue/index.html">Issue対応</a></li>
 </ul>
 
             
@@ -131,15 +131,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">Issue対応</a> &raquo;</li>
+          <li><a href="index.html">ドキュメント開発</a> &raquo;</li>
         
-      <li>#78 遅延初期化をうまいこと使う</li>
+      <li>開発方法</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/issue/issue78.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/docdev/develop.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -153,12 +153,13 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>#78 遅延初期化をうまいこと使う<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p><a class="reference external" href="https://github.com/ahyaemon/bancha_books/issues/78">https://github.com/ahyaemon/bancha_books/issues/78</a></p>
-<p>subtitle, menuなどはテーブルの更新がないため、アプリケーション起動時に値を取得して保持しておく。</p>
-<p>init文の中で初期化すると、DBアクセスがある場合はflywayMigrateが終わっていない可能性があるため動作が不定になる。</p>
-<p>これを回避するため、lazyを使用して初回アクセス時に初期化する。</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">private</span> <span class="n">val</span> <span class="n">subtitles</span>  <span class="n">by</span> <span class="n">lazy</span> <span class="p">{</span> <span class="n">mapper</span><span class="o">.</span><span class="n">toSubtitle</span><span class="p">(</span> <span class="n">dao</span><span class="o">.</span><span class="n">select</span><span class="p">())</span> <span class="p">}</span>
+<h1>開発方法<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ビルド</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>作成されたhtmlをdocsフォルダにコピー</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">copydocs</span>
 </pre></div>
 </div>
 </div>
@@ -171,8 +172,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../appdev/index.html" class="btn btn-neutral float-right" title="アプリケーション開発" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="issue63.html" class="btn btn-neutral" title="#63 デプロイ時のDB初期化対策を考える" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="create_env.html" class="btn btn-neutral" title="開発環境の作成" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
