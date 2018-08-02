@@ -1,7 +1,6 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.dto.Account
-import com.volundes.bancha.domain.dto.Subtitle
+import com.volundes.bancha.domain.account.Account
 import com.volundes.bancha.infra.entity.AccountEntity
 import org.springframework.stereotype.Component
 
