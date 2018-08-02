@@ -1,5 +1,3 @@
-.. This is index
-
 Welcome To Bancha
 =================
 
