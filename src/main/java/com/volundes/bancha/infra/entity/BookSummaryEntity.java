@@ -31,13 +31,4 @@ public class BookSummaryEntity {
     @Column(name = "comment")
     public String comment;
 
-    @Column(name = "ruby_id")
-    public Long rubyId;
-
-    @Column(name = "kanji")
-    public String kanji;
-
-    @Column(name= "ruby")
-    public String ruby;
-
 }

@@ -6,10 +6,7 @@ SELECT
   s.sentence,
   c.comment_id,
   c.name AS comment_name,
-  c.comment,
-  r.ruby_id,
-  r.kanji,
-  r.ruby
+  c.comment
 FROM
   book b
   INNER JOIN
@@ -24,9 +21,5 @@ FROM
     comment c
     ON
       s.sentence_id = c.sentence_id
-  LEFT OUTER JOIN
-    ruby r
-    ON
-      s.sentence_id = r.sentence_id
 WHERE
   b.book_id = /* bookId */1

@@ -17,7 +17,7 @@ class InsertBookService(
         val sentences = parser
                 .getSentences()
                 .map{
-                    Sentence(null, it, listOf(), listOf())
+                    Sentence(null, it, listOf())
                 }
         val insertBook = InsertBook(null, title, author, sentences)
         bookRepository.addBook(insertBook)
