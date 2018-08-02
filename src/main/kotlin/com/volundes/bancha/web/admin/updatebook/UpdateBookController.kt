@@ -16,8 +16,8 @@ class UpdateBookController(
     fun login(
             model: Model
     ): String{
-        val bookItems = service.getBooks().map{ BookItem(it) }
-        model.addAttribute("bookItems", bookItems)
+        val updateBookItems = service.getBookInfos().map{ UpdateBookItem(it) }
+        model.addAttribute("updateBookItems", updateBookItems)
 
         return "admin/updatebook/index"
     }

@@ -20,13 +20,11 @@ class BookController(
             @PathVariable("bookId") bookId: String,
             model: Model
     ): String{
-        val bookItem = BookItem(service.getBookByBookId(bookId))
+        val book = service.getBookByBookId(bookId.toLong())
+        val bookItem = BookItem(book)
         model.addAttribute("bookItem", bookItem)
 
-        val sentenceForms = service.getSentences(bookId).map{ SentenceForm(it) }
-        model.addAttribute("sentenceForms", sentenceForms)
-
-        val commentForm = CommentForm()
+        val commentForm = CommentForm(null, "", "")
         model.addAttribute("commentForm", commentForm)
 
         return "book/index"
@@ -52,7 +50,7 @@ class BookController(
         val commentItems= service.getComments(sentenceId).map{ CommentItem(it) }
         model.addAttribute("commentItems", commentItems)
 
-        val newCommentForm = CommentForm(sentenceId = sentenceId)
+        val newCommentForm = CommentForm(sentenceId, "", "")
         model.addAttribute("commentForm", newCommentForm)
 
         return "book/comment :: comment"

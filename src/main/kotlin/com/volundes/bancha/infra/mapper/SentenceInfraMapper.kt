@@ -1,7 +1,6 @@
 package com.volundes.bancha.infra.mapper
 
 import com.volundes.bancha.domain.book.Comment
-import com.volundes.bancha.domain.book.Ruby
 import com.volundes.bancha.domain.book.Sentence
 import com.volundes.bancha.infra.entity.BookSummaryEntity
 import com.volundes.bancha.infra.entity.CommentEntity
@@ -21,11 +20,7 @@ class SentenceInfraMapper {
                             .filter{ it.commentId != null }
                             .map{ Comment(it.commentId, it.commentName, it.comment) }
                             .sortedBy{ it.commentId }
-                    val rubies: List<Ruby> = entities
-                            .filter{ it.rubyId != null }
-                            .map{ Ruby(it.rubyId, it.kanji, it.ruby) }
-                            .sortedBy{ it.rubyId }
-                    Sentence(first.sentenceId, first.sentence, comments, rubies)
+                    Sentence(first.sentenceId, first.sentence, comments)
                 }
                 .sortedBy { it.sentenceId }
     }

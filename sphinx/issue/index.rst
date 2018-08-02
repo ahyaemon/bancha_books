@@ -11,5 +11,6 @@ Issueの対応をここに書いておく。
 
 .. toctree::
 
+  issue3
   issue63
   issue78
