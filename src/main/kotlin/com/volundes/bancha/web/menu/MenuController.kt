@@ -1,7 +1,6 @@
 package com.volundes.bancha.web.menu
 
 import com.volundes.bancha.domain.menu.MenuProvider
-import com.volundes.bancha.domain.subtitle.SubtitleProvider
 import com.volundes.bancha.env.interceptor.subtitle.DynamicSubtitle
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.ModelAttribute
@@ -11,14 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 @RequestMapping("/")
 @DynamicSubtitle("home")
 class MenuController(
-        private val subtitleProvider: SubtitleProvider,
         private val menuProvider: MenuProvider
 ) {
-
-//    @ModelAttribute("subtitle")
-//    fun subtitle(): String{
-//        return subtitleProvider.get("home")
-//    }
 
     @ModelAttribute("menuItems")
     fun menuItems(): List<MenuItem>{
