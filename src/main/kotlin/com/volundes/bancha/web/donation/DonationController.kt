@@ -1,7 +1,7 @@
 package com.volundes.bancha.web.donation
 
-import com.volundes.bancha.domain.subtitle.SubtitleProvider
 import com.volundes.bancha.domain.donation.DonationService
+import com.volundes.bancha.env.interceptor.subtitle.DynamicSubtitle
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
@@ -11,15 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
 @RequestMapping("/donation")
+@DynamicSubtitle("donation")
 class DonationController(
-        private val subtitleProvider: SubtitleProvider,
         private val service: DonationService
 ) {
-
-    @ModelAttribute("subtitle")
-    fun subtitle(): String{
-        return subtitleProvider.get("donation")
-    }
 
     @RequestMapping("/")
     fun index(model: Model): String{
