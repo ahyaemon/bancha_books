@@ -58,6 +58,7 @@ dependencies {
 	compile "org.springframework.boot:spring-boot-starter-web"
 	compile "org.springframework.boot:spring-boot-starter-quartz"
     compile "org.springframework.boot:spring-boot-starter-security"
+	compile "org.springframework.boot:spring-boot-starter-aop"
 
 	compile "com.fasterxml.jackson.module:jackson-module-kotlin"
 	compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
