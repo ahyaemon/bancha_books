@@ -12,6 +12,9 @@
         </div>        
     </section>
     
+    <h1 th:profile="production">production</h1>
+    <h1 th:profile="dev">dev</h1>
+
     <section class="sec-content">
         <a th:each="menuItem: ${menuItems}" th:href="${menuItem.url}" class="list-a">
             <div class="siimple-card bancha-card bancha-back-blue">
