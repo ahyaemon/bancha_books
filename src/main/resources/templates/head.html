@@ -4,8 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title th:text="${title} + ' | Bancha'"></title>
-    <link rel="stylesheet" href="/css/base.css" />
     <link rel="stylesheet" href="/lib/siimple-3.1.0/siimple.css" />
     <link rel="stylesheet" href="/lib/fontawesome-free-5.1.0-web/css/all.css" />
+    
+    <link th:profile="production" rel="stylesheet" href="/css/base.css" />
+    <link th:profile="dev" rel="stylesheet/less" href="/less/base.less" />
+    <script th:profile="dev" src="/lib/less/less.min.js" ></script>
 </head>
 </html>
