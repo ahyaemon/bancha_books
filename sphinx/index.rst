@@ -8,6 +8,8 @@ Banchaは本の文章に対してコメントができるサービスです。
 .. toctree::
   :maxdepth: 2
 
+  business_requirement/index
+  system_requirement/index
   docdev/index
   appdev/index
   issue/index
