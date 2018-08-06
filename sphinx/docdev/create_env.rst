@@ -1,14 +1,20 @@
 開発環境の作成
 ======================================
 
-sphinx環境の作成
+1. pythonのインストール
 
-::
+  sphinxはpython環境で動作するため、pythonをインストールする。
 
-  pip install sphinx
+  公式サイトでお勧めされているのは2.7系。
 
-themeの取得
+2. sphinxのインストール
 
-::
+  ::
 
-  pip install sphinx_rtd_theme
+    pip install sphinx
+
+3. themeの取得
+
+  ::
+
+    pip install sphinx_rtd_theme
