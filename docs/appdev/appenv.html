@@ -85,6 +85,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">アプリケーション開発</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">開発環境の作成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="appdev.html">開発のやりかた</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dev_production_compare.html">開発環境と本番環境の差</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../issue/index.html">Issue対応</a></li>
@@ -156,7 +157,45 @@
             
   <div class="section" id="id1">
 <h1>開発環境の作成<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>開発環境の作成方法についてまとめる</p>
+<p><strong>1. IntelliJのインストール</strong></p>
+<blockquote>
+<div><p>できればultimate版のほうがいい。</p>
+<p>js, ts, thymeleafなどがサポートされるらしい。</p>
+<p>あとFileWatchersとかもultimate</p>
+</div></blockquote>
+<p><strong>2. プロジェクトのクローン</strong></p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">&lt;</span><span class="n">URL</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>3. プロジェクトをIntelliJにインポート</strong></p>
+<blockquote>
+<div><p>やり方はふた通り？</p>
+<ol class="arabic simple">
+<li>IntelliJ用のプロジェクトを作成してインポート</li>
+</ol>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gradlew</span> <span class="n">idea</span>
+</pre></div>
+</div>
+<p>でプロジェクトファイルができるから、それをIntelliJでインポート。</p>
+<p>でもこれをやると、IntelliJからのアプリ起動がうまくいかない？？</p>
+<p>つまりデバッグができない。</p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>build.gradle をインポート</li>
+</ol>
+<blockquote>
+<div><p>インポート後、File -&gt; Project Structure -&gt; Project Settings -&gt; Modules -&gt; Pathsタブ から、
+Compiler output に Inherit project compile output path を選択する。</p>
+<p>基本的にはこれでうまくいく。</p>
+<p>でも、gradleコマンドを実行するたびに Inherit project compile output pathの設定が初期化される？</p>
+</div></blockquote>
+</div></blockquote>
+<p><strong>4. IntelliJのアノテーションプロセッシングの設定</strong></p>
+<blockquote>
+<div>インポートが完了したら、Doma用にAnnotation解釈の設定をする。</div></blockquote>
 </div>
 
 

@@ -1,15 +1,20 @@
 開発方法
 ======================================
 
-ビルド
+1. rstファイルの作成・編集
 
-::
+  restructuredText
 
-  make html
+2. ビルド
 
-作成されたhtmlをdocsフォルダにコピー
+  ::
 
-::
+    make html
 
-  copydocs
+3. 作成されたhtmlをdocsフォルダにコピー
 
+  ::
+
+    copydocs
+
+  わざわざコピーする理由は、次の節を参照。

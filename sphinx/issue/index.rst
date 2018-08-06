@@ -15,3 +15,4 @@ Issueの対応をここに書いておく。
   issue63
   issue77
   issue78
+  issue96
