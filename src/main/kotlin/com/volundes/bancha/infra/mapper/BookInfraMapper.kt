@@ -11,18 +11,15 @@ import org.springframework.stereotype.Component
 @Component
 class BookInfraMapper{
 
-    fun toBook(entities: List<BookSummaryEntity>): Book{
+    fun toCommentCountedBook(entities: List<BookSummaryEntity>): CommentCountedBook{
         val sentences = entities.groupBy { it.sentenceId }
                 .map{ (sentenceId, entities) ->
-                    // コメントが無い場合は、空のリスト
-                    val comments = entities.filter{ it.commentId != null }
-                            .map{ Comment(it.commentId, it.commentName, it.comment) }
                     val entity = entities.first()
-                    Sentence(sentenceId, entity.sentence, comments)
+                    CommentCountedSentence(sentenceId, entity.sentence, entity.commentCount)
                 }
         val entity = entities.first()
         val author = Author(entity.authorId, entity.authorName)
-        val book = Book(entity.bookId, entity.name, author, sentences)
+        val book = CommentCountedBook(entity.bookId, entity.name, author, sentences)
         return book
     }
 

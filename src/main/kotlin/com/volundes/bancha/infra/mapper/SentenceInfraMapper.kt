@@ -11,21 +11,6 @@ import org.springframework.stereotype.Component
 @Component
 class SentenceInfraMapper {
 
-    fun toSentences(summaries: List<BookSummaryEntity>): List<Sentence>{
-        return summaries
-                .groupBy { it.sentenceId }
-                .map{
-                    val entities = it.value
-                    val first = entities[0]
-                    val comments: List<Comment> = entities
-                            .filter{ it.commentId != null }
-                            .map{ Comment(it.commentId, it.commentName, it.comment) }
-                            .sortedBy{ it.commentId }
-                    Sentence(first.sentenceId, first.sentence, comments)
-                }
-                .sortedBy { it.sentenceId }
-    }
-
     fun toComment(entities: List<CommentEntity>): List<Comment> {
         return entities.map{ Comment(it.commentId, it.name, it.comment) }
     }

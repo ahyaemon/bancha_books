@@ -20,7 +20,7 @@ function openSentence(sentenceId){
         MicroModal.show("modal-1", {
             // disableScroll: false,
             awaitCloseAnimation: true
-        });
+        });    
     }
 
     function fail(e){

@@ -20,10 +20,8 @@ class BookController(
             @PathVariable("bookId") bookId: String,
             model: Model
     ): String{
-        // TODO BookItemでは、SentenceItemに紐づくのはcommentの数
-        // TODO 画面に表示しないのに、全コメントをselectしてしまっている
-        val book = service.getBookByBookId(bookId.toLong())
-        val bookItem = BookItem(book)
+        val book = service.getCommentCountedBookByBookId(bookId.toLong())
+        val bookItem = CommentCountedBookItem(book)
         model.addAttribute("bookItem", bookItem)
 
         return "book/index"

@@ -1,7 +1,6 @@
 package com.volundes.bancha.web.admin.updatebook
 
 import com.volundes.bancha.domain.admin.updatebook.UpdateBookService
-import com.volundes.bancha.web.book.BookItem
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.RequestMapping

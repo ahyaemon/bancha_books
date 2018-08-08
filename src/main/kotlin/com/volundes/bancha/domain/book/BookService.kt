@@ -8,16 +8,12 @@ class BookService(
         private val repository: BookRepository
 ) {
 
-    fun getBookByBookId(bookId: Long): Book {
-        return repository.getBookByBookId(bookId)
+    fun getCommentCountedBookByBookId(bookId: Long): CommentCountedBook {
+        return repository.getCommentCountedBookByBookId(bookId)
     }
 
     fun createComment(sentenceId: Long, comment: Comment) {
         repository.insertComment(sentenceId, comment)
-    }
-
-    fun getComments(sentenceId: Long): List<Comment> {
-        return repository.getCommentsBySentenceId(sentenceId)
     }
 
     fun getSentenceBySentenceId(sentenceId: Long): Sentence {

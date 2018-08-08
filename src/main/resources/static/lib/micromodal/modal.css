@@ -118,13 +118,13 @@
 }
 
 @keyframes mmslideIn {
-  from { transform: translateY(15%); }
+  from { transform: translateY(4%); }
     to { transform: translateY(0); }
 }
 
 @keyframes mmslideOut {
     from { transform: translateY(0); }
-    to { transform: translateY(-10%); }
+    to { transform: translateY(-4%); }
 }
 
 .micromodal-slide {
@@ -136,19 +136,19 @@
 }
 
 .micromodal-slide[aria-hidden="false"] .modal__overlay {
-  animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+  animation: mmfadeIn .2s cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
 .micromodal-slide[aria-hidden="false"] .modal__container {
-  animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+  animation: mmslideIn .2s cubic-bezier(0, 0, .2, 1);
 }
 
 .micromodal-slide[aria-hidden="true"] .modal__overlay {
-  animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+  animation: mmfadeOut .2s cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
 .micromodal-slide[aria-hidden="true"] .modal__container {
-  animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
+  animation: mmslideOut .2s cubic-bezier(0, 0, .2, 1);
 }
 
 .micromodal-slide .modal__container,
