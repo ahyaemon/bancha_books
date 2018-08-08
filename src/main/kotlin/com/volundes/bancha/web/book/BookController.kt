@@ -40,7 +40,7 @@ class BookController(
 
         val commentForm = CommentForm(null, "", "")
         model.addAttribute("commentForm", commentForm)
-        return "book/comment-modal-content :: comment-modal-content"
+        return "book/comment :: comment"
     }
 
     @RequestMapping(value=["/createComment"], produces=["text/plain;charset=UTF-8"])
@@ -56,10 +56,7 @@ class BookController(
             val sentence = service.getSentenceBySentenceId(commentForm.sentenceId)
             val sentenceItem = SentenceItem(sentence)
             model.addAttribute("sentenceItem", sentenceItem)
-
-            val commentForm = CommentForm(null, "", "")
-            model.addAttribute("commentForm", commentForm)
-            return "book/comment-modal-content :: comment-modal-content"
+            return "book/comment :: comment"
         }
 
         service.createComment(sentenceId, commentForm.toComment())
@@ -70,7 +67,7 @@ class BookController(
 
         val commentForm = CommentForm(null, "", "")
         model.addAttribute("commentForm", commentForm)
-        return "book/comment-modal-content :: comment-modal-content"
+        return "book/comment :: comment"
     }
 
 }
