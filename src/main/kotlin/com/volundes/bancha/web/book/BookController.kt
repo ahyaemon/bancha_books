@@ -20,14 +20,26 @@ class BookController(
             @PathVariable("bookId") bookId: String,
             model: Model
     ): String{
+        // TODO BookItemでは、sentenceItemに紐づくのはcommentの数
         val book = service.getBookByBookId(bookId.toLong())
         val bookItem = BookItem(book)
         model.addAttribute("bookItem", bookItem)
 
+        return "book/index"
+    }
+
+    @RequestMapping(value = ["/getSentence"], produces=["text/plain;charset=UTF-8"])
+    fun getSentence(
+            @RequestBody sentenceIdItem: SentenceIdItem,
+            model: Model
+    ): String{
+        val sentence = service.getSentenceItem(sentenceIdItem.sentenceId)
+        val sentenceItem = SentenceItem(sentence)
+        model.addAttribute("sentenceItem", sentenceItem)
+
         val commentForm = CommentForm(null, "", "")
         model.addAttribute("commentForm", commentForm)
-
-        return "book/index"
+        return "book/comment-modal-content :: comment-modal-content"
     }
 
     @RequestMapping(value=["/createComment"], produces=["text/plain;charset=UTF-8"])

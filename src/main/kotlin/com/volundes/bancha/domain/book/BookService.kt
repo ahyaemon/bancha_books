@@ -20,4 +20,8 @@ class BookService(
         return repository.getCommentsBySentenceId(sentenceId)
     }
 
+    fun getSentenceItem(sentenceId: Long): Sentence {
+        return repository.getSentencesBySentenceId(sentenceId)
+    }
+
 }

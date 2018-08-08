@@ -3,6 +3,7 @@ package com.volundes.bancha.infra.repository
 import com.volundes.bancha.domain.book.Book
 import com.volundes.bancha.domain.book.BookInfo
 import com.volundes.bancha.domain.book.Comment
+import com.volundes.bancha.domain.book.Sentence
 import com.volundes.bancha.infra.dao.AuthorDao
 import com.volundes.bancha.infra.dao.BookDao
 import com.volundes.bancha.infra.dao.CommentDao
@@ -75,6 +76,11 @@ class BookRepository(
     fun getBookInfos(): List<BookInfo> {
         val bookInfoEntities = bookDao.selectBookInfos()
         return bookMapper.toBookInfos(bookInfoEntities)
+    }
+
+    fun getSentencesBySentenceId(sentenceId: Long): Sentence {
+        val sentenceSummaryEntity = sentenceDao.selectSentenceSummaryBySentenceId(sentenceId)
+        return sentenceMapper.toSentence(sentenceSummaryEntity)
     }
 
 }

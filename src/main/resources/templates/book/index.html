@@ -15,26 +15,14 @@
         </div>
     </section>
 
+    <button data-custom-open="modal-1" role="button">Demo Modal</button>
+    
+
     <section class="sec-content">
         <div th:each="sentenceItem, stat: ${bookItem.sentenceItems}" th:with="sid=${sentenceItem.sentenceId}" 
             th:id="'sentence-item-'+${sid}" class="sentence-item">
-            <!--/* クリック前、文のみ表示されている状態 */-->
             <div class="sentence-close" th:onclick="'openSentence(' + ${sid} + ')'">
                 <p th:utext="${sentenceItem.sentence}" th:classappend="${sentenceItem.hasComment()} ? 'b'"></p>
-            </div>
-
-            <!--/* クリック後、文が展開されてコメントが表示されている状態 */-->
-            <div class="sentence-open" style="display: none;">
-                <!-- /* 文 */-->
-                <section class="sec-sentence">
-                    <div  th:onclick="'closeSentence(' + ${sid} + ')'">
-                        <p th:utext="${sentenceItem.sentence}" class="b"></p>
-                    </div>
-                </section>
-
-                <!--/* 投稿済みコメント & 投稿フォーム */-->
-                <!--/* ajaxでコメント投稿後に内容を更新するため、別フラグメントに分けておく */-->
-                <div class="comment-part" th:include="book/comment :: comment" th:with="commentItems=${sentenceItem.commentItems}"></div>
             </div>
         </div>
     </section>
@@ -43,7 +31,10 @@
         <div th:replace="footer :: footer"></div>
     </section>
     
+    <div th:replace="book/comment-modal :: comment-modal"></div>
+
     <script src="/lib/jquery/jquery-3.0.0.min.js"></script>
+    <script src="/lib/micromodal/micromodal.min.js"></script>
     <script src="/js/book.js"></script>
 </body>
 </html>
