@@ -17,7 +17,10 @@ function openSentence(sentenceId){
 
     function done(data){
         $(".modal__container").html(data);
-        MicroModal.show("modal-1");
+        MicroModal.show("modal-1", {
+            // disableScroll: false,
+            awaitCloseAnimation: true
+        });
     }
 
     function fail(e){

@@ -50,10 +50,10 @@ class BookController(
             model: Model
     ): String{
         val sentenceId = commentForm.sentenceId
-        sentenceId  ?: return "" // TODO nullだったらどうする
+        sentenceId  ?: return "book/index" // 本来nullで来ることはない
 
         if(result.hasErrors()){
-            val sentence = service.getSentenceBySentenceId(commentForm.sentenceId)
+            val sentence = service.getSentenceBySentenceId(sentenceId)
             val sentenceItem = SentenceItem(sentence)
             model.addAttribute("sentenceItem", sentenceItem)
             return "book/comment :: comment"
@@ -61,7 +61,7 @@ class BookController(
 
         service.createComment(sentenceId, commentForm.toComment())
 
-        val sentence = service.getSentenceBySentenceId(commentForm.sentenceId)
+        val sentence = service.getSentenceBySentenceId(sentenceId)
         val sentenceItem = SentenceItem(sentence)
         model.addAttribute("sentenceItem", sentenceItem)
 

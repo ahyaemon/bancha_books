@@ -15,8 +15,6 @@
         </div>
     </section>
 
-    <button data-custom-open="modal-1" role="button">Demo Modal</button>
-
     <section class="sec-content">
         <div th:each="sentenceItem, stat: ${bookItem.sentenceItems}" th:with="sid=${sentenceItem.sentenceId}" 
             th:id="'sentence-item-'+${sid}" class="sentence-item">
