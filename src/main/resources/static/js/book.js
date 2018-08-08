@@ -11,7 +11,6 @@ function hide($e){
 }
 
 function openSentence(sentenceId){
-    // TODO ajaxでsentenceを取得して、はめ込んでからshow modal
     var data = JSON.stringify({
         'sentenceId': sentenceId
     });
@@ -26,13 +25,11 @@ function openSentence(sentenceId){
     }
 
     doAjax("/book/getSentence", data, done, fail);
-
 }
 
 function submitComment(sentenceId){
-    var $sentenceItem = $("#sentence-item-" + sentenceId);
-    var name = $sentenceItem.find(".input-name").val();
-    var comment = $sentenceItem.find(".input-comment").val();
+    var name = $(".input-name").val();
+    var comment = $(".input-comment").val();
     var data = {
         'sentenceId': sentenceId,
         'name':name,
@@ -41,13 +38,12 @@ function submitComment(sentenceId){
     data = JSON.stringify(data);
 
     function done(data, status, xhr){
-        $sentenceItem.find(".comment-part").html(data);
-        console.log("SUCCESS!!");
+        $(".modal__container").html(data);
         console.log({data:data, status:status, xhr:xhr});
     }
 
     function fail(e){
-        console.log(e);      
+        console.log(e);
     }
 
     doAjax("/book/createComment", data, done, fail);

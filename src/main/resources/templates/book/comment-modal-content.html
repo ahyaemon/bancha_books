@@ -30,11 +30,12 @@
                     type="text" placeholder="名前" th:field="*{name}">
             </div>
             <div class="siimple-field">
-                <textarea class="siimple-textarea bancha-input-textarea siimple-textarea-fuild input-comment" 
+                <textarea id="" class="siimple-textarea bancha-input-textarea siimple-textarea-fuild input-comment" 
                     placeholder="コメント" th:field="*{comment}"></textarea>
             </div>
         </form>        
-        <button class="modal__btn modal__btn-primary">コメントする</button>
+        <button class="modal__btn modal__btn-primary" 
+            th:onclick="'submitComment(' + ${sentenceItem.sentenceId} + ')'">コメントする</button>
         <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">閉じる</button>
     </footer>
 

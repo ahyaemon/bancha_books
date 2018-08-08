@@ -20,7 +20,8 @@ class BookController(
             @PathVariable("bookId") bookId: String,
             model: Model
     ): String{
-        // TODO BookItemでは、sentenceItemに紐づくのはcommentの数
+        // TODO BookItemでは、SentenceItemに紐づくのはcommentの数
+        // TODO 画面に表示しないのに、全コメントをselectしてしまっている
         val book = service.getBookByBookId(bookId.toLong())
         val bookItem = BookItem(book)
         model.addAttribute("bookItem", bookItem)
@@ -33,7 +34,7 @@ class BookController(
             @RequestBody sentenceIdItem: SentenceIdItem,
             model: Model
     ): String{
-        val sentence = service.getSentenceItem(sentenceIdItem.sentenceId)
+        val sentence = service.getSentenceBySentenceId(sentenceIdItem.sentenceId)
         val sentenceItem = SentenceItem(sentence)
         model.addAttribute("sentenceItem", sentenceItem)
 
@@ -50,22 +51,26 @@ class BookController(
     ): String{
         val sentenceId = commentForm.sentenceId
         sentenceId  ?: return "" // TODO nullだったらどうする
-        model.addAttribute("sid", sentenceId)
 
         if(result.hasErrors()){
-            val commentItems= service.getComments(sentenceId).map{ CommentItem(it) }
-            model.addAttribute("commentItems", commentItems)
-            return "book/comment :: comment"
+            val sentence = service.getSentenceBySentenceId(commentForm.sentenceId)
+            val sentenceItem = SentenceItem(sentence)
+            model.addAttribute("sentenceItem", sentenceItem)
+
+            val commentForm = CommentForm(null, "", "")
+            model.addAttribute("commentForm", commentForm)
+            return "book/comment-modal-content :: comment-modal-content"
         }
 
         service.createComment(sentenceId, commentForm.toComment())
-        val commentItems= service.getComments(sentenceId).map{ CommentItem(it) }
-        model.addAttribute("commentItems", commentItems)
 
-        val newCommentForm = CommentForm(sentenceId, "", "")
-        model.addAttribute("commentForm", newCommentForm)
+        val sentence = service.getSentenceBySentenceId(commentForm.sentenceId)
+        val sentenceItem = SentenceItem(sentence)
+        model.addAttribute("sentenceItem", sentenceItem)
 
-        return "book/comment :: comment"
+        val commentForm = CommentForm(null, "", "")
+        model.addAttribute("commentForm", commentForm)
+        return "book/comment-modal-content :: comment-modal-content"
     }
 
 }
