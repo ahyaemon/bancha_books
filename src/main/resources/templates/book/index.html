@@ -17,8 +17,8 @@
 
     <section class="sec-content">
         <div th:each="sentenceItem, stat: ${bookItem.sentenceItems}" th:with="sid=${sentenceItem.sentenceId}" 
-            th:id="'sentence-item-'+${sid}" class="sentence-item">
-            <div class="sentence-close" th:onclick="'openSentence(' + ${sid} + ')'">
+            th:id="|sentence-item-${sid}|" class="sentence-item">
+            <div class="sentence-close" th:onclick="|openSentence(${sid})|">
                 <p th:utext="${sentenceItem.sentence}" th:classappend="${sentenceItem.hasComment()} ? 'b'"></p>
             </div>
         </div>

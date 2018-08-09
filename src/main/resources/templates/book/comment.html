@@ -35,7 +35,7 @@
             </div>
         </form>        
         <button class="modal__btn modal__btn-primary" 
-            th:onclick="'submitComment(' + ${sentenceItem.sentenceId} + ')'">コメントする</button>
+            th:onclick="|submitComment(${sentenceItem.sentenceId})|">コメントする</button>
         <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">閉じる</button>
     </footer>
 
