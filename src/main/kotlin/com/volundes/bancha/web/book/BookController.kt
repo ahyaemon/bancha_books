@@ -20,14 +20,25 @@ class BookController(
             @PathVariable("bookId") bookId: String,
             model: Model
     ): String{
-        val book = service.getBookByBookId(bookId.toLong())
-        val bookItem = BookItem(book)
+        val book = service.getCommentCountedBookByBookId(bookId.toLong())
+        val bookItem = CommentCountedBookItem(book)
         model.addAttribute("bookItem", bookItem)
+
+        return "book/index"
+    }
+
+    @RequestMapping(value = ["/getSentence"], produces=["text/plain;charset=UTF-8"])
+    fun getSentence(
+            @RequestBody sentenceIdItem: SentenceIdItem,
+            model: Model
+    ): String{
+        val sentence = service.getSentenceBySentenceId(sentenceIdItem.sentenceId)
+        val sentenceItem = SentenceItem(sentence)
+        model.addAttribute("sentenceItem", sentenceItem)
 
         val commentForm = CommentForm(null, "", "")
         model.addAttribute("commentForm", commentForm)
-
-        return "book/index"
+        return "book/comment :: comment"
     }
 
     @RequestMapping(value=["/createComment"], produces=["text/plain;charset=UTF-8"])
@@ -37,22 +48,23 @@ class BookController(
             model: Model
     ): String{
         val sentenceId = commentForm.sentenceId
-        sentenceId  ?: return "" // TODO nullだったらどうする
-        model.addAttribute("sid", sentenceId)
+        sentenceId  ?: return "book/index" // 本来nullで来ることはない
 
         if(result.hasErrors()){
-            val commentItems= service.getComments(sentenceId).map{ CommentItem(it) }
-            model.addAttribute("commentItems", commentItems)
+            val sentence = service.getSentenceBySentenceId(sentenceId)
+            val sentenceItem = SentenceItem(sentence)
+            model.addAttribute("sentenceItem", sentenceItem)
             return "book/comment :: comment"
         }
 
         service.createComment(sentenceId, commentForm.toComment())
-        val commentItems= service.getComments(sentenceId).map{ CommentItem(it) }
-        model.addAttribute("commentItems", commentItems)
 
-        val newCommentForm = CommentForm(sentenceId, "", "")
-        model.addAttribute("commentForm", newCommentForm)
+        val sentence = service.getSentenceBySentenceId(sentenceId)
+        val sentenceItem = SentenceItem(sentence)
+        model.addAttribute("sentenceItem", sentenceItem)
 
+        val commentForm = CommentForm(null, "", "")
+        model.addAttribute("commentForm", commentForm)
         return "book/comment :: comment"
     }
 

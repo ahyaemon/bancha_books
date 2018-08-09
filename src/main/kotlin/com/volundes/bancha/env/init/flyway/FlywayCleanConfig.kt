@@ -2,14 +2,11 @@ package com.volundes.bancha.env.init.flyway
 
 import com.volundes.bancha.infra.repository.RestoreRepository
 import com.volundes.bancha.infra.repository.UnrestoreRepository
-import com.volundes.bancha.infra.dao.CommentDao
 import org.flywaydb.core.Flyway
 import org.flywaydb.core.api.FlywayException
-import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
-import org.springframework.context.annotation.Profile
 import javax.sql.DataSource
 
 @Configuration
@@ -60,7 +57,7 @@ class FlywayCleanConfig(
         }
     }
 
-    fun Flyway.notUpdated():Boolean{
+    private fun Flyway.notUpdated():Boolean{
         try{
             validate()
         }

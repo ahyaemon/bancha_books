@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>開発環境の作成 &mdash; bancha alpha ドキュメント</title>
+  <title>#78 subtitleを動的に変更するためのアノテーションが欲しい &mdash; bancha alpha ドキュメント</title>
   
 
   
@@ -28,8 +28,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
-    <link rel="next" title="アプリケーション開発" href="../appdev/index.html" />
-    <link rel="prev" title="ドキュメント開発" href="index.html" /> 
+    <link rel="prev" title="#78 遅延初期化をうまいこと使う" href="issue78.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -79,12 +78,17 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">ドキュメント開発</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">開発環境の作成</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../business_requirement/index.html">要求定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../system_requirement/index.html">要件定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docdev/index.html">ドキュメント開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appdev/index.html">アプリケーション開発</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Issue対応</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="issue3.html">#3 ルビの表示方法を検討する</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issue63.html">#63 デプロイ時のDB初期化対策を考える</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issue78.html">#78 遅延初期化をうまいこと使う</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">#78 subtitleを動的に変更するためのアノテーションが欲しい</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../appdev/index.html">アプリケーション開発</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../issue/index.html">Issue対応</a></li>
 </ul>
 
             
@@ -130,15 +134,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="index.html">ドキュメント開発</a> &raquo;</li>
+          <li><a href="index.html">Issue対応</a> &raquo;</li>
         
-      <li>開発環境の作成</li>
+      <li>#78 subtitleを動的に変更するためのアノテーションが欲しい</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/docdev/docenv.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/issue/issue96.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -151,23 +155,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="id1">
-<h1>開発環境の作成<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<p>sphinx環境の作成</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx</span>
-</pre></div>
-</div>
-<p>themeの取得</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx_rtd_theme</span>
-</pre></div>
-</div>
-<p>ビルド</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
-</pre></div>
-</div>
-<p>作成されたhtmlをdocsフォルダにコピー</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">copydocs</span>
-</pre></div>
+  <div class="section" id="subtitle">
+<h1>#78 subtitleを動的に変更するためのアノテーションが欲しい<a class="headerlink" href="#subtitle" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><a class="reference external" href="https://github.com/ahyaemon/bancha_books/issues/96">https://github.com/ahyaemon/bancha_books/issues/96</a></p>
+<p>HandlerInterceptorを継承したDynamicSubtitleInterceptorにて、postHandle内でModelAndViewにsubtitleを追加する。</p>
+<p>preHandleだとModelに詰めることができないので、postHandle。</p>
+<p>&#64;DynamicSubtitleが付与されたControllerにリクエストがある場合、Controler内のメソッド実行後に呼ばれる。</p>
+<div class="admonition note">
+<p class="first admonition-title">注釈</p>
+<p>preHandleは、handlerMethod実行前にrequestをいじるために使う。</p>
+<p class="last">postHandleは引数でModelAndViewを受け取れる。</p>
 </div>
 </div>
 
@@ -179,10 +176,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../appdev/index.html" class="btn btn-neutral float-right" title="アプリケーション開発" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="index.html" class="btn btn-neutral" title="ドキュメント開発" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="issue78.html" class="btn btn-neutral" title="#78 遅延初期化をうまいこと使う" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

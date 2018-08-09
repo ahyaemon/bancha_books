@@ -1,23 +1,17 @@
 package com.volundes.bancha.web.bookmenu
 
-import com.volundes.bancha.domain.subtitle.SubtitleProvider
 import com.volundes.bancha.domain.bookmenu.BookMenuService
+import com.volundes.bancha.env.interceptor.subtitle.DynamicSubtitle
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
 @RequestMapping("/bookmenu")
+@DynamicSubtitle("bookmenu")
 class BookMenuController(
-        private val service: BookMenuService,
-        private val subtitleProvider: SubtitleProvider
+        private val service: BookMenuService
 ) {
-
-    @ModelAttribute("subtitle")
-    fun subtitle(): String{
-        return subtitleProvider.get("bookmenu")
-    }
 
     @RequestMapping("/")
     fun index(model: Model): String{

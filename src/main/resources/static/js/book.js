@@ -1,3 +1,7 @@
+var bookPage = {
+    sentenceId: null
+};
+
 function show($e){
     $e.css("display", "block");
 }
@@ -7,34 +11,28 @@ function hide($e){
 }
 
 function openSentence(sentenceId){
-    var $sentenceItem = $("#sentence-item-" + sentenceId);
+    var data = JSON.stringify({
+        'sentenceId': sentenceId
+    });
 
-    // selected付与
-    var cls = "sentence-item-selected";
-    $sentenceItem.addClass(cls);
+    function done(data){
+        $(".modal__container").html(data);
+        MicroModal.show("modal-1", {
+            // disableScroll: false,
+            awaitCloseAnimation: true
+        });    
+    }
 
-    // 表示・非表示の切り替え
-    show($sentenceItem.find(".sentence-open"));
-    hide($sentenceItem.find(".sentence-close"));
+    function fail(e){
+        console.log(e);
+    }
+
+    doAjax("/book/getSentence", data, done, fail);
 }
-
-function closeSentence(sentenceId){
-    var $sentenceItem = $("#sentence-item-" + sentenceId);
-
-    // selected除外
-    var cls = "sentence-item-selected";
-    $sentenceItem.removeClass(cls);
-
-    // 表示・非表示の切り替え
-    hide($sentenceItem.find(".sentence-open"));
-    show($sentenceItem.find(".sentence-close"));
-}
-
 
 function submitComment(sentenceId){
-    var $sentenceItem = $("#sentence-item-" + sentenceId);
-    var name = $sentenceItem.find(".input-name").val();
-    var comment = $sentenceItem.find(".input-comment").val();
+    var name = $(".input-name").val();
+    var comment = $(".input-comment").val();
     var data = {
         'sentenceId': sentenceId,
         'name':name,
@@ -43,13 +41,12 @@ function submitComment(sentenceId){
     data = JSON.stringify(data);
 
     function done(data, status, xhr){
-        $sentenceItem.find(".comment-part").html(data);
-        console.log("SUCCESS!!");
+        $(".modal__container").html(data);
         console.log({data:data, status:status, xhr:xhr});
     }
 
     function fail(e){
-        console.log(e);      
+        console.log(e);
     }
 
     doAjax("/book/createComment", data, done, fail);
@@ -66,3 +63,9 @@ function doAjax(url, data, fnDone, fnFail){
     .done(fnDone)
     .fail(fnFail);
 }
+
+MicroModal.init({
+    openTrigger: 'data-custom-open',
+    disableScroll: false,
+    awaitCloseAnimation: true
+});
