@@ -25,13 +25,7 @@ public class BookSummaryEntity {
     @Column(name = "sentence")
     public String sentence;
 
-    @Column(name = "comment_id")
-    public Long commentId;
-
-    @Column(name = "comment_name")
-    public String commentName;
-
-    @Column(name = "comment")
-    public String comment;
+    @Column(name = "comment_count")
+    public Long commentCount;
 
 }

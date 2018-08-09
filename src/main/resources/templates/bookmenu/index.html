@@ -14,7 +14,7 @@
     </section>
         
     <section class="sec-content">
-        <a th:each="bookMenuItem: ${bookMenuItems}" th:href="'/book/' + ${bookMenuItem.bookId}">
+        <a th:each="bookMenuItem: ${bookMenuItems}" th:href="|/book/${bookMenuItem.bookId}|">
             <div class="siimple-card bancha-card bancha-back-yellow">
                 <div class="siimple-card-body">
                     <div class="siimple-card-title" th:text="${bookMenuItem.name}"></div>
