@@ -12,7 +12,7 @@ function hide($e){
 }
 
 function openSentence(sentenceId){
-    spinner.start();
+    spinner.start(".sec-content");
 
     var data = JSON.stringify({
         'bookId': bookPage.bookId,
@@ -20,10 +20,10 @@ function openSentence(sentenceId){
     });
 
     function done(data){
+        // spinner.stop();
         $(".modal__container").html(data);
         MicroModal.show("modal-1", {
-            // disableScroll: false,
-            onShow: function(modal){
+            onClose: function(modal){
                 spinner.stop();
             },
             awaitCloseAnimation: true
@@ -31,6 +31,7 @@ function openSentence(sentenceId){
     }
 
     function fail(e){
+        spinner.stop();
         console.log(e);
     }
 
