@@ -8,7 +8,7 @@ var spinner = {
         var $selector = $(selector);
         this.elem.width($selector.width());
         this.elem.height($selector.height());
-        $(selector).prepend(this.elem);
+        $selector.prepend(this.elem);
     },
     stop: function(){
         $("#spinner").remove();

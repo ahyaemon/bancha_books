@@ -20,7 +20,6 @@ function openSentence(sentenceId){
     });
 
     function done(data){
-        // spinner.stop();
         $(".modal__container").html(data);
         MicroModal.show("modal-1", {
             onClose: function(modal){
