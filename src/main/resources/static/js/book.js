@@ -1,4 +1,5 @@
 var bookPage = {
+    bookId: null,
     sentenceId: null
 };
 
@@ -11,19 +12,25 @@ function hide($e){
 }
 
 function openSentence(sentenceId){
+    spinner.start(".sec-content");
+
     var data = JSON.stringify({
+        'bookId': bookPage.bookId,
         'sentenceId': sentenceId
     });
 
     function done(data){
         $(".modal__container").html(data);
         MicroModal.show("modal-1", {
-            // disableScroll: false,
+            onClose: function(modal){
+                spinner.stop();
+            },
             awaitCloseAnimation: true
         });    
     }
 
     function fail(e){
+        spinner.stop();
         console.log(e);
     }
 
@@ -34,6 +41,7 @@ function submitComment(sentenceId){
     var name = $(".input-name").val();
     var comment = $(".input-comment").val();
     var data = {
+        'bookId': bookPage.bookId,
         'sentenceId': sentenceId,
         'name':name,
         'comment':comment

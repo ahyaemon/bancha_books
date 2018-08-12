@@ -5,6 +5,8 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
 
 data class CommentForm (
+        val bookId: Long,
+
         val sentenceId: Long? = null,
 
         @get:NotBlank(message="{CommentForm.name.NotBlank}")

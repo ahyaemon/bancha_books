@@ -1,6 +1,7 @@
 package com.volundes.bancha.web.book
 
 import com.volundes.bancha.domain.book.BookService
+import com.volundes.bancha.web.book.session.SubmitInfoList
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
@@ -8,11 +9,14 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import java.time.LocalDateTime
 
 @Controller
 @RequestMapping("/book")
 class BookController(
-        private val service: BookService
+        private val helper: BookControllerHelper,
+        private val service: BookService,
+        private val submitInfoList: SubmitInfoList
 ) {
 
     @RequestMapping("/{bookId}")
@@ -32,12 +36,8 @@ class BookController(
             @RequestBody sentenceIdItem: SentenceIdItem,
             model: Model
     ): String{
-        val sentence = service.getSentenceBySentenceId(sentenceIdItem.sentenceId)
-        val sentenceItem = SentenceItem(sentence)
-        model.addAttribute("sentenceItem", sentenceItem)
-
-        val commentForm = CommentForm(null, "", "")
-        model.addAttribute("commentForm", commentForm)
+        model.addAttribute("sentenceItem", helper.createSentenceItem(sentenceIdItem.sentenceId))
+        model.addAttribute("commentForm", helper.createCommentForm(sentenceIdItem.bookId))
         return "book/comment :: comment"
     }
 
@@ -47,24 +47,25 @@ class BookController(
             result: BindingResult,
             model: Model
     ): String{
+        val submitDateTime = LocalDateTime.now()
+        val bookId = commentForm.bookId
         val sentenceId = commentForm.sentenceId
         sentenceId  ?: return "book/index" // 本来nullで来ることはない
 
+        // 連続投稿対策
+        if(helper.hasSequentialSubmitError(submitDateTime, submitInfoList, bookId, sentenceId)){
+            result.reject("commentForm.sequentialSubmit")
+        }
+
         if(result.hasErrors()){
-            val sentence = service.getSentenceBySentenceId(sentenceId)
-            val sentenceItem = SentenceItem(sentence)
-            model.addAttribute("sentenceItem", sentenceItem)
+            model.addAttribute("sentenceItem", helper.createSentenceItem(sentenceId))
             return "book/comment :: comment"
         }
 
         service.createComment(sentenceId, commentForm.toComment())
-
-        val sentence = service.getSentenceBySentenceId(sentenceId)
-        val sentenceItem = SentenceItem(sentence)
-        model.addAttribute("sentenceItem", sentenceItem)
-
-        val commentForm = CommentForm(null, "", "")
-        model.addAttribute("commentForm", commentForm)
+        submitInfoList.addNewInfo(bookId, sentenceId, submitDateTime)
+        model.addAttribute("sentenceItem", helper.createSentenceItem(sentenceId))
+        model.addAttribute("commentForm", helper.createCommentForm(bookId))
         return "book/comment :: comment"
     }
 
