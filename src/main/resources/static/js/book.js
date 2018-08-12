@@ -12,6 +12,8 @@ function hide($e){
 }
 
 function openSentence(sentenceId){
+    spinner.start();
+
     var data = JSON.stringify({
         'bookId': bookPage.bookId,
         'sentenceId': sentenceId
@@ -21,6 +23,9 @@ function openSentence(sentenceId){
         $(".modal__container").html(data);
         MicroModal.show("modal-1", {
             // disableScroll: false,
+            onShow: function(modal){
+                spinner.stop();
+            },
             awaitCloseAnimation: true
         });    
     }
