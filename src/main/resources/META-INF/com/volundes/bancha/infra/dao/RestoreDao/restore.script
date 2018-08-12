@@ -1,0 +1,16 @@
+
+
+
+INSERT INTO comment
+  (sentence_id,name,comment) VALUES
+  ('3','あへもん','したよ'),
+  ('10','てすとまん','おいおいそれは本当か？？'),
+  ('11','あひゃえもん','すげえ'),
+  ('14','しゆう','へえ'),
+  ('1','閑閑堂','なるほど')
+;
+
+INSERT INTO donation
+  (name,comment,amount) VALUES
+  ('閑閑堂','','30000000')
+;
