@@ -39,5 +39,8 @@
     <script src="/lib/jquery/jquery-3.0.0.min.js"></script>
     <script src="/lib/micromodal/micromodal.min.js"></script>
     <script src="/js/book.js"></script>
+    <script th:inline="text">
+        bookPage.bookId = /* [[${bookItem.bookId}]] */ 1;
+    </script>
 </body>
 </html>

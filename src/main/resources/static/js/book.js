@@ -1,4 +1,5 @@
 var bookPage = {
+    bookId: null,
     sentenceId: null
 };
 
@@ -12,6 +13,7 @@ function hide($e){
 
 function openSentence(sentenceId){
     var data = JSON.stringify({
+        'bookId': bookPage.bookId,
         'sentenceId': sentenceId
     });
 
@@ -34,6 +36,7 @@ function submitComment(sentenceId){
     var name = $(".input-name").val();
     var comment = $(".input-comment").val();
     var data = {
+        'bookId': bookPage.bookId,
         'sentenceId': sentenceId,
         'name':name,
         'comment':comment
