@@ -5,6 +5,9 @@ var spinner = {
         this.elem.html(spinner);
     },
     start: function(selector){
+        var $selector = $(selector);
+        this.elem.width($selector.width());
+        this.elem.height($selector.height());
         $(selector).prepend(this.elem);
     },
     stop: function(){
