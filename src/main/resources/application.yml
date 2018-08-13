@@ -19,6 +19,9 @@ spring:
     password: bancha
     driverClassName: org.postgresql.Driver
 
+submit:
+  duration: 1
+
 ---
 
 spring:
@@ -28,3 +31,6 @@ spring:
     username: ${DB_USERNAME:bancha}
     password: ${DB_PASSWORD:bancha}
     driverClassName: org.postgresql.Driver
+
+submit:
+  duration: 300

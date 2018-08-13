@@ -1,4 +1,4 @@
-package com.volundes.bancha.web.book
+package com.volundes.bancha.web.book.item
 
 import com.volundes.bancha.domain.book.CommentCountedBook
 

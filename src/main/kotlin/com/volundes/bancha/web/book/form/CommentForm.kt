@@ -1,4 +1,4 @@
-package com.volundes.bancha.web.book
+package com.volundes.bancha.web.book.form
 
 import com.volundes.bancha.domain.book.Comment
 import javax.validation.constraints.NotBlank
@@ -15,9 +15,13 @@ data class CommentForm (
 
         @get:NotBlank(message="{CommentForm.comment.NotBlank}")
         @get:Size(max = 255, message="{CommentForm.comment.Size}")
-        val comment: String
+        val comment: String,
+
+        val hasDeleteKey: Boolean,
+
+        val deleteKey: String
 ){
 
-    fun toComment() =  Comment(null, name, comment)
+    fun toComment() =  Comment(null, name, comment, hasDeleteKey, deleteKey)
 
 }
