@@ -1,6 +1,9 @@
 package com.volundes.bancha.web.book
 
 import com.volundes.bancha.domain.book.BookService
+import com.volundes.bancha.web.book.form.CommentForm
+import com.volundes.bancha.web.book.form.DeleteCommentForm
+import com.volundes.bancha.web.book.item.SentenceItem
 import com.volundes.bancha.web.book.session.SubmitInfoList
 import com.volundes.bancha.web.book.session.SubmitSettings
 import org.springframework.stereotype.Component
@@ -35,6 +38,10 @@ class BookControllerHelper(
 
     fun createCommentForm(bookId: Long): CommentForm {
         return CommentForm(bookId, null, "", "", false, "")
+    }
+
+    fun createDeleteCommentForm(): DeleteCommentForm {
+        return DeleteCommentForm(0, 0, 0, "")
     }
 
 }

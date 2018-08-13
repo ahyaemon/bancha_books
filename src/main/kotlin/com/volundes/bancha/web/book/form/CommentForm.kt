@@ -1,4 +1,4 @@
-package com.volundes.bancha.web.book
+package com.volundes.bancha.web.book.form
 
 import com.volundes.bancha.domain.book.Comment
 import javax.validation.constraints.NotBlank

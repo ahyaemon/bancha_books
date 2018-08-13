@@ -3,23 +3,24 @@
 <body>
 <div th:fragment="comment">
 
-    <!--/* HEADER */-->
+    <!--/* HEADER 文の表示 */-->
     <header class="modal__header">
         <h2 class="modal__title" id="modal-1-title" th:text="${sentenceItem.sentence}"></h2>
         <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
     </header>
 
-    <!--/* CONTENT */-->
+    <!--/* CONTENT コメントの表示 */-->
     <div class="modal__content" id="modal-1-content">
         <hr>
-        <p th:each="commentItem: ${sentenceItem.commentItems}">
+        <p th:each="commentItem: ${sentenceItem.commentItems}" 
+            th:onclick="|commentClicked(${sentenceItem.sentenceId}, ${commentItem.commentId})|">
             <span th:text="${commentItem.name}"></span>
             <span>: </span>
             <span th:text="${commentItem.comment}"></span>
         </p>
     </div>
 
-    <!--/* FOOTER */-->
+    <!--/* FOOTER コメント投稿フォーム */-->
     <footer class="modal__footer">
         <hr>
         <form th:object="${commentForm}">
@@ -46,7 +47,7 @@
                 <input class="input-name bancha-input-text siimple-input"  type="text" placeholder="削除キー"
                     th:field="*{deleteKey}">                
             </div>
-        </form>        
+        </form>
         <button class="modal__btn modal__btn-primary" 
             th:onclick="|submitComment(${sentenceItem.sentenceId})|">コメントする</button>
         <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">閉じる</button>

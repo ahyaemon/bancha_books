@@ -3,7 +3,6 @@ package com.volundes.bancha.domain.book
 import com.volundes.bancha.infra.repository.BookRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
 class BookService(
@@ -32,6 +31,15 @@ class BookService(
 
     fun getSentenceBySentenceId(sentenceId: Long): Sentence {
         return repository.getSentencesBySentenceId(sentenceId)
+    }
+
+    fun canDeleteComment(commentId: Long, deleteKey: String): Boolean {
+        val correctDeleteKey = repository.getDeleteKey(commentId)
+        return passwordEncoder.matches(deleteKey, correctDeleteKey)
+    }
+
+    fun deleteComment(commentId: Long) {
+        repository.deleteComment(commentId)
     }
 
 }

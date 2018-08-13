@@ -18,4 +18,8 @@ class CommentInfraMapper {
         return entity
     }
 
+    fun toComment(entity: CommentEntity): Comment {
+        return Comment(entity.commentId, entity.name, entity.comment, entity.canDelete, entity.deleteKey)
+    }
+
 }
