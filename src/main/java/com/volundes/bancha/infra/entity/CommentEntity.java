@@ -18,4 +18,10 @@ public class CommentEntity {
 
     @Column(name = "comment")
     public String comment;
+
+    @Column(name = "can_delete")
+    public Boolean canDelete;
+
+    @Column(name = "delete_key")
+    public String deleteKey;
 }

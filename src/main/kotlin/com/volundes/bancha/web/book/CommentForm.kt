@@ -22,6 +22,6 @@ data class CommentForm (
         val deleteKey: String
 ){
 
-    fun toComment() =  Comment(null, name, comment)
+    fun toComment() =  Comment(null, name, comment, hasDeleteKey, deleteKey)
 
 }

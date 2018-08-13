@@ -24,7 +24,6 @@ class BookControllerHelper(
 
         val prevSubmitInfo = submitInfoList.get(bookId, sentenceId)
         val prevDateTime = prevSubmitInfo.submitDateTime
-        // FIXME ここで5分決め打ちになっている
         val submitEnabledDateTime = prevDateTime.plusSeconds(submitSettings.duration)
         return submitDateTime.isBefore(submitEnabledDateTime)
     }
