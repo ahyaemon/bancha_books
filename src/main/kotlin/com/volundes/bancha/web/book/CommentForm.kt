@@ -15,7 +15,11 @@ data class CommentForm (
 
         @get:NotBlank(message="{CommentForm.comment.NotBlank}")
         @get:Size(max = 255, message="{CommentForm.comment.Size}")
-        val comment: String
+        val comment: String,
+
+        val hasDeleteKey: Boolean,
+
+        val deleteKey: String
 ){
 
     fun toComment() =  Comment(null, name, comment)

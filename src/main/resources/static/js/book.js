@@ -40,11 +40,15 @@ function openSentence(sentenceId){
 function submitComment(sentenceId){
     var name = $(".input-name").val();
     var comment = $(".input-comment").val();
+    var hasDeleteKey = $(".delete-key-switch").prop("checked");
+    var deleteKey = $("#deleteKey").val();
     var data = {
         'bookId': bookPage.bookId,
         'sentenceId': sentenceId,
         'name':name,
-        'comment':comment
+        'comment':comment,
+        'hasDeleteKey': hasDeleteKey,
+        'deleteKey': deleteKey
     };
     data = JSON.stringify(data);
 
@@ -72,8 +76,14 @@ function doAjax(url, data, fnDone, fnFail){
     .fail(fnFail);
 }
 
-MicroModal.init({
-    openTrigger: 'data-custom-open',
-    disableScroll: false,
-    awaitCloseAnimation: true
-});
+function deleteKeySwitchChanged(target){
+    var checked = $(target).prop("checked");
+    var $deleteKeyField = $("#delete-key-field");
+
+    if(checked){
+        $deleteKeyField.addClass("show");
+    }
+    else{
+        $deleteKeyField.removeClass("show");
+    }
+}

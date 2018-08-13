@@ -2,12 +2,14 @@ package com.volundes.bancha.web.book
 
 import com.volundes.bancha.domain.book.BookService
 import com.volundes.bancha.web.book.session.SubmitInfoList
+import com.volundes.bancha.web.book.session.SubmitSettings
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 
 @Component
 class BookControllerHelper(
-        private val service: BookService
+        private val service: BookService,
+        private val submitSettings: SubmitSettings
 ) {
 
     fun hasSequentialSubmitError(
@@ -23,7 +25,7 @@ class BookControllerHelper(
         val prevSubmitInfo = submitInfoList.get(bookId, sentenceId)
         val prevDateTime = prevSubmitInfo.submitDateTime
         // FIXME ここで5分決め打ちになっている
-        val submitEnabledDateTime = prevDateTime.plusMinutes(5)
+        val submitEnabledDateTime = prevDateTime.plusSeconds(submitSettings.duration)
         return submitDateTime.isBefore(submitEnabledDateTime)
     }
 
@@ -33,7 +35,7 @@ class BookControllerHelper(
     }
 
     fun createCommentForm(bookId: Long): CommentForm {
-        return CommentForm(bookId, null, "", "")
+        return CommentForm(bookId, null, "", "", false, "")
     }
 
 }
