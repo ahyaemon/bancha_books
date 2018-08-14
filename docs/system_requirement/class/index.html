@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>画面 &mdash; bancha alpha ドキュメント</title>
+  <title>クラス図 &mdash; bancha alpha ドキュメント</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
-    <link rel="next" title="ホームメニュー" href="home_menu/index.html" />
-    <link rel="prev" title="クラス図" href="../class/index.html" /> 
+    <link rel="next" title="画面" href="../page/index.html" />
+    <link rel="prev" title="要件定義" href="../index.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -81,15 +81,15 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../business_requirement/index.html">要求定義</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">要件定義</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../class/index.html">クラス図</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">画面</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="home_menu/index.html">ホームメニュー</a></li>
-<li class="toctree-l3"><a class="reference internal" href="book_menu/index.html">本メニュー</a></li>
-<li class="toctree-l3"><a class="reference internal" href="donation/index.html">寄付</a></li>
-<li class="toctree-l3"><a class="reference internal" href="admin_login/index.html">管理者ログイン</a></li>
-<li class="toctree-l3"><a class="reference internal" href="admin_menu/index.html">管理者用メニュー</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">クラス図</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#menu">メニュー: Menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#subtitle">サブタイトル: Subtitle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#book">ブック: Book</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#account">アカウント: Account</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#donation">寄付: Donation</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../page/index.html">画面</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../docdev/index.html">ドキュメント開発</a></li>
@@ -142,13 +142,13 @@
         
           <li><a href="../index.html">要件定義</a> &raquo;</li>
         
-      <li>画面</li>
+      <li>クラス図</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../../_sources/system_requirement/page/index.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/system_requirement/class/index.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -162,15 +162,85 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>画面<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="home_menu/index.html">ホームメニュー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="book_menu/index.html">本メニュー</a></li>
-<li class="toctree-l1"><a class="reference internal" href="donation/index.html">寄付</a></li>
-<li class="toctree-l1"><a class="reference internal" href="admin_login/index.html">管理者ログイン</a></li>
-<li class="toctree-l1"><a class="reference internal" href="admin_menu/index.html">管理者用メニュー</a></li>
-</ul>
+<h1>クラス図<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="menu">
+<h2>メニュー: Menu<a class="headerlink" href="#menu" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>トップに表示するメニューを表す</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-bacbf62a03f097c04e301d4c805c9432b3c5397e.png" alt="class Menu {
+  id: Long
+  title: String
+  subtitle: String
+  url: String
+}"/>
+</p>
+</div>
+<div class="section" id="subtitle">
+<h2>サブタイトル: Subtitle<a class="headerlink" href="#subtitle" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>各画面にランダムで表示させる文を表す</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-6f5b6ea5382238bece488ae85840861de3505a4f.png" alt="class Subtitle{
+  id: Long
+  title_cd: String
+  value: String
+}"/>
+</p>
+</div>
+<div class="section" id="book">
+<h2>ブック: Book<a class="headerlink" href="#book" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>一冊の本を表す</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-5b707d1a9745a73c88e06a1dd34d244f174e0956.png" alt="class Book {
+  Long: id
+  title: String
+  author: Author
+  sentences: List&lt;Sentence&gt;
+}
+
+class Author {
+  id: Long
+  name: String
+}
+
+class Sentence {
+  id: Long
+  value: String
+  comments: List&lt;Comment&gt;
+}
+
+class Comment {
+  id: Long
+  value: String
+}
+
+Book &quot;1&quot; *-- &quot;0..n&quot; Sentence
+Book &quot;1&quot; *-- &quot;1..n&quot; Author
+Sentence &quot;1&quot; *-- &quot;0..n&quot; Comment"/>
+</p>
+</div>
+<div class="section" id="account">
+<h2>アカウント: Account<a class="headerlink" href="#account" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>サイトの登録者・管理人を表す</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-ef38d10f566f7c4eab35f30a65c2f1a0bdd85912.png" alt="class Account{
+  id: Long
+  name: String
+  pass: String
+  role: String
+}"/>
+</p>
+</div>
+<div class="section" id="donation">
+<h2>寄付: Donation<a class="headerlink" href="#donation" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>寄付を表す</p>
+<p class="plantuml">
+<img src="../../_images/plantuml-c5f975bac6d2d515022f3b8aea9cd0ff58993bf0.png" alt="class Donation{
+  id: Long,
+  name: String,
+  comment: String,
+  amount: Long
+}"/>
+</p>
 </div>
 </div>
 
@@ -182,10 +252,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="home_menu/index.html" class="btn btn-neutral float-right" title="ホームメニュー" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../page/index.html" class="btn btn-neutral float-right" title="画面" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../class/index.html" class="btn btn-neutral" title="クラス図" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../index.html" class="btn btn-neutral" title="要件定義" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
