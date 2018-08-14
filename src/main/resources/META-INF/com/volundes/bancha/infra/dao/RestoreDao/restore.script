@@ -2,12 +2,12 @@
 
 
 INSERT INTO comment
-  (sentence_id,name,comment) VALUES
-  ('3','あへもん','したよ'),
-  ('10','てすとまん','おいおいそれは本当か？？'),
-  ('11','あひゃえもん','すげえ'),
-  ('14','しゆう','へえ'),
-  ('1','閑閑堂','なるほど')
+  (sentence_id,name,comment,can_delete,delete_key) VALUES
+  ('3','あへもん','したよ',false,'0000'),
+  ('10','てすとまん','おいおいそれは本当か？？',false,'0000'),
+  ('11','あひゃえもん','すげえ',false,'0000'),
+  ('14','しゆう','へえ',false,'0000'),
+  ('1','閑閑堂','なるほど',false,'0000')
 ;
 
 INSERT INTO donation
