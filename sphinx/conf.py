@@ -40,7 +40,10 @@ release = u'alpha'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinxcontrib.plantuml'
 ]
+
+plantuml = 'java -jar "C:\Program Files (x86)\PlantUML\plantuml.jar"'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
