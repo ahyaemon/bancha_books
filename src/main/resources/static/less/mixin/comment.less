@@ -37,3 +37,23 @@
         background-color: rgb(186, 187, 214);
     }    
 }
+
+@keyframes show-delete-key-field{
+    from{
+        height: 0px;
+    }
+    to{
+        height: 40px;
+    }
+}
+
+
+#delete-key-field{
+    display: none;
+}
+
+#delete-key-field.show{
+    display: block;
+    animation: show-delete-key-field 0.2s ease 0s;
+    height: 40px;
+}

@@ -81,6 +81,7 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../business_requirement/index.html">要求定義</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">要件定義</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../class/index.html">クラス図</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">画面</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">ホームメニュー</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../book_menu/index.html">本メニュー</a></li>
@@ -165,6 +166,16 @@
   <div class="section" id="id1">
 <h1>ホームメニュー<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <img alt="../../../_images/img4.png" src="../../../_images/img4.png" />
+<p class="plantuml">
+<img src="../../../_images/plantuml-981d8b191cdd765a246ca49a949ca34f1f606eb0.png" alt="actor :非会員: as Non
+actor :会員: as General
+actor :管理者: as Admin
+(Menuを選択) as (Select Menu)
+
+Non --&gt; (Select Menu)
+General --&gt; (Select Menu)
+Admin --&gt; (Select Menu)"/>
+</p>
 </div>
 
 

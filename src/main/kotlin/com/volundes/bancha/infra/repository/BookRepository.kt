@@ -75,4 +75,13 @@ class BookRepository(
         return sentenceMapper.toSentence(sentenceSummaryEntity)
     }
 
+    fun getDeleteKey(commentId: Long): String {
+        return commentDao.selectDeleteKeyByCommentId(commentId)
+    }
+
+    fun deleteComment(commentId: Long){
+        val entity = commentDao.selectCommentByCommentId(commentId)
+        commentDao.delete(entity)
+    }
+
 }
