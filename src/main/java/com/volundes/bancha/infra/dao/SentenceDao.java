@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.dao;
 
-import com.volundes.bancha.infra.entity.CommentEntity;
+import com.volundes.bancha.infra.entity.table.CommentTable;
 import com.volundes.bancha.infra.entity.SentenceEntity;
 import com.volundes.bancha.infra.entity.SentenceSummaryEntity;
 import org.seasar.doma.*;
@@ -22,7 +22,7 @@ public interface SentenceDao {
 
     @Select
     @Transactional
-    List<CommentEntity> selectCommentBySentenceId(long sentenceId);
+    List<CommentTable> selectCommentBySentenceId(long sentenceId);
 
     @Select
     List<SentenceSummaryEntity> selectSentenceSummaryBySentenceId(Long sentenceId);

@@ -1,10 +1,10 @@
-package com.volundes.bancha.infra.entity;
+package com.volundes.bancha.infra.entity.table;
 
 import org.seasar.doma.*;
 
 @Entity
 @Table(name = "subtitle")
-public class SubtitleEntity {
+public class SubtitleTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "subtitle_id")

@@ -1,10 +1,10 @@
-package com.volundes.bancha.infra.entity;
+package com.volundes.bancha.infra.entity.table;
 
 import org.seasar.doma.*;
 
 @Entity
 @Table(name = "menu")
-public class MenuEntity {
+public class MenuTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,7 +1,6 @@
 package com.volundes.bancha.infra.dao;
 
-import com.volundes.bancha.infra.entity.AccountEntity;
-import com.volundes.bancha.infra.entity.UnrestoreEntity;
+import com.volundes.bancha.infra.entity.table.UnrestoreTable;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,10 +16,10 @@ public interface UnrestoreDao {
 
     @BatchInsert
     @Transactional
-    int[] insert(List<UnrestoreEntity> entities);
+    int[] insert(List<UnrestoreTable> entities);
 
     @Select
     @Transactional
-    List<UnrestoreEntity> select();
+    List<UnrestoreTable> select();
 
 }

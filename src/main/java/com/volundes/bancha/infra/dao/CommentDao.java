@@ -1,8 +1,6 @@
 package com.volundes.bancha.infra.dao;
 
-import com.volundes.bancha.infra.entity.CommentEntity;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.volundes.bancha.infra.entity.table.CommentTable;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,11 +15,11 @@ import java.util.List;
 public interface CommentDao {
     @Insert
     @Transactional
-    int insert(CommentEntity entity);
+    int insert(CommentTable entity);
 
     @Select
     @Transactional
-    List<CommentEntity> select();
+    List<CommentTable> select();
 
     @Select
     @Transactional
@@ -29,9 +27,9 @@ public interface CommentDao {
 
     @Select
     @Transactional
-    CommentEntity selectCommentByCommentId(Long commentId);
+    CommentTable selectCommentByCommentId(Long commentId);
 
     @Delete
     @Transactional
-    int delete(CommentEntity entity);
+    int delete(CommentTable entity);
 }

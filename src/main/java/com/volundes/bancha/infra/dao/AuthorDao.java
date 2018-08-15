@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.dao;
 
-import com.volundes.bancha.infra.entity.AuthorEntity;
+import com.volundes.bancha.infra.entity.table.AuthorTable;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,13 +15,13 @@ import java.util.List;
 public interface AuthorDao {
     @Select
     @Transactional
-    AuthorEntity selectByName(String name);
+    AuthorTable selectByName(String name);
 
     @Insert
     @Transactional
-    int insert(AuthorEntity authorEntity);
+    int insert(AuthorTable authorEntity);
 
     @Select
     @Transactional
-    List<AuthorEntity> select();
+    List<AuthorTable> select();
 }

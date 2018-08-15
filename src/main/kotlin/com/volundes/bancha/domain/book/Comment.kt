@@ -4,6 +4,11 @@ data class Comment(
         val commentId: Long?,
         val name: String,
         val comment: String,
-        val hasDeleteKey: Boolean,
-        val deleteKey: String
-)
+        val deleteKey: String?
+){
+
+    fun canDelete(): Boolean{
+        return deleteKey != null
+    }
+
+}
