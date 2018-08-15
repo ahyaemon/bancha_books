@@ -1,6 +1,7 @@
 package com.volundes.bancha.infra.dao;
 
 import com.volundes.bancha.infra.entity.table.CommentTable;
+import com.volundes.bancha.infra.entity.table.DeleteKeyTable;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,26 +13,22 @@ import java.util.List;
         @Annotation(target = AnnotationTarget.CLASS, type = Component.class),
         @Annotation(target = AnnotationTarget.CONSTRUCTOR, type = Autowired.class) })
 @Dao
-public interface CommentDao {
+public interface DeleteKeyDao {
 
     @Insert
     @Transactional
-    int insert(CommentTable entity);
+    int insert(DeleteKeyTable entity);
 
     @Select
     @Transactional
-    List<CommentTable> select();
+    List<DeleteKeyTable> select();
 
     @Select
     @Transactional
-    CommentTable selectCommentByCommentId(Long commentId);
+    DeleteKeyTable selectByCommentId(Long commentId);
 
     @Delete
     @Transactional
-    int delete(CommentTable entity);
-
-    @Select
-    @Transactional
-    Long selectId();
+    int delete(DeleteKeyTable entity);
 
 }

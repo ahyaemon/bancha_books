@@ -1,7 +1,6 @@
 SELECT
-  delete_key
+  *
 FROM
-  comment
+  delete_key
 WHERE
   comment_id = /* commentId */1
-  

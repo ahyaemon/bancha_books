@@ -1,14 +1,8 @@
 package com.volundes.bancha.infra.repository
 
 import com.volundes.bancha.domain.book.*
-import com.volundes.bancha.infra.dao.AuthorDao
-import com.volundes.bancha.infra.dao.BookDao
-import com.volundes.bancha.infra.dao.CommentDao
-import com.volundes.bancha.infra.dao.SentenceDao
-import com.volundes.bancha.infra.mapper.AuthorInfraMapper
-import com.volundes.bancha.infra.mapper.BookInfraMapper
-import com.volundes.bancha.infra.mapper.CommentInfraMapper
-import com.volundes.bancha.infra.mapper.SentenceInfraMapper
+import com.volundes.bancha.infra.dao.*
+import com.volundes.bancha.infra.mapper.*
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -17,10 +11,12 @@ class BookRepository(
         private val sentenceDao: SentenceDao,
         private val commentDao: CommentDao,
         private val authorDao: AuthorDao,
+        private val deleteKeyDao: DeleteKeyDao,
         private val bookMapper: BookInfraMapper,
         private val sentenceMapper: SentenceInfraMapper,
         private val commentMapper: CommentInfraMapper,
-        private val authorMapper: AuthorInfraMapper
+        private val authorMapper: AuthorInfraMapper,
+        private val deleteKeyMapper: DeleteKeyInfraMapper
 ) {
 
     fun getBookMenus() = bookDao.selectBookMenu().map{ bookMapper.toBookMenu(it)}
@@ -32,8 +28,16 @@ class BookRepository(
     }
 
     fun insertComment(sentenceId: Long, comment: Comment) {
-        val entity = commentMapper.toEntity(sentenceId, comment)
-        commentDao.insert(entity)
+        // commentの登録
+        val commentEntity = commentMapper.toEntity(sentenceId, comment)
+        commentDao.insert(commentEntity);
+
+        // deleteKeyの登録
+        if(comment.canDelete()){
+            val commentId = commentDao.selectId();
+            val deleteEntity = deleteKeyMapper.toEntity(commentId, comment)
+            deleteKeyDao.insert(deleteEntity)
+        }
     }
 
     fun addBook(book: Book){
@@ -65,23 +69,24 @@ class BookRepository(
         sentenceDao.insert(sentenceEntities)
     }
 
-    fun getBookInfos(): List<BookInfo> {
-        val bookInfoEntities = bookDao.selectBookInfos()
-        return bookMapper.toBookInfos(bookInfoEntities)
-    }
-
     fun getSentencesBySentenceId(sentenceId: Long): Sentence {
         val sentenceSummaryEntity = sentenceDao.selectSentenceSummaryBySentenceId(sentenceId)
         return sentenceMapper.toSentence(sentenceSummaryEntity)
     }
 
     fun getDeleteKey(commentId: Long): String {
-        return commentDao.selectDeleteKeyByCommentId(commentId)
+        val entity = deleteKeyDao.selectByCommentId(commentId)
+        return entity.deleteKey
     }
 
     fun deleteComment(commentId: Long){
-        val entity = commentDao.selectCommentByCommentId(commentId)
-        commentDao.delete(entity)
+        // deleteKeyの削除
+        val deleteTable = deleteKeyDao.selectByCommentId(commentId)
+        deleteKeyDao.delete(deleteTable)
+
+        // commentの削除
+        val commentTable = commentDao.selectCommentByCommentId(commentId)
+        commentDao.delete(commentTable)
     }
 
 }

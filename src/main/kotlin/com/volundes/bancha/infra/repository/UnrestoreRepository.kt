@@ -15,6 +15,9 @@ class UnrestoreRepository(
         private val unrestoreDao: UnrestoreDao
 ) {
 
+    /**
+     * flywayによってDBにインサートされたデータを、unrestoreテーブルに記録します。
+     */
     fun init() {
         val targets = restoreTargetMapHolder.getTargets()
         targets.forEach { daoClass, entityClass ->

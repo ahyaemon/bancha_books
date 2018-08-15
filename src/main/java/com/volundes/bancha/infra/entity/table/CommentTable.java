@@ -5,6 +5,7 @@ import org.seasar.doma.*;
 @Entity
 @Table(name = "comment")
 public class CommentTable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
@@ -19,9 +20,4 @@ public class CommentTable {
     @Column(name = "comment")
     public String comment;
 
-    @Column(name = "can_delete")
-    public Boolean canDelete;
-
-    @Column(name = "delete_key")
-    public String deleteKey;
 }
