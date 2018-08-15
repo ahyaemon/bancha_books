@@ -2,7 +2,7 @@ package com.volundes.bancha.infra.mapper
 
 import com.volundes.bancha.domain.book.*
 import com.volundes.bancha.domain.bookmenu.BookMenu
-import com.volundes.bancha.infra.entity.BookEntity
+import com.volundes.bancha.infra.entity.table.BookTable
 import com.volundes.bancha.infra.entity.BookInfoEntity
 import com.volundes.bancha.infra.entity.BookMenuEntity
 import com.volundes.bancha.infra.entity.BookSummaryEntity
@@ -27,8 +27,8 @@ class BookInfraMapper{
         return BookMenu(entity.bookId, entity.name, entity.author)
     }
 
-    fun toBookEntity(book: Book, authorId: Long): BookEntity {
-        val entity = BookEntity()
+    fun toBookEntity(book: Book, authorId: Long): BookTable {
+        val entity = BookTable()
         entity.bookId = book.bookId
         entity.name = book.name
         entity.authorId = authorId

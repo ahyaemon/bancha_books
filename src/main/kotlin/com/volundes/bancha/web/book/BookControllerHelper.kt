@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.book
 
-import com.volundes.bancha.domain.book.BookService
+import com.volundes.bancha.domain.book.service.BookService
 import com.volundes.bancha.web.book.form.CommentForm
 import com.volundes.bancha.web.book.form.DeleteCommentForm
 import com.volundes.bancha.web.book.item.SentenceItem

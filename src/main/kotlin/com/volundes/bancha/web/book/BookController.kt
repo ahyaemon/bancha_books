@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.book
 
-import com.volundes.bancha.domain.book.BookService
+import com.volundes.bancha.domain.book.service.BookService
 import com.volundes.bancha.web.book.form.CommentForm
 import com.volundes.bancha.web.book.form.DeleteCommentForm
 import com.volundes.bancha.web.book.item.CommentCountedBookItem
@@ -13,7 +13,6 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
 import java.time.LocalDateTime
 
 /**

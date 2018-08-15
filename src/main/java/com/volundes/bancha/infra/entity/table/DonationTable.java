@@ -1,10 +1,10 @@
-package com.volundes.bancha.infra.entity;
+package com.volundes.bancha.infra.entity.table;
 
 import org.seasar.doma.*;
 
 @Entity
 @Table(name = "donation")
-public class DonationEntity {
+public class DonationTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

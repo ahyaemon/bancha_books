@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.dao;
 
-import com.volundes.bancha.infra.entity.MenuEntity;
+import com.volundes.bancha.infra.entity.table.MenuTable;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,6 +16,6 @@ public interface MenuDao {
 
     @Select
     @Transactional
-    List<MenuEntity> select();
+    List<MenuTable> select();
 
 }

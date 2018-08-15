@@ -1,7 +1,7 @@
 package com.volundes.bancha.infra.repository
 
 import com.volundes.bancha.infra.dao.UnrestoreDao
-import com.volundes.bancha.infra.entity.UnrestoreEntity
+import com.volundes.bancha.infra.entity.table.UnrestoreTable
 import com.volundes.bancha.env.init.flyway.RestoreTargetMapHolder
 import org.seasar.doma.Id
 import org.seasar.doma.Table
@@ -15,6 +15,9 @@ class UnrestoreRepository(
         private val unrestoreDao: UnrestoreDao
 ) {
 
+    /**
+     * flywayによってDBにインサートされたデータを、unrestoreテーブルに記録します。
+     */
     fun init() {
         val targets = restoreTargetMapHolder.getTargets()
         targets.forEach { daoClass, entityClass ->
@@ -30,7 +33,7 @@ class UnrestoreRepository(
 
             // UnrestoreEntityを作成し、INSERTする
             val unrestoreEntities = entities.map { entity ->
-                val unrestoreEntity = UnrestoreEntity()
+                val unrestoreEntity = UnrestoreTable()
                 unrestoreEntity.tableName = name
                 val idField = entityClass.fields.first { field ->
                     field.isAnnotationPresent(Id::class.java)

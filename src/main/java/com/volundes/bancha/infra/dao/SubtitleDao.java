@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.dao;
 
-import com.volundes.bancha.infra.entity.SubtitleEntity;
+import com.volundes.bancha.infra.entity.table.SubtitleTable;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,9 +15,9 @@ import java.util.List;
 public interface SubtitleDao {
     @Select
     @Transactional
-    List<SubtitleEntity> selectByTitleCd(String titleCd);
+    List<SubtitleTable> selectByTitleCd(String titleCd);
 
     @Select
     @Transactional
-    List<SubtitleEntity> select();
+    List<SubtitleTable> select();
 }

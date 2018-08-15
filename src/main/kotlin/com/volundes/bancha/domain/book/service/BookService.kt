@@ -1,5 +1,8 @@
-package com.volundes.bancha.domain.book
+package com.volundes.bancha.domain.book.service
 
+import com.volundes.bancha.domain.book.Comment
+import com.volundes.bancha.domain.book.CommentCountedBook
+import com.volundes.bancha.domain.book.Sentence
 import com.volundes.bancha.infra.repository.BookRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
@@ -22,7 +25,7 @@ class BookService(
      * コメントに削除キーが設定されている場合は、暗号化してから登録します。
      */
     fun createComment(sentenceId: Long, comment: Comment) {
-        if(comment.hasDeleteKey){
+        if(comment.canDelete()){
             val encryptedDeleteKey = passwordEncoder.encode(comment.deleteKey)
             val newComment = comment.copy(deleteKey = encryptedDeleteKey)
             repository.insertComment(sentenceId, newComment)
