@@ -4,6 +4,9 @@ import com.volundes.bancha.infra.repository.BookRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
+/**
+ * 本の管理を担うサービスです。
+ */
 @Service
 class BookService(
         private val repository: BookRepository,
@@ -15,8 +18,8 @@ class BookService(
     }
 
     /**
-     * コメントを登録する。
-     * 削除キーがある場合、暗号化して登録
+     * コメントを新規登録します。
+     * コメントに削除キーが設定されている場合は、暗号化してから登録します。
      */
     fun createComment(sentenceId: Long, comment: Comment) {
         if(comment.hasDeleteKey){
@@ -29,15 +32,28 @@ class BookService(
         }
     }
 
+    /**
+     * sentenceIdから、文のリストを取得します。
+     *
+     * @return 文のリスト
+     */
     fun getSentenceBySentenceId(sentenceId: Long): Sentence {
         return repository.getSentencesBySentenceId(sentenceId)
     }
 
+    /**
+     * deleteキーを検証し、コメントが削除可能かどうかを判断します。
+     *
+     * @return 削除可能な場合、true
+     */
     fun canDeleteComment(commentId: Long, deleteKey: String): Boolean {
         val correctDeleteKey = repository.getDeleteKey(commentId)
         return passwordEncoder.matches(deleteKey, correctDeleteKey)
     }
 
+    /**
+     * コメントを削除します。
+     */
     fun deleteComment(commentId: Long) {
         repository.deleteComment(commentId)
     }

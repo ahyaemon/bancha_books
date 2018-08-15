@@ -6,10 +6,21 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service
 
+/**
+ * ユーザー認証を担うServiceです。
+ * 実際の認証はSpring Securityに任せるため、このクラスを呼び出して使うことはありません。
+ */
 @Service
 class AccountUserDetailsService(
         private val accountRepository: AccountRepository
 ): UserDetailsService {
+
+    /**
+     * 認証を行うためのUserDetailsインスタンスを返します。
+     *
+     * @param[username] ユーザー名
+     * @return 認証を行うためのUserDetailsインスタンス
+     */
     override fun loadUserByUsername(username: String): UserDetails{
         val account = accountRepository.getByUsername(username)
         val grantedAuthorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN")
@@ -21,7 +32,6 @@ class AccountUserDetailsService(
                 true,
                 grantedAuthorities
         )
-
         return userDetails
     }
 

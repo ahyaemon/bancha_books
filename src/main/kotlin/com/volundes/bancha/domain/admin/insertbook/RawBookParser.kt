@@ -4,6 +4,10 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.select.Elements
 
+/**
+ * 青空文庫から取得したテキストファイルをパースし、
+ * タイトル・著者・文を抽出します。
+ */
 class RawBookParser(
         rowBook: RawBook
 ) {
@@ -12,14 +16,30 @@ class RawBookParser(
     private val rubyTags = arrayListOf("ruby", "rp", "rb", "rt")
     private val seps = arrayListOf("。』", "。」", "。")
 
+    /**
+     * titleクラスからタイトルを抽出して返します。
+     *
+     * @return 本のタイトル
+     */
     fun getTitle(): String{
         return document.select(".title").text()
     }
 
+    /**
+     * authorクラスから著者を抽出して返します。
+     *
+     * @return 本の著者
+     */
     fun getAuthor(): String{
         return document.select(".author").text()
     }
 
+    /**
+     * htmlタグを含む文字列をsepsで区切ってStringのリストに変換します。
+     * rubyTagsに含まれるタグはそのまま残します。
+     *
+     * @return 文のリスト
+     */
     fun getSentences(): List<String>{
         val rawHtml = document.select(".main_text").html()
         return rubyTags.fold(rawHtml){ html, tag -> html.encodeTag(tag) }
