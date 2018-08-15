@@ -9,6 +9,9 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.RequestMapping
 
+/**
+ * 「寄付」ページを担うControllerです。
+ */
 @Controller
 @RequestMapping("/donation")
 @DynamicSubtitle("donation")
@@ -16,6 +19,9 @@ class DonationController(
         private val service: DonationService
 ) {
 
+    /**
+     * indexへのマッピングです。
+     */
     @RequestMapping("/")
     fun index(model: Model): String{
         val testPayForm = TestPayForm("", "", "0")
@@ -28,6 +34,9 @@ class DonationController(
         return "donation/index"
     }
 
+    /**
+     * TestPay実行結果を登録します。
+     */
     @RequestMapping("/pay")
     fun pay(
             @ModelAttribute @Validated testPayForm: TestPayForm?,
@@ -47,6 +56,9 @@ class DonationController(
         return "donation/index"
     }
 
+    /**
+     * 寄付詳細へのマッピングです。
+     */
     @RequestMapping("/detail")
     fun detail(
             model: Model

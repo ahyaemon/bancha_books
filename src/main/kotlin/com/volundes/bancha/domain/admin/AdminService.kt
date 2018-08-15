@@ -8,8 +8,11 @@ import org.seasar.doma.Table
 import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Service
 
+/**
+ * 管理用の処理を担うServiceです。
+ */
 /*
-Entityを操作するため、Daoを直接呼び出す
+ *  Entityの操作をすることがあるため、Daoを直接呼び出す。
  */
 @Service
 class AdminService(
@@ -21,9 +24,10 @@ class AdminService(
     private val unrestoreEntities by lazy { unrestoreDao.select() }
 
     /**
-     * 復元用のデータを取得する
-     * unrestoreDaoを使用し、初期投入データは除外する
-     * Id列は除外する
+     * 復元用のデータを取得します。
+     * 復元用データに初期投入データは含まれません。
+     *
+     * @return 復元用データのリスト
      */
     fun getDataList(): List<Data>{
         val targets = restoreTargetMapHolder.getTargets()

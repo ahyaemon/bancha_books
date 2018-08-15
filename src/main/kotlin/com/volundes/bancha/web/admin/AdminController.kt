@@ -11,22 +11,37 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 import javax.servlet.http.HttpServletResponse
 
+/**
+ * 「管理メニュー」画面を担うControllerです。
+ */
 @Controller
 @RequestMapping("/admin")
 class AdminController(
         private val service: AdminService
 ) {
 
+    /**
+     * loginへのマッピングです。
+     * 管理者としてログインしていないときに管理者用機能にアクセスすると、
+     * Spring Securityの機能によりloginにマッピングされます。
+     */
     @RequestMapping("/login")
     fun login(): String {
         return "admin/login"
     }
 
+    /**
+     * 管理者用メニューへのマッピングです。
+     */
     @RequestMapping("/menu")
     fun menu(): String {
         return "admin/menu"
     }
 
+    /**
+     * ajax。
+     * データ復元用ＳＱＬのダウンロードを行います。
+     */
     @RequestMapping("/download/dml")
     fun downloadRestoreDml(): ResponseEntity<ByteArray>{
         val headers = HttpHeaders()
@@ -38,6 +53,10 @@ class AdminController(
         return ResponseEntity(dml.toByteArray(), headers, HttpStatus.OK)
     }
 
+    /**
+     * ajax。
+     * データ復元用CSVのダウンロードを行います。
+     */
     @RequestMapping("/download/csv")
     fun downloadRestoreCsv(
             response: HttpServletResponse
