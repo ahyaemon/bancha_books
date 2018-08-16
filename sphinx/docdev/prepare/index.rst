@@ -18,3 +18,9 @@
   ::
 
     pip install sphinx_rtd_theme
+
+4. plantumlのインストール
+
+  UMLダイアグラムを書くには、plantuml が動作する環境を作る必要がある。
+
+  TODO 詳しく書く

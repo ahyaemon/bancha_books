@@ -8,6 +8,7 @@
   actor :非会員: as Non
   actor :会員: as General
   actor :管理者: as Admin
+  
   (Line Payで寄付する) as (Donate as Line Pay)
   (Test Payで寄付する) as (Donate as Test Pay)
   (寄付詳細を表示する) as (Show Donation Details)

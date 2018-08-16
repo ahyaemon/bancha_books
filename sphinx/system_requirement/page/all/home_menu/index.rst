@@ -1,4 +1,4 @@
-本メニュー
+ホームメニュー
 ======================================
 
 .. image:: img.png
@@ -8,9 +8,10 @@
   actor :非会員: as Non
   actor :会員: as General
   actor :管理者: as Admin
-  (Bookを選択) as (Select Book)
+  
+  (Menuを選択) as (Select Menu)
 
-  Non --> (Select Book)
-  General --> (Select Book)
-  Admin --> (Select Book)
+  Non --> (Select Menu)
+  General --> (Select Menu)
+  Admin --> (Select Menu)
 
