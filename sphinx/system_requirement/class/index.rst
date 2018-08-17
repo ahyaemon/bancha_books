@@ -58,9 +58,15 @@
     value: String
   }
 
+  class DeleteKey {
+    id: Long
+    value: String
+  }
+
   Book "1" *-- "0..n" Sentence
   Book "1" *-- "1..n" Author
   Sentence "1" *-- "0..n" Comment
+  Comment "1" *-- "0..1" DeleteKey
 
 アカウント: Account
 ------------------------------

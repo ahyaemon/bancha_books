@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="索引" href="../../genindex.html" />
     <link rel="search" title="検索" href="../../search.html" />
-    <link rel="next" title="画面" href="../page/index.html" />
-    <link rel="prev" title="要件定義" href="../index.html" /> 
+    <link rel="next" title="画面遷移" href="../transition/index.html" />
+    <link rel="prev" title="要件定義" href="../tree.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -80,7 +80,7 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../business_requirement/index.html">要求定義</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">要件定義</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../tree.html">要件定義</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">クラス図</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#menu">メニュー: Menu</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#subtitle">サブタイトル: Subtitle</a></li>
@@ -89,12 +89,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#donation">寄付: Donation</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../page/index.html">画面</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../transition/index.html">画面遷移</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../page/tree.html">画面詳細</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../docdev/index.html">ドキュメント開発</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../appdev/index.html">アプリケーション開発</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../issue/index.html">Issue対応</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docdev/tree.html">ドキュメント開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appdev/tree.html">アプリケーション開発</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../issue/tree.html">Issue対応</a></li>
 </ul>
 
             
@@ -140,7 +141,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../index.html">要件定義</a> &raquo;</li>
+          <li><a href="../tree.html">要件定義</a> &raquo;</li>
         
       <li>クラス図</li>
     
@@ -190,7 +191,7 @@
 <h2>ブック: Book<a class="headerlink" href="#book" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>一冊の本を表す</p>
 <p class="plantuml">
-<img src="../../_images/plantuml-5b707d1a9745a73c88e06a1dd34d244f174e0956.png" alt="class Book {
+<img src="../../_images/plantuml-388a9599b1c341a4299fda6928b04f2880bbeb37.png" alt="class Book {
   Long: id
   title: String
   author: Author
@@ -213,9 +214,15 @@ class Comment {
   value: String
 }
 
+class DeleteKey {
+  id: Long
+  value: String
+}
+
 Book &quot;1&quot; *-- &quot;0..n&quot; Sentence
 Book &quot;1&quot; *-- &quot;1..n&quot; Author
-Sentence &quot;1&quot; *-- &quot;0..n&quot; Comment"/>
+Sentence &quot;1&quot; *-- &quot;0..n&quot; Comment
+Comment &quot;1&quot; *-- &quot;0..1&quot; DeleteKey"/>
 </p>
 </div>
 <div class="section" id="account">
@@ -252,10 +259,10 @@ Sentence &quot;1&quot; *-- &quot;0..n&quot; Comment"/>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../page/index.html" class="btn btn-neutral float-right" title="画面" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../transition/index.html" class="btn btn-neutral float-right" title="画面遷移" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../index.html" class="btn btn-neutral" title="要件定義" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../tree.html" class="btn btn-neutral" title="要件定義" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

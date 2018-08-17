@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>開発環境と本番環境の差 &mdash; bancha alpha ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="Issue対応" href="../../issue/tree.html" />
+    <link rel="prev" title="開発のやりかた" href="../develop/index.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> bancha
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../business_requirement/index.html">要求定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirement/tree.html">要件定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docdev/tree.html">ドキュメント開発</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tree.html">アプリケーション開発</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../prepare/index.html">開発環境の作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop/index.html">開発のやりかた</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">開発環境と本番環境の差</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../issue/tree.html">Issue対応</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">bancha</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tree.html">アプリケーション開発</a> &raquo;</li>
+        
+      <li>開発環境と本番環境の差</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/appdev/compare/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>開発環境と本番環境の差<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>application.ymlでのprofilesの指定により、開発中はdev profile を使用する。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">spring</span><span class="p">:</span>
+  <span class="n">profiles</span><span class="p">:</span>
+    <span class="n">active</span><span class="p">:</span> <span class="n">dev</span>
+</pre></div>
+</div>
+<p>本番環境では、環境変数にproductionを入れておくことで、devを上書く</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SPRING_PROFILES_ACTIVE</span><span class="o">=</span><span class="n">production</span>
+</pre></div>
+</div>
+<table border="1" class="docutils" id="id2">
+<caption><span class="caption-text">Difference between dev and production</span><a class="headerlink" href="#id2" title="このテーブルへのパーマリンク">¶</a></caption>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>項目</td>
+<td>dev</td>
+<td>production</td>
+</tr>
+<tr class="row-even"><td>データソース</td>
+<td>ymlに直接書く。</td>
+<td><p class="first">環境変数から取得する。</p>
+<p class="last">なければymlに書いてある場所からとってくる。</p>
+</td>
+</tr>
+<tr class="row-odd"><td>thymeleaf</td>
+<td>th:profiles=&quot;dev&quot;</td>
+<td>th:profiles=&quot;production&quot;</td>
+</tr>
+<tr class="row-even"><td>scheduler</td>
+<td>動かない</td>
+<td>動く</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../issue/tree.html" class="btn btn-neutral float-right" title="Issue対応" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../develop/index.html" class="btn btn-neutral" title="開発のやりかた" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ahyaemon.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'alpha',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
