@@ -1,0 +1,267 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="ja" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="ja" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>開発環境の作成 &mdash; bancha alpha ドキュメント</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="検索" href="../../search.html" />
+    <link rel="next" title="開発のやりかた" href="../develop/index.html" />
+    <link rel="prev" title="アプリケーション開発" href="../tree.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> bancha
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../business_requirement/index.html">要求定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../system_requirement/tree.html">要件定義</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../docdev/tree.html">ドキュメント開発</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tree.html">アプリケーション開発</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">開発環境の作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../develop/index.html">開発のやりかた</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../compare/index.html">開発環境と本番環境の差</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../issue/tree.html">Issue対応</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">bancha</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../tree.html">アプリケーション開発</a> &raquo;</li>
+        
+      <li>開発環境の作成</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/appdev/prepare/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>開発環境の作成<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p><strong>1. IntelliJのインストール</strong></p>
+<blockquote>
+<div><p>できればultimate版のほうがいい。</p>
+<p>js, ts, thymeleafなどがサポートされるらしい。</p>
+<p>あとFileWatchersとかもultimate</p>
+</div></blockquote>
+<p><strong>2. プロジェクトのクローン</strong></p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">&lt;</span><span class="n">URL</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p><strong>3. プロジェクトをIntelliJにインポート</strong></p>
+<blockquote>
+<div><p>やり方はふた通り？</p>
+<ol class="arabic simple">
+<li>IntelliJ用のプロジェクトを作成してインポート</li>
+</ol>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gradlew</span> <span class="n">idea</span>
+</pre></div>
+</div>
+<p>でプロジェクトファイルができるから、それをIntelliJでインポート。</p>
+<p>でもこれをやると、IntelliJからのアプリ起動がうまくいかない？？</p>
+<p>つまりデバッグができない。</p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>build.gradle をインポート</li>
+</ol>
+<blockquote>
+<div><p>インポート後、File -&gt; Project Structure -&gt; Project Settings -&gt; Modules -&gt; Pathsタブ から、
+Compiler output に Inherit project compile output path を選択する。</p>
+<p>基本的にはこれでうまくいく。</p>
+<p>でも、gradleコマンドを実行するたびに Inherit project compile output pathの設定が初期化される？</p>
+</div></blockquote>
+</div></blockquote>
+<p><strong>4. IntelliJのアノテーションプロセッシングの設定</strong></p>
+<blockquote>
+<div>インポートが完了したら、Doma用にAnnotation解釈の設定をする。</div></blockquote>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../develop/index.html" class="btn btn-neutral float-right" title="開発のやりかた" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../tree.html" class="btn btn-neutral" title="アプリケーション開発" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Ahyaemon.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'alpha',
+            LANGUAGE:'ja',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
