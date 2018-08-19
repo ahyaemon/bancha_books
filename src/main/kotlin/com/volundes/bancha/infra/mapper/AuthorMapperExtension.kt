@@ -2,14 +2,12 @@ package com.volundes.bancha.infra.mapper
 
 import com.volundes.bancha.domain.book.Author
 import com.volundes.bancha.infra.entity.table.AuthorTable
-import org.springframework.stereotype.Component
 
-@Component
-class AuthorInfraMapper{
+interface AuthorMapperExtension {
 
-    fun toAuthorEntity(author: Author): AuthorTable {
+    fun Author.toAuthorEntity(): AuthorTable {
         val entity = AuthorTable()
-        entity.name  = author.name
+        entity.name  = name
         return entity
     }
 
