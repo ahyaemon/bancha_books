@@ -2,7 +2,9 @@ package com.volundes.bancha.domain.admin.updatebook
 
 import com.volundes.bancha.domain.book.CommentCountedBook
 import com.volundes.bancha.domain.bookmenu.BookMenu
+import com.volundes.bancha.domain.paging.Page
 import com.volundes.bancha.infra.repository.BookRepository
+import org.seasar.doma.jdbc.SelectOptions
 import org.springframework.stereotype.Service
 
 /**
@@ -19,7 +21,8 @@ class UpdateBookService(
      * @return 今ある本のリスト
      */
     fun getUpdateBookMenus(): List<BookMenu>{
-        return repository.getBookMenus()
+        val page =  Page(1, 10)
+        return repository.getBookMenus(page)
     }
 
     /**

@@ -1,8 +1,11 @@
 package com.volundes.bancha.infra.repository
 
 import com.volundes.bancha.domain.book.*
+import com.volundes.bancha.domain.bookmenu.BookMenu
+import com.volundes.bancha.domain.paging.Page
 import com.volundes.bancha.infra.dao.*
 import com.volundes.bancha.infra.mapper.*
+import org.seasar.doma.jdbc.SelectOptions
 import org.springframework.stereotype.Repository
 
 @Repository
@@ -14,12 +17,19 @@ class BookRepository(
         private val deleteKeyDao: DeleteKeyDao,
         private val bookMapper: BookInfraMapper,
         private val sentenceMapper: SentenceInfraMapper,
-        private val commentMapper: CommentInfraMapper,
         private val authorMapper: AuthorInfraMapper,
         private val deleteKeyMapper: DeleteKeyInfraMapper
-) {
+):
+        Pageable,
+        CommentMapperExtension
+{
 
-    fun getBookMenus() = bookDao.selectBookMenu().map{ bookMapper.toBookMenu(it)}
+    fun getBookMenus(page: Page): List<BookMenu>{
+        val selectOptions = page.toSelectOptions()
+        val entities = bookDao.selectBookMenu(selectOptions)
+        val bookMenus = entities.map{ bookMapper.toBookMenu(it) }
+        return bookMenus
+    }
 
     fun getCommentCountedBookByBookId(bookId: Long): CommentCountedBook {
         val bookSummaryEntity = bookDao.selectBookSummaryByBookId(bookId)
@@ -29,7 +39,7 @@ class BookRepository(
 
     fun insertComment(sentenceId: Long, comment: Comment) {
         // commentの登録
-        val commentEntity = commentMapper.toEntity(sentenceId, comment)
+        val commentEntity = comment.toEntity(sentenceId)
         commentDao.insert(commentEntity);
 
         // deleteKeyの登録
