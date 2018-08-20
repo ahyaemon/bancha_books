@@ -9,6 +9,12 @@ spring:
 doma:
   dialect: postgres
 
+display:
+  limit:
+    book: 5
+    sentence: 10
+    comment: 20
+
 ---
 
 spring:

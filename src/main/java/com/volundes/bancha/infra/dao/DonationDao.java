@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.dao;
 
-import com.volundes.bancha.infra.entity.DonationEntity;
+import com.volundes.bancha.infra.entity.table.DonationTable;
 import com.volundes.bancha.infra.entity.TotalAmountEntity;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.List;
 public interface DonationDao {
     @Insert
     @Transactional
-    int insert(DonationEntity entity);
+    int insert(DonationTable entity);
 
     @Select
     @Transactional
@@ -24,5 +24,5 @@ public interface DonationDao {
 
     @Select
     @Transactional
-    List<DonationEntity> select();
+    List<DonationTable> select();
 }

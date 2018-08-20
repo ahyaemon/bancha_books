@@ -9,12 +9,18 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.RequestMapping
 import java.nio.charset.Charset
 
+/**
+ * 「本の追加」画面を担うControllerです。
+ */
 @Controller
 @RequestMapping("/admin/insertbook")
 class InsertBookController(
         private val service: InsertBookService
 ) {
 
+    /**
+     * indexへのマッピングです。
+     */
     @RequestMapping("/")
     fun index(
             model: Model
@@ -25,6 +31,10 @@ class InsertBookController(
         return "admin/insertbook/index"
     }
 
+    /**
+     * ajax。
+     * html形式でpostされた本を新規追加します。
+     */
     @RequestMapping("/html")
     fun insertHtml(
             @Validated htmlBookUploadForm: HtmlBookUploadForm,

@@ -1,0 +1,50 @@
+<div th:fragment="paging">
+    <div class="paging" th:data-page="${page.currentPageNumber()}">
+
+        <!--/* 最初のページに戻るアイコン */-->
+        <div class="content first">
+            <th:block th:if="${page.isFirstPage()}">
+                <i class="disabled fas fa-angle-double-left fa-2x"></i>
+            </th:block>
+            <th:block th:if="${page.isNotFirstPage()}">
+                <a th:href="|${page.firstPageUrl()}">
+                    <i class="fas fa-angle-double-left fa-2x"></i>                        
+                </a>
+            </th:block>
+        </div>
+
+        <!--/* 前のページに戻るアイコン */-->
+        <div class="content previous">
+            <th:block th:if="${page.hasPreviousPage()}">
+                <a th:href="|${page.previousPageUrl()}">
+                        <i class="fas fa-angle-left fa-2x"></i>                        
+                </a>
+            </th:block>
+            <th:block th:if="${page.notHasPreviousPage()}">
+                <i class="disabled fas fa-angle-left fa-2x"></i>
+            </th:block>
+        </div>
+
+        <!--/* 現在の位置 */-->
+        <div class="content current">
+            <span th:text="${page.currentPageFirst()}"></span>
+            <span> - </span>
+            <span th:text="${page.currentPageLast()}"></span>
+            <span> / </span>
+            <span th:text="${page.total()}">30</span>
+        </div>
+
+        <!--/* 次のページに進むアイコン */-->
+        <div class="content next">
+            <th:block th:if="${page.hasNextPage()}">
+                <a th:href="|${page.nextPageUrl()}">
+                    <i class="fas fa-angle-right fa-2x"></i>                        
+                </a>
+            </th:block>
+            <th:block th:if="${page.notHasNextPage()}">
+                <i class="disabled fas fa-angle-right fa-2x"></i>
+            </th:block>        
+        </div>
+
+    </div>
+</div>

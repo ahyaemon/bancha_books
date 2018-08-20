@@ -1,11 +1,12 @@
 package com.volundes.bancha.web.book
 
-import com.volundes.bancha.domain.book.BookService
+import com.volundes.bancha.domain.book.service.BookService
 import com.volundes.bancha.web.book.form.CommentForm
 import com.volundes.bancha.web.book.form.DeleteCommentForm
 import com.volundes.bancha.web.book.item.CommentCountedBookItem
 import com.volundes.bancha.web.book.item.SentenceIdItem
 import com.volundes.bancha.web.book.session.SubmitInfoList
+import org.springframework.lang.Nullable
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
@@ -16,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import java.time.LocalDateTime
 
+/**
+ * 「本」画面を担うControllerです。
+ */
 @Controller
 @RequestMapping("/book")
 class BookController(
@@ -24,21 +28,28 @@ class BookController(
         private val submitInfoList: SubmitInfoList
 ) {
 
+    /**
+     * indexへのマッピングです。
+     */
     @RequestMapping("/{bookId}")
     fun index(
             @PathVariable("bookId") bookId: String,
+            @Nullable @RequestParam("page") pageNumber: Int?,
             model: Model
     ): String{
-        val book = service.getCommentCountedBookByBookId(bookId.toLong())
-        val bookItem = CommentCountedBookItem(book)
-        model.addAttribute("bookItem", bookItem)
+        val page = helper.createPage(pageNumber, bookId.toLong())
+        model.addAttribute("page", page)
 
-        val deleteCommentForm = helper.createDeleteCommentForm()
-        model.addAttribute("deleteCommentForm", deleteCommentForm)
-
+        model.addAttribute("bookItem",
+                helper.createCommentCountedBookItem(bookId.toLong(), page))
+        model.addAttribute("deleteCommentForm", helper.createDeleteCommentForm())
         return "book/index"
     }
 
+    /**
+     * ajax。
+     * sentenceを book/comment にマッピングします。
+     */
     @RequestMapping(value = ["/getSentence"], produces=["text/plain;charset=UTF-8"])
     fun getSentence(
             @RequestBody sentenceIdItem: SentenceIdItem,
@@ -49,6 +60,10 @@ class BookController(
         return "book/comment :: comment"
     }
 
+    /**
+     * ajax。
+     * コメントを新規登録します。
+     */
     @RequestMapping(value=["/createComment"], produces=["text/plain;charset=UTF-8"])
     fun createComment(
             @RequestBody @Validated commentForm: CommentForm,
@@ -77,6 +92,10 @@ class BookController(
         return "book/comment :: comment"
     }
 
+    /**
+     * ajax。
+     * コメントを削除します。
+     */
     @RequestMapping(value=["/deleteComment"], produces=["text/plain;charset=UTF-8"])
     fun deleteComment(
             @RequestBody @Validated deleteCommentForm: DeleteCommentForm,

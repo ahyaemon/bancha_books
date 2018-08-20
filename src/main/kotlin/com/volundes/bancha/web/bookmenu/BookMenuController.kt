@@ -1,23 +1,49 @@
 package com.volundes.bancha.web.bookmenu
 
 import com.volundes.bancha.domain.bookmenu.BookMenuService
+import com.volundes.bancha.domain.paging.Page
 import com.volundes.bancha.env.interceptor.subtitle.DynamicSubtitle
+import com.volundes.bancha.env.setting.DisplayLimitSettings
+import org.springframework.lang.Nullable
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 
 @Controller
 @RequestMapping("/bookmenu")
 @DynamicSubtitle("bookmenu")
 class BookMenuController(
-        private val service: BookMenuService
+        private val service: BookMenuService,
+        private val displayLimitSettings: DisplayLimitSettings
 ) {
 
-    @RequestMapping("/")
-    fun index(model: Model): String{
-        val bookMenuItems: List<BookMenuItem> = service.getBookMenus().map{ BookMenuItem(it) }
+    @RequestMapping
+    fun index(
+            @Nullable @RequestParam("page") pageNumber: Int?,
+            model: Model
+    ): String{
+        val page = pageNumber.createPage()
+        model.addAttribute("page", page)
+
+        val bookMenus = service.getBookMenus(page)
+        val bookMenuItems: List<BookMenuItem> = bookMenus.map{ BookMenuItem(it) }
         model.addAttribute("bookMenuItems", bookMenuItems)
+
         return "bookmenu/index"
+    }
+
+    private fun Int?.createPage(): Page {
+        val totalBookAmount = service.getTotalBookAmount()
+        val currentPage =
+                if(this == null) 1
+                else this
+        return Page(
+                currentPage,
+                displayLimitSettings.book,
+                totalBookAmount,
+                "/bookmenu"
+        )
     }
 
 }

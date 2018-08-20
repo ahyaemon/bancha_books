@@ -3,6 +3,7 @@ package com.volundes.bancha.domain.account
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.User
 
+
 class AccountUserDetails(
         private val account: Account,
         private val enabled: Boolean,

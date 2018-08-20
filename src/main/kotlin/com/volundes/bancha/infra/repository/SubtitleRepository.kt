@@ -1,16 +1,17 @@
 package com.volundes.bancha.infra.repository
 
 import com.volundes.bancha.infra.dao.SubtitleDao
-import com.volundes.bancha.infra.mapper.SubtitleInfraMapper
+import com.volundes.bancha.infra.mapper.SubtitleMapperExtension
 import org.springframework.stereotype.Repository
 
 @Repository
 class SubtitleRepository(
-        private val dao: SubtitleDao,
-        private val mapper: SubtitleInfraMapper
-) {
+        private val dao: SubtitleDao
+):
+        SubtitleMapperExtension
+{
 
-    private val subtitles  by lazy { mapper.toSubtitle( dao.select()) }
+    private val subtitles  by lazy { dao.select().toSubtitles() }
 
     fun selectByTitleCd(titleCd: String) = subtitles.filter{ it.titleCd == titleCd }
 
