@@ -34,4 +34,6 @@ public interface BookDao {
     @Select
     List<BookSummaryEntity> selectBookSummaryByBookId(Long bookId);
 
+    @Select
+    Integer countBook();
 }

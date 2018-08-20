@@ -20,4 +20,8 @@ class BookMenuService(
         return repository.getBookMenus(page)
     }
 
+    fun getTotalBookAmount(): Int {
+        return repository.getTotalBookAmount()
+    }
+
 }

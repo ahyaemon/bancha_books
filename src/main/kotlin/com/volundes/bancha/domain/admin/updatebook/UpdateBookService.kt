@@ -21,7 +21,7 @@ class UpdateBookService(
      * @return 今ある本のリスト
      */
     fun getUpdateBookMenus(): List<BookMenu>{
-        val page =  Page(1, 10)
+        val page =  Page(1, 10, 15, "/admin/book/update")
         return repository.getBookMenus(page)
     }
 

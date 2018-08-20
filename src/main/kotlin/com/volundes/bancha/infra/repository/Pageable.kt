@@ -7,8 +7,8 @@ interface Pageable{
 
     fun Page.toSelectOptions(): SelectOptions{
         return SelectOptions.get()
-                .offset(getOffset())
-                .limit((getLimit()))
+                .offset(offset())
+                .limit((limit()))
     }
 
 }

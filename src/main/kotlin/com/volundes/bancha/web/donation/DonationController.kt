@@ -22,7 +22,7 @@ class DonationController(
     /**
      * indexへのマッピングです。
      */
-    @RequestMapping("/")
+    @RequestMapping
     fun index(model: Model): String{
         val testPayForm = TestPayForm("", "", "0")
         model.addAttribute("testPayForm", testPayForm)

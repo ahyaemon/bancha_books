@@ -101,4 +101,8 @@ class BookRepository(
         commentDao.delete(commentTable)
     }
 
+    fun getTotalBookAmount(): Int {
+        return bookDao.countBook()
+    }
+
 }
