@@ -5,7 +5,7 @@ import com.volundes.bancha.web.book.form.CommentForm
 import com.volundes.bancha.web.book.form.DeleteCommentForm
 import com.volundes.bancha.web.book.item.SentenceItem
 import com.volundes.bancha.web.book.session.SubmitInfoList
-import com.volundes.bancha.web.book.session.SubmitSettings
+import com.volundes.bancha.env.setting.SubmitSettings
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 

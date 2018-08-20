@@ -1,8 +1,5 @@
 package com.volundes.bancha.domain.paging
 
-import kotlin.math.ceil
-import kotlin.math.roundToInt
-
 /**
  * ページング管理クラスです。
  * ページは 1 から始まります。

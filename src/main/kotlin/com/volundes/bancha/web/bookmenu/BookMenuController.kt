@@ -3,6 +3,7 @@ package com.volundes.bancha.web.bookmenu
 import com.volundes.bancha.domain.bookmenu.BookMenuService
 import com.volundes.bancha.domain.paging.Page
 import com.volundes.bancha.env.interceptor.subtitle.DynamicSubtitle
+import com.volundes.bancha.env.setting.DisplayLimitSettings
 import org.springframework.lang.Nullable
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam
 @RequestMapping("/bookmenu")
 @DynamicSubtitle("bookmenu")
 class BookMenuController(
-        private val service: BookMenuService
+        private val service: BookMenuService,
+        private val displayLimitSettings: DisplayLimitSettings
 ) {
 
     @RequestMapping
@@ -36,7 +38,12 @@ class BookMenuController(
         val currentPage =
                 if(this == null) 1
                 else this
-        return Page(currentPage, 5, totalBookAmount, "/bookmenu")
+        return Page(
+                currentPage,
+                displayLimitSettings.bookmenu,
+                totalBookAmount,
+                "/bookmenu"
+        )
     }
 
 }

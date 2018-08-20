@@ -9,6 +9,10 @@ spring:
 doma:
   dialect: postgres
 
+display:
+  limit:
+    bookmenu: 5
+
 ---
 
 spring:
