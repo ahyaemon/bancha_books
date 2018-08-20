@@ -1,6 +1,11 @@
 package com.volundes.bancha.infra.repository
 
-import com.volundes.bancha.domain.book.*
+import com.volundes.bancha.domain.book.Book
+import com.volundes.bancha.domain.book.Comment
+import com.volundes.bancha.domain.book.CommentCountedBook
+import com.volundes.bancha.domain.book.Sentence
+import com.volundes.bancha.domain.bookmenu.BookMenu
+import com.volundes.bancha.domain.paging.Page
 import com.volundes.bancha.infra.dao.*
 import com.volundes.bancha.infra.mapper.*
 import org.springframework.stereotype.Repository
@@ -11,31 +16,41 @@ class BookRepository(
         private val sentenceDao: SentenceDao,
         private val commentDao: CommentDao,
         private val authorDao: AuthorDao,
-        private val deleteKeyDao: DeleteKeyDao,
-        private val bookMapper: BookInfraMapper,
-        private val sentenceMapper: SentenceInfraMapper,
-        private val commentMapper: CommentInfraMapper,
-        private val authorMapper: AuthorInfraMapper,
-        private val deleteKeyMapper: DeleteKeyInfraMapper
-) {
+        private val deleteKeyDao: DeleteKeyDao
+):
+        Pageable,
+        CommentMapperExtension,
+        SentenceMapperExtension,
+        BookMapperExtension,
+        AuthorMapperExtension,
+        DeleteKeyMapperExtension
+{
 
-    fun getBookMenus() = bookDao.selectBookMenu().map{ bookMapper.toBookMenu(it)}
+    fun getBookMenus(page: Page): List<BookMenu>{
+        return bookDao
+                .selectBookMenu(page.toSelectOptions())
+                .toBookMenus()
+    }
 
-    fun getCommentCountedBookByBookId(bookId: Long): CommentCountedBook {
-        val bookSummaryEntity = bookDao.selectBookSummaryByBookId(bookId)
-        val book = bookMapper.toCommentCountedBook(bookSummaryEntity)
-        return book
+    fun getCommentCountedBookByBookId(
+            bookId: Long,
+            page: Page
+    ): CommentCountedBook {
+        val selectOptions = page.toSelectOptions()
+        return bookDao
+                .selectBookSummaryByBookId(bookId, selectOptions)
+                .toCommentCountedBook()
     }
 
     fun insertComment(sentenceId: Long, comment: Comment) {
         // commentの登録
-        val commentEntity = commentMapper.toEntity(sentenceId, comment)
-        commentDao.insert(commentEntity);
+        val commentEntity = comment.toEntity(sentenceId)
+        commentDao.insert(commentEntity)
 
         // deleteKeyの登録
         if(comment.canDelete()){
-            val commentId = commentDao.selectId();
-            val deleteEntity = deleteKeyMapper.toEntity(commentId, comment)
+            val commentId = commentDao.selectId()
+            val deleteEntity = comment.toDeleteKeyEntity(commentId)
             deleteKeyDao.insert(deleteEntity)
         }
     }
@@ -45,7 +60,7 @@ class BookRepository(
         val authorEntityInDB = authorDao.selectByName(book.author.name)
         val authorExists = authorEntityInDB != null
         if(!authorExists){
-            val authorEntity = authorMapper.toAuthorEntity(book.author)
+            val authorEntity = book.author.toAuthorEntity()
             authorDao.insert(authorEntity)
         }
         val authorId =
@@ -54,29 +69,30 @@ class BookRepository(
                 }
                 else{
                     // 一旦INSERTしたものを抜き出し、IDを得る
-                    // TODO トランザクションレベルの考慮が必要？
+                    // TODO トランザクションレベルの考慮が必要
                     authorDao.selectByName(book.author.name).authorId
                 }
 
         // Book
-        val bookEntity = bookMapper.toBookEntity(book, authorId)
+        val bookEntity = book.toBookEntity(authorId)
         bookDao.insert(bookEntity)
 
         //Sentence
         val insertedBookId = bookDao.selectBookIdByNameAndAuthorId(book.name, authorId)
-        val sentenceEntities = sentenceMapper
-                .toSentenceEntities(insertedBookId, book.sentences)
+        val sentenceEntities = book.sentences.toSentenceEntities(insertedBookId)
         sentenceDao.insert(sentenceEntities)
     }
 
     fun getSentencesBySentenceId(sentenceId: Long): Sentence {
-        val sentenceSummaryEntity = sentenceDao.selectSentenceSummaryBySentenceId(sentenceId)
-        return sentenceMapper.toSentence(sentenceSummaryEntity)
+        return sentenceDao
+                .selectSentenceSummaryBySentenceId(sentenceId)
+                .toSentence()
     }
 
     fun getDeleteKey(commentId: Long): String {
-        val entity = deleteKeyDao.selectByCommentId(commentId)
-        return entity.deleteKey
+        return deleteKeyDao
+                .selectByCommentId(commentId)
+                .deleteKey
     }
 
     fun deleteComment(commentId: Long){
@@ -87,6 +103,14 @@ class BookRepository(
         // commentの削除
         val commentTable = commentDao.selectCommentByCommentId(commentId)
         commentDao.delete(commentTable)
+    }
+
+    fun getTotalBookAmount(): Int {
+        return bookDao.countBook()
+    }
+
+    fun getTotalSentenceAmount(bookId: Long): Int {
+        return sentenceDao.countSentenceByBookId(bookId)
     }
 
 }

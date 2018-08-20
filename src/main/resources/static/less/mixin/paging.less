@@ -1,0 +1,30 @@
+@import "./color.less";
+
+.paging{
+
+    .content{
+        margin: 4px;
+        float: left;
+    }
+
+    .current{
+        margin-top: 8px;
+        font-size: 110%;
+        font-weight: bold;
+    }
+
+    a{
+        color: @grey;
+    }
+
+    .disabled{
+        color: @light-grey;
+    }
+
+}
+
+.paging::after{
+    content: '';
+    display: block;
+    clear: both;
+}

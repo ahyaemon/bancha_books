@@ -17,7 +17,7 @@ class AboutController(
     /**
      * indexへのマッピングです。
      */
-    @RequestMapping("/")
+    @RequestMapping
     fun index(model: Model): String{
         return "about/index"
     }

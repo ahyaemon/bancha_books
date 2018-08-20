@@ -4,11 +4,9 @@ import com.volundes.bancha.domain.subtitle.Subtitle
 import com.volundes.bancha.infra.entity.table.SubtitleTable
 import org.springframework.stereotype.Component
 
-@Component
-class SubtitleInfraMapper {
+interface SubtitleMapperExtension {
 
-    fun toSubtitle(entities: List<SubtitleTable>): List<Subtitle> {
-        return entities.map{ Subtitle(it.subtitleId, it.titleCd, it.subtitle) }
-    }
+    fun SubtitleTable.toSubtitle() = Subtitle(subtitleId, titleCd, subtitle)
+    fun List<SubtitleTable>.toSubtitles() = map{ it.toSubtitle() }
 
 }

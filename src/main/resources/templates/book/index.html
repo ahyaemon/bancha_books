@@ -16,6 +16,10 @@
     </section>
 
     <section class="sec-content">
+        <!--/* ページング */-->
+        <div th:include="paging/paging :: paging"></div>
+
+        <!--/* 文 */-->
         <div th:each="sentenceItem, stat: ${bookItem.sentenceItems}" th:with="sid=${sentenceItem.sentenceId}" 
             th:id="|sentence-item-${sid}|" class="sentence-item">
             <div class="sentence-close" th:onclick="|openSentence(${sid})|">

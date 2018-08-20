@@ -2,15 +2,13 @@ package com.volundes.bancha.infra.mapper
 
 import com.volundes.bancha.domain.book.Comment
 import com.volundes.bancha.infra.entity.table.DeleteKeyTable
-import org.springframework.stereotype.Component
 
-@Component
-class DeleteKeyInfraMapper {
+interface DeleteKeyMapperExtension {
 
-    fun toEntity(commentId: Long, comment: Comment): DeleteKeyTable {
+    fun Comment.toDeleteKeyEntity(commentId: Long): DeleteKeyTable {
         val entity = DeleteKeyTable()
         entity.commentId = commentId
-        entity.deleteKey = comment.deleteKey
+        entity.deleteKey = deleteKey
         return entity
     }
 
