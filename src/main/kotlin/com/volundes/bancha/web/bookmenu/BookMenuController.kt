@@ -40,7 +40,7 @@ class BookMenuController(
                 else this
         return Page(
                 currentPage,
-                displayLimitSettings.bookmenu,
+                displayLimitSettings.book,
                 totalBookAmount,
                 "/bookmenu"
         )

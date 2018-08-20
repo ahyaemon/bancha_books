@@ -31,7 +31,8 @@ class UpdateBookService(
      * @return コメント数のカウント付きの本
      */
     fun getCommentCountedBookByBookId(bookId: Long): CommentCountedBook {
-        return repository.getCommentCountedBookByBookId(bookId)
+        val page =  Page(1, 10, 15, "/admin/book/update")
+        return repository.getCommentCountedBookByBookId(bookId, page)
     }
 
 }

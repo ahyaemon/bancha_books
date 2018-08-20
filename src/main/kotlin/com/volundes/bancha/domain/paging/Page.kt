@@ -34,7 +34,14 @@ class Page(
 
     fun currentPageNumber() = number
     fun currentPageFirst() = (number - 1) * limit + 1
-    fun currentPageLast() = number * limit
+    fun currentPageLast(): Int{
+        return if(number == totalPage()){
+            total
+        }
+        else{
+            number * limit
+        }
+    }
 
     fun total() = total
 

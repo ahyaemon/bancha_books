@@ -6,5 +6,9 @@ import org.springframework.stereotype.Component
 @Component
 @ConfigurationProperties("display.limit")
 class DisplayLimitSettings{
-    var bookmenu: Int = 5
+
+    var book: Int = 5
+    var sentence: Int = 10
+    var comment: Int = 20
+
 }

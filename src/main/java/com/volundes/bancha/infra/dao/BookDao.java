@@ -32,7 +32,7 @@ public interface BookDao {
     Long selectBookIdByNameAndAuthorId(String name, Long authorId);
 
     @Select
-    List<BookSummaryEntity> selectBookSummaryByBookId(Long bookId);
+    List<BookSummaryEntity> selectBookSummaryByBookId(Long bookId, SelectOptions selectOptions);
 
     @Select
     Integer countBook();

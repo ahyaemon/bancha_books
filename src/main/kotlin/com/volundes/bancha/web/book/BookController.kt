@@ -6,6 +6,7 @@ import com.volundes.bancha.web.book.form.DeleteCommentForm
 import com.volundes.bancha.web.book.item.CommentCountedBookItem
 import com.volundes.bancha.web.book.item.SentenceIdItem
 import com.volundes.bancha.web.book.session.SubmitInfoList
+import org.springframework.lang.Nullable
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
@@ -13,6 +14,7 @@ import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import java.time.LocalDateTime
 
 /**
@@ -32,15 +34,15 @@ class BookController(
     @RequestMapping("/{bookId}")
     fun index(
             @PathVariable("bookId") bookId: String,
+            @Nullable @RequestParam("page") pageNumber: Int?,
             model: Model
     ): String{
-        val book = service.getCommentCountedBookByBookId(bookId.toLong())
-        val bookItem = CommentCountedBookItem(book)
-        model.addAttribute("bookItem", bookItem)
+        val page = helper.createPage(pageNumber, bookId.toLong())
+        model.addAttribute("page", page)
 
-        val deleteCommentForm = helper.createDeleteCommentForm()
-        model.addAttribute("deleteCommentForm", deleteCommentForm)
-
+        model.addAttribute("bookItem",
+                helper.createCommentCountedBookItem(bookId.toLong(), page))
+        model.addAttribute("deleteCommentForm", helper.createDeleteCommentForm())
         return "book/index"
     }
 

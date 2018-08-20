@@ -11,7 +11,9 @@ doma:
 
 display:
   limit:
-    bookmenu: 5
+    book: 5
+    sentence: 10
+    comment: 20
 
 ---
 

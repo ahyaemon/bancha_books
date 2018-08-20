@@ -18,7 +18,7 @@
         <div th:include="paging/paging :: paging"></div>
 
         <!--/* 本のリスト */-->
-        <a th:each="bookMenuItem: ${bookMenuItems}" th:href="|/book/${bookMenuItem.bookId}&page=1|">
+        <a th:each="bookMenuItem: ${bookMenuItems}" th:href="|/book/${bookMenuItem.bookId}?page=1|">
             <div class="siimple-card bancha-card bancha-back-yellow">
                 <div class="siimple-card-body">
                     <div class="siimple-card-title" th:text="${bookMenuItem.name}"></div>

@@ -32,9 +32,13 @@ class BookRepository(
                 .toBookMenus()
     }
 
-    fun getCommentCountedBookByBookId(bookId: Long): CommentCountedBook {
+    fun getCommentCountedBookByBookId(
+            bookId: Long,
+            page: Page
+    ): CommentCountedBook {
+        val selectOptions = page.toSelectOptions()
         return bookDao
-                .selectBookSummaryByBookId(bookId)
+                .selectBookSummaryByBookId(bookId, selectOptions)
                 .toCommentCountedBook()
     }
 
@@ -103,6 +107,10 @@ class BookRepository(
 
     fun getTotalBookAmount(): Int {
         return bookDao.countBook()
+    }
+
+    fun getTotalSentenceAmount(bookId: Long): Int {
+        return sentenceDao.countSentenceByBookId(bookId)
     }
 
 }

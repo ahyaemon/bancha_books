@@ -26,4 +26,6 @@ public interface SentenceDao {
     @Transactional
     int[] insert(List<SentenceTable> entities);
 
+    @Select
+    int countSentenceByBookId(Long bookId);
 }
