@@ -48,7 +48,8 @@ class Page(
     fun hasNextPage() = (totalPage() - number) > 0
     fun notHasNextPage() = !hasNextPage()
 
-    private fun pageUrl(n: Int) = "$url?page=$n"
+    fun url() = url
+    fun pageUrl(n: Int) = "$url?page=$n"
     fun firstPageUrl() = pageUrl(1)
     fun previousPageUrl() = pageUrl(number - 1)
     fun nextPageUrl() = pageUrl(number + 1)

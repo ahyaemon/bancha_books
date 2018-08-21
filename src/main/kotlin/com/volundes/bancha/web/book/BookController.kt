@@ -1,7 +1,9 @@
 package com.volundes.bancha.web.book
 
 import com.volundes.bancha.domain.book.service.BookService
+import com.volundes.bancha.domain.paging.Page
 import com.volundes.bancha.web.book.form.CommentForm
+import com.volundes.bancha.web.book.form.CommentPagingForm
 import com.volundes.bancha.web.book.form.DeleteCommentForm
 import com.volundes.bancha.web.book.item.CommentCountedBookItem
 import com.volundes.bancha.web.book.item.SentenceIdItem
@@ -54,10 +56,24 @@ class BookController(
     fun getSentence(
             @RequestBody sentenceIdItem: SentenceIdItem,
             model: Model
-    ): String{
+    ): String {
+        val page = Page(1, 10, 100, "/book/commentPaging");
+        model.addAttribute("page", page)
+
         model.addAttribute("sentenceItem", helper.createSentenceItem(sentenceIdItem.sentenceId))
         model.addAttribute("commentForm", helper.createCommentForm(sentenceIdItem.bookId))
         return "book/comment :: comment"
+    }
+
+    /**
+     * コメントのページング処理を行います
+     */
+    @RequestMapping(value = ["/commentPaging"], produces=["text/plain;charset=UTF-8"])
+    fun commentPaging(
+            @RequestBody commentPagingForm: CommentPagingForm,
+            model: Model
+    ): String {
+        return "test"
     }
 
     /**

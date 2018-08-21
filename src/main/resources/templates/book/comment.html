@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="ja" xmlns:th="http://www.thymeleaf.org">
-<body>
 <div th:fragment="comment">
 
     <!--/* HEADER 文の表示 */-->
@@ -12,12 +9,11 @@
     <!--/* CONTENT コメントの表示 */-->
     <div class="modal__content" id="modal-1-content">
         <hr>
-        <p th:each="commentItem: ${sentenceItem.commentItems}" 
-            th:onclick="|commentClicked(${sentenceItem.sentenceId}, ${commentItem.commentId})|">
-            <span th:text="${commentItem.name}"></span>
-            <span>: </span>
-            <span th:text="${commentItem.comment}"></span>
-        </p>
+        <!--/* ページング */-->
+        <div th:include="paging/paging :: paging_ajax(page = ${page}, url= '${page.url} + /commentPaging', selector='.comment_container')"></div>
+
+        <!--/* コメントのリスト */-->
+        <div class="comment_container" th:replace="book/comment_list :: comment_list"></div>
     </div>
 
     <!--/* FOOTER コメント投稿フォーム */-->
@@ -54,5 +50,12 @@
     </footer>
 
 </div>
-</body>
-</html>
+
+<div th:fragment="commentList">
+    <p th:each="commentItem: ${sentenceItem.commentItems}" 
+        th:onclick="|commentClicked(${sentenceItem.sentenceId}, ${commentItem.commentId})|">
+        <span th:text="${commentItem.name}"></span>
+        <span>: </span>
+        <span th:text="${commentItem.comment}"></span>
+    </p>
+</div>
