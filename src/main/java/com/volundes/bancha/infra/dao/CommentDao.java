@@ -34,4 +34,6 @@ public interface CommentDao {
     @Transactional
     Long selectId();
 
+    @Select
+    int countCommentBySentenceId(Long sentenceId);
 }

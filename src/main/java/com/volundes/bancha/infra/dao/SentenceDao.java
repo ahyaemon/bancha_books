@@ -3,6 +3,7 @@ package com.volundes.bancha.infra.dao;
 import com.volundes.bancha.infra.entity.table.SentenceTable;
 import com.volundes.bancha.infra.entity.SentenceSummaryEntity;
 import org.seasar.doma.*;
+import org.seasar.doma.jdbc.SelectOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +21,7 @@ public interface SentenceDao {
     List<SentenceTable> select();
 
     @Select
-    List<SentenceSummaryEntity> selectSentenceSummaryBySentenceId(Long sentenceId);
+    List<SentenceSummaryEntity> selectSentenceSummaryBySentenceId(Long sentenceId, SelectOptions selectOptions);
 
     @BatchInsert
     @Transactional

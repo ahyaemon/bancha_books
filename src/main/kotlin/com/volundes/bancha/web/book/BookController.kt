@@ -1,9 +1,10 @@
 package com.volundes.bancha.web.book
 
 import com.volundes.bancha.domain.book.service.BookService
+import com.volundes.bancha.domain.paging.Page
 import com.volundes.bancha.web.book.form.CommentForm
+import com.volundes.bancha.web.book.form.CommentPagingForm
 import com.volundes.bancha.web.book.form.DeleteCommentForm
-import com.volundes.bancha.web.book.item.CommentCountedBookItem
 import com.volundes.bancha.web.book.item.SentenceIdItem
 import com.volundes.bancha.web.book.session.SubmitInfoList
 import org.springframework.lang.Nullable
@@ -37,7 +38,7 @@ class BookController(
             @Nullable @RequestParam("page") pageNumber: Int?,
             model: Model
     ): String{
-        val page = helper.createPage(pageNumber, bookId.toLong())
+        val page = helper.createSentencePage(pageNumber, bookId.toLong())
         model.addAttribute("page", page)
 
         model.addAttribute("bookItem",
@@ -48,16 +49,43 @@ class BookController(
 
     /**
      * ajax。
-     * sentenceを book/comment にマッピングします。
+     * コメントを表示します。
      */
     @RequestMapping(value = ["/getSentence"], produces=["text/plain;charset=UTF-8"])
     fun getSentence(
             @RequestBody sentenceIdItem: SentenceIdItem,
             model: Model
-    ): String{
-        model.addAttribute("sentenceItem", helper.createSentenceItem(sentenceIdItem.sentenceId))
-        model.addAttribute("commentForm", helper.createCommentForm(sentenceIdItem.bookId))
+    ): String {
+        val page = helper.createCommentPage(1, sentenceIdItem.sentenceId)
+        model.addAttribute("page", page)
+
+        model.addAttribute(
+                "sentenceItem",
+                helper.createSentenceItem(sentenceIdItem.sentenceId, page)
+        )
+        model.addAttribute(
+                "commentForm",
+                helper.createCommentForm(sentenceIdItem.bookId)
+        )
         return "book/comment :: comment"
+    }
+
+    /**
+     * コメントのページング処理を行います
+     */
+    @RequestMapping(value = ["/commentPaging"], produces=["text/plain;charset=UTF-8"])
+    fun commentPaging(
+            @RequestBody commentPagingForm: CommentPagingForm,
+            model: Model
+    ): String {
+        val page = helper.createCommentPage(commentPagingForm.pageNumber, commentPagingForm.sentenceId)
+        model.addAttribute("page", page)
+        model.addAttribute(
+                "sentenceItem",
+                helper.createSentenceItem(commentPagingForm.sentenceId, page)
+        )
+
+        return "book/comment_content :: comment_content"
     }
 
     /**
@@ -81,13 +109,19 @@ class BookController(
         }
 
         if(result.hasErrors()){
-            model.addAttribute("sentenceItem", helper.createSentenceItem(sentenceId))
+            // FIXME とりあえず最初のページに戻している
+            val page = helper.createCommentPage(1, sentenceId)
+            model.addAttribute("page", page)
+            model.addAttribute("sentenceItem", helper.createSentenceItem(sentenceId, page))
             return "book/comment :: comment"
         }
 
         service.createComment(sentenceId, commentForm.toComment())
         submitInfoList.addNewInfo(bookId, sentenceId, submitDateTime)
-        model.addAttribute("sentenceItem", helper.createSentenceItem(sentenceId))
+        // FIXME とりあえず最初のページに戻している
+        val page = helper.createCommentPage(1, sentenceId)
+        model.addAttribute("page", page)
+        model.addAttribute("sentenceItem", helper.createSentenceItem(sentenceId, page))
         model.addAttribute("commentForm", helper.createCommentForm(bookId))
         return "book/comment :: comment"
     }
@@ -110,7 +144,9 @@ class BookController(
         }
 
         service.deleteComment(deleteCommentForm.commentId)
-        model.addAttribute("sentenceItem", helper.createSentenceItem(deleteCommentForm.sentenceId))
+        // FIXME とりあえず最初のページに戻している
+        val page = helper.createCommentPage(1, deleteCommentForm.sentenceId)
+        model.addAttribute("sentenceItem", helper.createSentenceItem(deleteCommentForm.sentenceId, page))
         model.addAttribute("commentForm", helper.createCommentForm(deleteCommentForm.bookId))
         model.addAttribute("deleteCommentForm", helper.createDeleteCommentForm())
         return "book/comment :: comment"

@@ -1,0 +1,4 @@
+<div th:fragment="comment_content">
+    <div th:include="paging/paging :: paging_ajax(id='paging-comment', page = ${page}, url= '${page.url} + /commentPaging', selector='.comment_content', additionalData=|{&quot;sentenceId&quot;: ${sentenceItem.sentenceId}}|)"></div>
+    <div class="comment_container" th:replace="book/comment_list :: comment_list"></div>
+</div>
