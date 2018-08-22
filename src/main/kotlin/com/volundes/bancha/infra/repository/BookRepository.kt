@@ -83,9 +83,13 @@ class BookRepository(
         sentenceDao.insert(sentenceEntities)
     }
 
-    fun getSentencesBySentenceId(sentenceId: Long): Sentence {
+    fun getSentencesBySentenceId(
+            sentenceId: Long,
+            page: Page
+    ): Sentence {
+        val selectOptions = page.toSelectOptions()
         return sentenceDao
-                .selectSentenceSummaryBySentenceId(sentenceId)
+                .selectSentenceSummaryBySentenceId(sentenceId, selectOptions)
                 .toSentence()
     }
 
@@ -111,6 +115,10 @@ class BookRepository(
 
     fun getTotalSentenceAmount(bookId: Long): Int {
         return sentenceDao.countSentenceByBookId(bookId)
+    }
+
+    fun getTotalCommentAmount(sentenceId: Long): Int {
+        return commentDao.countCommentBySentenceId(sentenceId)
     }
 
 }

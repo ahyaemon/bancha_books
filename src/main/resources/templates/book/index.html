@@ -17,9 +17,9 @@
 
     <section class="sec-content">
         <!--/* ページング */-->
-        <div th:include="paging/paging :: paging"></div>
+        <div th:include="paging/paging :: paging_location(id='paging-sentence', page = ${page})"></div>
 
-        <!--/* 文 */-->
+        <!--/* 文のリスト */-->
         <div th:each="sentenceItem, stat: ${bookItem.sentenceItems}" th:with="sid=${sentenceItem.sentenceId}" 
             th:id="|sentence-item-${sid}|" class="sentence-item">
             <div class="sentence-close" th:onclick="|openSentence(${sid})|">
@@ -52,6 +52,8 @@
     <script src="/lib/micromodal/micromodal.min.js"></script>
     <script src="/lib/anime-2.2.0/anime.min.js"></script>
     <script src="/js/spinner.js"></script>
+    <script src="/js/ajax.js"></script>
+    <script src="/js/paging.js"></script>
     <script src="/js/book.js"></script>
     <script th:inline="text">
         bookPage.bookId = /* [[${bookItem.bookId}]] */ 1;

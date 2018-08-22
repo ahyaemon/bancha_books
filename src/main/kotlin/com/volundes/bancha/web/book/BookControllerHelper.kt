@@ -35,8 +35,11 @@ class BookControllerHelper(
         return submitDateTime.isBefore(submitEnabledDateTime)
     }
 
-    fun createSentenceItem(sentenceId: Long): SentenceItem {
-        val sentence = service.getSentenceBySentenceId(sentenceId)
+    fun createSentenceItem(
+            sentenceId: Long,
+            page: Page
+    ): SentenceItem {
+        val sentence = service.getSentenceBySentenceId(sentenceId, page)
         return SentenceItem(sentence)
     }
 
@@ -56,7 +59,7 @@ class BookControllerHelper(
         return CommentCountedBookItem(book)
     }
 
-    fun createPage(pageNumber: Int?, bookId: Long): Page {
+    fun createSentencePage(pageNumber: Int?, bookId: Long): Page {
         val totalSentenceAmount = service.getTotalSentenceAmount(bookId)
         val currentPage =
                 if(pageNumber == null) 1
@@ -66,6 +69,16 @@ class BookControllerHelper(
                 displayLimitSettings.sentence,
                 totalSentenceAmount,
                 "/book/$bookId"
+        )
+    }
+
+    fun createCommentPage(pageNumber: Int, sentenceId: Long): Page{
+        val totalCommentAmount = service.getTotalCommentAmount(sentenceId)
+        return Page(
+                pageNumber,
+                displayLimitSettings.comment,
+                totalCommentAmount,
+                "/book/commentPaging"
         )
     }
 

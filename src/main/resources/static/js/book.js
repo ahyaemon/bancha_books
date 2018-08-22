@@ -63,18 +63,6 @@ function submitComment(sentenceId){
     doAjax("/book/createComment", data, done, fail);
 }
 
-function doAjax(url, data, fnDone, fnFail){
-    $.ajax({
-        url: url,
-        type:'POST',
-        data: data,
-        dataType: "html",
-        contentType: 'application/json',
-    })
-    .done(fnDone)
-    .fail(fnFail);
-}
-
 function deleteKeySwitchChanged(target){
     var checked = $(target).prop("checked");
     var $deleteKeyField = $("#delete-key-field");
