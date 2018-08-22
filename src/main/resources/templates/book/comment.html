@@ -9,11 +9,11 @@
     <!--/* CONTENT コメントの表示 */-->
     <div class="modal__content" id="modal-1-content">
         <hr>
-        <!--/* ページング */-->
-        <div th:include="paging/paging :: paging_ajax(page = ${page}, url= '${page.url} + /commentPaging', selector='.comment_container')"></div>
-
-        <!--/* コメントのリスト */-->
-        <div class="comment_container" th:replace="book/comment_list :: comment_list"></div>
+        <div class="comment_content">
+            <!--/* ページング */-->
+            <!--/* コメントのリスト */-->
+            <div th:replace="book/comment_content :: comment_content"></div>
+        </div>
     </div>
 
     <!--/* FOOTER コメント投稿フォーム */-->

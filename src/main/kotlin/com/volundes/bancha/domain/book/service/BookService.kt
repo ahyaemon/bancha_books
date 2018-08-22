@@ -47,8 +47,11 @@ class BookService(
      *
      * @return 文のリスト
      */
-    fun getSentenceBySentenceId(sentenceId: Long): Sentence {
-        return repository.getSentencesBySentenceId(sentenceId)
+    fun getSentenceBySentenceId(
+            sentenceId: Long,
+            page: Page
+    ): Sentence {
+        return repository.getSentencesBySentenceId(sentenceId, page)
     }
 
     /**
@@ -70,6 +73,10 @@ class BookService(
 
     fun getTotalSentenceAmount(bookId: Long): Int {
         return repository.getTotalSentenceAmount(bookId)
+    }
+
+    fun getTotalCommentAmount(sentenceId: Long): Int {
+        return repository.getTotalCommentAmount(sentenceId)
     }
 
 }

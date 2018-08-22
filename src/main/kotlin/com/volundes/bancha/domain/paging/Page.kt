@@ -26,11 +26,10 @@ class Page(
     fun offset() =  (number - 1) * limit
     fun limit() = limit
 
-    fun isFirstPage() = number == 1
-    fun isNotFirstPage() = !isFirstPage()
-
     fun hasPreviousPage() = number > 1
-    fun notHasPreviousPage() = !hasPreviousPage()
+    fun hasNextPage() = (totalPage() - number) > 0
+    fun isFirstPage() = !hasPreviousPage()
+    fun isLastPage() = !hasNextPage()
 
     fun currentPageNumber() = number
     fun currentPageFirst() = (number - 1) * limit + 1
@@ -44,9 +43,8 @@ class Page(
     }
 
     fun total() = total
-
-    fun hasNextPage() = (totalPage() - number) > 0
-    fun notHasNextPage() = !hasNextPage()
+    fun empty() = total == 0
+    fun hasContent() = !empty()
 
     fun url() = url
     fun pageUrl(n: Int) = "$url?page=$n"

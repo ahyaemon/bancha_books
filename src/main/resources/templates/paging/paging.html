@@ -1,29 +1,30 @@
-<div th:fragment="paging_location(page)">
-    <div th:include="paging/paging :: paging(page = ${page}, isAjax = false, selector='')"></div>
+<div th:fragment="paging_location(id, page)">
+    <div th:include="paging/paging :: paging(page = ${page}, isAjax = false, selector='', additionalData='{}')"></div>
 </div>
 
-<div th:fragment="paging_ajax(page, url, selector)">
-    <div th:include="paging/paging :: paging(page = ${page}, isAjax = true, selector=${selector})"></div>
+<div th:fragment="paging_ajax(id, page, url, selector, additionalData)">
+    <div th:include="paging/paging :: paging(page = ${page}, isAjax = true, selector=${selector}, additionalData=${additionalData})"></div>
 </div>
 
-<div th:fragment="paging(page, isAjax, selector)">
-    <div class="paging" th:with="isLocation=${!isAjax}">
+<div th:fragment="paging(page, isAjax, selector, additionalData)">
+    <div th:id="${id}" th:data-page="${page.currentPageNumber()}" 
+        th:data-additional="${additionalData}" class="paging" th:with="isLocation=${!isAjax}">
 
         <!--/* 最初のページに戻るアイコン */-->
         <div class="content first">
             <th:block th:if="${page.isFirstPage()}">
                 <i class="disabled fas fa-angle-double-left fa-2x"></i>
             </th:block>
-            <th:block th:if="${page.isNotFirstPage()}" th:with="firstPageUrl=${page.firstPageUrl()}">
+            <th:block th:if="${page.hasPreviousPage()}" th:with="firstPageUrl=${page.firstPageUrl()}">
                 <th:block th:if="${isLocation}">
                     <a th:href="${firstPageUrl}">
                         <i class="fas fa-angle-double-left fa-2x"></i>                        
                     </a>            
                 </th:block>
                 <th:block th:if="${isAjax}">
-                    <a th:onclick="|ajaxPagingFirst('${page.url()}', '${selector}')|">
+                    <a th:onclick="|ajaxPagingFirst('${id}', '${page.url()}', '${selector}')|">
                         <i class="fas fa-angle-double-left fa-2x"></i>                        
-                    </a>                                        
+                    </a>
                 </th:block>
             </th:block>
         </div>
@@ -37,23 +38,28 @@
                     </a>
                 </th:block>
                 <th:block th:if="${isAjax}">
-                    <a th:onclick="|ajaxPagingPrevious(${page.currentPageNumber()}, '${page.url()}', '${selector}')|">
-                        <i class="fas fa-angle-double-left fa-2x"></i>                        
+                    <a th:onclick="|ajaxPagingPrevious('${id}', '${page.url()}', '${selector}')|">
+                        <i class="fas fa-angle-left fa-2x"></i>                        
                     </a>
                 </th:block>
             </th:block>
-            <th:block th:if="${page.notHasPreviousPage()}">
+            <th:block th:if="${page.isFirstPage()}">
                 <i class="disabled fas fa-angle-left fa-2x"></i>
             </th:block>
         </div>
 
         <!--/* 現在の位置 */-->
         <div class="content current">
-            <span th:text="${page.currentPageFirst()}"></span>
-            <span> - </span>
-            <span th:text="${page.currentPageLast()}"></span>
-            <span> / </span>
-            <span th:text="${page.total()}"></span>
+            <th:block th:if="${page.empty()}">
+                <span>0 / 0</span>
+            </th:block>
+            <th:block th:if="${page.hasContent()}">
+                <span th:text="${page.currentPageFirst()}"></span>
+                <span> - </span>
+                <span th:text="${page.currentPageLast()}"></span>
+                <span> / </span>
+                <span th:text="${page.total()}"></span>        
+            </th:block>
         </div>
 
         <!--/* 次のページに進むアイコン */-->
@@ -65,14 +71,14 @@
                     </a>
                 </th:block>
                 <th:block th:if="${isAjax}">
-                    <a th:onclick="|ajaxPagingNext(${page.currentPageNumber()}, '${page.url()}', '${selector}')|">
-                        <i class="fas fa-angle-double-right fa-2x"></i>                        
+                    <a th:onclick="|ajaxPagingNext('${id}', '${page.url()}', '${selector}')|">
+                        <i class="fas fa-angle-right fa-2x"></i>                        
                     </a>
                 </th:block>
             </th:block>
-            <th:block th:if="${page.notHasNextPage()}">
+            <th:block th:if="${page.isLastPage()}">
                 <i class="disabled fas fa-angle-right fa-2x"></i>
-            </th:block>        
+            </th:block>
         </div>
 
     </div>

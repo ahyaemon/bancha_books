@@ -15,7 +15,7 @@
         
     <section class="sec-content">
         <!--/* ページング */-->
-        <div th:include="paging/paging :: paging_location(page = ${page})"></div>
+        <div th:include="paging/paging :: paging_location(id='paging-book', page = ${page})"></div>
 
         <!--/* 本のリスト */-->
         <a th:each="bookMenuItem: ${bookMenuItems}" th:href="|/book/${bookMenuItem.bookId}?page=1|">
