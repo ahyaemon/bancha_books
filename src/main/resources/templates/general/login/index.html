@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head :: head('ログイン')"></head>
+<body>
+    <section class="sec-header" th:include="nav :: normal"></section>
+    
+    <section class="sec-title" th:include="title :: normal(title='ログイン', subtitle='よっ')"></section>
+
+    <section class="sec-pankuzu">
+        <div class="siimple-breadcrumb bancha-bread">
+            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+            <div class="siimple-breadcrumb-item here">ログイン</div>
+        </div>
+    </section>
+
+    <div class="siimple-alert siimple-alert--warning">
+        <p class="siimple-p">
+            会員登録機能ができていないため、テストユーザーを用意しておきます。
+        </p>
+        <p class="siimple-p">
+            anji, baiken, may
+        </p>
+        <p class="siimple-p">
+            パスワードは一律 pass です。
+        </p>
+    </div>
+    
+    <section class="sec-content">
+        <form action="/general/auth" method="POST">
+            <div class="siimple-card" style="max-width: 800px;">
+                <div class="siimple-card-body">
+                    <div class="siimple-card-title">ロギングインニング</div>
+                    <div class="siimple-form">
+                        <div class="siimple-field">
+                            <div class="siimple-form-field-label">名前</div>
+                            <input class="siimple-input" type="text" id="username" name="username" placeholder="username" />
+                        </div>
+                        <div class="siimple-field">
+                            <div class="siimple-form-field-label">パスワード</div>
+                            <input class="siimple-input" type="password" id="password" name="password" placeholder="password" />
+                        </div>
+                        <div class="siimple-field">
+                            <button class="siimple-btn siimple-btn--blue" type="submit">ログイン</button>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <section class="sec-footer">
+        <div th:replace="footer :: footer"></div>
+    </section>
+
+    <script src="/lib/anime-2.2.0/anime.min.js"></script>
+    <script src="/js/admin/login.js"></script>
+
+</body>
+</html>
