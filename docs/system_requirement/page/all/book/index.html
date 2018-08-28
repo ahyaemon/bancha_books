@@ -179,20 +179,17 @@
 <p><strong>2. ユースケース図</strong></p>
 <blockquote>
 <div><p class="plantuml">
-<img src="../../../../_images/plantuml-10ba5dfd9994b6741176b18ed6792977662e2c64.png" alt="actor :非会員: as Non
+<img src="../../../../_images/plantuml-03c28ba87b51e74ed34b855aa0e5fa46ddeefaa2.png" alt="actor :非会員: as Non
 actor :会員: as General
-actor :管理者: as Admin
 
 (文を読む) as (Read Sentence)
 
 Non --&gt; (Read Sentence)
-General --&gt; (Read Sentence)
-Admin --&gt; (Read Sentence)"/>
+General --&gt; (Read Sentence)"/>
 </p>
 <p class="plantuml">
-<img src="../../../../_images/plantuml-383ee281d3f0a3399df775c0d7b144f02a1c8d8b.png" alt="actor :非会員: as Non
+<img src="../../../../_images/plantuml-9e7d01437278790f59b2f496379141187082c1dc.png" alt="actor :非会員: as Non
 actor :会員: as General
-actor :管理者: as Admin
 
 (コメントを読む) as (Read Comment)
 (コメント投稿) as (Submit Comment)
@@ -200,18 +197,17 @@ actor :管理者: as Admin
 
 Non --&gt; (Read Comment)
 General --&gt; (Read Comment)
-Admin --&gt; (Read Comment)
 
 General --&gt; (Submit Comment)
-Admin --&gt; (Submit Comment)
 
-Admin --&gt; (Delete Comment)"/>
+General --&gt; (Delete Comment)"/>
 </p>
 </div></blockquote>
 <p><strong>3. フォーム</strong></p>
 <blockquote>
 <div><p>3.1. コメント投稿</p>
-<table border="1" class="docutils">
+<blockquote>
+<div><table border="1" class="docutils">
 <colgroup>
 <col width="20%" />
 <col width="20%" />
@@ -252,7 +248,33 @@ Admin --&gt; (Delete Comment)"/>
 </tr>
 </tbody>
 </table>
+</div></blockquote>
 <p>3.2. コメント削除</p>
+<blockquote>
+<div><table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>項目</td>
+<td>type属性</td>
+<td>内容</td>
+<td>制約</td>
+<td>条件</td>
+</tr>
+<tr class="row-even"><td>削除キー</td>
+<td>text</td>
+<td>コメントを削除するための任意の文字列</td>
+<td>255文字以内</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
 </div></blockquote>
 </div>
 
