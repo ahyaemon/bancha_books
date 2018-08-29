@@ -2,16 +2,20 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="head :: head('Home')"></head>
 <body>
+    <!--/* ヘッダー */-->
     <section class="sec-header" th:include="nav :: normal"></section>
     
+    <!--/* タイトル */-->
     <section class="sec-title" th:include="title :: normal(title='Bancha Home', subtitle=${subtitle})"></section>
 
+    <!--/* パンくずリスト */-->
     <section class="sec-pankuzu">
         <div class="siimple-breadcrumb bancha-bread">
             <div class="siimple-breadcrumb-item here">Home</div>
         </div>        
     </section>
     
+    <!--/* メインコンテンツ */-->
     <section class="sec-content">
         <a th:each="menuItem: ${menuItems}" th:href="${menuItem.url}" class="list-a">
             <div class="siimple-card bancha-card bancha-back-blue">
@@ -23,13 +27,13 @@
         </a>
     </section>
 
+    <!--/* フッター */-->
     <section class="sec-footer">
         <div th:replace="footer :: footer"></div>
     </section>
 
-    <script src="/lib/jquery/jquery-3.0.0.min.js"></script>
-    <script src="/lib/anime-2.2.0/anime.min.js"></script>
-    <script src="/js/component/dropdown.js"></script>
+    <!--/* jsの読み込み */-->
+    <th:block th:replace="template/script :: script"></th:block>
     <script src="/js/menu.js"></script>
 </body>
 </html>

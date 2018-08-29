@@ -2,10 +2,13 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('Books')"></head>
 <body>
+    <!--/* ヘッダー */-->
     <section class="sec-header" th:include="nav :: normal"></section>
     
+    <!--/* タイトル */-->
     <section class="sec-title" th:include="title :: normal(title='Books', subtitle=${subtitle})"></section>
 
+    <!--/* パンくずリスト */-->
     <section class="sec-pankuzu">
         <div class="siimple-breadcrumb bancha-bread">
             <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
@@ -13,6 +16,7 @@
         </div>
     </section>
         
+    <!--/* メインコンテンツ */-->
     <section class="sec-content">
         <!--/* ページング */-->
         <div th:include="paging/paging :: paging_location(id='paging-book', page = ${page})"></div>
@@ -28,8 +32,12 @@
         </a>
     </section>
 
+    <!--/* フッター */-->
     <section class="sec-footer">
         <div th:replace="footer :: footer"></div>
     </section>
+
+    <!--/* jsの読み込み */-->
+    <th:block th:replace="template/script :: script"></th:block>
 </body>
 </html>

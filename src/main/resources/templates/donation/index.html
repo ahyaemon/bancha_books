@@ -2,10 +2,13 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('寄付')"></head>
 <body>
+    <!--/* ヘッダー */-->
     <section class="sec-header" th:include="nav :: normal"></section>
     
+    <!--/* タイトル */-->
     <section class="sec-title" th:include="title :: normal(title='Donation', subtitle=${subtitle})"></section>
 
+    <!--/* パンくずリスト */-->
     <section class="sec-pankuzu">
         <div class="siimple-breadcrumb bancha-bread">
             <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
@@ -13,6 +16,7 @@
         </div>
     </section>
 
+    <!--/* メインコンテンツ */-->
     <section class="sec-content">
         <div class="siimple-h1">
             <span>現在の寄付総額: </span>
@@ -91,17 +95,16 @@
         
     </section>
 
+    <!--/* フッター */-->
     <section class="sec-footer">
         <div th:replace="footer :: footer"></div>
     </section>    
 
+    <!--/* jsの読み込み */-->
+    <th:block th:replace="template/script :: script"></th:block>
     <script th:inline="javascript">
         var donated = /*[[${donated}]]*/ false;
     </script>
-    <script src="/lib/jquery/jquery-3.0.0.min.js"></script>
-    <script src="/lib/jquery/jquery.countTo.js"></script>
-    <script src="/lib/anime-2.2.0/anime.min.js"></script>
-    <script src="/js/base.js"></script>
     <script src="/js/donation.js"></script>
 </body>
 </html>
