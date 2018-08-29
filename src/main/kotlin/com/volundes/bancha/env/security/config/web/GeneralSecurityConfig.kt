@@ -26,7 +26,7 @@ class GeneralSecurityConfig(
     override fun configure(http: HttpSecurity) {
         http.csrf().disable()
 
-        http.antMatcher("/general/**")
+        http.antMatcher("/**")
 
         http.authorizeRequests()
                 .antMatchers("/general/login").permitAll()

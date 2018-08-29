@@ -11,7 +11,26 @@
                 ROLE_GENERALをサインイン済として扱う
 
             */-->
-            <a class="siimple-navbar-item white" href="/general/login">Sign in</a>
+            <th:block th:if="${!hasGeneralRole}">
+                <a class="siimple-navbar-item white" href="/general/login">Sign in</a>
+            </th:block>
+            <th:block th:if="${hasGeneralRole}">
+                <div class="dropdown">
+                    <div class="general-name" onclick="showDropdown()">**さん</div>
+                    <div class="dropdown-content">
+                        <a href="">会員ページ</a>
+                        <hr />
+                        <a href="">Book</a>
+                        <a href="">Donation</a>
+                        <a href="">About</a>
+                        <hr />
+                        <a href="/general/logout">ログアウト</a>
+                        <div class="dropdown-up" onclick="hideDropdown()">
+                            <i class="fas fa-angle-double-up"></i>
+                        </div>
+                    </div>
+                </div>            
+            </th:block>
         </div>
     </div>
 </div>
