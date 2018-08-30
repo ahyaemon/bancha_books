@@ -9,6 +9,6 @@ class GeneralLoginController {
 
     @RequestMapping
     fun index(): String{
-        return "/general/login/index"
+        return "general/login/index"
     }
 }
