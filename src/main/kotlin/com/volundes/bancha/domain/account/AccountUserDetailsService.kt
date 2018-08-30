@@ -23,7 +23,8 @@ class AccountUserDetailsService(
      */
     override fun loadUserByUsername(username: String): UserDetails{
         val account = accountRepository.getByUsername(username)
-        val grantedAuthorities = AuthorityUtils.createAuthorityList("ROLE_ADMIN")
+        val role = account.role.toUpperCase()
+        val grantedAuthorities = AuthorityUtils.createAuthorityList("ROLE_$role")
         val userDetails = AccountUserDetails(
                 account,
                 true,
