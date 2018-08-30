@@ -1,4 +1,4 @@
-package com.volundes.bancha.env.security.config
+package com.volundes.bancha.env.security.config.authentication
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
-//@EnableWebSecurity
 @Configuration
 @Profile("production")
 class ProductionSecurityConfig(

@@ -5,6 +5,7 @@ buildscript {
         domaVersion = '2.19.2'
         flywayVersion = '5.1.4'
 		jsoupVersion = '1.11.3'
+		thymeleafSpringSecurityVersion = '3.0.2.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -59,6 +60,7 @@ dependencies {
 	compile "org.springframework.boot:spring-boot-starter-quartz"
     compile "org.springframework.boot:spring-boot-starter-security"
 	compile "org.springframework.boot:spring-boot-starter-aop"
+    compile "org.thymeleaf.extras:thymeleaf-extras-springsecurity4"
 
 	compile "com.fasterxml.jackson.module:jackson-module-kotlin"
 	compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"

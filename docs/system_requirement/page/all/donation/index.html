@@ -82,9 +82,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../../business_requirement/index.html">要求定義</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../../tree.html">要件定義</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../../class/index.html">クラス図</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../tree.html">画面</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../transition/index.html">画面遷移</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../tree.html">画面: 誰でも</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../transition/index.html">画面遷移</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../tree.html">画面詳細</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../tree.html">誰でも</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="../home_menu/index.html">ホームメニュー</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../book_menu/index.html">本メニュー</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../book/index.html">本</a></li>
@@ -93,8 +93,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../general/index.html">会員情報ページ</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../general/tree.html">画面: 一般会員用</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../admin/tree.html">画面: 管理者用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../general/tree.html">一般会員用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../admin/tree.html">管理者用</a></li>
 </ul>
 </li>
 </ul>
@@ -149,9 +149,9 @@
         
           <li><a href="../../../tree.html">要件定義</a> &raquo;</li>
         
-          <li><a href="../../tree.html">画面</a> &raquo;</li>
+          <li><a href="../../tree.html">画面詳細</a> &raquo;</li>
         
-          <li><a href="../tree.html">画面: 誰でも</a> &raquo;</li>
+          <li><a href="../tree.html">誰でも</a> &raquo;</li>
         
       <li>寄付</li>
     
@@ -176,9 +176,8 @@
 <h1>寄付<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
 <img alt="../../../../_images/img3.png" src="../../../../_images/img3.png" />
 <p class="plantuml">
-<img src="../../../../_images/plantuml-8976859ca0be6077c31c67f106844cba6b9f763f.png" alt="actor :非会員: as Non
+<img src="../../../../_images/plantuml-c41608d91bf6ae41e20e7f2f7fc406d2e61a11ec.png" alt="actor :非会員: as Non
 actor :会員: as General
-actor :管理者: as Admin
 
 (Line Payで寄付する) as (Donate as Line Pay)
 (Test Payで寄付する) as (Donate as Test Pay)
@@ -186,15 +185,12 @@ actor :管理者: as Admin
 
 Non --&gt; (Donate as Line Pay)
 General --&gt; (Donate as Line Pay)
-Admin --&gt; (Donate as Line Pay)
 
 Non --&gt; (Donate as Test Pay)
 General --&gt; (Donate as Test Pay)
-Admin --&gt; (Donate as Test Pay)
 
 Non --&gt; (Show Donation Details)
-General --&gt; (Show Donation Details)
-Admin --&gt; (Show Donation Details)"/>
+General --&gt; (Show Donation Details)"/>
 </p>
 </div>
 

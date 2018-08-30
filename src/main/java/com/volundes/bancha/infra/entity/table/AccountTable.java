@@ -19,4 +19,7 @@ public class AccountTable {
     @Column(name = "role")
     public String role;
 
+    @Column(name = "nickname")
+    public String nickname;
+
 }
