@@ -1,4 +1,4 @@
-package com.volundes.bancha.env.security.config
+package com.volundes.bancha.env.security.config.authentication
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
@@ -24,6 +24,18 @@ class DevSecurityConfig{
                 .withUser("admin")
                 .password("password")
                 .roles("ADMIN")
+                .and()
+                .withUser("anji@test.com")
+                .password("pass")
+                .roles("GENERAL")
+                .and()
+                .withUser("baiken@test.com")
+                .password("pass")
+                .roles("GENERAL")
+                .and()
+                .withUser("may@test.com")
+                .password("pass")
+                .roles("GENERAL")
     }
 
 }

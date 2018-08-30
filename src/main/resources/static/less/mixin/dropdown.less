@@ -1,0 +1,34 @@
+@import "./color.less";
+
+.dropdown{
+
+    .general-name{
+        color: white;
+    }
+
+    a{
+        color: white;
+        display: block;
+    }
+
+    hr{
+        color: @light-grey;
+    }
+
+    .dropdown-content{
+        width: 200px;
+        top: -1000px;
+        right: 0px;
+        padding: 10px;
+        position: absolute;
+        background-color: @dark-grey;
+
+        .dropdown-up{
+            text-align: center;
+            color: white;
+            padding-top: 8px;
+            font-size: 120%;
+        }
+    }
+
+}

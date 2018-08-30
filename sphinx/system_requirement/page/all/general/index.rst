@@ -7,11 +7,8 @@
 
   actor :非会員: as Non
   actor :会員: as General
-  actor :管理者: as Admin
 
   (公開情報を見る) as (Read Info)  
 
   Non --> (Read Info)
   General --> (Read Info)
-  Admin --> (Read Info)
-

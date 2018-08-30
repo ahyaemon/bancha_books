@@ -5,6 +5,6 @@ import com.volundes.bancha.infra.entity.table.AccountTable
 
 interface AccountMapperExtension {
 
-    fun AccountTable.toAccount() =  Account(accountId, name, pass, role)
+    fun AccountTable.toAccount() =  Account(accountId, name, pass, role, nickname)
 
 }
