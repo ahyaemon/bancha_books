@@ -18,22 +18,26 @@
             会員登録機能ができていないため、テストユーザーを用意しておきます。
         </p>
         <p class="siimple-p">
-            anji, baiken, may
+            anji@test.com, baiken@test.com, may@test.com
         </p>
         <p class="siimple-p">
             パスワードは一律 pass です。
         </p>
     </div>
-    
+
     <section class="sec-content">
-        <form action="/general/auth" method="POST">
-            <div class="siimple-card" style="max-width: 800px;">
-                <div class="siimple-card-body">
-                    <div class="siimple-card-title">ロギングインニング</div>
-                    <div class="siimple-form">
+        <!--/* ログインフォーム */-->
+        <div class="siimple-card" style="max-width: 800px;">
+            <div class="siimple-card-body">
+                <div class="siimple-card-title">ロギングインニング</div>
+                <p class="siimple-p">
+                    会員の方はここからログイン
+                </p>
+                <div class="siimple-form">
+                    <form action="/general/auth" method="POST">
                         <div class="siimple-field">
-                            <div class="siimple-form-field-label">名前</div>
-                            <input class="siimple-input" type="text" id="username" name="username" placeholder="username" />
+                            <div class="siimple-form-field-label">メールアドレス</div>
+                            <input class="siimple-input" type="text" id="username" name="username" placeholder="mail address" />
                         </div>
                         <div class="siimple-field">
                             <div class="siimple-form-field-label">パスワード</div>
@@ -42,17 +46,42 @@
                         <div class="siimple-field">
                             <button class="siimple-btn siimple-btn--blue" type="submit">ログイン</button>
                         </div>
-                    </div>        
-                </div>
+                    </form>
+                </div>        
+                <p class="siimple-p"><a href="" class="mada">パスワードを忘れたかな？と思ったら</a></p>
             </div>
-        </form>
+        </div>
+
+        <!--/* 新規登録フォーム */-->
+        <div class="siimple-card" style="max-width: 800px;">
+            <div class="siimple-card-body">
+                <div class="siimple-card-title">会員登録（新規）</div>
+                <p class="siimple-p">
+                    会員登録するといろんなことができるようになる。
+                </p>
+                <div class="siimple-form">
+                    <form action="/general/register" method="POST">
+                        <div class="siimple-field">
+                            <div class="siimple-form-field-label">メールアドレス</div>
+                            <input class="siimple-input" type="text" id="mail" name="mail" placeholder="mail address" />
+                        </div>
+                        <div class="siimple-field">
+                            <button class="siimple-btn siimple-btn--blue mada" type="submit">新規登録</button>
+                        </div>
+                    </form>
+                </div>        
+
+            </div>
+        </div>
+
     </section>
 
     <section class="sec-footer">
         <div th:replace="footer :: footer"></div>
     </section>
 
-    <script src="/lib/anime-2.2.0/anime.min.js"></script>
+    <!--/* jsの読み込み */-->
+    <th:block th:replace="template/script :: script"></th:block>
     <script src="/js/admin/login.js"></script>
 
 </body>

@@ -31,10 +31,12 @@ var dropdown = {
 
 function showDropdown(){
     dropdown.show();
+    return false;
 }
 
 function hideDropdown(){
     dropdown.hide();
+    return false;
 }
 
 dropdown.init();

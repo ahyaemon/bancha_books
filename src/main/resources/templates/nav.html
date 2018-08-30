@@ -16,20 +16,22 @@
             </th:block>
             <th:block th:if="${hasGeneralRole}">
                 <div class="dropdown">
-                    <div class="general-name" onclick="showDropdown()">**さん</div>
+                    <a href="javascript:void(0);">
+                        <div class="general-name" onclick="showDropdown()" th:text="|${account.nickname}さん|"></div>
+                    </a>
                     <div class="dropdown-content">
-                        <a href="">会員ページ</a>
+                        <a href="" class="mada">会員ページ</a>
                         <hr />
-                        <a href="">Book</a>
-                        <a href="">Donation</a>
-                        <a href="">About</a>
+                        <a href="/bookmenu">Books</a>
+                        <a href="/about">About</a>
+                        <a href="/donation">Donation</a>
                         <hr />
                         <a href="/general/logout">ログアウト</a>
                         <div class="dropdown-up" onclick="hideDropdown()">
                             <i class="fas fa-angle-double-up"></i>
                         </div>
                     </div>
-                </div>            
+                </div>
             </th:block>
         </div>
     </div>

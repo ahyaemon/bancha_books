@@ -1,11 +1,15 @@
 package com.volundes.bancha.web.role
 
+import com.volundes.bancha.domain.account.Account
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ModelAttribute
+import javax.servlet.http.HttpSession
 
 @ControllerAdvice
-class RoleControllerAdvice(){
+class RoleControllerAdvice(
+        private val httpSession: HttpSession
+){
 
     @ModelAttribute("hasAdminRole")
     fun hasAdminRole(authentication: Authentication?): Boolean{
@@ -20,6 +24,11 @@ class RoleControllerAdvice(){
     @ModelAttribute("hasNoRole")
     fun hasNoRole(authentication: Authentication?): Boolean{
         return authentication == null
+    }
+
+    @ModelAttribute("account")
+    fun account(): Account?{
+        return httpSession.getAttribute("account") as Account?
     }
 
     private fun Authentication?.hasRole(role: String): Boolean {
