@@ -1,6 +1,7 @@
 package com.volundes.bancha.web.role
 
 import com.volundes.bancha.domain.account.Account
+import org.slf4j.LoggerFactory
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ModelAttribute
@@ -11,19 +12,27 @@ class RoleControllerAdvice(
         private val httpSession: HttpSession
 ){
 
+    private val logger = LoggerFactory.getLogger(RoleControllerAdvice::class.java)
+
     @ModelAttribute("hasAdminRole")
     fun hasAdminRole(authentication: Authentication?): Boolean{
-        return authentication.hasRole("ADMIN")
+        val hasAdminRole = authentication.hasRole("ADMIN")
+        logger.info("hasAdminRole: $hasAdminRole")
+        return hasAdminRole
     }
 
     @ModelAttribute("hasGeneralRole")
     fun hasGeneralRole(authentication: Authentication?): Boolean{
-        return authentication.hasRole("GENERAL")
+        val hasGeneralRole = authentication.hasRole("GENERAL")
+        logger.info("hasGeneralRole: $hasGeneralRole")
+        return hasGeneralRole
     }
 
     @ModelAttribute("hasNoRole")
     fun hasNoRole(authentication: Authentication?): Boolean{
-        return authentication == null
+        val hasNoRole = authentication == null
+        logger.info("hasNoRole: $hasNoRole")
+        return hasNoRole
     }
 
     @ModelAttribute("account")
