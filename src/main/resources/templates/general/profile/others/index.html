@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head :: head('会員情報')"></head>
+<body>
+    <section class="sec-header" th:include="nav :: normal"></section>
+    
+    <section class="sec-title" th:include="title :: normal(title='誰かの情報', subtitle='他人情報的な？')"></section>
+
+    <section class="sec-pankuzu">
+        <div class="siimple-breadcrumb bancha-bread">
+            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+            <div class="siimple-breadcrumb-item here">誰かの情報</div>
+        </div>
+    </section>
+
+    <section class="sec-content">
+        
+        <p class="siimple-p">誰かの情報</p>
+    </section>
+
+    <section class="sec-footer">
+        <div th:replace="footer :: footer"></div>
+    </section>
+
+    <!--/* jsの読み込み */-->
+    <th:block th:replace="template/script :: script"></th:block>
+
+</body>
+</html>
