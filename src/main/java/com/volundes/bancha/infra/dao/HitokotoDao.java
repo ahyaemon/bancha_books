@@ -1,7 +1,8 @@
 package com.volundes.bancha.infra.dao;
 
-import com.volundes.bancha.infra.entity.ProfileEntity;
-import com.volundes.bancha.infra.entity.table.AccountTable;
+import com.volundes.bancha.domain.general.profile.Hitokoto;
+import com.volundes.bancha.infra.entity.table.HitokotoTable;
+import org.jetbrains.annotations.NotNull;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,17 +12,21 @@ import org.springframework.transaction.annotation.Transactional;
         @Annotation(target = AnnotationTarget.CLASS, type = Component.class),
         @Annotation(target = AnnotationTarget.CONSTRUCTOR, type = Autowired.class) })
 @Dao
-public interface AccountDao {
+public interface HitokotoDao {
 
     @Select
     @Transactional
-    AccountTable selectByName(String name);
+    HitokotoTable selectByAccountId(Long accountId);
 
     @Update
     @Transactional
-    int update(AccountTable accountTable);
+    int update(HitokotoTable table);
 
-    @Select
+    @Insert
     @Transactional
-    ProfileEntity selectProfileByAccountId(Long accountId);
+    int insert(HitokotoTable table);
+
+    @Delete
+    @Transactional
+    int delete(HitokotoTable table);
 }

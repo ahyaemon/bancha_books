@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head :: head('会員情報')"></head>
+<body>
+    <section class="sec-header" th:include="nav :: normal"></section>
+    
+    <section class="sec-title" th:include="title :: normal(title='自分の情報', subtitle='個人情報的な？')"></section>
+
+    <section class="sec-pankuzu">
+        <div class="siimple-breadcrumb bancha-bread">
+            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+            <div class="siimple-breadcrumb-item here">自分の情報</div>
+        </div>
+    </section>
+
+    <section class="sec-content">
+        <div class="siimple-card" style="max-width: 800px;">
+            <div class="siimple-card-header">基本情報</div>
+            <div class="siimple-card-body">
+                <form action="/profile/edit" th:object="${profileEditForm}">
+                    <div class="siimple-form">
+                        <div class="siimple-field">
+                            <div class="siimple-field-label">ニックネーム</div>
+                            <input class="siimple-input" type="text" th:field="*{nickname}">
+                        </div>
+                        <div class="siimple-field">
+                            <div class="siimple-field-label">メールアドレス</div>
+                            <input class="siimple-input" type="text" th:field="*{mailAddress}">
+                        </div>
+                        <div class="siimple-field">
+                            <div class="siimple-field-label">ひとこと</div>
+                            <input type="hidden" th:field="*{hitokotoId}" />
+                            <textarea class="siimple-textarea siimple-textarea-fuild" th:field="*{hitokoto}"></textarea>
+                        </div>
+                        <div class="siimple-field">
+                            <button class="siimple-btn" type="submit">更新</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="siimple-card" style="max-width: 800px;">
+            <div class="siimple-card-header">パスワード</div>
+            <div class="siimple-card-body">
+                <div class="siimple-field">
+                    <div class="siimple-field-label">今のパスワード</div>
+                    <input class="siimple-input" type="text">
+                </div>
+                <div class="siimple-field">
+                    <div class="siimple-field-label">新しいパスワード</div>
+                    <input class="siimple-input" type="text">
+                </div>
+                <div class="siimple-field">
+                    <div class="siimple-field-label">新しいパスワード（再入力）</div>
+                    <input class="siimple-input" type="text">
+                </div>                            
+                <div class="siimple-field">
+                    <button class="siimple-btn mada" type="submit">更新</button>
+                </div>
+           </div>
+        </div>
+    </section>
+
+    <section class="sec-footer">
+        <div th:replace="footer :: footer"></div>
+    </section>
+
+    <!--/* jsの読み込み */-->
+    <th:block th:replace="template/script :: script"></th:block>
+
+</body>
+</html>

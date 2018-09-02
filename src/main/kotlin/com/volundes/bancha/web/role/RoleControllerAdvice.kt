@@ -17,21 +17,21 @@ class RoleControllerAdvice(
     @ModelAttribute("hasAdminRole")
     fun hasAdminRole(authentication: Authentication?): Boolean{
         val hasAdminRole = authentication.hasRole("ADMIN")
-        logger.info("hasAdminRole: $hasAdminRole")
+//        logger.info("hasAdminRole: $hasAdminRole")
         return hasAdminRole
     }
 
     @ModelAttribute("hasGeneralRole")
     fun hasGeneralRole(authentication: Authentication?): Boolean{
         val hasGeneralRole = authentication.hasRole("GENERAL")
-        logger.info("hasGeneralRole: $hasGeneralRole")
+//        logger.info("hasGeneralRole: $hasGeneralRole")
         return hasGeneralRole
     }
 
     @ModelAttribute("hasNoRole")
     fun hasNoRole(authentication: Authentication?): Boolean{
         val hasNoRole = authentication == null
-        logger.info("hasNoRole: $hasNoRole")
+//        logger.info("hasNoRole: $hasNoRole")
         return hasNoRole
     }
 

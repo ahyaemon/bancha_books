@@ -20,7 +20,7 @@
                         <div class="general-name" onclick="showDropdown()" th:text="|${account.nickname}さん|"></div>
                     </a>
                     <div class="dropdown-content">
-                        <a href="" class="mada">会員ページ</a>
+                        <a th:href="|/profile/${account.accountId}|">会員ページ</a>
                         <hr />
                         <a href="/bookmenu">Books</a>
                         <a href="/about">About</a>
