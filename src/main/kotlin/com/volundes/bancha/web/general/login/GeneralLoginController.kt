@@ -1,4 +1,4 @@
-package com.volundes.bancha.web.general
+package com.volundes.bancha.web.general.login
 
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
