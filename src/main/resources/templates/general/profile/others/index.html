@@ -14,8 +14,14 @@
     </section>
 
     <section class="sec-content">
-        
-        <p class="siimple-p">誰かの情報</p>
+        <div class="siimple-card" style="max-width: 800px;">
+            <div class="siimple-card-body">
+                <div class="siimple-card-title">ニックネーム</div>
+                <p class="siimple-p" th:text="${profileItem.nickname}"></p>
+                <div class="siimple-card-title">ひとこと</div>
+                <p class="siimple-p" th:text="${profileItem.hitokoto}"></p>
+            </div>
+        </div>
     </section>
 
     <section class="sec-footer">

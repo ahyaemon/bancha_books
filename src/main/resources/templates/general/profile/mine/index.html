@@ -29,12 +29,13 @@
                         </div>
                         <div class="siimple-field">
                             <div class="siimple-field-label">ひとこと</div>
-                            <textarea id="" class="siimple-textarea siimple-textarea-fuild" th:field="*{hitokoto}"></textarea>
+                            <input type="hidden" th:field="*{hitokotoId}" />
+                            <textarea class="siimple-textarea siimple-textarea-fuild" th:field="*{hitokoto}"></textarea>
                         </div>
                         <div class="siimple-field">
-                            <button class="siimple-btn mada" type="submit">更新</button>
+                            <button class="siimple-btn" type="submit">更新</button>
                         </div>
-                    </div>                                        
+                    </div>
                 </form>
             </div>
         </div>

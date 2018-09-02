@@ -1,5 +1,6 @@
 package com.volundes.bancha.infra.dao;
 
+import com.volundes.bancha.infra.entity.ProfileEntity;
 import com.volundes.bancha.infra.entity.table.AccountTable;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,4 +17,11 @@ public interface AccountDao {
     @Transactional
     AccountTable selectByName(String name);
 
+    @Update
+    @Transactional
+    int update(AccountTable accountTable);
+
+    @Select
+    @Transactional
+    ProfileEntity selectProfileByAccountId(Long accountId);
 }

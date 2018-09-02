@@ -12,4 +12,12 @@ class ProfileService(
         return profileRepository.findHitokoto(accountId)
     }
 
+    fun editProfile(profile: Profile) {
+        profileRepository.editProfile(profile)
+    }
+
+    fun getProfile(accountId: Long): Profile {
+        return profileRepository.findProfile(accountId)
+    }
+
 }
