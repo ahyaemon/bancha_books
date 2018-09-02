@@ -17,23 +17,25 @@
         <div class="siimple-card" style="max-width: 800px;">
             <div class="siimple-card-header">基本情報</div>
             <div class="siimple-card-body">
-                <div class="siimple-form">
-                    <div class="siimple-field">
-                        <div class="siimple-field-label">ニックネーム</div>
-                        <input class="siimple-input" type="text">
-                    </div>
-                    <div class="siimple-field">
-                        <div class="siimple-field-label">メールアドレス</div>
-                        <input class="siimple-input" type="text">
-                    </div>
-                    <div class="siimple-field">
-                        <div class="siimple-field-label">ひとこと</div>
-                        <textarea id="" class="siimple-textarea siimple-textarea-fuild"></textarea>
-                    </div>
-                    <div class="siimple-field">
-                        <button class="siimple-btn" type="submit">更新</button>
-                    </div>
-                </div>                
+                <form action="/profile/edit" th:object="${profileEditForm}">
+                    <div class="siimple-form">
+                        <div class="siimple-field">
+                            <div class="siimple-field-label">ニックネーム</div>
+                            <input class="siimple-input" type="text" th:field="*{nickname}">
+                        </div>
+                        <div class="siimple-field">
+                            <div class="siimple-field-label">メールアドレス</div>
+                            <input class="siimple-input" type="text" th:field="*{mailAddress}">
+                        </div>
+                        <div class="siimple-field">
+                            <div class="siimple-field-label">ひとこと</div>
+                            <textarea id="" class="siimple-textarea siimple-textarea-fuild" th:field="*{hitokoto}"></textarea>
+                        </div>
+                        <div class="siimple-field">
+                            <button class="siimple-btn mada" type="submit">更新</button>
+                        </div>
+                    </div>                                        
+                </form>
             </div>
         </div>
 
@@ -53,7 +55,7 @@
                     <input class="siimple-input" type="text">
                 </div>                            
                 <div class="siimple-field">
-                    <button class="siimple-btn" type="submit">更新</button>
+                    <button class="siimple-btn mada" type="submit">更新</button>
                 </div>
            </div>
         </div>
