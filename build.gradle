@@ -6,7 +6,7 @@ buildscript {
         flywayVersion = '5.1.4'
 		jsoupVersion = '1.11.3'
 		thymeleafSpringSecurityVersion = '3.0.2.RELEASE'
-		simpleJavaMailVersion = '4.1.1'
+		simpleJavaMailVersion = '5.0.3'
 	}
 	repositories {
 		mavenCentral()
