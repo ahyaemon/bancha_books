@@ -29,7 +29,8 @@ class GeneralSecurityConfig(
         http.antMatcher("/**")
 
         http.authorizeRequests()
-                .antMatchers("/general/login").permitAll()
+                .antMatchers("/general/login").permitAll() // ログインフォーム
+                .antMatchers("/general/sendmail").permitAll() // 会員登録用のメール送信
                 .antMatchers("/general/**").authenticated()
 
         http.formLogin()
