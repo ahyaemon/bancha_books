@@ -15,6 +15,9 @@ display:
     sentence: 10
     comment: 20
 
+smtp:
+  password: ${SMTP_PASSWORD:pass}
+
 ---
 
 spring:
