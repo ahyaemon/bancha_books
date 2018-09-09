@@ -1,6 +1,8 @@
 package com.volundes.bancha.infra.dao;
 
+import com.volundes.bancha.domain.general.login.AccountRegister;
 import com.volundes.bancha.infra.entity.ProfileEntity;
+import com.volundes.bancha.infra.entity.table.AccountRegisterTable;
 import com.volundes.bancha.infra.entity.table.AccountTable;
 import org.jetbrains.annotations.NotNull;
 import org.seasar.doma.*;
@@ -12,22 +14,16 @@ import org.springframework.transaction.annotation.Transactional;
         @Annotation(target = AnnotationTarget.CLASS, type = Component.class),
         @Annotation(target = AnnotationTarget.CONSTRUCTOR, type = Autowired.class) })
 @Dao
-public interface AccountDao {
+public interface AccountRegisterDao {
 
     @Insert
     @Transactional
-    int insert(AccountTable table);
+    int insert(AccountRegisterTable entity);
 
     @Select
     @Transactional
-    AccountTable selectByName(String name);
-
-    @Update
-    @Transactional
-    int update(AccountTable accountTable);
+    int countUrlKey(String urlKey);
 
     @Select
-    @Transactional
-    ProfileEntity selectProfileByAccountId(Long accountId);
-
+    String selectMailAddressByUrlKey(String urlKey);
 }
