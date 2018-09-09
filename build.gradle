@@ -6,6 +6,7 @@ buildscript {
         flywayVersion = '5.1.4'
 		jsoupVersion = '1.11.3'
 		thymeleafSpringSecurityVersion = '3.0.2.RELEASE'
+		simpleJavaMailVersion = '5.0.3'
 	}
 	repositories {
 		mavenCentral()
@@ -82,6 +83,10 @@ dependencies {
 
 	// reflection
 	compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
+
+    // simple java mail
+    compile "org.simplejavamail:simple-java-mail:$simpleJavaMailVersion"
+
 }
 
 flyway {

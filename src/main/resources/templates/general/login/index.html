@@ -60,13 +60,13 @@
                     会員登録するといろんなことができるようになる。
                 </p>
                 <div class="siimple-form">
-                    <form action="/general/register" method="POST">
+                    <form action="/general/sendmail" method="POST" th:object="${generalRegisterForm}">
                         <div class="siimple-field">
                             <div class="siimple-form-field-label">メールアドレス</div>
-                            <input class="siimple-input" type="text" id="mail" name="mail" placeholder="mail address" />
+                            <input class="siimple-input" type="text" placeholder="mail address" th:field="*{mailAddress}" />
                         </div>
                         <div class="siimple-field">
-                            <button class="siimple-btn siimple-btn--blue mada" type="submit">新規登録</button>
+                            <button class="siimple-btn siimple-btn--blue" type="submit">新規登録</button>
                         </div>
                     </form>
                 </div>        
