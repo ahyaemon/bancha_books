@@ -2,6 +2,7 @@ package com.volundes.bancha.infra.dao;
 
 import com.volundes.bancha.infra.entity.ProfileEntity;
 import com.volundes.bancha.infra.entity.table.AccountTable;
+import org.jetbrains.annotations.NotNull;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,6 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
         @Annotation(target = AnnotationTarget.CONSTRUCTOR, type = Autowired.class) })
 @Dao
 public interface AccountDao {
+
+    @Insert
+    @Transactional
+    int insert(AccountTable table);
 
     @Select
     @Transactional
@@ -24,4 +29,5 @@ public interface AccountDao {
     @Select
     @Transactional
     ProfileEntity selectProfileByAccountId(Long accountId);
+
 }

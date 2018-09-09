@@ -4,6 +4,7 @@ import com.volundes.bancha.domain.general.login.AccountRegister;
 import com.volundes.bancha.infra.entity.ProfileEntity;
 import com.volundes.bancha.infra.entity.table.AccountRegisterTable;
 import com.volundes.bancha.infra.entity.table.AccountTable;
+import org.jetbrains.annotations.NotNull;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,4 +20,10 @@ public interface AccountRegisterDao {
     @Transactional
     int insert(AccountRegisterTable entity);
 
+    @Select
+    @Transactional
+    int countUrlKey(String urlKey);
+
+    @Select
+    String selectMailAddressByUrlKey(String urlKey);
 }

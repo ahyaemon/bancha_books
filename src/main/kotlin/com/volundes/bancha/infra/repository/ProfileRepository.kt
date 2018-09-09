@@ -54,4 +54,9 @@ class ProfileRepository(
         return profileEntity.toProfile()
     }
 
+    fun addHitokoto(accountId: Long, hitokoto: Hitokoto) {
+        val table = hitokoto.toTable(accountId)
+        hitokotoDao.insert(table)
+    }
+
 }
