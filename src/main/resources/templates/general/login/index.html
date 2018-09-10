@@ -2,10 +2,13 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('ログイン')"></head>
 <body>
+    <!--/* ヘッダー */-->
     <section class="sec-header" th:include="nav :: normal-signin"></section>
     
+    <!--/* タイトル */-->
     <section class="sec-title" th:include="title :: normal(title='ログイン', subtitle='よっ')"></section>
 
+    <!--/* パンくずリスト */-->
     <section class="sec-pankuzu">
         <div class="siimple-breadcrumb bancha-bread">
             <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
@@ -13,6 +16,7 @@
         </div>
     </section>
 
+    <!--/* 注意書き */-->
     <div class="siimple-alert siimple-alert--warning">
         <p class="siimple-p">
             会員登録機能ができていないため、テストユーザーを用意しておきます。
@@ -25,6 +29,7 @@
         </p>
     </div>
 
+    <!--/* メインコンテンツ */-->
     <section class="sec-content">
         <!--/* ログインフォーム */-->
         <div class="siimple-card" style="max-width: 800px;">
@@ -76,6 +81,7 @@
 
     </section>
 
+    <!--/* フッター */-->
     <section class="sec-footer">
         <div th:replace="footer :: footer"></div>
     </section>
