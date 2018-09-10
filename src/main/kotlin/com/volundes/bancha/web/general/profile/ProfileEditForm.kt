@@ -6,7 +6,7 @@ import com.volundes.bancha.domain.general.profile.Profile
 
 data class ProfileEditForm(
         val nickname: String,
-        val mailAddress: String,
+        val email: String,
         val hitokotoId: Long?,
         val hitokoto: String?
 ){
@@ -35,7 +35,7 @@ data class ProfileEditForm(
     ): Profile {
         val copiedAccount = account.copy(
                 nickname = nickname,
-                email = mailAddress
+                email = email
         )
         val hitokoto = Hitokoto(
                 hitokotoId,

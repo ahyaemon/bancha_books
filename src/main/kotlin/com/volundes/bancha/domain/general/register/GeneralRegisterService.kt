@@ -21,7 +21,7 @@ class GeneralRegisterService(
     }
 
     fun getMailAddress(urlKey: String): String {
-        return accountRegisterRepository.findMailAddress(urlKey)
+        return accountRegisterRepository.findEmail(urlKey)
     }
 
     fun addAccount(account: Account) {

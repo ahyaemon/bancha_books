@@ -22,7 +22,7 @@
                         <ul><li th:each="error: ${#fields.detailedErrors()}" th:text="${error.message}"></li></ul>
                         <div class="siimple-field">
                             <div class="siimple-field-label">メールアドレス</div>
-                            <input class="siimple-input" type="text" th:field="*{mailAddress}" readonly="readonly">
+                            <input class="siimple-input" type="text" th:field="*{email}" readonly="readonly">
                         </div>
                         <div class="siimple-field">
                             <div class="siimple-field-label">パスワード</div>
