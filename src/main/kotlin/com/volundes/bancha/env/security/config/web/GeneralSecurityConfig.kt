@@ -36,6 +36,7 @@ class GeneralSecurityConfig(
         http.formLogin()
                 .loginProcessingUrl("/general/auth")
                 .loginPage("/general/login")
+                .usernameParameter("email")
                 .defaultSuccessUrl("/")
                 .and()
                 .logout()
