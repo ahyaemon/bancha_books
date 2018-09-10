@@ -3,4 +3,4 @@ SELECT
 FROM
   account
 WHERE
-  name = /* name */'gonbey'
+  email = /* email */'test@test.com'

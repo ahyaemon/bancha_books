@@ -78,7 +78,7 @@ class ProfileController(
         // sessionn中のaccountも更新
         val newAccount = account.copy(
                 nickname = profileEditForm.nickname,
-                name = profileEditForm.mailAddress
+                email = profileEditForm.mailAddress
         )
         httpSession.setAttribute("account", newAccount)
 

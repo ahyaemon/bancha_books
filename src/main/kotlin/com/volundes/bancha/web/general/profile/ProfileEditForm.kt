@@ -15,7 +15,7 @@ data class ProfileEditForm(
             account: Account
     ): this(
             account.nickname,
-            account.name,
+            account.email,
             null,
             null
     )
@@ -25,7 +25,7 @@ data class ProfileEditForm(
             hitokoto: Hitokoto
     ): this (
             account.nickname,
-            account.name,
+            account.email,
             hitokoto.hitokotoId,
             hitokoto.value
     )
@@ -35,7 +35,7 @@ data class ProfileEditForm(
     ): Profile {
         val copiedAccount = account.copy(
                 nickname = nickname,
-                name = mailAddress
+                email = mailAddress
         )
         val hitokoto = Hitokoto(
                 hitokotoId,

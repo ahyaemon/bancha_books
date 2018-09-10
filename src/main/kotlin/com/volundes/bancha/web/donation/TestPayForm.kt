@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Pattern
 
 data class TestPayForm(
-        @get:NotBlank(message="{TestPayForm.name.NotBlank}")
+        @get:NotBlank(message="{TestPayForm.email.NotBlank}")
         val name: String,
 
         val comment: String = "",

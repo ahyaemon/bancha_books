@@ -1,9 +1,7 @@
 package com.volundes.bancha.infra.repository
 
 import com.volundes.bancha.domain.account.Account
-import com.volundes.bancha.domain.general.profile.Hitokoto
 import com.volundes.bancha.infra.dao.AccountDao
-import com.volundes.bancha.infra.entity.table.HitokotoTable
 import com.volundes.bancha.infra.mapper.AccountMapperExtension
 import org.springframework.stereotype.Repository
 
@@ -14,15 +12,15 @@ class AccountRepository(
         AccountMapperExtension
 {
 
-    fun getByUsername(name: String) =
-            accountDao.selectByName(name).toAccount()
+    fun findByEmail(email: String) =
+            accountDao.selectByEmail(email).toAccount()
 
     fun addAccount(account: Account) {
         accountDao.insert(account.toTable())
     }
 
     fun getAccountId(account: Account): Long {
-        val table = accountDao.selectByName(account.name)
+        val table = accountDao.selectByEmail(account.email)
         return table.accountId
     }
 
