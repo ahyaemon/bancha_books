@@ -9,8 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 @Configuration
-@Profile("production")
-class ProductionSecurityConfig(
+class SecurityConfig(
         private val userDetailsService: UserDetailsService
 ){
 
