@@ -18,18 +18,20 @@ class GeneralLoginService(
     /**
      * ・メールの送信
      * ・registerMailInfoをDB(account_registerテーブル)に登録
+     *
+     * TODO 既にDBにメールアドレスがある場合はUpdateする
+     * TODO キーがDBにある場合は再作成する
      */
-    fun sendRegisterMail(mailAddress: String) {
+    fun sendRegisterMail(email: String) {
         // 登録用のURLのキー
-        // TODO DBに存在しないもの
         val urlKey = createUrlKey()
 
-        val mail = registerMail.createEmail(mailAddress, urlKey)
+        val mail = registerMail.createEmail(email, urlKey)
         val mailer = registerMailer.createMailer()
        mailer.sendMail(mail)
 
         // DBに登録
-        val accountRegister = AccountRegister(null, mailAddress, urlKey, LocalDateTime.now())
+        val accountRegister = AccountRegister(null, email, urlKey, LocalDateTime.now())
         accountRegisterRepository.addAccountRegister(accountRegister)
 
     }

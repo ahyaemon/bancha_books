@@ -35,6 +35,7 @@ class AdminSecurityConfig(
         http.formLogin()
                 .loginProcessingUrl("/admin/auth")
                 .loginPage("/admin/login")
+                .usernameParameter("email")
                 .defaultSuccessUrl("/admin/menu")
                 .and()
                 .logout()

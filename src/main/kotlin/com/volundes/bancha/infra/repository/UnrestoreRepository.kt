@@ -21,7 +21,7 @@ class UnrestoreRepository(
     fun init() {
         val targets = restoreTargetMapHolder.getTargets()
         targets.forEach { daoClass, entityClass ->
-            // name
+            // email
             val annotation = entityClass.getAnnotation(Table::class.java) as Table
             val name = annotation.name
 

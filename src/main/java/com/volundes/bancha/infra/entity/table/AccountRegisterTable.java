@@ -12,8 +12,8 @@ public class AccountRegisterTable {
     @Column(name = "account_register_id")
     public Long accountRegisterId;
 
-    @Column(name = "mail_address")
-    public String mailAddress;
+    @Column(name = "email")
+    public String email;
 
     @Column(name = "url_key")
     public String urlKey;

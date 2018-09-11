@@ -10,8 +10,8 @@ public class AccountTable {
     @Column(name = "account_id")
     public Long accountId;
 
-    @Column(name = "name")
-    public String name;
+    @Column(name = "email")
+    public String email;
 
     @Column(name = "pass")
     public String pass;

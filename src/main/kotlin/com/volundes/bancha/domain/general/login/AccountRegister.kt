@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 
 data class AccountRegister(
         val accountRegisterId: Long?,
-        val mailAddress: String,
+        val email: String,
         val urlKey: String,
         val createDateTime: LocalDateTime
 

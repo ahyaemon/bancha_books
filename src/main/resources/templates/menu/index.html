@@ -14,7 +14,17 @@
             <div class="siimple-breadcrumb-item here">Home</div>
         </div>        
     </section>
-    
+
+    <!--/* 注意書き */-->
+    <div class="siimple-alert siimple-alert--warning">
+        <p class="siimple-p">
+            banchaは試用運転中です。
+        </p>
+        <p class="siimple-p">
+            会員登録情報やコメントは予告なく突然初期化される可能性があります。
+        </p>
+    </div>
+
     <!--/* メインコンテンツ */-->
     <section class="sec-content">
         <a th:each="menuItem: ${menuItems}" th:href="${menuItem.url}" class="list-a">

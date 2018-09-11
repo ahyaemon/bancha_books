@@ -2,10 +2,13 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('ログイン')"></head>
 <body>
+    <!--/* ヘッダー */-->
     <section class="sec-header" th:include="nav :: normal-signin"></section>
     
+    <!--/* タイトル */-->
     <section class="sec-title" th:include="title :: normal(title='ログイン', subtitle='よっ')"></section>
 
+    <!--/* パンくずリスト */-->
     <section class="sec-pankuzu">
         <div class="siimple-breadcrumb bancha-bread">
             <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
@@ -13,6 +16,7 @@
         </div>
     </section>
 
+    <!--/* 注意書き */-->
     <div class="siimple-alert siimple-alert--warning">
         <p class="siimple-p">
             会員登録機能ができていないため、テストユーザーを用意しておきます。
@@ -25,6 +29,7 @@
         </p>
     </div>
 
+    <!--/* メインコンテンツ */-->
     <section class="sec-content">
         <!--/* ログインフォーム */-->
         <div class="siimple-card" style="max-width: 800px;">
@@ -37,11 +42,11 @@
                     <form action="/general/auth" method="POST">
                         <div class="siimple-field">
                             <div class="siimple-form-field-label">メールアドレス</div>
-                            <input class="siimple-input" type="text" id="username" name="username" placeholder="mail address" />
+                            <input class="siimple-input" type="text" id="email" name="email" />
                         </div>
                         <div class="siimple-field">
                             <div class="siimple-form-field-label">パスワード</div>
-                            <input class="siimple-input" type="password" id="password" name="password" placeholder="password" />
+                            <input class="siimple-input" type="password" id="password" name="password" />
                         </div>
                         <div class="siimple-field">
                             <button class="siimple-btn siimple-btn--blue" type="submit">ログイン</button>
@@ -63,7 +68,7 @@
                     <form action="/general/sendmail" method="POST" th:object="${generalRegisterForm}">
                         <div class="siimple-field">
                             <div class="siimple-form-field-label">メールアドレス</div>
-                            <input class="siimple-input" type="text" placeholder="mail address" th:field="*{mailAddress}" />
+                            <input class="siimple-input" type="text" th:field="*{email}" />
                         </div>
                         <div class="siimple-field">
                             <button class="siimple-btn siimple-btn--blue" type="submit">新規登録</button>
@@ -76,6 +81,7 @@
 
     </section>
 
+    <!--/* フッター */-->
     <section class="sec-footer">
         <div th:replace="footer :: footer"></div>
     </section>

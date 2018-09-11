@@ -30,7 +30,7 @@ class GeneralLoginController(
     fun sendmail(
             generalRegisterForm: GeneralRegisterForm
     ): String {
-        service.sendRegisterMail(generalRegisterForm.mailAddress)
+        service.sendRegisterMail(generalRegisterForm.email)
         return "general/login/sendmail"
     }
 

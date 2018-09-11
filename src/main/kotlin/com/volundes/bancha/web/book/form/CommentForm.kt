@@ -9,8 +9,8 @@ data class CommentForm (
 
         val sentenceId: Long? = null,
 
-        @get:NotBlank(message="{CommentForm.name.NotBlank}")
-        @get:Size(max = 255, message="{CommentForm.name.Size}")
+        @get:NotBlank(message="{CommentForm.email.NotBlank}")
+        @get:Size(max = 255, message="{CommentForm.email.Size}")
         val name: String,
 
         @get:NotBlank(message="{CommentForm.comment.NotBlank}")
