@@ -88,6 +88,7 @@ class BookController(
     /**
      * ajax。
      * コメントを新規登録します。
+     * TODO 非会員のリクエスト改ざんでも登録できないようにする
      */
     @RequestMapping(value=["/createComment"], produces=["text/plain;charset=UTF-8"])
     fun createComment(
