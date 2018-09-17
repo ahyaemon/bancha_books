@@ -1,10 +1,8 @@
 package com.volundes.bancha.web.book
 
 import com.volundes.bancha.domain.book.service.BookService
-import com.volundes.bancha.domain.paging.Page
 import com.volundes.bancha.web.book.form.CommentForm
 import com.volundes.bancha.web.book.form.CommentPagingForm
-import com.volundes.bancha.web.book.form.DeleteCommentForm
 import com.volundes.bancha.web.book.item.SentenceIdItem
 import com.volundes.bancha.web.book.session.SubmitInfoList
 import org.springframework.lang.Nullable
@@ -43,7 +41,6 @@ class BookController(
 
         model.addAttribute("bookItem",
                 helper.createCommentCountedBookItem(bookId.toLong(), page))
-        model.addAttribute("deleteCommentForm", helper.createDeleteCommentForm())
         return "book/index"
     }
 
@@ -123,32 +120,6 @@ class BookController(
         model.addAttribute("page", page)
         model.addAttribute("sentenceItem", helper.createSentenceItem(sentenceId, page))
         model.addAttribute("commentForm", helper.createCommentForm(bookId))
-        return "book/comment :: comment"
-    }
-
-    /**
-     * ajax。
-     * コメントを削除します。
-     */
-    @RequestMapping(value=["/deleteComment"], produces=["text/plain;charset=UTF-8"])
-    fun deleteComment(
-            @RequestBody @Validated deleteCommentForm: DeleteCommentForm,
-            result: BindingResult,
-            model: Model
-    ): String {
-        val canDelete = service.canDeleteComment(deleteCommentForm.commentId, deleteCommentForm.deleteKey)
-
-        if(!canDelete){
-            result.reject("deleteCommentForm.invalidDeleteKey")
-            return "book/delete :: delete"
-        }
-
-        service.deleteComment(deleteCommentForm.commentId)
-        // FIXME とりあえず最初のページに戻している
-        val page = helper.createCommentPage(1, deleteCommentForm.sentenceId)
-        model.addAttribute("sentenceItem", helper.createSentenceItem(deleteCommentForm.sentenceId, page))
-        model.addAttribute("commentForm", helper.createCommentForm(deleteCommentForm.bookId))
-        model.addAttribute("deleteCommentForm", helper.createDeleteCommentForm())
         return "book/comment :: comment"
     }
 

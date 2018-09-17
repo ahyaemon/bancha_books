@@ -15,15 +15,13 @@ class BookRepository(
         private val bookDao: BookDao,
         private val sentenceDao: SentenceDao,
         private val commentDao: CommentDao,
-        private val authorDao: AuthorDao,
-        private val deleteKeyDao: DeleteKeyDao
+        private val authorDao: AuthorDao
 ):
         Pageable,
         CommentMapperExtension,
         SentenceMapperExtension,
         BookMapperExtension,
-        AuthorMapperExtension,
-        DeleteKeyMapperExtension
+        AuthorMapperExtension
 {
 
     fun getBookMenus(page: Page): List<BookMenu>{
@@ -46,13 +44,6 @@ class BookRepository(
         // commentの登録
         val commentEntity = comment.toEntity(sentenceId)
         commentDao.insert(commentEntity)
-
-        // deleteKeyの登録
-        if(comment.canDelete()){
-            val commentId = commentDao.selectId()
-            val deleteEntity = comment.toDeleteKeyEntity(commentId)
-            deleteKeyDao.insert(deleteEntity)
-        }
     }
 
     fun addBook(book: Book){
@@ -91,22 +82,6 @@ class BookRepository(
         return sentenceDao
                 .selectSentenceSummaryBySentenceId(sentenceId, selectOptions)
                 .toSentence()
-    }
-
-    fun getDeleteKey(commentId: Long): String {
-        return deleteKeyDao
-                .selectByCommentId(commentId)
-                .deleteKey
-    }
-
-    fun deleteComment(commentId: Long){
-        // deleteKeyの削除
-        val deleteTable = deleteKeyDao.selectByCommentId(commentId)
-        deleteKeyDao.delete(deleteTable)
-
-        // commentの削除
-        val commentTable = commentDao.selectCommentByCommentId(commentId)
-        commentDao.delete(commentTable)
     }
 
     fun getTotalBookAmount(): Int {

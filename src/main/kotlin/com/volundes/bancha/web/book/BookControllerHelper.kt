@@ -3,12 +3,11 @@ package com.volundes.bancha.web.book
 import com.volundes.bancha.domain.book.service.BookService
 import com.volundes.bancha.domain.paging.Page
 import com.volundes.bancha.env.setting.DisplayLimitSettings
+import com.volundes.bancha.env.setting.SubmitSettings
 import com.volundes.bancha.web.book.form.CommentForm
-import com.volundes.bancha.web.book.form.DeleteCommentForm
+import com.volundes.bancha.web.book.item.CommentCountedBookItem
 import com.volundes.bancha.web.book.item.SentenceItem
 import com.volundes.bancha.web.book.session.SubmitInfoList
-import com.volundes.bancha.env.setting.SubmitSettings
-import com.volundes.bancha.web.book.item.CommentCountedBookItem
 import org.springframework.stereotype.Component
 import java.time.LocalDateTime
 
@@ -44,11 +43,7 @@ class BookControllerHelper(
     }
 
     fun createCommentForm(bookId: Long): CommentForm {
-        return CommentForm(bookId, null, "", "", false, "")
-    }
-
-    fun createDeleteCommentForm(): DeleteCommentForm {
-        return DeleteCommentForm(0, 0, 0, "")
+        return CommentForm(bookId, null, "", "")
     }
 
     fun createCommentCountedBookItem(

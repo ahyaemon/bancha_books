@@ -30,32 +30,10 @@
                 <textarea id="" class="siimple-textarea bancha-input-textarea siimple-textarea-fuild input-comment" 
                     placeholder="コメント" th:field="*{comment}"></textarea>
             </div>
-            <div class="siimple-field">
-                <label class="siimple-label">削除キー:
-                    <div class="siimple-switch">
-                    <input type="checkbox" class="delete-key-switch" onChange="deleteKeySwitchChanged(this)"
-                        th:field="*{hasDeleteKey}">
-                    <label for="delete-key-switch"></label>
-                    <div></div>
-                </div>
-            </div>
-            <div id="delete-key-field" class="siimple-field">
-                <input class="input-name bancha-input-text siimple-input"  type="text" placeholder="削除キー"
-                    th:field="*{deleteKey}">                
-            </div>
         </form>
         <button class="modal__btn modal__btn-primary" 
             th:onclick="|submitComment(${sentenceItem.sentenceId})|">コメントする</button>
         <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">閉じる</button>
     </footer>
 
-</div>
-
-<div th:fragment="commentList">
-    <p th:each="commentItem: ${sentenceItem.commentItems}" 
-        th:onclick="|commentClicked(${sentenceItem.sentenceId}, ${commentItem.commentId})|">
-        <span th:text="${commentItem.name}"></span>
-        <span>: </span>
-        <span th:text="${commentItem.comment}"></span>
-    </p>
 </div>
