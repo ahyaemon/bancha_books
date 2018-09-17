@@ -43,7 +43,7 @@ class BookControllerHelper(
     }
 
     fun createCommentForm(bookId: Long): CommentForm {
-        return CommentForm(bookId, null, "", "")
+        return CommentForm(bookId, null, "")
     }
 
     fun createCommentCountedBookItem(

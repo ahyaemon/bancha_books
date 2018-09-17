@@ -1,5 +1,6 @@
 package com.volundes.bancha.web.book
 
+import com.volundes.bancha.domain.account.Account
 import com.volundes.bancha.domain.book.service.BookService
 import com.volundes.bancha.web.book.form.CommentForm
 import com.volundes.bancha.web.book.form.CommentPagingForm
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import java.time.LocalDateTime
+import javax.servlet.http.HttpSession
 
 /**
  * 「本」画面を担うControllerです。
@@ -94,7 +96,8 @@ class BookController(
     fun createComment(
             @RequestBody @Validated commentForm: CommentForm,
             result: BindingResult,
-            model: Model
+            model: Model,
+            httpSession: HttpSession
     ): String {
         val submitDateTime = LocalDateTime.now()
         val bookId = commentForm.bookId
@@ -114,7 +117,8 @@ class BookController(
             return "book/comment :: comment"
         }
 
-        service.createComment(sentenceId, commentForm.toComment())
+        val account = httpSession.getAttribute("account") as Account
+        service.createComment(sentenceId, commentForm.toComment(account.accountId!!))
         submitInfoList.addNewInfo(bookId, sentenceId, submitDateTime)
         // FIXME とりあえず最初のページに戻している
         val page = helper.createCommentPage(1, sentenceId)

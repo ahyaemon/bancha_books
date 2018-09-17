@@ -21,12 +21,7 @@
         <hr>
         <th:block th:if="${hasGeneralRole}">
             <form th:object="${commentForm}">
-                <ul><li th:each="error: ${#fields.detailedErrors()}" th:text="${error.message}"></li></ul>                    
-                
-                <div class="siimple-field">
-                    <input class="input-name bancha-input-text siimple-input" 
-                        type="text" placeholder="名前" th:field="*{name}">
-                </div>
+                <ul><li th:each="error: ${#fields.detailedErrors()}" th:text="${error.message}"></li></ul>                                    
                 <div class="siimple-field">
                     <textarea id="" class="siimple-textarea bancha-input-textarea siimple-textarea-fuild input-comment" 
                         placeholder="コメント" th:field="*{comment}"></textarea>

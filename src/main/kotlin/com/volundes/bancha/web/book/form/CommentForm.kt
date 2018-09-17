@@ -10,18 +10,14 @@ data class CommentForm (
 
         val sentenceId: Long? = null,
 
-        @get:NotBlank(message="{CommentForm.email.NotBlank}")
-        @get:Size(max = 255, message="{CommentForm.email.Size}")
-        val name: String,
-
         @get:NotBlank(message="{CommentForm.comment.NotBlank}")
         @get:Size(max = 255, message="{CommentForm.comment.Size}")
         val comment: String
 
 ){
 
-    fun toComment(): Comment{
-        return Comment(null, name, comment)
+    fun toComment(accountId: Long): Comment{
+        return Comment(null, accountId, "", comment)
     }
 
 }

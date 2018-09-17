@@ -22,7 +22,7 @@ interface SentenceMapperExtension{
                 if(firstEntity.commentId == null){
                     arrayListOf()
                 }else{
-                    map{ Comment(it.commentId, it.commentName, it.comment) }
+                    map{ Comment(it.commentId, it.accountId, it.commentName, it.comment) }
                 }
         return Sentence(firstEntity.sentenceId, firstEntity.sentence, comments)
     }
