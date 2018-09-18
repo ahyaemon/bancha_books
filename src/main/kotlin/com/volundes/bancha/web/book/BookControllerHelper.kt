@@ -36,10 +36,11 @@ class BookControllerHelper(
 
     fun createSentenceItem(
             sentenceId: Long,
+            accountId: Long,
             page: Page
     ): SentenceItem {
         val sentence = service.getSentenceBySentenceId(sentenceId, page)
-        return SentenceItem(sentence)
+        return SentenceItem(sentence, accountId)
     }
 
     fun createCommentForm(bookId: Long): CommentForm {

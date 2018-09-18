@@ -53,14 +53,16 @@ class BookController(
     @RequestMapping(value = ["/getSentence"], produces=["text/plain;charset=UTF-8"])
     fun getSentence(
             @RequestBody sentenceIdItem: SentenceIdItem,
-            model: Model
+            model: Model,
+            httpSession: HttpSession
     ): String {
         val page = helper.createCommentPage(1, sentenceIdItem.sentenceId)
         model.addAttribute("page", page)
 
+        val account = httpSession.getAccount()
         model.addAttribute(
                 "sentenceItem",
-                helper.createSentenceItem(sentenceIdItem.sentenceId, page)
+                helper.createSentenceItem(sentenceIdItem.sentenceId, account.accountId!!, page)
         )
         model.addAttribute(
                 "commentForm",
@@ -75,13 +77,16 @@ class BookController(
     @RequestMapping(value = ["/commentPaging"], produces=["text/plain;charset=UTF-8"])
     fun commentPaging(
             @RequestBody commentPagingForm: CommentPagingForm,
-            model: Model
+            model: Model,
+            httpSession: HttpSession
     ): String {
         val page = helper.createCommentPage(commentPagingForm.pageNumber, commentPagingForm.sentenceId)
         model.addAttribute("page", page)
+
+        val account = httpSession.getAccount()
         model.addAttribute(
                 "sentenceItem",
-                helper.createSentenceItem(commentPagingForm.sentenceId, page)
+                helper.createSentenceItem(commentPagingForm.sentenceId, account.accountId!!, page)
         )
 
         return "book/comment_content :: comment_content"
@@ -109,23 +114,33 @@ class BookController(
             result.reject("commentForm.sequentialSubmit")
         }
 
+        val account = httpSession.getAccount()
         if(result.hasErrors()){
             // FIXME とりあえず最初のページに戻している
             val page = helper.createCommentPage(1, sentenceId)
             model.addAttribute("page", page)
-            model.addAttribute("sentenceItem", helper.createSentenceItem(sentenceId, page))
+            model.addAttribute(
+                    "sentenceItem",
+                    helper.createSentenceItem(sentenceId, account.accountId!!, page)
+            )
             return "book/comment :: comment"
         }
 
-        val account = httpSession.getAttribute("account") as Account
         service.createComment(sentenceId, commentForm.toComment(account.accountId!!))
         submitInfoList.addNewInfo(bookId, sentenceId, submitDateTime)
         // FIXME とりあえず最初のページに戻している
         val page = helper.createCommentPage(1, sentenceId)
         model.addAttribute("page", page)
-        model.addAttribute("sentenceItem", helper.createSentenceItem(sentenceId, page))
+        model.addAttribute(
+                "sentenceItem",
+                helper.createSentenceItem(sentenceId, account.accountId!!, page)
+        )
         model.addAttribute("commentForm", helper.createCommentForm(bookId))
         return "book/comment :: comment"
+    }
+
+    private fun HttpSession.getAccount(): Account {
+        return getAttribute("account") as Account
     }
 
 }
