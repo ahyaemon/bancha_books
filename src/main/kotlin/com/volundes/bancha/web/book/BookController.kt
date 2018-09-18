@@ -60,10 +60,14 @@ class BookController(
         model.addAttribute("page", page)
 
         val account = httpSession.getAccount()
-        model.addAttribute(
-                "sentenceItem",
-                helper.createSentenceItem(sentenceIdItem.sentenceId, account.accountId!!, page)
-        )
+        val sentenceItem = if(account == null){
+            // FIXME どのaccountIdとマッチしないものの判定だけど、-1ってどうなの
+            helper.createSentenceItem(sentenceIdItem.sentenceId, -1, page)
+        } else {
+            helper.createSentenceItem(sentenceIdItem.sentenceId, account.accountId!!, page)
+        }
+        model.addAttribute("sentenceItem", sentenceItem)
+
         model.addAttribute(
                 "commentForm",
                 helper.createCommentForm(sentenceIdItem.bookId)
@@ -84,10 +88,13 @@ class BookController(
         model.addAttribute("page", page)
 
         val account = httpSession.getAccount()
-        model.addAttribute(
-                "sentenceItem",
-                helper.createSentenceItem(commentPagingForm.sentenceId, account.accountId!!, page)
-        )
+        val sentenceItem = if(account == null){
+            // FIXME どのaccountIdとマッチしないものの判定だけど、-1ってどうなの
+            helper.createSentenceItem(commentPagingForm.sentenceId, -1, page)
+        } else {
+            helper.createSentenceItem(commentPagingForm.sentenceId, account.accountId!!, page)
+        }
+        model.addAttribute("sentenceItem", sentenceItem)
 
         return "book/comment_content :: comment_content"
     }
@@ -121,12 +128,12 @@ class BookController(
             model.addAttribute("page", page)
             model.addAttribute(
                     "sentenceItem",
-                    helper.createSentenceItem(sentenceId, account.accountId!!, page)
+                    helper.createSentenceItem(sentenceId, account!!.accountId!!, page)
             )
             return "book/comment :: comment"
         }
 
-        service.createComment(sentenceId, commentForm.toComment(account.accountId!!))
+        service.createComment(sentenceId, commentForm.toComment(account!!.accountId!!))
         submitInfoList.addNewInfo(bookId, sentenceId, submitDateTime)
         // FIXME とりあえず最初のページに戻している
         val page = helper.createCommentPage(1, sentenceId)
@@ -139,8 +146,13 @@ class BookController(
         return "book/comment :: comment"
     }
 
-    private fun HttpSession.getAccount(): Account {
-        return getAttribute("account") as Account
+    private fun HttpSession.getAccount(): Account? {
+        val any = getAttribute("account")
+        return  if(any == null) {
+            null
+        } else {
+            any as Account
+        }
     }
 
 }
