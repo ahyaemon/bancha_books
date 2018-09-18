@@ -9,7 +9,7 @@ interface CommentMapperExtension{
         val entity = CommentTable()
         entity.commentId = commentId
         entity.sentenceId = sentenceId
-        entity.name = name
+        entity.accountId = accountId
         entity.comment = comment
         return entity
     }

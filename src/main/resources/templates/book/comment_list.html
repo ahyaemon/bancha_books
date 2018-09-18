@@ -1,6 +1,6 @@
 <div th:fragment="comment_list">
-    <p th:each="commentItem: ${sentenceItem.commentItems}" 
-        th:onclick="|commentClicked(${sentenceItem.sentenceId}, ${commentItem.commentId})|">
+    <p th:each="commentItem: ${sentenceItem.commentItems}"
+            th:classappend="${commentItem.myComment} ? 'my-comment'" >
         <span th:text="${commentItem.name}"></span>
         <span>: </span>
         <span th:text="${commentItem.comment}"></span>

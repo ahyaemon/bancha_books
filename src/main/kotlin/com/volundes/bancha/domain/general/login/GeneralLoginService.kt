@@ -43,7 +43,6 @@ class GeneralLoginService(
      * 30桁抜き出す
      */
     private fun createUrlKey(): String {
-        val now = LocalDateTime.now().toString()
         val rand = Random()
         val n = rand.nextInt(20) + 10
         val md = MessageDigest.getInstance("SHA-256")

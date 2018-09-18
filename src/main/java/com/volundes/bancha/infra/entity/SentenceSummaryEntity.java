@@ -15,6 +15,9 @@ public class SentenceSummaryEntity {
     @Column(name = "comment_id")
     public Long commentId;
 
+    @Column(name = "account_id")
+    public Long accountId;
+
     @Column(name = "comment_name")
     public String commentName;
 
