@@ -8,7 +8,7 @@ interface AccountRegisterMapperExtension {
     fun AccountRegister.toTable(): AccountRegisterTable {
         val table = AccountRegisterTable()
         table.accountRegisterId = accountRegisterId
-        table.mailAddress = mailAddress
+        table.email = email
         table.urlKey = urlKey
         table.createDateTime = createDateTime
         return table

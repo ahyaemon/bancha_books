@@ -1,5 +1,5 @@
 SELECT
-  mail_address
+  email
 FROM
   account_register
 WHERE

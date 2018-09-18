@@ -29,9 +29,9 @@ class AccountRegisterRepository(
         return count >= 1
     }
 
-    fun findMailAddress(urlKey: String): String {
-        val mailAddress = accountRegisterDao.selectMailAddressByUrlKey(urlKey)
-        return mailAddress
+    fun findEmail(urlKey: String): String {
+        val email = accountRegisterDao.selectEmailByUrlKey(urlKey)
+        return email
     }
 
 }

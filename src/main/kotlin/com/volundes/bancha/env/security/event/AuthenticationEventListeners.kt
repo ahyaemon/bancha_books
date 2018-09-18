@@ -19,7 +19,7 @@ class AuthenticationEventListeners(
             event: InteractiveAuthenticationSuccessEvent
     ){
         val user = SecurityContextHolder.getContext().authentication.principal as User
-        val account = accountRepository.getByUsername(user.username)
+        val account = accountRepository.findByEmail(user.username)
         httpSession.setAttribute("account", account)
     }
 

@@ -11,7 +11,6 @@ class RestoreTargetMapHolder{
             Pair(BookDao::class.java, BookTable::class.java),
             Pair(SentenceDao::class.java, SentenceTable::class.java),
             Pair(CommentDao::class.java, CommentTable::class.java),
-            Pair(DeleteKeyDao::class.java, DeleteKeyTable::class.java),
             Pair(DonationDao::class.java, DonationTable::class.java)
     )
 

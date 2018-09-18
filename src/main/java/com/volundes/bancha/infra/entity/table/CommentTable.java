@@ -14,8 +14,8 @@ public class CommentTable {
     @Column(name = "sentence_id")
     public Long sentenceId;
 
-    @Column(name = "name")
-    public String name;
+    @Column(name = "account_id")
+    public Long accountId;
 
     @Column(name = "comment")
     public String comment;

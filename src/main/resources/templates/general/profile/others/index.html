@@ -2,10 +2,13 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('会員情報')"></head>
 <body>
+    <!--/* ヘッダー */-->
     <section class="sec-header" th:include="nav :: normal"></section>
     
+    <!--/* タイトル */-->
     <section class="sec-title" th:include="title :: normal(title='誰かの情報', subtitle='他人情報的な？')"></section>
 
+    <!--/* パンくずリスト */-->
     <section class="sec-pankuzu">
         <div class="siimple-breadcrumb bancha-bread">
             <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
@@ -13,6 +16,7 @@
         </div>
     </section>
 
+    <!--/* メインコンテンツ */-->
     <section class="sec-content">
         <div class="siimple-card" style="max-width: 800px;">
             <div class="siimple-card-body">
@@ -24,12 +28,12 @@
         </div>
     </section>
 
+    <!--/* フッター */-->
     <section class="sec-footer">
         <div th:replace="footer :: footer"></div>
     </section>
 
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
-
 </body>
 </html>

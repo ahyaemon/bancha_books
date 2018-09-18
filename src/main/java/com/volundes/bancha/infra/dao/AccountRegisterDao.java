@@ -25,5 +25,5 @@ public interface AccountRegisterDao {
     int countUrlKey(String urlKey);
 
     @Select
-    String selectMailAddressByUrlKey(String urlKey);
+    String selectEmailByUrlKey(String urlKey);
 }

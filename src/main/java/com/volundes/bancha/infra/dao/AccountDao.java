@@ -20,7 +20,7 @@ public interface AccountDao {
 
     @Select
     @Transactional
-    AccountTable selectByName(String name);
+    AccountTable selectByEmail(String email);
 
     @Update
     @Transactional

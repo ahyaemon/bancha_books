@@ -39,7 +39,7 @@ class AdminService(
             val idRemovedFields = entityClass.fields
                     .filter{ !it.isAnnotationPresent(Id::class.java) }
 
-            // name
+            // email
             val tableAnnotation = entityClass.getAnnotation(Table::class.java)
             val name = tableAnnotation.name
 

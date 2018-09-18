@@ -1,10 +1,9 @@
 package com.volundes.bancha.web.book
 
+import com.volundes.bancha.domain.account.Account
 import com.volundes.bancha.domain.book.service.BookService
-import com.volundes.bancha.domain.paging.Page
 import com.volundes.bancha.web.book.form.CommentForm
 import com.volundes.bancha.web.book.form.CommentPagingForm
-import com.volundes.bancha.web.book.form.DeleteCommentForm
 import com.volundes.bancha.web.book.item.SentenceIdItem
 import com.volundes.bancha.web.book.session.SubmitInfoList
 import org.springframework.lang.Nullable
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import java.time.LocalDateTime
+import javax.servlet.http.HttpSession
 
 /**
  * 「本」画面を担うControllerです。
@@ -43,7 +43,6 @@ class BookController(
 
         model.addAttribute("bookItem",
                 helper.createCommentCountedBookItem(bookId.toLong(), page))
-        model.addAttribute("deleteCommentForm", helper.createDeleteCommentForm())
         return "book/index"
     }
 
@@ -54,14 +53,16 @@ class BookController(
     @RequestMapping(value = ["/getSentence"], produces=["text/plain;charset=UTF-8"])
     fun getSentence(
             @RequestBody sentenceIdItem: SentenceIdItem,
-            model: Model
+            model: Model,
+            httpSession: HttpSession
     ): String {
         val page = helper.createCommentPage(1, sentenceIdItem.sentenceId)
         model.addAttribute("page", page)
 
+        val account = httpSession.getAccount()
         model.addAttribute(
                 "sentenceItem",
-                helper.createSentenceItem(sentenceIdItem.sentenceId, page)
+                helper.createSentenceItem(sentenceIdItem.sentenceId, account.accountId!!, page)
         )
         model.addAttribute(
                 "commentForm",
@@ -76,13 +77,16 @@ class BookController(
     @RequestMapping(value = ["/commentPaging"], produces=["text/plain;charset=UTF-8"])
     fun commentPaging(
             @RequestBody commentPagingForm: CommentPagingForm,
-            model: Model
+            model: Model,
+            httpSession: HttpSession
     ): String {
         val page = helper.createCommentPage(commentPagingForm.pageNumber, commentPagingForm.sentenceId)
         model.addAttribute("page", page)
+
+        val account = httpSession.getAccount()
         model.addAttribute(
                 "sentenceItem",
-                helper.createSentenceItem(commentPagingForm.sentenceId, page)
+                helper.createSentenceItem(commentPagingForm.sentenceId, account.accountId!!, page)
         )
 
         return "book/comment_content :: comment_content"
@@ -91,12 +95,14 @@ class BookController(
     /**
      * ajax。
      * コメントを新規登録します。
+     * TODO 非会員のリクエスト改ざんでも登録できないようにする
      */
     @RequestMapping(value=["/createComment"], produces=["text/plain;charset=UTF-8"])
     fun createComment(
             @RequestBody @Validated commentForm: CommentForm,
             result: BindingResult,
-            model: Model
+            model: Model,
+            httpSession: HttpSession
     ): String {
         val submitDateTime = LocalDateTime.now()
         val bookId = commentForm.bookId
@@ -108,48 +114,33 @@ class BookController(
             result.reject("commentForm.sequentialSubmit")
         }
 
+        val account = httpSession.getAccount()
         if(result.hasErrors()){
             // FIXME とりあえず最初のページに戻している
             val page = helper.createCommentPage(1, sentenceId)
             model.addAttribute("page", page)
-            model.addAttribute("sentenceItem", helper.createSentenceItem(sentenceId, page))
+            model.addAttribute(
+                    "sentenceItem",
+                    helper.createSentenceItem(sentenceId, account.accountId!!, page)
+            )
             return "book/comment :: comment"
         }
 
-        service.createComment(sentenceId, commentForm.toComment())
+        service.createComment(sentenceId, commentForm.toComment(account.accountId!!))
         submitInfoList.addNewInfo(bookId, sentenceId, submitDateTime)
         // FIXME とりあえず最初のページに戻している
         val page = helper.createCommentPage(1, sentenceId)
         model.addAttribute("page", page)
-        model.addAttribute("sentenceItem", helper.createSentenceItem(sentenceId, page))
+        model.addAttribute(
+                "sentenceItem",
+                helper.createSentenceItem(sentenceId, account.accountId!!, page)
+        )
         model.addAttribute("commentForm", helper.createCommentForm(bookId))
         return "book/comment :: comment"
     }
 
-    /**
-     * ajax。
-     * コメントを削除します。
-     */
-    @RequestMapping(value=["/deleteComment"], produces=["text/plain;charset=UTF-8"])
-    fun deleteComment(
-            @RequestBody @Validated deleteCommentForm: DeleteCommentForm,
-            result: BindingResult,
-            model: Model
-    ): String {
-        val canDelete = service.canDeleteComment(deleteCommentForm.commentId, deleteCommentForm.deleteKey)
-
-        if(!canDelete){
-            result.reject("deleteCommentForm.invalidDeleteKey")
-            return "book/delete :: delete"
-        }
-
-        service.deleteComment(deleteCommentForm.commentId)
-        // FIXME とりあえず最初のページに戻している
-        val page = helper.createCommentPage(1, deleteCommentForm.sentenceId)
-        model.addAttribute("sentenceItem", helper.createSentenceItem(deleteCommentForm.sentenceId, page))
-        model.addAttribute("commentForm", helper.createCommentForm(deleteCommentForm.bookId))
-        model.addAttribute("deleteCommentForm", helper.createDeleteCommentForm())
-        return "book/comment :: comment"
+    private fun HttpSession.getAccount(): Account {
+        return getAttribute("account") as Account
     }
 
 }

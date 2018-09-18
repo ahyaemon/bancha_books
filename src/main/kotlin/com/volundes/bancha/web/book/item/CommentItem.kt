@@ -5,9 +5,16 @@ import com.volundes.bancha.domain.book.Comment
 class CommentItem(
         val commentId: Long?,
         val name: String,
-        val comment: String
+        val comment: String,
+        val myComment: Boolean
 ){
 
-    constructor(comment: Comment): this(comment.commentId, comment.name, comment.comment)
+    constructor(comment: Comment, accountId: Long):
+            this(
+                    comment.commentId,
+                    comment.name,
+                    comment.comment,
+                   comment.accountId == accountId
+            )
 
 }

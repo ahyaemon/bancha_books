@@ -8,8 +8,12 @@ class SentenceItem(
         val commentItems: List<CommentItem>
 ){
 
-    constructor(sentence: Sentence):
-            this(sentence.sentenceId, sentence.sentence, sentence.comments.map{ CommentItem(it) })
+    constructor(sentence: Sentence, accountId: Long):
+            this(
+                    sentence.sentenceId,
+                    sentence.sentence,
+                    sentence.comments.map{ CommentItem(it, accountId) }
+            )
 
     fun hasComment() = commentItems.isNotEmpty()
 

@@ -12,7 +12,7 @@ class AccountUserDetails(
         private val accountNonLocked: Boolean,
         private val authorities: List<GrantedAuthority>
 ): User(
-        account.name,
+        account.email,
         account.pass,
         enabled,
         accountNonExpired,

@@ -5,7 +5,6 @@ import com.volundes.bancha.domain.book.CommentCountedBook
 import com.volundes.bancha.domain.book.Sentence
 import com.volundes.bancha.domain.paging.Page
 import com.volundes.bancha.infra.repository.BookRepository
-import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 /**
@@ -13,8 +12,7 @@ import org.springframework.stereotype.Service
  */
 @Service
 class BookService(
-        private val repository: BookRepository,
-        private val passwordEncoder: PasswordEncoder
+        private val repository: BookRepository
 ) {
 
     fun getCommentCountedBookByBookId(
@@ -26,20 +24,12 @@ class BookService(
 
     /**
      * コメントを新規登録します。
-     * コメントに削除キーが設定されている場合は、暗号化してから登録します。
      */
     fun createComment(
             sentenceId: Long,
             comment: Comment
     ) {
-        if(comment.canDelete()){
-            val encryptedDeleteKey = passwordEncoder.encode(comment.deleteKey)
-            val newComment = comment.copy(deleteKey = encryptedDeleteKey)
-            repository.insertComment(sentenceId, newComment)
-        }
-        else{
-            repository.insertComment(sentenceId, comment)
-        }
+        repository.insertComment(sentenceId, comment)
     }
 
     /**
@@ -52,23 +42,6 @@ class BookService(
             page: Page
     ): Sentence {
         return repository.getSentencesBySentenceId(sentenceId, page)
-    }
-
-    /**
-     * deleteキーを検証し、コメントが削除可能かどうかを判断します。
-     *
-     * @return 削除可能な場合、true
-     */
-    fun canDeleteComment(commentId: Long, deleteKey: String): Boolean {
-        val correctDeleteKey = repository.getDeleteKey(commentId)
-        return passwordEncoder.matches(deleteKey, correctDeleteKey)
-    }
-
-    /**
-     * コメントを削除します。
-     */
-    fun deleteComment(commentId: Long) {
-        repository.deleteComment(commentId)
     }
 
     fun getTotalSentenceAmount(bookId: Long): Int {
