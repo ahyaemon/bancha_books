@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head :: head('管理者メニュー')"></head>
+<body>
+    <!--/* ヘッダー */-->
+    <section class="sec-header" th:include="nav :: admin"></section>
+    
+    <!--/* タイトル */-->
+    <section class="sec-title" th:include="title :: admin(title='Admin Menu', subtitle='管理しちゃう？')"></section>
+
+    <!--/* パンくずリスト */-->
+    <section class="sec-pankuzu">
+        <div class="siimple-breadcrumb bancha-bread">
+            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+            <div class="siimple-breadcrumb-item here"><a href="/admin/menu">管理者メニュー</a></div>
+            <div class="siimple-breadcrumb-item here">データ復元</div>
+        </div>        
+    </section>
+    
+    <!--/* メインコンテンツ */-->
+    <section class="sec-content">
+        <a href="/admin/download/dml" onclick="downloadRestoreDml()">
+            <form id="download-restore-dml-form" action="/admin/download/restore" method="POST">
+                <div class="siimple-card bancha-card bancha-back-blue">
+                    <div class="siimple-card-body">
+                        <div class="siimple-card-title">Download DML For restore(restore.script)</div>
+                        <div class="siimple-card-subtitle">データ復元用DMLのダウンロード</div>
+                    </div>
+                </div>
+            </form>
+        </a>
+        <a href="/admin/download/csv" onclick="downloadRestoreCsv()">
+            <form id="download-restore-csv-form" action="/admin/download/restore" method="POST">
+                <div class="siimple-card bancha-card bancha-back-blue">
+                    <div class="siimple-card-body">
+                        <div class="siimple-card-title">Download CSV for Restore(restore.zip)</div>
+                        <div class="siimple-card-subtitle">データ復元用CSVのダウンロード</div>
+                    </div>
+                </div>
+            </form>
+        </a>
+    </section>
+
+    <!--/* フッター */-->
+    <section class="sec-footer">
+        <div th:replace="footer :: footer"></div>
+    </section>
+
+    <!--/* jsの読み込み */-->
+    <th:block th:replace="template/script :: script"></th:block>
+    <script src="/js/admin/restore.js"></script>
+</body>
+</html>
