@@ -1,5 +1,6 @@
 package com.volundes.bancha.domain.account
 
+// FIXME ドメインモデル的には Account が Hitokoto を持っている
 data class Account(
         val accountId: Long?,
         val email: String,
