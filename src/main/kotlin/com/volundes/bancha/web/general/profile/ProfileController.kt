@@ -17,6 +17,9 @@ class ProfileController(
         private val service: ProfileService
 ) {
 
+    /**
+     * indexへのマッピングです。
+     */
     @RequestMapping("{accountId}")
     fun index(
             @PathVariable("accountId") accountId: String,
@@ -56,6 +59,9 @@ class ProfileController(
         return this.accountId == otherId.toLong()
     }
 
+    /**
+     * 自分の情報を編集します。
+     */
     @RequestMapping("/edit")
     fun edit(
             @Validated profileEditForm: ProfileEditForm,
