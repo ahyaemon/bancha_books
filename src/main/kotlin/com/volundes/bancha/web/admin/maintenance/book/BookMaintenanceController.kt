@@ -1,17 +1,18 @@
-package com.volundes.bancha.web.admin.maintenance
+package com.volundes.bancha.web.admin.maintenance.book
 
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
-@RequestMapping("/admin/maintenance/account")
-class AccountMaintenanceController {
+@RequestMapping("/admin/maintenance/book")
+class BookMaintenanceController {
 
     /**
      * indexへのマッピングです。
      */
     @RequestMapping
     fun index(): String {
-        return "admin/maintenance/account/index"
+        return "admin/maintenance/book/index"
     }
+    
 }

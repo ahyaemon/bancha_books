@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="head :: head('管理者メニュー')"></head>
+<body>
+    <!--/* ヘッダー */-->
+    <section class="sec-header" th:include="nav :: admin"></section>
+
+    <!--/* タイトル */-->
+    <section class="sec-title" th:include="title :: admin(title='Admin Menu', subtitle='管理しちゃう？')"></section>
+
+    <!--/* パンくずリスト */-->
+    <section class="sec-pankuzu">
+        <div class="siimple-breadcrumb bancha-bread">
+            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+            <div class="siimple-breadcrumb-item here"><a href="/admin/menu">管理者メニュー</a></div>
+            <div class="siimple-breadcrumb-item here"><a href="/admin/maintenance">マスタメンテナンス</a></div>
+            <div class="siimple-breadcrumb-item here">Account</div>
+        </div>
+    </section>
+
+    <!--/* メインコンテンツ */-->
+    <section class="sec-content">
+        <div class="siimple-table">
+            <div class="siimple-table-header">
+                <div class="siimple-table-row">
+                    <div class="siimple-table-cell">#</div>
+                    <div class="siimple-table-cell">ニックネーム</div>
+                    <div class="siimple-table-cell">email</div>
+                    <div class="siimple-table-cell">パスワード</div>
+                    <div class="siimple-table-cell">ロール</div>
+                    <div class="siimple-table-cell">ひとこと</div>
+                    <div class="siimple-table-cell">編集</div>
+                </div>
+            </div>
+            <div class="siimple-table-body">
+                <div class="siimple-table-row" th:each="item: ${accountMaintenanceItems}">
+                    <div class="siimple-table-cell" th:text="${item.accountId}"></div>
+                    <div class="siimple-table-cell" th:text="${item.nickname}"></div>
+                    <div class="siimple-table-cell" th:text="${item.email}"></div>
+                    <div class="siimple-table-cell" th:text="${item.hitokoto}"></div>
+                    <div class="siimple-table-cell" th:text="${item.role}"></div>
+                    <div class="siimple-table-cell">
+                        <button class="siimple-btn blightgreen white" type="button">EDIT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <!--/* フッター */-->
+    <section class="sec-footer">
+        <div th:replace="footer :: footer"></div>
+    </section>
+
+    <!--/* jsの読み込み */-->
+    <th:block th:replace="template/script :: script"></th:block>
+</body>
+</html>
