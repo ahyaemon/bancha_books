@@ -12,7 +12,7 @@ doma:
 display:
   limit:
     book: 5
-    sentence: 10
+    sentence: 30
     comment: 20
 
 smtp:

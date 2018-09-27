@@ -50,7 +50,7 @@ class BookControllerHelper(
     fun createCommentCountedBookItem(
             bookId: Long,
             page: Page
-    ): CommentCountedBookItem{
+    ): CommentCountedBookItem {
         val book = service.getCommentCountedBookByBookId(bookId, page)
         return CommentCountedBookItem(book)
     }

@@ -3,7 +3,7 @@ WITH
   AS (
     SELECT
       count(1) as comment_count,
-	  sentence_id
+	    sentence_id
     FROM
       comment
     GROUP BY
@@ -16,6 +16,7 @@ SELECT
   a.name AS author_name,
   s.sentence_id,
   s.sentence,
+  s.heading,
   CASE WHEN c.comment_count is null THEN 0
     ELSE c.comment_count
   END

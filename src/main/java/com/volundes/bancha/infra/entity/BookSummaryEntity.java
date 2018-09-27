@@ -25,6 +25,9 @@ public class BookSummaryEntity {
     @Column(name = "sentence")
     public String sentence;
 
+    @Column(name = "heading")
+    public Integer heading;
+
     @Column(name = "comment_count")
     public Long commentCount;
 

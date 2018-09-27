@@ -12,6 +12,9 @@ public class SentenceSummaryEntity {
     @Column(name = "sentence")
     public String sentence;
 
+    @Column(name = "heading")
+    public Integer heading;
+
     @Column(name = "comment_id")
     public Long commentId;
 

@@ -24,7 +24,7 @@ interface SentenceMapperExtension{
                 }else{
                     map{ Comment(it.commentId, it.accountId, it.commentName, it.comment) }
                 }
-        return Sentence(firstEntity.sentenceId, firstEntity.sentence, comments)
+        return Sentence(firstEntity.sentenceId, firstEntity.sentence, firstEntity.heading, comments)
     }
 
 }

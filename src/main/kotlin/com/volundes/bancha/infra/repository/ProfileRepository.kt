@@ -27,22 +27,22 @@ class ProfileRepository(
         }
 
         val account = profile.account
-        val table = account.toTable()
-        accountDao.update(table)
+        val accountTable = account.toTable()
+        accountDao.update(accountTable)
 
         val hitokoto = profile.hitokoto
         if(hitokoto != null){
-            val table = hitokoto.toTable(profile.account.accountId)
+            val hitokotoTable = hitokoto.toTable(profile.account.accountId)
 
             if(hitokoto.hitokotoId == null){
-                hitokotoDao.insert(table)
+                hitokotoDao.insert(hitokotoTable)
             }
             else{
                 if(hitokoto.value == ""){
-                    hitokotoDao.delete(table)
+                    hitokotoDao.delete(hitokotoTable)
                 }
                 else{
-                    hitokotoDao.update(table)
+                    hitokotoDao.update(hitokotoTable)
                 }
             }
         }

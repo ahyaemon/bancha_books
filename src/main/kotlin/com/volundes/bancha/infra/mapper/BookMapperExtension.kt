@@ -15,7 +15,7 @@ interface BookMapperExtension{
         val sentences = groupBy { it.sentenceId }
                 .map{ (sentenceId, entities) ->
                     val entity = entities.first()
-                    CommentCountedSentence(sentenceId, entity.sentence, entity.commentCount)
+                    CommentCountedSentence(sentenceId, entity.sentence, entity.heading, entity.commentCount)
                 }
         val entity = first()
         val author = Author(entity.authorId, entity.authorName)
