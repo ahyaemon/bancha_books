@@ -30,7 +30,7 @@
                 <!--/* sentenceが空の場合は<br> */-->
                 <th:block th:switch="${sentenceItem.sentence} == ''">
                     <th:block th:case="true">
-                        <br>
+                        <br><br>
                     </th:block>
                     <th:block th:case="false">
                         <div th:classappend="|bancha-h${sentenceItem.heading}|">
