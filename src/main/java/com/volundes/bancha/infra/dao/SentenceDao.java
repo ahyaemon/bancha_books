@@ -29,4 +29,5 @@ public interface SentenceDao {
 
     @Select
     int countSentenceByBookId(Long bookId);
+
 }

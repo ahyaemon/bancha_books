@@ -4,6 +4,7 @@ import com.volundes.bancha.domain.book.Author
 import com.volundes.bancha.domain.book.Book
 import com.volundes.bancha.domain.book.CommentCountedBook
 import com.volundes.bancha.domain.book.CommentCountedSentence
+import com.volundes.bancha.domain.book.service.License
 import com.volundes.bancha.domain.bookmenu.BookMenu
 import com.volundes.bancha.infra.entity.BookMenuEntity
 import com.volundes.bancha.infra.entity.BookSummaryEntity
@@ -15,11 +16,16 @@ interface BookMapperExtension{
         val sentences = groupBy { it.sentenceId }
                 .map{ (sentenceId, entities) ->
                     val entity = entities.first()
-                    CommentCountedSentence(sentenceId, entity.sentence, entity.commentCount)
+                    CommentCountedSentence(sentenceId, entity.sentence, entity.heading, entity.commentCount)
                 }
         val entity = first()
+        val license = if(entity.licenseId == null) {
+            null
+        } else {
+            License(entity.licenseId, entity.notice, entity.licenseType)
+        }
         val author = Author(entity.authorId, entity.authorName)
-        val book = CommentCountedBook(entity.bookId, entity.name, author, sentences)
+        val book = CommentCountedBook(entity.bookId, entity.name, author, license, sentences)
         return book
     }
 

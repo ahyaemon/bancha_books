@@ -1,6 +1,7 @@
 SELECT
   s.sentence_id,
   s.sentence,
+  s.heading,
   c.comment_id,
   c.account_id,
   c.comment,
