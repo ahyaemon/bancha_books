@@ -3,11 +3,14 @@ package com.volundes.bancha.domain.admin.download
 class Dml(
         tableData: TableData
 ) {
-    var dml: String
-    var name: String
+    val dml: String
+    val name: String
+    val version: String
 
     init{
         name = tableData.name
+        version = tableData.version
+
         val sb = StringBuilder()
         sb.append("INSERT INTO ${name}")
         sb.append("\r\n")

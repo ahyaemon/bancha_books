@@ -28,7 +28,10 @@ class DownloadController(
     ) {
         val dmls = service.getDmls()
         val zipper = Zipper(response, "dml.zip")
-        dmls.forEach{ zipper.addFile(it.dml.toByteArray(), "${it.name}.sql") }
+        dmls.forEach{
+            val filename = "${it.version}__Insert_${it.name}.sql"
+            zipper.addFile(it.dml.toByteArray(), filename)
+        }
         zipper.close()
     }
 
