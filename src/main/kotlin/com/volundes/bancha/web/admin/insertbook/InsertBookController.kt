@@ -25,9 +25,8 @@ class InsertBookController(
     fun index(
             model: Model
     ): String{
-        val htmlBookUploadForm = HtmlBookUploadForm()
-        model.addAttribute("htmlBookUploadForm", htmlBookUploadForm)
-
+        model.addAttribute("htmlBookUploadForm", HtmlBookUploadForm.default())
+        model.addAttribute("bookCreateForm", BookCreateForm.default())
         return "admin/insertbook/index"
     }
 
@@ -37,18 +36,23 @@ class InsertBookController(
      */
     @RequestMapping("/html")
     fun insertHtml(
-            @Validated htmlBookUploadForm: HtmlBookUploadForm,
+            @Validated form: HtmlBookUploadForm,
             result: BindingResult
     ): String{
-        val rawBook = createRowBook(htmlBookUploadForm)
+        val rawBook = RawBook.fromFile(form.file!!, "Shift-JIS")
         service.addBook(rawBook)
         return "admin/insertbook/index"
     }
 
-    private fun createRowBook(htmlBookUploadForm: HtmlBookUploadForm): RawBook {
-        val encode = "Shift-JIS"
-        val content = String(htmlBookUploadForm.file!!.bytes, Charset.forName(encode))
-        return RawBook(content)
+    /**
+     * 手動入力で本を新規登録します。
+     */
+    @RequestMapping("/create")
+    fun create(
+            form: BookCreateForm
+    ): String {
+
+        return "redirect:/admin/insertbook/"
     }
 
 }

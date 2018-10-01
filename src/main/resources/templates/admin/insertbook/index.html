@@ -3,7 +3,7 @@
 <head th:replace="head :: head('本の登録')"></head>
 <body>
     <section class="sec-header" th:include="nav :: admin"></section>
-    
+
     <section class="sec-title" th:include="title :: admin(title='本の登録', subtitle='本を登録')"></section>
 
     <section class="sec-pankuzu">
@@ -17,7 +17,7 @@
     <section class="sec-content">
         <div class="siimple-card">
             <div class="siimple-card-header">
-                HTMLファイルをアップロードして登録
+                青空HTMLのアップロード
             </div>
             <div class="siimple-card-body">
                 <div class="siimple-form">
@@ -27,42 +27,52 @@
                         </div>
                         <div class="siimple-field">
                             <button class="siimple-btn blightgreen white" type="submit">GO</button>
-                        </div>            
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
+
         <div class="siimple-card">
             <div class="siimple-card-header">
-                テキストファイルから登録
+                直接登録
             </div>
             <div class="siimple-card-body">
                 <div class="siimple-form">
-                    <div class="siimple-field">
-                        <input class="" type="file" placeholder=".txt"/>
-                    </div>
-                    <div class="siimple-field">
-                        <button class="siimple-btn blightgreen white" type="submit">GO</button>
-                    </div>
+                    <form action="/admin/insertbook/create" method="POST" th:object="${bookCreateForm}" enctype="multipart/form-data">
+                        <div class="siimple-field">
+                            <div class="siimple-field-label">タイトル</div>
+                            <input class="siimple-input siimple-imput-text" th:field="*{title}" type="text"/>
+                        </div>
+                        <div class="siimple-field">
+                            <div class="siimple-field-label">著者</div>
+                            <select class="siimple-select" th:field="*{authorId}">
+                                <option value="1">Aさん</option>
+                                <option value="2">Bさん</option>
+                                <option value="3">Cさん</option>
+                            </select>
+                        </div>
+                        <div class="siimple-field">
+                            <div class="siimple-field-label">ライセンス</div>
+                            <select class="siimple-select" th:field="*{licenseType}">
+                                <option value="None">なし</option>
+                                <option value="Cc">クリエイティブコモンズ</option>
+                            </select>
+                            <div class="siimple-field-label">注意書き</div>
+                            <textarea class="siimple-textarea siimple-textarea-fuild" th:field="*{licenseNotice}"></textarea>
+                        </div>
+                        <div class="siimple-field">
+                            <div class="siimple-field-label">コンテンツファイル</div>
+                            <input class="" type="file" placeholder=".txt" th:field="*{file}"/>
+                        </div>
+                        <div class="siimple-field">
+                            <button class="siimple-btn blightgreen white" type="submit">GO</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="siimple-card">
-            <div class="siimple-card-header">
-                URLを指定して登録
-            </div>
-            <div class="siimple-card-body">
-                <div class="siimple-form">
-                    <div class="siimple-field">
-                        <input class="siimple-input siimple-input-text" type="text" placeholder="URL"/>
-                    </div>
-                    <div class="siimple-field">
-                        <button class="siimple-btn blightgreen white" type="submit">GO</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
+
     </section>
 
     <section class="sec-footer">
