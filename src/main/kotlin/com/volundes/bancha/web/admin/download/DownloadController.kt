@@ -22,7 +22,7 @@ class DownloadController(
     /**
      * DMLをzipでダウンロードします。
      */
-    @RequestMapping("/dml")
+    @RequestMapping("/dml.zip")
     fun downloadDml(
             response: HttpServletResponse
     ) {
@@ -38,12 +38,12 @@ class DownloadController(
     /**
      * tsvをzipでダウンロードします。
      */
-    @RequestMapping("tsv")
+    @RequestMapping("tsv.zip")
     fun downloadTsv(
             response: HttpServletResponse
     ) {
         val tsvs = service.getTsvs()
-        val zipper = Zipper(response, "dml.zip")
+        val zipper = Zipper(response, "tsv.zip")
         tsvs.forEach{zipper.addFile(it.tsv.toByteArray(), "${it.name}.tsv")}
         zipper.close()
     }
