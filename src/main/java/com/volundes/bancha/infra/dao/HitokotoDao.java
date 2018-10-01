@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @AnnotateWith(annotations = {
         @Annotation(target = AnnotationTarget.CLASS, type = Component.class),
         @Annotation(target = AnnotationTarget.CONSTRUCTOR, type = Autowired.class) })
@@ -16,17 +18,22 @@ public interface HitokotoDao {
 
     @Select
     @Transactional
-    HitokotoTable selectByAccountId(Long accountId);
+    List<HitokotoTable> select();
 
-    @Update
+    @Select
     @Transactional
-    int update(HitokotoTable table);
+    HitokotoTable selectByAccountId(Long accountId);
 
     @Insert
     @Transactional
     int insert(HitokotoTable table);
 
+    @Update
+    @Transactional
+    int update(HitokotoTable table);
+
     @Delete
     @Transactional
     int delete(HitokotoTable table);
+
 }

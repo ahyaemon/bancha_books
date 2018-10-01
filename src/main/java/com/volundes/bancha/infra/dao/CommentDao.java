@@ -14,10 +14,6 @@ import java.util.List;
 @Dao
 public interface CommentDao {
 
-    @Insert
-    @Transactional
-    int insert(CommentTable entity);
-
     @Select
     @Transactional
     List<CommentTable> select();
@@ -26,14 +22,19 @@ public interface CommentDao {
     @Transactional
     CommentTable selectCommentByCommentId(Long commentId);
 
-    @Delete
-    @Transactional
-    int delete(CommentTable entity);
-
     @Select
     @Transactional
     Long selectId();
 
     @Select
     int countCommentBySentenceId(Long sentenceId);
+
+    @Insert
+    @Transactional
+    int insert(CommentTable entity);
+
+    @Delete
+    @Transactional
+    int delete(CommentTable entity);
+
 }

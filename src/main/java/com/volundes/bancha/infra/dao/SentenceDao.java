@@ -23,11 +23,11 @@ public interface SentenceDao {
     @Select
     List<SentenceSummaryEntity> selectSentenceSummaryBySentenceId(Long sentenceId, SelectOptions selectOptions);
 
+    @Select
+    int countSentenceByBookId(Long bookId);
+
     @BatchInsert
     @Transactional
     int[] insert(List<SentenceTable> entities);
-
-    @Select
-    int countSentenceByBookId(Long bookId);
 
 }

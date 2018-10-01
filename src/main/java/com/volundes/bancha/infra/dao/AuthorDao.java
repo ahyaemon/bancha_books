@@ -13,6 +13,11 @@ import java.util.List;
         @Annotation(target = AnnotationTarget.CONSTRUCTOR, type = Autowired.class) })
 @Dao
 public interface AuthorDao {
+
+    @Select
+    @Transactional
+    List<AuthorTable> select();
+
     @Select
     @Transactional
     AuthorTable selectByName(String name);
@@ -21,7 +26,4 @@ public interface AuthorDao {
     @Transactional
     int insert(AuthorTable authorEntity);
 
-    @Select
-    @Transactional
-    List<AuthorTable> select();
 }

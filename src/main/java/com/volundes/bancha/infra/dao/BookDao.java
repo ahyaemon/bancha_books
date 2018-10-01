@@ -16,10 +16,6 @@ import java.util.List;
 @Dao
 public interface BookDao {
 
-    @Insert
-    @Transactional
-    int insert(BookTable entity);
-
     @Select
     @Transactional
     List<BookTable> select();
@@ -36,4 +32,9 @@ public interface BookDao {
 
     @Select
     Integer countBook();
+
+    @Insert
+    @Transactional
+    int insert(BookTable entity);
+
 }
