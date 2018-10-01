@@ -11,4 +11,6 @@ select setval ('subtitle_subtitle_id_seq', 10000);
 
 select setval ('menu_menu_id_seq', 10000);
 
+select setval('table_info_table_info_id_seq', 10000);
+
 select setval ('donation_donation_id_seq', 10000);

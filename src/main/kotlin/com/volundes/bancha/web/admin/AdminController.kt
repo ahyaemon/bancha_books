@@ -43,11 +43,11 @@ class AdminController(
      * ajax。
      * データ復元用ＳＱＬのダウンロードを行います。
      */
-    @RequestMapping("/download/dml")
+    @RequestMapping("/download/dml_bak")
     fun downloadRestoreDml(): ResponseEntity<ByteArray>{
         val headers = HttpHeaders()
         headers.add("Content-Type", "text/csv; charset=UTF-8")
-        headers.setContentDispositionFormData("filename", "restore.script")
+        headers.setContentDispositionFormData("zipname", "restore.script")
 
         val dataList = service.getDataList()
         val dml = dataList.map{ it.toDml() }.reduce{ a, b -> "$a\n$b"}
@@ -58,13 +58,13 @@ class AdminController(
      * ajax。
      * データ復元用CSVのダウンロードを行います。
      */
-    @RequestMapping("/download/csv")
+    @RequestMapping("/download/csv_bak")
     fun downloadRestoreCsv(
             response: HttpServletResponse
     ) {
         // zipダウンロード用の情報をresponseにセット
         response.contentType = "application/octet-stream;charset=UTF-8"
-        response.setHeader("Content-Disposition", "attachment; filename=restore.zip")
+        response.setHeader("Content-Disposition", "attachment; zipname=restore.zip")
         response.setHeader("Content-Transfer-Encoding", "binary")
 
         val os = response.outputStream

@@ -4,7 +4,7 @@
 <body>
     <!--/* ヘッダー */-->
     <section class="sec-header" th:include="nav :: admin"></section>
-    
+
     <!--/* タイトル */-->
     <section class="sec-title" th:include="title :: admin(title='Admin Menu', subtitle='管理しちゃう？')"></section>
 
@@ -13,9 +13,9 @@
         <div class="siimple-breadcrumb bancha-bread">
             <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
             <div class="siimple-breadcrumb-item here">管理者メニュー</div>
-        </div>        
+        </div>
     </section>
-    
+
     <!--/* メインコンテンツ */-->
     <section class="sec-content">
         <a href="/admin/maintenance">
@@ -23,6 +23,14 @@
                 <div class="siimple-card-body">
                     <div class="siimple-card-title">MASTER MAINTENANCE</div>
                     <div class="siimple-card-subtitle">マスタメンテナンス</div>
+                </div>
+            </div>
+        </a>
+        <a href="/admin/download">
+            <div class="siimple-card bancha-card bancha-back-blue">
+                <div class="siimple-card-body">
+                    <div class="siimple-card-title">DATA DOWNLOAD</div>
+                    <div class="siimple-card-subtitle">データダウンロード</div>
                 </div>
             </div>
         </a>
