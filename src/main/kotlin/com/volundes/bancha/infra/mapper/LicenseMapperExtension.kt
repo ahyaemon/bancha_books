@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.book.service.License
+import com.volundes.bancha.domain.`object`.book.License
 import com.volundes.bancha.infra.entity.table.LicenseTable
 
 interface LicenseMapperExtension {

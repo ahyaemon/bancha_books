@@ -1,8 +1,8 @@
 package com.volundes.bancha.web.general.profile
 
-import com.volundes.bancha.domain.account.Account
-import com.volundes.bancha.domain.general.profile.Hitokoto
-import com.volundes.bancha.domain.general.profile.Profile
+import com.volundes.bancha.domain.`object`.account.Account
+import com.volundes.bancha.domain.`object`.general.profile.Hitokoto
+import com.volundes.bancha.domain.`object`.general.profile.Profile
 
 data class ProfileEditForm(
         val nickname: String,

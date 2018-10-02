@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.admin.updatebook
 
-import com.volundes.bancha.domain.admin.updatebook.UpdateBookService
+import com.volundes.bancha.domain.service.admin.updatebook.UpdateBookService
 import com.volundes.bancha.web.book.item.CommentCountedBookItem
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model

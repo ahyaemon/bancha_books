@@ -1,11 +1,11 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.book.Author
-import com.volundes.bancha.domain.book.Book
-import com.volundes.bancha.domain.book.CommentCountedBook
-import com.volundes.bancha.domain.book.CommentCountedSentence
-import com.volundes.bancha.domain.book.service.License
-import com.volundes.bancha.domain.bookmenu.BookMenu
+import com.volundes.bancha.domain.`object`.book.Author
+import com.volundes.bancha.domain.`object`.book.Book
+import com.volundes.bancha.domain.`object`.book.CommentCountedBook
+import com.volundes.bancha.domain.`object`.book.CommentCountedSentence
+import com.volundes.bancha.domain.`object`.book.License
+import com.volundes.bancha.domain.`object`.bookmenu.BookMenu
 import com.volundes.bancha.infra.entity.BookMenuEntity
 import com.volundes.bancha.infra.entity.BookSummaryEntity
 import com.volundes.bancha.infra.entity.table.BookTable
@@ -29,7 +29,7 @@ interface BookMapperExtension{
         return book
     }
 
-    fun BookMenuEntity.toBookMenu() =  BookMenu(id, name, author)
+    fun BookMenuEntity.toBookMenu() = BookMenu(id, name, author)
     fun List<BookMenuEntity>.toBookMenus() =  map{ it.toBookMenu() }
 
     fun Book.toBookEntity(authorId: Long): BookTable {

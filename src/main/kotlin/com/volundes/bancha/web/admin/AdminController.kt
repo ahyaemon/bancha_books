@@ -1,16 +1,8 @@
 package com.volundes.bancha.web.admin
 
-import com.volundes.bancha.domain.admin.AdminService
-import org.springframework.http.HttpHeaders
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
-import org.springframework.security.core.Authentication
+import com.volundes.bancha.domain.service.admin.AdminService
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
-import java.io.BufferedOutputStream
-import java.util.zip.ZipEntry
-import java.util.zip.ZipOutputStream
-import javax.servlet.http.HttpServletResponse
 
 /**
  * 「管理メニュー」画面を担うControllerです。

@@ -1,14 +1,14 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.account.Account
-import com.volundes.bancha.domain.general.profile.Hitokoto
-import com.volundes.bancha.domain.general.profile.Profile
+import com.volundes.bancha.domain.`object`.account.Account
+import com.volundes.bancha.domain.`object`.general.profile.Hitokoto
+import com.volundes.bancha.domain.`object`.general.profile.Profile
 import com.volundes.bancha.infra.entity.ProfileEntity
 import com.volundes.bancha.infra.entity.table.AccountTable
 
 interface AccountMapperExtension {
 
-    fun AccountTable.toAccount() =  Account(id, email, pass, role, nickname)
+    fun AccountTable.toAccount() = Account(id, email, pass, role, nickname)
 
     fun Account.toTable(): AccountTable {
         val table = AccountTable()

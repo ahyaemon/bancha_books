@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.admin.download
 
-import com.volundes.bancha.domain.admin.download.DownloadService
+import com.volundes.bancha.domain.service.admin.download.DownloadService
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
 import javax.servlet.http.HttpServletResponse

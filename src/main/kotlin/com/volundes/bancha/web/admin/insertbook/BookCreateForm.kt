@@ -1,9 +1,9 @@
 package com.volundes.bancha.web.admin.insertbook
 
-import com.volundes.bancha.domain.book.Author
-import com.volundes.bancha.domain.book.Book
-import com.volundes.bancha.domain.book.Sentence
-import com.volundes.bancha.domain.book.service.License
+import com.volundes.bancha.domain.`object`.book.Author
+import com.volundes.bancha.domain.`object`.book.Book
+import com.volundes.bancha.domain.`object`.book.Sentence
+import com.volundes.bancha.domain.`object`.book.License
 import org.springframework.web.multipart.MultipartFile
 import java.nio.charset.Charset
 

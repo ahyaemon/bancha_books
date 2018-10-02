@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.role
 
-import com.volundes.bancha.domain.account.Account
+import com.volundes.bancha.domain.`object`.account.Account
 import org.slf4j.LoggerFactory
 import org.springframework.security.core.Authentication
 import org.springframework.web.bind.annotation.ControllerAdvice

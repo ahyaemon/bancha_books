@@ -1,7 +1,7 @@
 package com.volundes.bancha.infra.repository
 
-import com.volundes.bancha.domain.general.profile.Hitokoto
-import com.volundes.bancha.domain.general.profile.Profile
+import com.volundes.bancha.domain.`object`.general.profile.Hitokoto
+import com.volundes.bancha.domain.`object`.general.profile.Profile
 import com.volundes.bancha.infra.dao.AccountDao
 import com.volundes.bancha.infra.dao.HitokotoDao
 import com.volundes.bancha.infra.mapper.AccountMapperExtension
@@ -49,7 +49,7 @@ class ProfileRepository(
 
     }
 
-    fun findProfile(accountId: Long) :Profile {
+    fun findProfile(accountId: Long) : Profile {
         val profileEntity = accountDao.selectProfileByAccountId(accountId)
         return profileEntity.toProfile()
     }

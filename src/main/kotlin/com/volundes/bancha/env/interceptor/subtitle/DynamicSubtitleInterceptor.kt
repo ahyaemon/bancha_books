@@ -1,6 +1,6 @@
 package com.volundes.bancha.env.interceptor.subtitle
 
-import com.volundes.bancha.domain.subtitle.SubtitleProvider
+import com.volundes.bancha.domain.service.subtitle.SubtitleProvider
 import org.aspectj.lang.annotation.Aspect
 import org.springframework.stereotype.Component
 import org.springframework.web.method.HandlerMethod

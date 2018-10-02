@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.menu
 
-import com.volundes.bancha.domain.menu.Menu
+import com.volundes.bancha.domain.`object`.menu.Menu
 
 class MenuItem(
         var menuId: Long?,

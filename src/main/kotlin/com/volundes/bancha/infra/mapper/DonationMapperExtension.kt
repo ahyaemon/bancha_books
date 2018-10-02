@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.donation.Donation
+import com.volundes.bancha.domain.`object`.donation.Donation
 import com.volundes.bancha.infra.entity.table.DonationTable
 
 interface DonationMapperExtension {

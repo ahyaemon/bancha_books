@@ -1,7 +1,7 @@
 package com.volundes.bancha.web.book
 
-import com.volundes.bancha.domain.account.Account
-import com.volundes.bancha.domain.book.service.BookService
+import com.volundes.bancha.domain.`object`.account.Account
+import com.volundes.bancha.domain.service.book.BookService
 import com.volundes.bancha.web.book.form.CommentForm
 import com.volundes.bancha.web.book.form.CommentPagingForm
 import com.volundes.bancha.web.book.item.SentenceIdItem

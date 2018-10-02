@@ -1,9 +1,8 @@
 package com.volundes.bancha.infra.repository
 
-import com.volundes.bancha.domain.book.*
-import com.volundes.bancha.domain.book.service.License
-import com.volundes.bancha.domain.bookmenu.BookMenu
-import com.volundes.bancha.domain.paging.Page
+import com.volundes.bancha.domain.`object`.book.*
+import com.volundes.bancha.domain.`object`.bookmenu.BookMenu
+import com.volundes.bancha.domain.`object`.paging.Page
 import com.volundes.bancha.infra.dao.*
 import com.volundes.bancha.infra.mapper.*
 import org.springframework.stereotype.Repository

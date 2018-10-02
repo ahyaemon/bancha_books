@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.general.register
 
-import com.volundes.bancha.domain.account.Account
+import com.volundes.bancha.domain.`object`.account.Account
 
 data class AccountCreateForm(
         val email: String,

@@ -1,7 +1,7 @@
 package com.volundes.bancha.web.book
 
-import com.volundes.bancha.domain.book.service.BookService
-import com.volundes.bancha.domain.paging.Page
+import com.volundes.bancha.domain.service.book.BookService
+import com.volundes.bancha.domain.`object`.paging.Page
 import com.volundes.bancha.env.setting.DisplayLimitSettings
 import com.volundes.bancha.env.setting.SubmitSettings
 import com.volundes.bancha.web.book.form.CommentForm

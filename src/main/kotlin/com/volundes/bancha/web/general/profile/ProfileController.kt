@@ -1,7 +1,7 @@
 package com.volundes.bancha.web.general.profile
 
-import com.volundes.bancha.domain.account.Account
-import com.volundes.bancha.domain.general.profile.ProfileService
+import com.volundes.bancha.domain.`object`.account.Account
+import com.volundes.bancha.domain.service.general.profile.ProfileService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
