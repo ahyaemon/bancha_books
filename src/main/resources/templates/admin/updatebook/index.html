@@ -3,7 +3,7 @@
 <head th:replace="head :: head('管理者ログイン')"></head>
 <body>
     <section class="sec-header" th:include="nav :: admin"></section>
-    
+
     <section class="sec-title" th:include="title :: admin(title='本の更新', subtitle='更新する本を選択する')"></section>
 
     <section class="sec-pankuzu">
@@ -21,7 +21,9 @@
                     <div class="siimple-table-cell">#</div>
                     <div class="siimple-table-cell">タイトル</div>
                     <div class="siimple-table-cell">著者</div>
+                    <div class="siimple-table-cell">文</div>
                     <div class="siimple-table-cell">編集</div>
+                    <div class="siimple-table-cell">削除</div>
                 </div>
             </div>
             <div class="siimple-table-body">
@@ -30,9 +32,15 @@
                     <div class="siimple-table-cell" th:text="${updateBookMenuItem.name}"></div>
                     <div class="siimple-table-cell" th:text="${updateBookMenuItem.author}"></div>
                     <div class="siimple-table-cell">
+                        <button class="siimple-btn blightgreen white" type="button">SENTENCE</button>
+                    </div>
+                    <div class="siimple-table-cell">
                         <a th:href="|/admin/updatebook/${updateBookMenuItem.bookId}|">
                             <button class="siimple-btn blightgreen white" type="button">EDIT</button>
                         </a>
+                    </div>
+                    <div class="siimple-table-cell">
+                        <button class="siimple-btn blightgreen white" type="button">DELETE</button>
                     </div>
                 </div>
             </div>
