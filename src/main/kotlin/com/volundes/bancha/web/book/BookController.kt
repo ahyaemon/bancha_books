@@ -64,7 +64,7 @@ class BookController(
             // FIXME どのaccountIdとマッチしないものの判定だけど、-1ってどうなの
             helper.createSentenceItem(sentenceIdItem.sentenceId, -1, page)
         } else {
-            helper.createSentenceItem(sentenceIdItem.sentenceId, account.accountId!!, page)
+            helper.createSentenceItem(sentenceIdItem.sentenceId, account.id!!, page)
         }
         model.addAttribute("sentenceItem", sentenceItem)
 
@@ -92,7 +92,7 @@ class BookController(
             // FIXME どのaccountIdとマッチしないものの判定だけど、-1ってどうなの
             helper.createSentenceItem(commentPagingForm.sentenceId, -1, page)
         } else {
-            helper.createSentenceItem(commentPagingForm.sentenceId, account.accountId!!, page)
+            helper.createSentenceItem(commentPagingForm.sentenceId, account.id!!, page)
         }
         model.addAttribute("sentenceItem", sentenceItem)
 
@@ -128,19 +128,19 @@ class BookController(
             model.addAttribute("page", page)
             model.addAttribute(
                     "sentenceItem",
-                    helper.createSentenceItem(sentenceId, account!!.accountId!!, page)
+                    helper.createSentenceItem(sentenceId, account!!.id!!, page)
             )
             return "book/comment :: comment"
         }
 
-        service.createComment(sentenceId, commentForm.toComment(account!!.accountId!!))
+        service.createComment(sentenceId, commentForm.toComment(account!!.id!!))
         submitInfoList.addNewInfo(bookId, sentenceId, submitDateTime)
         // FIXME とりあえず最初のページに戻している
         val page = helper.createCommentPage(1, sentenceId)
         model.addAttribute("page", page)
         model.addAttribute(
                 "sentenceItem",
-                helper.createSentenceItem(sentenceId, account.accountId!!, page)
+                helper.createSentenceItem(sentenceId, account.id!!, page)
         )
         model.addAttribute("commentForm", helper.createCommentForm(bookId))
         return "book/comment :: comment"

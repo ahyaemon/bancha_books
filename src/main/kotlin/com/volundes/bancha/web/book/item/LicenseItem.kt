@@ -8,6 +8,6 @@ data class LicenseItem(
         val licenseType: String
 ) {
 
-    constructor(license: License): this(license.licenseId, license.notice, license.licenseType)
+    constructor(license: License): this(license.id, license.notice, license.licenseType)
 
 }

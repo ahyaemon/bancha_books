@@ -1,4 +1,4 @@
-package com.volundes.bancha.domain.`object`.admin
+package com.volundes.bancha.domain.vo.admin
 
 /**
  * 一行のレコードを表現するクラスです。

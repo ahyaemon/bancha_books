@@ -9,6 +9,6 @@ class UpdateBookMenuItem(
 ){
 
     constructor(bookMenu: BookMenu):
-            this(bookMenu.bookId, bookMenu.name, bookMenu.author)
+            this(bookMenu.id, bookMenu.name, bookMenu.author)
 
 }

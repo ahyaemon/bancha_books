@@ -56,7 +56,7 @@ class ProfileController(
         if(this == null){
             return false
         }
-        return this.accountId == otherId.toLong()
+        return this.id == otherId.toLong()
     }
 
     /**
@@ -88,7 +88,7 @@ class ProfileController(
         )
         httpSession.setAttribute("account", newAccount)
 
-        val accountId = account.accountId
+        val accountId = account.id
         return "redirect:/profile/$accountId"
     }
 

@@ -1,4 +1,4 @@
-package com.volundes.bancha.domain.`object`.paging
+package com.volundes.bancha.domain.page
 
 /**
  * ページング管理クラスです。

@@ -8,6 +8,6 @@ data class BookMenuItem(
     var author: String = ""
 ) {
 
-    constructor(bookMenu: BookMenu) : this(bookMenu.bookId, bookMenu.name, bookMenu.author)
+    constructor(bookMenu: BookMenu) : this(bookMenu.id, bookMenu.name, bookMenu.author)
 
 }

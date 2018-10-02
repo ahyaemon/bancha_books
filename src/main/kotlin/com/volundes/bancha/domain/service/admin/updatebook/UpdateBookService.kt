@@ -2,7 +2,7 @@ package com.volundes.bancha.domain.service.admin.updatebook
 
 import com.volundes.bancha.domain.`object`.book.CommentCountedBook
 import com.volundes.bancha.domain.`object`.bookmenu.BookMenu
-import com.volundes.bancha.domain.`object`.paging.Page
+import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.infra.repository.BookRepository
 import org.springframework.stereotype.Service
 
@@ -20,7 +20,7 @@ class UpdateBookService(
      * @return 今ある本のリスト
      */
     fun getUpdateBookMenus(): List<BookMenu>{
-        val page =  Page(1, 10, 15, "/admin/book/update")
+        val page = Page(1, 10, 15, "/admin/book/update")
         return repository.getBookMenus(page)
     }
 
@@ -30,7 +30,7 @@ class UpdateBookService(
      * @return コメント数のカウント付きの本
      */
     fun getCommentCountedBookByBookId(bookId: Long): CommentCountedBook {
-        val page =  Page(1, 10, 15, "/admin/book/update")
+        val page = Page(1, 10, 15, "/admin/book/update")
         return repository.getCommentCountedBookByBookId(bookId, page)
     }
 

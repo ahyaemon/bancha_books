@@ -11,7 +11,7 @@ class CommentCountedBookItem(
 ) {
     constructor(book: CommentCountedBook):
             this(
-                    book.bookId,
+                    book.id,
                     book.name,
                     book.author.name,
                     if(book.license == null){

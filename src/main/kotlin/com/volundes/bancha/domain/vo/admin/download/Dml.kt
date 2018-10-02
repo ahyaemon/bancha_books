@@ -1,4 +1,4 @@
-package com.volundes.bancha.domain.`object`.admin.download
+package com.volundes.bancha.domain.vo.admin.download
 
 class Dml(
         tableData: TableData

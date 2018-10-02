@@ -10,7 +10,7 @@ class CommentCountedSentenceItem(
 ){
 
     constructor(sentence: CommentCountedSentence):
-            this(sentence.sentenceId, sentence.sentence, sentence.heading, sentence.commentCount)
+            this(sentence.id, sentence.sentence, sentence.heading, sentence.commentCount)
 
     fun hasComment() = commentCount > 0
 

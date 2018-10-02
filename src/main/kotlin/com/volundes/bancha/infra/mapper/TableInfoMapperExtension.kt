@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.`object`.admin.download.TableInfo
+import com.volundes.bancha.domain.vo.admin.download.TableInfo
 import com.volundes.bancha.infra.entity.table.TableInfoTable
 import org.springframework.stereotype.Component
 

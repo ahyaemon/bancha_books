@@ -26,7 +26,7 @@ data class ProfileEditForm(
     ): this (
             account.nickname,
             account.email,
-            hitokoto.hitokotoId,
+            hitokoto.id,
             hitokoto.value
     )
 

@@ -1,7 +1,7 @@
 package com.volundes.bancha.domain.service.admin.insertbook
 
-import com.volundes.bancha.domain.`object`.admin.insertbook.RawBook
-import com.volundes.bancha.domain.`object`.admin.insertbook.RawBookParser
+import com.volundes.bancha.domain.vo.admin.insertbook.RawBook
+import com.volundes.bancha.domain.vo.admin.insertbook.RawBookParser
 import com.volundes.bancha.domain.`object`.book.Author
 import com.volundes.bancha.domain.`object`.book.Book
 import com.volundes.bancha.domain.`object`.book.Sentence

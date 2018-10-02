@@ -10,7 +10,7 @@ class SentenceItem(
 
     constructor(sentence: Sentence, accountId: Long):
             this(
-                    sentence.sentenceId,
+                    sentence.id,
                     sentence.sentence,
                     sentence.comments.map{ CommentItem(it, accountId) }
             )

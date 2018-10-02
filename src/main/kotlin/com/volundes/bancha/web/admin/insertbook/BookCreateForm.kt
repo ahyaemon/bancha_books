@@ -23,7 +23,7 @@ data class BookCreateForm(
 
     fun tobook(authors: List<Author>, encode: String): Book {
         val sentences = createSentences(file!!, encode)
-        val author = authors.first{ it.authorId == authorId }
+        val author = authors.first{ it.id == authorId }
         val license = if(licenseType == "None"){
             null
         }else{

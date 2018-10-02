@@ -11,7 +11,7 @@ class CommentItem(
 
     constructor(comment: Comment, accountId: Long):
             this(
-                    comment.commentId,
+                    comment.id,
                     comment.name,
                     comment.comment,
                    comment.accountId == accountId

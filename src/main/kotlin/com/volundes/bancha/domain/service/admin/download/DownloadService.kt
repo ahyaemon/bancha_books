@@ -1,9 +1,9 @@
 package com.volundes.bancha.domain.service.admin.download
 
-import com.volundes.bancha.domain.`object`.admin.download.Dml
-import com.volundes.bancha.domain.`object`.admin.download.TableData
-import com.volundes.bancha.domain.`object`.admin.download.TableInfo
-import com.volundes.bancha.domain.`object`.admin.download.Tsv
+import com.volundes.bancha.domain.vo.admin.download.Dml
+import com.volundes.bancha.domain.vo.admin.download.TableData
+import com.volundes.bancha.domain.vo.admin.download.TableInfo
+import com.volundes.bancha.domain.vo.admin.download.Tsv
 import com.volundes.bancha.infra.repository.TableInfoRepository
 import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Service

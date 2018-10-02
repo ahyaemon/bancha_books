@@ -12,7 +12,7 @@ interface AccountMapperExtension {
 
     fun Account.toTable(): AccountTable {
         val table = AccountTable()
-        table.id = accountId
+        table.id = id
         table.email = email
         table.pass = pass
         table.role = role

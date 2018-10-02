@@ -1,4 +1,4 @@
-package com.volundes.bancha.domain.`object`.admin
+package com.volundes.bancha.domain.vo.admin
 
 /**
  * 複数のレコードを保持するデータ構造を表現するクラスです。

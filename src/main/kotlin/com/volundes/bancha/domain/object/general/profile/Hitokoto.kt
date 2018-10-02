@@ -1,6 +1,6 @@
 package com.volundes.bancha.domain.`object`.general.profile
 
 data class Hitokoto(
-        val hitokotoId: Long?,
+        val id: Long?,
         val value: String
 )

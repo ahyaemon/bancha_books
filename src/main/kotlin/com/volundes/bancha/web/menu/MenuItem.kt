@@ -8,5 +8,5 @@ class MenuItem(
         var subtitle: String,
         var url: String
 ) {
-    constructor(menu: Menu): this(menu.menuId, menu.title, menu.subtitle, menu.url)
+    constructor(menu: Menu): this(menu.id, menu.title, menu.subtitle, menu.url)
 }

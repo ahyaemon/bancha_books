@@ -3,7 +3,7 @@ package com.volundes.bancha.domain.service.book
 import com.volundes.bancha.domain.`object`.book.Comment
 import com.volundes.bancha.domain.`object`.book.CommentCountedBook
 import com.volundes.bancha.domain.`object`.book.Sentence
-import com.volundes.bancha.domain.`object`.paging.Page
+import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.infra.repository.BookRepository
 import org.springframework.stereotype.Service
 

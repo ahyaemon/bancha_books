@@ -1,7 +1,7 @@
 package com.volundes.bancha.web.bookmenu
 
 import com.volundes.bancha.domain.service.bookmenu.BookMenuService
-import com.volundes.bancha.domain.`object`.paging.Page
+import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.env.interceptor.subtitle.DynamicSubtitle
 import com.volundes.bancha.env.setting.DisplayLimitSettings
 import org.springframework.lang.Nullable

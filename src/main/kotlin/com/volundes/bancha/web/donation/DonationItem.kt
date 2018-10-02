@@ -8,5 +8,5 @@ data class DonationItem(
         val comment: String,
         val amount: String
 ){
-    constructor(donation: Donation): this(donation.donationId, donation.name, donation.comment, donation.amount.toString())
+    constructor(donation: Donation): this(donation.id, donation.name, donation.comment, donation.amount.toString())
 }

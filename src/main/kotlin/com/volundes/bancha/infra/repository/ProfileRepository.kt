@@ -22,7 +22,7 @@ class ProfileRepository(
     }
 
     fun editProfile(profile: Profile) {
-        if(profile.account.accountId == null){
+        if(profile.account.id == null){
             return
         }
 
@@ -32,9 +32,9 @@ class ProfileRepository(
 
         val hitokoto = profile.hitokoto
         if(hitokoto != null){
-            val hitokotoTable = hitokoto.toTable(profile.account.accountId)
+            val hitokotoTable = hitokoto.toTable(profile.account.id)
 
-            if(hitokoto.hitokotoId == null){
+            if(hitokoto.id == null){
                 hitokotoDao.insert(hitokotoTable)
             }
             else{

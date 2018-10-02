@@ -1,4 +1,4 @@
-package com.volundes.bancha.domain.`object`.admin.insertbook
+package com.volundes.bancha.domain.vo.admin.insertbook
 
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
