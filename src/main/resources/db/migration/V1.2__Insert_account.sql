@@ -1,5 +1,5 @@
 INSERT INTO account
-  (account_id, email, pass, role, nickname)
+  (id, email, pass, role, nickname)
 VALUES
   (1, 'iamahyaemon@gmail.com', '$2a$10$mXa8Z6755irqIylhYnOtGOO1hdseWS05AE9Xi3lhVzNGAz8Q4juMO', 'admin', 'あひゃえもん'),
   (2, 'taro@test.com', '$2a$10$J0k1BkGVcg8kyr2bm0w/qeLb5dlN4wxAx8M7uH5Ka5iMArOBRtVJu', 'general', '太郎'),

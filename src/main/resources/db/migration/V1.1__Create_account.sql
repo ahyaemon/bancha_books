@@ -1,9 +1,9 @@
 CREATE TABLE account
 (
-    account_id serial NOT NULL,
+    id serial NOT NULL,
     email CHARACTER varying(255) UNIQUE NOT NULL,
     pass CHARACTER varying(255) NOT NULL,
     role CHARACTER varying(255) NOT NULL,
     nickname CHARACTER VARYING(255) UNIQUE NOT NULL,
-    PRIMARY KEY (account_id)
+    PRIMARY KEY (id)
 )

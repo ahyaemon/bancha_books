@@ -1,17 +1,17 @@
 SELECT
-  a.account_id,
+  a.id as account_id,
   a.name,
   a.pass,
   a.role,
   a.nickname,
-  h.hitokoto_id,
+  h.id as hitokoto_id,
   h.value as hitokoto_value
 FROM
   account a
   INNER JOIN
     hitokoto h
     ON
-      a.account_id = h.account_id
+      a.id = h.id
 WHERE
-  a.account_id = /* accountId */0
+  a.id = /* accountId */0
 ;

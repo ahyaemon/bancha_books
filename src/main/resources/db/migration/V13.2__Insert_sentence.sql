@@ -1,5 +1,5 @@
 INSERT INTO sentence
-  (sentence_id, book_id, sentence, heading)
+  (id, book_id, sentence, heading)
 VALUES
   (1, '1', 'Banchaとは', '6'),
   (2, '1', 'Banchaは読書を目的として作られたサイトです。', '7'),

@@ -12,7 +12,7 @@ interface AuthorMapperExtension {
     }
 
     fun AuthorTable.toAuthor(): Author {
-        return Author(authorId, name)
+        return Author(id, name)
     }
 
 }

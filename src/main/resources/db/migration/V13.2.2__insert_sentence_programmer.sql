@@ -1,5 +1,5 @@
 INSERT INTO sentence
-  (sentence_id, book_id, sentence, heading)
+  (id, book_id, sentence, heading)
 VALUES
   (1000, '3', '分別のある行動', '5'),
   (1001, '3', 'Seb Rose', '6'),

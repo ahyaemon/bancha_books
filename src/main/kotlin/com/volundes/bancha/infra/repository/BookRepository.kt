@@ -56,12 +56,12 @@ class BookRepository(
         }
         val authorId =
                 if (authorExists) {
-                    authorEntityInDB.authorId
+                    authorEntityInDB.id
                 }
                 else{
                     // 一旦INSERTしたものを抜き出し、IDを得る
                     // TODO トランザクションレベルの考慮が必要
-                    authorDao.selectByName(book.author.name).authorId
+                    authorDao.selectByName(book.author.name).id
                 }
 
         // Book

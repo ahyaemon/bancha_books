@@ -8,8 +8,8 @@ public class SentenceTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "sentence_id")
-    public Long sentenceId;
+    @Column(name = "id")
+    public Long id;
 
     @Column(name = "book_id")
     public Long bookId;

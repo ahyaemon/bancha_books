@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 @Component
 interface TableInfoMapperExtension {
 
-    fun TableInfoTable.toTableInfo() = TableInfo(tableInfoId, name, version)
+    fun TableInfoTable.toTableInfo() = TableInfo(id, name, version)
     fun List<TableInfoTable>.toTableInfos() = map{ it.toTableInfo() }
 
 }

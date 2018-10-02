@@ -7,8 +7,8 @@ import org.seasar.doma.*;
 public class AccountTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_id")
-    public Long accountId;
+    @Column(name = "id")
+    public Long id;
 
     @Column(name = "email")
     public String email;

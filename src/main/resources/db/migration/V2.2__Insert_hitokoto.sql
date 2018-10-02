@@ -1,5 +1,5 @@
 INSERT INTO hitokoto
-  (hitokoto_id, account_id, value)
+  (id, account_id, value)
 VALUES
   (1, '2', 'こんにちは。僕の名前は太郎です。精神的に向上心のない奴は馬鹿だ。'),
   (2, '3', 'Hello'),

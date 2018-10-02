@@ -29,12 +29,12 @@ interface BookMapperExtension{
         return book
     }
 
-    fun BookMenuEntity.toBookMenu() =  BookMenu(bookId, name, author)
+    fun BookMenuEntity.toBookMenu() =  BookMenu(id, name, author)
     fun List<BookMenuEntity>.toBookMenus() =  map{ it.toBookMenu() }
 
     fun Book.toBookEntity(authorId: Long): BookTable {
         val entity = BookTable()
-        entity.bookId = bookId
+        entity.id = bookId
         entity.name = name
         entity.authorId = authorId
         return entity

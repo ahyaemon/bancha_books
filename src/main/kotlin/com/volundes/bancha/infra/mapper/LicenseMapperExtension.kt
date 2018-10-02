@@ -7,7 +7,7 @@ interface LicenseMapperExtension {
 
     fun License.toTable(bookId: Long): LicenseTable {
         val table = LicenseTable()
-        table.licenseId = licenseId
+        table.id = licenseId
         table.bookId = bookId
         table.licenseType = licenseType
         table.notice = notice

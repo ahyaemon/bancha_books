@@ -21,7 +21,7 @@ class AccountRepository(
 
     fun getAccountId(account: Account): Long {
         val table = accountDao.selectByEmail(account.email)
-        return table.accountId
+        return table.id
     }
 
 }

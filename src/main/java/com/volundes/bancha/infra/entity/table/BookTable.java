@@ -7,8 +7,8 @@ import org.seasar.doma.*;
 public class BookTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "book_id")
-    public Long bookId;
+    @Column(name = "id")
+    public Long id;
 
     @Column(name = "name")
     public String name;

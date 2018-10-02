@@ -20,9 +20,9 @@ class ProfileController(
     /**
      * indexへのマッピングです。
      */
-    @RequestMapping("{accountId}")
+    @RequestMapping("{id}")
     fun index(
-            @PathVariable("accountId") accountId: String,
+            @PathVariable("id") accountId: String,
             @ModelAttribute(binding = false) account: Account?,
             model: Model
     ): String{

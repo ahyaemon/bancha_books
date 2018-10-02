@@ -13,7 +13,7 @@ interface DonationMapperExtension {
         return entity
     }
 
-    fun DonationTable.toDonation() = Donation(donationId, name, comment, amount)
+    fun DonationTable.toDonation() = Donation(id, name, comment, amount)
     fun List<DonationTable>.toDonations() = map{ it.toDonation() }
 
 }

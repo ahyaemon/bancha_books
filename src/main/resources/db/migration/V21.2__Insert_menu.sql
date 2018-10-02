@@ -1,5 +1,5 @@
 INSERT INTO menu
-  (menu_id, title, subtitle, url)
+  (id, title, subtitle, url)
 VALUES
   (1, 'Books', 'メインコンテンツ', '/bookmenu'),
   (2, 'About', 'このページについて', '/about'),

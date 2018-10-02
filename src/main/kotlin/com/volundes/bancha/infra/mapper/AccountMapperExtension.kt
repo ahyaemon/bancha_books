@@ -8,11 +8,11 @@ import com.volundes.bancha.infra.entity.table.AccountTable
 
 interface AccountMapperExtension {
 
-    fun AccountTable.toAccount() =  Account(accountId, email, pass, role, nickname)
+    fun AccountTable.toAccount() =  Account(id, email, pass, role, nickname)
 
     fun Account.toTable(): AccountTable {
         val table = AccountTable()
-        table.accountId = accountId
+        table.id = accountId
         table.email = email
         table.pass = pass
         table.role = role

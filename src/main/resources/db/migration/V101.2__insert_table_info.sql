@@ -1,5 +1,5 @@
 INSERT INTO table_info
-  (table_info_id, name, version)
+  (id, name, version)
 VALUES
   (1, 'account', 'V1.2'),
   (2, 'hitokoto', 'V2.2'),

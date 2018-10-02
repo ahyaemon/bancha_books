@@ -7,8 +7,8 @@ import org.seasar.doma.*;
 public class LicenseTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "license_id")
-    public Long licenseId;
+    @Column(name = "id")
+    public Long id;
 
     @Column(name = "book_id")
     public Long bookId;

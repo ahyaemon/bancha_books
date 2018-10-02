@@ -1,5 +1,5 @@
 INSERT INTO subtitle
-  (subtitle_id, title_cd, subtitle)
+  (id, title_cd, subtitle)
 VALUES
   (1, 'home', 'すべてはここから始まる'),
   (2, 'home', '万物の根源'),

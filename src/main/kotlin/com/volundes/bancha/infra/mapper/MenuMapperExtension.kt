@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component
 @Component
 interface MenuMapperExtension {
 
-    fun MenuTable.toMenu() =  Menu(menuId, title, subtitle, url)
+    fun MenuTable.toMenu() =  Menu(id, title, subtitle, url)
     fun List<MenuTable>.toMenus() = map{ it.toMenu() }
 
 }

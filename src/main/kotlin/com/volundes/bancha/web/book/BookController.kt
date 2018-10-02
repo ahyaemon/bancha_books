@@ -32,9 +32,9 @@ class BookController(
     /**
      * indexへのマッピングです。
      */
-    @RequestMapping("/{bookId}")
+    @RequestMapping("/{id}")
     fun index(
-            @PathVariable("bookId") bookId: String,
+            @PathVariable("id") bookId: String,
             @Nullable @RequestParam("page") pageNumber: Int?,
             model: Model
     ): String{

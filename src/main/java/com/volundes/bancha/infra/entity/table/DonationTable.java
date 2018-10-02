@@ -8,8 +8,8 @@ public class DonationTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="donation_id")
-    public Long donationId;
+    @Column(name="id")
+    public Long id;
 
     @Column(name="name")
     public String name;

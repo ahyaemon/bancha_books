@@ -34,9 +34,9 @@ class UpdateBookController(
      * ajax。
      * 本を更新します。
      */
-    @RequestMapping("/{bookId}")
+    @RequestMapping("/{id}")
     fun edit(
-        @PathVariable("bookId") bookId: String,
+        @PathVariable("id") bookId: String,
         model: Model
     ): String{
         val book = service.getCommentCountedBookByBookId(bookId.toLong())
