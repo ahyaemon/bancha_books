@@ -2,11 +2,15 @@ package com.volundes.bancha.web.admin.insertbook
 
 import com.volundes.bancha.domain.admin.insertbook.RawBook
 import com.volundes.bancha.domain.admin.insertbook.InsertBookService
+import com.volundes.bancha.domain.book.Author
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
 import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.SessionAttribute
+import org.springframework.web.bind.annotation.SessionAttributes
 import java.nio.charset.Charset
 
 /**
@@ -14,9 +18,18 @@ import java.nio.charset.Charset
  */
 @Controller
 @RequestMapping("/admin/insertbook")
+@SessionAttributes("authors")
 class InsertBookController(
         private val service: InsertBookService
 ) {
+
+    /**
+     * authorsをセッションで管理します。
+     */
+    @ModelAttribute("authors")
+    fun authors(): List<Author> {
+        return service.getAuthors()
+    }
 
     /**
      * indexへのマッピングです。
@@ -46,11 +59,16 @@ class InsertBookController(
 
     /**
      * 手動入力で本を新規登録します。
+     * TODO 既に同じ本が入っているか確認する
      */
     @RequestMapping("/create")
     fun create(
-            form: BookCreateForm
+            form: BookCreateForm,
+            result: BindingResult,
+            @ModelAttribute(value="authors", binding = false) authors: List<Author>
     ): String {
+        val book = form.tobook(authors, "UTF-8")
+        service.addBook(book)
 
         return "redirect:/admin/insertbook/"
     }

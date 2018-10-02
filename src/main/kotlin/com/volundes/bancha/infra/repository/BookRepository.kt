@@ -1,9 +1,7 @@
 package com.volundes.bancha.infra.repository
 
-import com.volundes.bancha.domain.book.Book
-import com.volundes.bancha.domain.book.Comment
-import com.volundes.bancha.domain.book.CommentCountedBook
-import com.volundes.bancha.domain.book.Sentence
+import com.volundes.bancha.domain.book.*
+import com.volundes.bancha.domain.book.service.License
 import com.volundes.bancha.domain.bookmenu.BookMenu
 import com.volundes.bancha.domain.paging.Page
 import com.volundes.bancha.infra.dao.*
@@ -15,12 +13,14 @@ class BookRepository(
         private val bookDao: BookDao,
         private val sentenceDao: SentenceDao,
         private val commentDao: CommentDao,
-        private val authorDao: AuthorDao
+        private val authorDao: AuthorDao,
+        private val licenseDao: LicenseDao
 ):
         Pageable,
         CommentMapperExtension,
         SentenceMapperExtension,
         BookMapperExtension,
+        LicenseMapperExtension,
         AuthorMapperExtension
 {
 
@@ -70,8 +70,14 @@ class BookRepository(
 
         //Sentence
         val insertedBookId = bookDao.selectBookIdByNameAndAuthorId(book.name, authorId)
-        val sentenceEntities = book.sentences.toSentenceEntities(insertedBookId)
+        val sentenceEntities = book.sentences.toTables(insertedBookId)
         sentenceDao.insert(sentenceEntities)
+
+        // License
+        if(book.license != null){
+            val licenseTable = book.license.toTable(insertedBookId)
+            licenseDao.insert(licenseTable)
+        }
     }
 
     fun getSentencesBySentenceId(
@@ -94,6 +100,21 @@ class BookRepository(
 
     fun getTotalCommentAmount(sentenceId: Long): Int {
         return commentDao.countCommentBySentenceId(sentenceId)
+    }
+
+    /**
+     * 著者のリストを取得します。
+     */
+    fun getAuthors(): List<Author> {
+        return authorDao.select().map{ it.toAuthor() }
+    }
+
+    /**
+     * ライセンスを登録します。
+     */
+    fun addLicense(license: License, bookId: Long) {
+        val licenseTable = license.toTable(bookId)
+        licenseDao.insert(licenseTable)
     }
 
 }

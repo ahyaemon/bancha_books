@@ -3,6 +3,7 @@ package com.volundes.bancha.domain.admin.insertbook
 import com.volundes.bancha.domain.book.Author
 import com.volundes.bancha.domain.book.Book
 import com.volundes.bancha.domain.book.Sentence
+import com.volundes.bancha.domain.book.service.License
 import com.volundes.bancha.infra.repository.BookRepository
 import org.springframework.stereotype.Service
 
@@ -29,9 +30,23 @@ class InsertBookService(
                 .map{
                     Sentence(null, it, 7, listOf())
                 }
-        val book = Book(null, title, author, sentences)
+        val book = Book(null, title, author, null, sentences)
         bookRepository.addBook(book)
 
+    }
+
+    /**
+     * Bookを登録します。
+     */
+    fun addBook(book: Book){
+        bookRepository.addBook(book)
+    }
+
+    /**
+     * 著者のリストを取得します
+     */
+    fun getAuthors(): List<Author> {
+        return bookRepository.getAuthors()
     }
 
 }

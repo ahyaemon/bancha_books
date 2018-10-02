@@ -47,9 +47,9 @@
                         <div class="siimple-field">
                             <div class="siimple-field-label">著者</div>
                             <select class="siimple-select" th:field="*{authorId}">
-                                <option value="1">Aさん</option>
-                                <option value="2">Bさん</option>
-                                <option value="3">Cさん</option>
+                                <th:block th:each="author: ${authors}">
+                                    <option th:value="${author.authorId}", th:text="${author.name}"></option>
+                                </th:block>
                             </select>
                         </div>
                         <div class="siimple-field">

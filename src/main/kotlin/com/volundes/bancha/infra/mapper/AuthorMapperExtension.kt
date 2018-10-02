@@ -11,4 +11,8 @@ interface AuthorMapperExtension {
         return entity
     }
 
+    fun AuthorTable.toAuthor(): Author {
+        return Author(authorId, name)
+    }
+
 }
