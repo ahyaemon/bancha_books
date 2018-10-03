@@ -23,8 +23,8 @@ class UpdateBookController(
     fun index(
             model: Model
     ): String{
-        val updateBookMenus = service.getUpdateBookMenus()
-        val updateBookMenuItems = updateBookMenus.map{ UpdateBookMenuItem(it) }
+        val updateBookInfos = service.getUpdateBookInfos()
+        val updateBookMenuItems = updateBookInfos.map{ UpdateBookMenuItem(it) }
         model.addAttribute("updateBookMenuItems", updateBookMenuItems)
 
         return "admin/updatebook/index"

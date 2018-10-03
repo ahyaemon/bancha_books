@@ -1,7 +1,6 @@
 package com.volundes.bancha.infra.repository
 
 import com.volundes.bancha.domain.`object`.book.*
-import com.volundes.bancha.domain.`object`.bookmenu.BookMenu
 import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.infra.dao.*
 import com.volundes.bancha.infra.mapper.*
@@ -23,10 +22,10 @@ class BookRepository(
         AuthorMapperExtension
 {
 
-    fun getBookMenus(page: Page): List<BookMenu>{
+    fun getBookInfos(page: Page): List<BookInfo>{
         return bookDao
-                .selectBookMenu(page.toSelectOptions())
-                .toBookMenus()
+                .selectBookInfoWithPaging(page.toSelectOptions())
+                .toBookInfos()
     }
 
     fun getCommentCountedBookByBookId(
@@ -47,10 +46,10 @@ class BookRepository(
 
     fun addBook(book: Book){
         // Author
-        val authorEntityInDB = authorDao.selectByName(book.author.name)
+        val authorEntityInDB = authorDao.selectByName(book.bookInfo.author.name)
         val authorExists = authorEntityInDB != null
         if(!authorExists){
-            val authorEntity = book.author.toAuthorEntity()
+            val authorEntity = book.bookInfo.author.toAuthorEntity()
             authorDao.insert(authorEntity)
         }
         val authorId =
@@ -60,7 +59,7 @@ class BookRepository(
                 else{
                     // 一旦INSERTしたものを抜き出し、IDを得る
                     // TODO トランザクションレベルの考慮が必要
-                    authorDao.selectByName(book.author.name).id
+                    authorDao.selectByName(book.bookInfo.author.name).id
                 }
 
         // Book
@@ -68,13 +67,13 @@ class BookRepository(
         bookDao.insert(bookEntity)
 
         //Sentence
-        val insertedBookId = bookDao.selectBookIdByNameAndAuthorId(book.name, authorId)
+        val insertedBookId = bookDao.selectBookIdByNameAndAuthorId(book.bookInfo.title, authorId)
         val sentenceEntities = book.sentences.toTables(insertedBookId)
         sentenceDao.insert(sentenceEntities)
 
         // License
-        if(book.license != null){
-            val licenseTable = book.license.toTable(insertedBookId)
+        if(book.bookInfo.license != null){
+            val licenseTable = book.bookInfo.license.toTable(insertedBookId)
             licenseDao.insert(licenseTable)
         }
     }

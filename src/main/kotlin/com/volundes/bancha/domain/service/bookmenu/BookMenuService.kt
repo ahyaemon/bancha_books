@@ -1,6 +1,6 @@
 package com.volundes.bancha.domain.service.bookmenu
 
-import com.volundes.bancha.domain.`object`.bookmenu.BookMenu
+import com.volundes.bancha.domain.`object`.book.BookInfo
 import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.infra.repository.BookRepository
 import org.springframework.stereotype.Service
@@ -16,8 +16,8 @@ class BookMenuService(
     /**
      * @return すべての本メニュー
      */
-    fun getBookMenus(page: Page): List<BookMenu> {
-        return repository.getBookMenus(page)
+    fun getBookInfos(page: Page): List<BookInfo> {
+        return repository.getBookInfos(page)
     }
 
     fun getTotalBookAmount(): Int {

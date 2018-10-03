@@ -1,11 +1,8 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.`object`.book.Author
-import com.volundes.bancha.domain.`object`.book.Book
-import com.volundes.bancha.domain.`object`.book.CommentCountedBook
-import com.volundes.bancha.domain.`object`.book.CommentCountedSentence
-import com.volundes.bancha.domain.`object`.book.License
+import com.volundes.bancha.domain.`object`.book.*
 import com.volundes.bancha.domain.`object`.bookmenu.BookMenu
+import com.volundes.bancha.infra.entity.BookInfoEntity
 import com.volundes.bancha.infra.entity.BookMenuEntity
 import com.volundes.bancha.infra.entity.BookSummaryEntity
 import com.volundes.bancha.infra.entity.table.BookTable
@@ -29,13 +26,22 @@ interface BookMapperExtension{
         return book
     }
 
-    fun BookMenuEntity.toBookMenu() = BookMenu(id, name, author)
-    fun List<BookMenuEntity>.toBookMenus() =  map{ it.toBookMenu() }
+    fun BookInfoEntity.toBookInfo(): BookInfo{
+        val author = Author(authorId, authorName)
+        val license = if(licenseId == null) {
+            null
+        }
+        else {
+            License(licenseId, licenseNotice, licenseType)
+        }
+        return BookInfo(bookInfoId, title, author, license)
+    }
+    fun List<BookInfoEntity>.toBookInfos() =  map{ it.toBookInfo() }
 
     fun Book.toBookEntity(authorId: Long): BookTable {
         val entity = BookTable()
         entity.id = id
-        entity.name = name
+        entity.name = bookInfo.title
         entity.authorId = authorId
         return entity
     }

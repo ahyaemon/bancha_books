@@ -1,9 +1,6 @@
 package com.volundes.bancha.web.admin.insertbook
 
-import com.volundes.bancha.domain.`object`.book.Author
-import com.volundes.bancha.domain.`object`.book.Book
-import com.volundes.bancha.domain.`object`.book.Sentence
-import com.volundes.bancha.domain.`object`.book.License
+import com.volundes.bancha.domain.`object`.book.*
 import org.springframework.web.multipart.MultipartFile
 import java.nio.charset.Charset
 
@@ -29,7 +26,8 @@ data class BookCreateForm(
         }else{
             License(null, licenseNotice, licenseType)
         }
-        return Book(null, title, author, license, sentences)
+        val bookInfo = BookInfo(null, title, author, license)
+        return Book(null, bookInfo, sentences)
     }
 
     private fun createSentences(file: MultipartFile, encode: String): List<Sentence> {

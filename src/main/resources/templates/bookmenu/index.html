@@ -4,7 +4,7 @@
 <body>
     <!--/* ヘッダー */-->
     <section class="sec-header" th:include="nav :: normal"></section>
-    
+
     <!--/* タイトル */-->
     <section class="sec-title" th:include="title :: normal(title='Books', subtitle=${subtitle})"></section>
 
@@ -15,18 +15,18 @@
             <div class="siimple-breadcrumb-item here">Books</div>
         </div>
     </section>
-        
+
     <!--/* メインコンテンツ */-->
     <section class="sec-content">
         <!--/* ページング */-->
         <div th:include="paging/paging :: paging_location(id='paging-book', page = ${page})"></div>
 
         <!--/* 本のリスト */-->
-        <a th:each="bookMenuItem: ${bookMenuItems}" th:href="|/book/${bookMenuItem.bookId}?page=1|">
+        <a th:each="bookInfoItem: ${bookInfoItems}" th:href="|/book/${bookInfoItem.bookId}?page=1|">
             <div class="siimple-card bancha-card bancha-back-yellow">
                 <div class="siimple-card-body">
-                    <div class="siimple-card-title" th:text="${bookMenuItem.name}"></div>
-                    <div class="siimple-card-subtitle" th:text="${bookMenuItem.author}"></div>
+                    <div class="siimple-card-title" th:text="${bookInfoItem.title}"></div>
+                    <div class="siimple-card-subtitle" th:text="${bookInfoItem.author}"></div>
                 </div>
             </div>
         </a>

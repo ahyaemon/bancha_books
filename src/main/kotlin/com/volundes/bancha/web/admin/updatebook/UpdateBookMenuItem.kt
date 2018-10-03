@@ -1,14 +1,14 @@
 package com.volundes.bancha.web.admin.updatebook
 
-import com.volundes.bancha.domain.`object`.bookmenu.BookMenu
+import com.volundes.bancha.domain.`object`.book.BookInfo
 
 class UpdateBookMenuItem(
         val bookId: Long?,
-        val name: String,
+        val title: String,
         val author: String
 ){
 
-    constructor(bookMenu: BookMenu):
-            this(bookMenu.id, bookMenu.name, bookMenu.author)
+    constructor(bookInfo: BookInfo):
+            this(bookInfo.id, bookInfo.title, bookInfo.author.name)
 
 }

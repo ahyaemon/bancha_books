@@ -1,5 +1,6 @@
 package com.volundes.bancha.domain.service.admin.updatebook
 
+import com.volundes.bancha.domain.`object`.book.BookInfo
 import com.volundes.bancha.domain.`object`.book.CommentCountedBook
 import com.volundes.bancha.domain.`object`.bookmenu.BookMenu
 import com.volundes.bancha.domain.page.Page
@@ -19,9 +20,9 @@ class UpdateBookService(
      *
      * @return 今ある本のリスト
      */
-    fun getUpdateBookMenus(): List<BookMenu>{
+    fun getUpdateBookInfos(): List<BookInfo>{
         val page = Page(1, 10, 15, "/admin/book/update")
-        return repository.getBookMenus(page)
+        return repository.getBookInfos(page)
     }
 
     /**

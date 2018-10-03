@@ -26,9 +26,8 @@ class BookMenuController(
         val page = pageNumber.createPage()
         model.addAttribute("page", page)
 
-        val bookMenus = service.getBookMenus(page)
-        val bookMenuItems: List<BookMenuItem> = bookMenus.map{ BookMenuItem(it) }
-        model.addAttribute("bookMenuItems", bookMenuItems)
+        val bookInfoItems = service.getBookInfos(page).map{ BookInfoItem(it) }
+        model.addAttribute("bookInfoItems", bookInfoItems)
 
         return "bookmenu/index"
     }

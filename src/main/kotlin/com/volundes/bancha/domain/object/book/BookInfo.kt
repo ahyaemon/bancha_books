@@ -2,6 +2,7 @@ package com.volundes.bancha.domain.`object`.book
 
 data class BookInfo(
         val id: Long?,
-        val name: String,
-        val author: String
+        val title: String,
+        val author: Author,
+        val license: License?
 )

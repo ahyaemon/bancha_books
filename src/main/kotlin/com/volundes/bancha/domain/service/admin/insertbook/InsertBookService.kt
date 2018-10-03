@@ -16,25 +16,25 @@ class InsertBookService(
         private val bookRepository: BookRepository
 ) {
 
-    /**
-     * rawBookを タイトル/著者/文 に分けて永続化します。
-     *
-     * @param[rawBook] 青空文庫形式のRawBookのインスタンス
-     */
-    fun addBook(rawBook: RawBook){
-        val parser = RawBookParser(rawBook)
-
-        val title = parser.getTitle()
-        val author = Author(null, parser.getAuthor())
-        val sentences = parser
-                .getSentences()
-                .map{
-                    Sentence(null, it, 7, listOf())
-                }
-        val book = Book(null, title, author, null, sentences)
-        bookRepository.addBook(book)
-
-    }
+//    /**
+//     * rawBookを タイトル/著者/文 に分けて永続化します。
+//     *
+//     * @param[rawBook] 青空文庫形式のRawBookのインスタンス
+//     */
+//    fun addBook(rawBook: RawBook){
+//        val parser = RawBookParser(rawBook)
+//
+//        val title = parser.getTitle()
+//        val author = Author(null, parser.getAuthor())
+//        val sentences = parser
+//                .getSentences()
+//                .map{
+//                    Sentence(null, it, 7, listOf())
+//                }
+//        val book = Book(null, title, author, null, sentences)
+//        bookRepository.addBook(book)
+//
+//    }
 
     /**
      * Bookを登録します。

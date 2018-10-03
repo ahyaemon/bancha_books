@@ -1,5 +1,5 @@
-INSERT INTO book
-  (id, name, author_id)
+INSERT INTO book_info
+  (id, title, author_id)
 VALUES
   (1, 'Banchaの使い方', '1'),
   (2, '学問ノススメ', '3'),

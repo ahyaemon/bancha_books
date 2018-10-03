@@ -45,15 +45,15 @@ class InsertBookController(
      * ajax。
      * html形式でpostされた本を新規追加します。
      */
-    @RequestMapping("/html")
-    fun insertHtml(
-            @Validated form: HtmlBookUploadForm,
-            result: BindingResult
-    ): String{
-        val rawBook = RawBook.fromFile(form.file!!, "Shift-JIS")
-        service.addBook(rawBook)
-        return "admin/insertbook/index"
-    }
+//    @RequestMapping("/html")
+//    fun insertHtml(
+//            @Validated form: HtmlBookUploadForm,
+//            result: BindingResult
+//    ): String{
+//        val rawBook = RawBook.fromFile(form.file!!, "Shift-JIS")
+//        service.addBook(rawBook)
+//        return "admin/insertbook/index"
+//    }
 
     /**
      * 手動入力で本を新規登録します。

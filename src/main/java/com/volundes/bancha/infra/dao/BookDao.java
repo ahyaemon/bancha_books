@@ -22,7 +22,7 @@ public interface BookDao {
 
     @Select
     @Transactional
-    List<BookMenuEntity> selectBookMenu(SelectOptions selectOptions);
+    List<BookInfoEntity> selectBookInfoWithPaging(SelectOptions selectOptions);
 
     @Select
     Long selectBookIdByNameAndAuthorId(String name, Long authorId);
