@@ -1,7 +1,7 @@
 package com.volundes.bancha.domain.service.general.login
 
-import com.volundes.bancha.domain.`object`.general.login.AccountRegister
-import com.volundes.bancha.domain.`object`.mail.RegisterMail
+import com.volundes.bancha.domain.obj.general.login.AccountRegister
+import com.volundes.bancha.domain.obj.mail.RegisterMail
 import com.volundes.bancha.domain.service.mail.RegisterMailer
 import com.volundes.bancha.infra.repository.AccountRegisterRepository
 import org.springframework.stereotype.Service

@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.book.form
 
-import com.volundes.bancha.domain.`object`.book.Comment
+import com.volundes.bancha.domain.obj.book.Comment
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
 

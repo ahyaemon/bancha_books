@@ -1,8 +1,7 @@
 package com.volundes.bancha.domain.service.admin.updatebook
 
-import com.volundes.bancha.domain.`object`.book.BookInfo
-import com.volundes.bancha.domain.`object`.book.CommentCountedBook
-import com.volundes.bancha.domain.`object`.bookmenu.BookMenu
+import com.volundes.bancha.domain.obj.book.BookInfo
+import com.volundes.bancha.domain.obj.book.CommentCountedBook
 import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.infra.repository.BookRepository
 import org.springframework.stereotype.Service

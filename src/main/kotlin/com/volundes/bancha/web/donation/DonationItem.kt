@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.donation
 
-import com.volundes.bancha.domain.`object`.donation.Donation
+import com.volundes.bancha.domain.obj.donation.Donation
 
 data class DonationItem(
         val donationId: Long?,

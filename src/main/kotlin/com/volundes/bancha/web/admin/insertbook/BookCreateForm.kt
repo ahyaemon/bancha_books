@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.admin.insertbook
 
-import com.volundes.bancha.domain.`object`.book.*
+import com.volundes.bancha.domain.obj.book.*
 import org.springframework.web.multipart.MultipartFile
 import java.nio.charset.Charset
 

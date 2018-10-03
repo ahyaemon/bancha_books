@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.book.item
 
-import com.volundes.bancha.domain.`object`.book.CommentCountedSentence
+import com.volundes.bancha.domain.obj.book.CommentCountedSentence
 
 class CommentCountedSentenceItem(
         val sentenceId: Long?,

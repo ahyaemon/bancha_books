@@ -1,7 +1,7 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.`object`.book.Comment
-import com.volundes.bancha.domain.`object`.book.Sentence
+import com.volundes.bancha.domain.obj.book.Comment
+import com.volundes.bancha.domain.obj.book.Sentence
 import com.volundes.bancha.infra.entity.SentenceSummaryEntity
 import com.volundes.bancha.infra.entity.table.SentenceTable
 

@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.general.register
 
-import com.volundes.bancha.domain.`object`.general.profile.Hitokoto
+import com.volundes.bancha.domain.obj.general.profile.Hitokoto
 import com.volundes.bancha.domain.service.general.register.GeneralRegisterService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model

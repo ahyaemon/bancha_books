@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.repository
 
-import com.volundes.bancha.domain.`object`.book.*
+import com.volundes.bancha.domain.obj.book.*
 import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.infra.dao.*
 import com.volundes.bancha.infra.mapper.*
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository
 @Repository
 class BookRepository(
         private val bookDao: BookDao,
+        private val bookInfoDao: BookInfoDao,
         private val sentenceDao: SentenceDao,
         private val commentDao: CommentDao,
         private val authorDao: AuthorDao,
@@ -18,13 +19,14 @@ class BookRepository(
         CommentMapperExtension,
         SentenceMapperExtension,
         BookMapperExtension,
+        BookInfoMapperExtension,
         LicenseMapperExtension,
         AuthorMapperExtension
 {
 
     fun getBookInfos(page: Page): List<BookInfo>{
-        return bookDao
-                .selectBookInfoWithPaging(page.toSelectOptions())
+        return bookInfoDao
+                .selectEntityWithPaging(page.toSelectOptions())
                 .toBookInfos()
     }
 

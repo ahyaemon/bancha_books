@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.general.profile
 
-import com.volundes.bancha.domain.`object`.account.Account
+import com.volundes.bancha.domain.obj.account.Account
 import com.volundes.bancha.domain.service.general.profile.ProfileService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model

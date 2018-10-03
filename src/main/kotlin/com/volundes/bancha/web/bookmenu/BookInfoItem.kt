@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.bookmenu
 
-import com.volundes.bancha.domain.`object`.book.BookInfo
+import com.volundes.bancha.domain.obj.book.BookInfo
 
 data class BookInfoItem(
         var bookId: Long? = null,

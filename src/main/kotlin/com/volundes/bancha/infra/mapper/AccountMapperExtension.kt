@@ -1,8 +1,8 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.`object`.account.Account
-import com.volundes.bancha.domain.`object`.general.profile.Hitokoto
-import com.volundes.bancha.domain.`object`.general.profile.Profile
+import com.volundes.bancha.domain.obj.account.Account
+import com.volundes.bancha.domain.obj.general.profile.Hitokoto
+import com.volundes.bancha.domain.obj.general.profile.Profile
 import com.volundes.bancha.infra.entity.ProfileEntity
 import com.volundes.bancha.infra.entity.table.AccountTable
 

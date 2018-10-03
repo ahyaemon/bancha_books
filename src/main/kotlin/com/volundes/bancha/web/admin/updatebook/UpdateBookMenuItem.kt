@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.admin.updatebook
 
-import com.volundes.bancha.domain.`object`.book.BookInfo
+import com.volundes.bancha.domain.obj.book.BookInfo
 
 class UpdateBookMenuItem(
         val bookId: Long?,

@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.`object`.menu.Menu
+import com.volundes.bancha.domain.obj.menu.Menu
 import com.volundes.bancha.infra.entity.table.MenuTable
 import org.springframework.stereotype.Component
 

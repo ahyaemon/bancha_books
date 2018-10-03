@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.`object`.subtitle.Subtitle
+import com.volundes.bancha.domain.obj.subtitle.Subtitle
 import com.volundes.bancha.infra.entity.table.SubtitleTable
 
 interface SubtitleMapperExtension {

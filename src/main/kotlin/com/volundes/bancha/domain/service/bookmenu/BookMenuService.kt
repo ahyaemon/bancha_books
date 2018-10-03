@@ -1,6 +1,6 @@
 package com.volundes.bancha.domain.service.bookmenu
 
-import com.volundes.bancha.domain.`object`.book.BookInfo
+import com.volundes.bancha.domain.obj.book.BookInfo
 import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.infra.repository.BookRepository
 import org.springframework.stereotype.Service

@@ -1,6 +1,6 @@
 package com.volundes.bancha.domain.service.account
 
-import com.volundes.bancha.domain.`object`.account.AccountUserDetails
+import com.volundes.bancha.domain.obj.account.AccountUserDetails
 import com.volundes.bancha.infra.repository.AccountRepository
 import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.userdetails.UserDetails

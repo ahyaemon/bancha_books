@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.book.item
 
-import com.volundes.bancha.domain.`object`.book.License
+import com.volundes.bancha.domain.obj.book.License
 
 data class LicenseItem(
         val licenseId: Long?,

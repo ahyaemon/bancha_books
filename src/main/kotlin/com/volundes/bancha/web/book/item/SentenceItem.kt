@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.book.item
 
-import com.volundes.bancha.domain.`object`.book.Sentence
+import com.volundes.bancha.domain.obj.book.Sentence
 
 class SentenceItem(
         val sentenceId: Long?,

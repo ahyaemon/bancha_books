@@ -1,7 +1,7 @@
 package com.volundes.bancha.domain.service.general.profile
 
-import com.volundes.bancha.domain.`object`.general.profile.Hitokoto
-import com.volundes.bancha.domain.`object`.general.profile.Profile
+import com.volundes.bancha.domain.obj.general.profile.Hitokoto
+import com.volundes.bancha.domain.obj.general.profile.Profile
 import com.volundes.bancha.infra.repository.ProfileRepository
 import org.springframework.stereotype.Service
 

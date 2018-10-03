@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.repository
 
-import com.volundes.bancha.domain.`object`.account.Account
+import com.volundes.bancha.domain.obj.account.Account
 import com.volundes.bancha.infra.dao.AccountDao
 import com.volundes.bancha.infra.mapper.AccountMapperExtension
 import org.springframework.stereotype.Repository

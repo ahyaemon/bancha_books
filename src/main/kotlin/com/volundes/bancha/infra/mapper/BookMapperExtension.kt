@@ -1,9 +1,6 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.`object`.book.*
-import com.volundes.bancha.domain.`object`.bookmenu.BookMenu
-import com.volundes.bancha.infra.entity.BookInfoEntity
-import com.volundes.bancha.infra.entity.BookMenuEntity
+import com.volundes.bancha.domain.obj.book.*
 import com.volundes.bancha.infra.entity.BookSummaryEntity
 import com.volundes.bancha.infra.entity.table.BookTable
 
@@ -25,18 +22,6 @@ interface BookMapperExtension{
         val book = CommentCountedBook(entity.bookId, entity.name, author, license, sentences)
         return book
     }
-
-    fun BookInfoEntity.toBookInfo(): BookInfo{
-        val author = Author(authorId, authorName)
-        val license = if(licenseId == null) {
-            null
-        }
-        else {
-            License(licenseId, licenseNotice, licenseType)
-        }
-        return BookInfo(bookInfoId, title, author, license)
-    }
-    fun List<BookInfoEntity>.toBookInfos() =  map{ it.toBookInfo() }
 
     fun Book.toBookEntity(authorId: Long): BookTable {
         val entity = BookTable()

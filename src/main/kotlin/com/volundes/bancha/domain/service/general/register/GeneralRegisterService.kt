@@ -1,7 +1,7 @@
 package com.volundes.bancha.domain.service.general.register
 
-import com.volundes.bancha.domain.`object`.account.Account
-import com.volundes.bancha.domain.`object`.general.profile.Hitokoto
+import com.volundes.bancha.domain.obj.account.Account
+import com.volundes.bancha.domain.obj.general.profile.Hitokoto
 import com.volundes.bancha.infra.repository.AccountRegisterRepository
 import com.volundes.bancha.infra.repository.AccountRepository
 import com.volundes.bancha.infra.repository.ProfileRepository

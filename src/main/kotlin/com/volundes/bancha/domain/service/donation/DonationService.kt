@@ -1,6 +1,6 @@
 package com.volundes.bancha.domain.service.donation
 
-import com.volundes.bancha.domain.`object`.donation.Donation
+import com.volundes.bancha.domain.obj.donation.Donation
 import com.volundes.bancha.infra.repository.DonationRepository
 import org.springframework.stereotype.Service
 
