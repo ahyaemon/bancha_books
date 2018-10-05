@@ -4,11 +4,13 @@ import com.volundes.bancha.domain.obj.book.BookInfo
 import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.infra.repository.BookRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 /**
  * 本の更新を担うServiceです。
  */
 @Service
+@Transactional
 class UpdateBookService(
         private val repository: BookRepository
 ) {

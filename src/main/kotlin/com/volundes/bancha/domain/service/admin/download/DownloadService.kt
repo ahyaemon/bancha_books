@@ -7,8 +7,10 @@ import com.volundes.bancha.domain.vo.admin.download.Tsv
 import com.volundes.bancha.infra.repository.TableInfoRepository
 import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class DownloadService(
         private val context: ApplicationContext,
         private val tableInfoRepository: TableInfoRepository

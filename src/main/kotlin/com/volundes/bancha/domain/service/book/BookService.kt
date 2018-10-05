@@ -6,11 +6,13 @@ import com.volundes.bancha.domain.obj.book.Sentence
 import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.infra.repository.BookRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 /**
  * 本の管理を担うサービスです。
  */
 @Service
+@Transactional
 class BookService(
         private val repository: BookRepository
 ) {

@@ -19,11 +19,9 @@ public interface AuthorDao {
     List<AuthorTable> select();
 
     @Select
-    @Transactional
     AuthorTable selectByName(String name);
 
     @Insert
-    @Transactional
     int insert(AuthorTable authorEntity);
 
 }

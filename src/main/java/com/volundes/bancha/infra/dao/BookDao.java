@@ -38,7 +38,6 @@ public interface BookDao {
     Integer countBook();
 
     @Insert
-    @Transactional
     int insert(BookTable entity);
 
 }

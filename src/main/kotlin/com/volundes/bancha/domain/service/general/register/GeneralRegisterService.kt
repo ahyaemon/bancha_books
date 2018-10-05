@@ -7,8 +7,10 @@ import com.volundes.bancha.infra.repository.AccountRepository
 import com.volundes.bancha.infra.repository.ProfileRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
+@Transactional
 class GeneralRegisterService(
         private val accountRegisterRepository: AccountRegisterRepository,
         private val accountRepository: AccountRepository,

@@ -6,12 +6,14 @@ import org.springframework.security.core.authority.AuthorityUtils
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 /**
  * ユーザー認証を担うServiceです。
  * 実際の認証はSpring Securityに任せるため、このクラスを呼び出して使うことはありません。
  */
 @Service
+@Transactional
 class AccountUserDetailsService(
         private val accountRepository: AccountRepository
 ): UserDetailsService {

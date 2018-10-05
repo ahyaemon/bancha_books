@@ -5,11 +5,13 @@ import com.volundes.bancha.domain.obj.mail.RegisterMail
 import com.volundes.bancha.domain.service.mail.RegisterMailer
 import com.volundes.bancha.infra.repository.AccountRegisterRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.security.MessageDigest
 import java.time.LocalDateTime
 import java.util.*
 
 @Service
+@Transactional
 class GeneralLoginService(
         private val registerMail: RegisterMail,
         private val registerMailer: RegisterMailer,

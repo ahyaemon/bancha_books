@@ -3,11 +3,13 @@ package com.volundes.bancha.domain.service.donation
 import com.volundes.bancha.domain.obj.donation.Donation
 import com.volundes.bancha.infra.repository.DonationRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 /**
  * 寄付を管理するServiceです。
  */
 @Service
+@Transactional
 class DonationService(
         private val repository: DonationRepository
 ) {

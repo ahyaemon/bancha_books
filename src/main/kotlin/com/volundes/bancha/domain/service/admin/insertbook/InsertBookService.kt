@@ -4,11 +4,13 @@ import com.volundes.bancha.domain.obj.book.Author
 import com.volundes.bancha.domain.obj.book.Book
 import com.volundes.bancha.infra.repository.BookRepository
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 /**
  * 新しい本の追加を担うServiceです。
  */
 @Service
+@Transactional
 class InsertBookService(
         private val bookRepository: BookRepository
 ) {
