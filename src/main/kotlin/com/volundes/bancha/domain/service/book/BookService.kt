@@ -1,7 +1,7 @@
 package com.volundes.bancha.domain.service.book
 
+import com.volundes.bancha.domain.obj.book.Book
 import com.volundes.bancha.domain.obj.book.Comment
-import com.volundes.bancha.domain.obj.book.CommentCountedBook
 import com.volundes.bancha.domain.obj.book.Sentence
 import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.infra.repository.BookRepository
@@ -15,11 +15,11 @@ class BookService(
         private val repository: BookRepository
 ) {
 
-    fun getCommentCountedBookByBookId(
+    fun getWithCommentCountMap(
             bookId: Long,
             page: Page
-    ): CommentCountedBook {
-        return repository.getCommentCountedBookByBookId(bookId, page)
+    ): Pair<Book, Map<Long, Long>> {
+        return repository.getWithCommentCountMap(bookId, page)
     }
 
     /**

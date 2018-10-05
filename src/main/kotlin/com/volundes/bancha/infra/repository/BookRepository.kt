@@ -3,6 +3,7 @@ package com.volundes.bancha.infra.repository
 import com.volundes.bancha.domain.obj.book.*
 import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.infra.dao.*
+import com.volundes.bancha.infra.entity.CommentCountedSentenceEntity
 import com.volundes.bancha.infra.mapper.*
 import org.springframework.stereotype.Repository
 
@@ -26,8 +27,31 @@ class BookRepository(
 
     fun getBookInfos(page: Page): List<BookInfo>{
         return bookInfoDao
-                .selectEntityWithPaging(page.toSelectOptions())
+                .selectEntity(page.toSelectOptions())
                 .toBookInfos()
+    }
+
+    /**
+     * bookIdに対応するBookと、コメント数を取得します。
+     * 実際のコメントは取得しません。
+     */
+    fun getWithCommentCountMap(
+            bookId: Long,
+            page: Page
+    ): Pair<Book, Map<Long, Long>> {
+        val entity =
+                bookDao.selectEntityByIdWithoutComment(page.toSelectOptions(), bookId)
+        val book = entity.toBook()
+        val sentenceIds = entity.map{ it.sentenceId }
+        val commentCount = sentenceDao.countSentenceComment(sentenceIds)
+        val commentCountMap = commentCount.toCommentCountMap()
+        return Pair(book, commentCountMap)
+    }
+
+    private fun List<CommentCountedSentenceEntity>.toCommentCountMap(): Map<Long, Long> {
+        val m = mutableMapOf<Long, Long>()
+        forEach{ m.put(it.sentenceId, it.commentCount)}
+        return m
     }
 
     fun getCommentCountedBookByBookId(

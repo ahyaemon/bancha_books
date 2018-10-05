@@ -41,8 +41,9 @@ class BookController(
         val page = helper.createSentencePage(pageNumber, bookId.toLong())
         model.addAttribute("page", page)
 
-        model.addAttribute("bookItem",
-                helper.createCommentCountedBookItem(bookId.toLong(), page))
+        val bookItem = helper.createCommentCountedBookItem(bookId.toLong(), page)
+        model.addAttribute("bookItem", bookItem)
+
         return "book/index"
     }
 

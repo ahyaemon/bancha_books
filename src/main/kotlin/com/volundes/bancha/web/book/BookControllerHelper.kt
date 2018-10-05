@@ -51,8 +51,8 @@ class BookControllerHelper(
             bookId: Long,
             page: Page
     ): CommentCountedBookItem {
-        val book = service.getCommentCountedBookByBookId(bookId, page)
-        return CommentCountedBookItem(book)
+        val (book, commentCountMap) = service.getWithCommentCountMap(bookId, page)
+        return CommentCountedBookItem.from(book, commentCountMap)
     }
 
     fun createSentencePage(pageNumber: Int?, bookId: Long): Page {

@@ -1,5 +1,6 @@
 package com.volundes.bancha.infra.dao;
 
+import com.volundes.bancha.infra.entity.CommentCountedSentenceEntity;
 import com.volundes.bancha.infra.entity.table.SentenceTable;
 import com.volundes.bancha.infra.entity.SentenceSummaryEntity;
 import org.seasar.doma.*;
@@ -25,6 +26,10 @@ public interface SentenceDao {
 
     @Select
     int countSentenceByBookId(Long bookId);
+
+    @Select
+    @Transactional
+    List<CommentCountedSentenceEntity> countSentenceComment(List<Long> sentenceIds);
 
     @BatchInsert
     @Transactional

@@ -22,6 +22,6 @@ public interface BookInfoDao {
 
     @Select
     @Transactional
-    List<BookInfoEntity> selectEntityWithPaging(SelectOptions selectOptions);
+    List<BookInfoEntity> selectEntity(SelectOptions selectOptions);
 
 }
