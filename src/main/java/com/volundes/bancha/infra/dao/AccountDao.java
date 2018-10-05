@@ -17,23 +17,18 @@ import java.util.List;
 public interface AccountDao {
 
     @Select
-    @Transactional
     List<AccountTable> select();
 
     @Select
-    @Transactional
     AccountTable selectByEmail(String email);
 
     @Select
-    @Transactional
     ProfileEntity selectProfileByAccountId(Long accountId);
 
     @Insert
-    @Transactional
     int insert(AccountTable table);
 
     @Update
-    @Transactional
     int update(AccountTable accountTable);
 
 }

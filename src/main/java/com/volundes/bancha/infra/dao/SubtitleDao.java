@@ -15,11 +15,9 @@ import java.util.List;
 public interface SubtitleDao {
 
     @Select
-    @Transactional
     List<SubtitleTable> select();
 
     @Select
-    @Transactional
     List<SubtitleTable> selectByTitleCd(String titleCd);
 
 }

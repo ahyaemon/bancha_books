@@ -17,15 +17,12 @@ import java.util.List;
 public interface BookDao {
 
     @Select
-    @Transactional
     List<BookTable> select();
 
     @Select
-    @Transactional
     List<BookEntity> selectEntityById(SelectOptions selectOptions, Long bookId);
 
     @Select
-    @Transactional
     List<BookEntity> selectEntityByIdWithoutComment(SelectOptions selectOptions, Long bookId);
 
     @Select

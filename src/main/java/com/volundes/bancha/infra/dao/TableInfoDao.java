@@ -15,7 +15,6 @@ import java.util.List;
 public interface TableInfoDao {
 
     @Select
-    @Transactional
     List<TableInfoTable> select();
 
 }

@@ -17,11 +17,9 @@ import java.util.List;
 public interface BookInfoDao {
 
     @Select
-    @Transactional
     List<BookInfoTable> select();
 
     @Select
-    @Transactional
     List<BookInfoEntity> selectEntity(SelectOptions selectOptions);
 
 }

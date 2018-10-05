@@ -16,11 +16,9 @@ import java.util.List;
 public interface LicenseDao {
 
     @Select
-    @Transactional
     List<LicenseTable> select();
 
     @Insert
-    @Transactional
     int insert(LicenseTable licenseTable);
 
 }

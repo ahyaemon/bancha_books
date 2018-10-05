@@ -16,15 +16,12 @@ import java.util.List;
 public interface DonationDao {
 
     @Select
-    @Transactional
     List<DonationTable> select();
 
     @Select
-    @Transactional
     TotalAmountEntity sum();
 
     @Insert
-    @Transactional
     int insert(DonationTable entity);
 
 }

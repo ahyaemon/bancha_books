@@ -13,14 +13,12 @@ import org.springframework.transaction.annotation.Transactional;
 public interface AccountRegisterDao {
 
     @Select
-    @Transactional
     int countUrlKey(String urlKey);
 
     @Select
     String selectEmailByUrlKey(String urlKey);
 
     @Insert
-    @Transactional
     int insert(AccountRegisterTable entity);
 
 }

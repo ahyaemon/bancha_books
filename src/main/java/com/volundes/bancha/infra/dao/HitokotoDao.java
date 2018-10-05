@@ -15,23 +15,18 @@ import java.util.List;
 public interface HitokotoDao {
 
     @Select
-    @Transactional
     List<HitokotoTable> select();
 
     @Select
-    @Transactional
     HitokotoTable selectByAccountId(Long accountId);
 
     @Insert
-    @Transactional
     int insert(HitokotoTable table);
 
     @Update
-    @Transactional
     int update(HitokotoTable table);
 
     @Delete
-    @Transactional
     int delete(HitokotoTable table);
 
 }

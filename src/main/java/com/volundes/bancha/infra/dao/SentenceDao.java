@@ -18,7 +18,6 @@ import java.util.List;
 public interface SentenceDao {
 
     @Select
-    @Transactional
     List<SentenceTable> select();
 
     @Select
@@ -28,11 +27,9 @@ public interface SentenceDao {
     int countSentenceByBookId(Long bookId);
 
     @Select
-    @Transactional
     List<CommentCountedSentenceEntity> countSentenceComment(List<Long> sentenceIds);
 
     @BatchInsert
-    @Transactional
     int[] insert(List<SentenceTable> entities);
 
 }

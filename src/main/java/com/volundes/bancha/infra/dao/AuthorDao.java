@@ -15,7 +15,6 @@ import java.util.List;
 public interface AuthorDao {
 
     @Select
-    @Transactional
     List<AuthorTable> select();
 
     @Select
