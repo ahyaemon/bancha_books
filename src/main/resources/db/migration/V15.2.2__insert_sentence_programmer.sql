@@ -1,4 +1,4 @@
-INSERT INTO sentence
+INSERT INTO sentence_programmer
   (id, book_id, sentence, heading)
 VALUES
   (1000, '3', '分別のある行動', '5'),

@@ -84,11 +84,26 @@
 .. uml::
 
   class Account{
+    id: Long,
+    name: Stirng
+    authInfo: AuthInfo
+    hitokoto: Hitokoto
+  }
+
+  class AuthInfo{
     id: Long
-    name: String
+    email: String
     pass: String
     role: String
   }
+
+  class Hitokoto{
+    id: Long
+    value: String
+  }
+
+  Account "1" *-- "1" AuthInfo
+  Account "1" *-- "0..1" Hitokoto
 
 寄付: Donation
 ------------------------------
