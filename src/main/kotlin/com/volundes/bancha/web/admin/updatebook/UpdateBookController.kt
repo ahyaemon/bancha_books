@@ -29,21 +29,21 @@ class UpdateBookController(
 
         return "admin/updatebook/index"
     }
-
-    /**
-     * ajax。
-     * 本を更新します。
-     */
-    @RequestMapping("/{id}")
-    fun edit(
-        @PathVariable("id") bookId: String,
-        model: Model
-    ): String{
-        val book = service.getCommentCountedBookByBookId(bookId.toLong())
-        val bookItem = CommentCountedBookItem(book)
-        model.addAttribute("bookItem", bookItem)
-
-        return "admin/updatebook/edit"
-    }
-
+//
+//    /**
+//     * ajax。
+//     * 本を更新します。
+//     */
+//    @RequestMapping("/{id}")
+//    fun edit(
+//        @PathVariable("id") bookId: String,
+//        model: Model
+//    ): String{
+//        val book = service.getCommentCountedBookByBookId(bookId.toLong())
+//        val bookItem = CommentCountedBookItem(book)
+//        model.addAttribute("bookItem", bookItem)
+//
+//        return "admin/updatebook/edit"
+//    }
+//
 }

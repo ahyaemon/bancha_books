@@ -54,16 +54,6 @@ class BookRepository(
         return m
     }
 
-    fun getCommentCountedBookByBookId(
-            bookId: Long,
-            page: Page
-    ): CommentCountedBook {
-        val selectOptions = page.toSelectOptions()
-        return bookDao
-                .selectBookSummaryByBookId(bookId, selectOptions)
-                .toCommentCountedBook()
-    }
-
     fun insertComment(sentenceId: Long, comment: Comment) {
         // commentの登録
         val commentEntity = comment.toEntity(sentenceId)

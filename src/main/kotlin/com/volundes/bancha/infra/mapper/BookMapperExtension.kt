@@ -20,7 +20,6 @@ interface BookMapperExtension{
         val sentences = groupBy{ it.sentenceId }
                 .map{ (sentenceId, entities) ->
                     val first = entities.first()
-                    val id = first.sentenceId
                     val value = first.sentenceValue
                     val heading = first.sentenceHeading.toInt()
                     val comments = entities
@@ -28,26 +27,9 @@ interface BookMapperExtension{
                             .map{
                         Comment(it.commentId, it.commentAccountId, it.commentName, it.commentValue)
                     }
-                    Sentence(id, value, heading, comments)
+                    Sentence(sentenceId, value, heading, comments)
                 }
         return Book(entity.bookId, bookInfo, sentences)
-    }
-
-    fun List<BookSummaryEntity>.toCommentCountedBook(): CommentCountedBook {
-        val sentences = groupBy { it.sentenceId }
-                .map{ (sentenceId, entities) ->
-                    val entity = entities.first()
-                    CommentCountedSentence(sentenceId, entity.sentence, entity.heading, entity.commentCount)
-                }
-        val entity = first()
-        val license = if(entity.licenseId == null) {
-            null
-        } else {
-            License(entity.licenseId, entity.notice, entity.licenseType)
-        }
-        val author = Author(entity.authorId, entity.authorName)
-        val book = CommentCountedBook(entity.bookId, entity.name, author, license, sentences)
-        return book
     }
 
     fun Book.toBookEntity(authorId: Long): BookTable {
