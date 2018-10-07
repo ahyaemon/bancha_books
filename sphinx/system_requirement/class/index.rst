@@ -36,10 +36,22 @@
 .. uml::
 
   class Book {
-    Long: id
+    id: Long
+    book_info: BookInfo
+    sentences: List<Sentence>
+  }
+
+  class BookInfo {
+    id: Long
     title: String
     author: Author
-    sentences: List<Sentence>
+    license: License
+  }
+
+  class License {
+    id: Long
+    notice: String
+    license_type: String
   }
 
   class Author {
@@ -58,15 +70,11 @@
     value: String
   }
 
-  class DeleteKey {
-    id: Long
-    value: String
-  }
-
-  Book "1" *-- "0..n" Sentence
-  Book "1" *-- "1..n" Author
+  Book "1" *-- "1" BookInfo
+  Book "1" *-- "1..n" Sentence
+  BookInfo "1" *-- "1" Author
+  BookInfo "1" *-- "0..1" License
   Sentence "1" *-- "0..n" Comment
-  Comment "1" *-- "0..1" DeleteKey
 
 アカウント: Account
 ------------------------------
@@ -76,11 +84,26 @@
 .. uml::
 
   class Account{
+    id: Long,
+    name: Stirng
+    authInfo: AuthInfo
+    hitokoto: Hitokoto
+  }
+
+  class AuthInfo{
     id: Long
-    name: String
+    email: String
     pass: String
     role: String
   }
+
+  class Hitokoto{
+    id: Long
+    value: String
+  }
+
+  Account "1" *-- "1" AuthInfo
+  Account "1" *-- "0..1" Hitokoto
 
 寄付: Donation
 ------------------------------

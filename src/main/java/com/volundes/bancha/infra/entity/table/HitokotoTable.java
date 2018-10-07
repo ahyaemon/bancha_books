@@ -8,8 +8,8 @@ public class HitokotoTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "hitokoto_id")
-    public Long hitokotoId;
+    @Column(name = "id")
+    public Long id;
 
     @Column(name = "account_id")
     public Long accountId;

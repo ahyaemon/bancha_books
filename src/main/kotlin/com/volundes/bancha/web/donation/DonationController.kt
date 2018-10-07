@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.donation
 
-import com.volundes.bancha.domain.donation.DonationService
+import com.volundes.bancha.domain.service.donation.DonationService
 import com.volundes.bancha.env.interceptor.subtitle.DynamicSubtitle
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model

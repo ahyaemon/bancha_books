@@ -16,17 +16,14 @@ import java.util.List;
 @Dao
 public interface BookDao {
 
-    @Insert
-    @Transactional
-    int insert(BookTable entity);
-
     @Select
-    @Transactional
     List<BookTable> select();
 
     @Select
-    @Transactional
-    List<BookMenuEntity> selectBookMenu(SelectOptions selectOptions);
+    List<BookEntity> selectEntityById(SelectOptions selectOptions, Long bookId);
+
+    @Select
+    List<BookEntity> selectEntityByIdWithoutComment(SelectOptions selectOptions, Long bookId);
 
     @Select
     Long selectBookIdByNameAndAuthorId(String name, Long authorId);
@@ -36,4 +33,8 @@ public interface BookDao {
 
     @Select
     Integer countBook();
+
+    @Insert
+    int insert(BookTable entity);
+
 }

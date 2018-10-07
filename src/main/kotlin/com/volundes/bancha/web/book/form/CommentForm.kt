@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.book.form
 
-import com.volundes.bancha.domain.book.Comment
+import com.volundes.bancha.domain.obj.book.Comment
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.Size
 
@@ -16,7 +16,7 @@ data class CommentForm (
 
 ){
 
-    fun toComment(accountId: Long): Comment{
+    fun toComment(accountId: Long): Comment {
         return Comment(null, accountId, "", comment)
     }
 

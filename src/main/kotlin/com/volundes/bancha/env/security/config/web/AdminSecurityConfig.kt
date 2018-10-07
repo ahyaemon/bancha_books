@@ -30,7 +30,8 @@ class AdminSecurityConfig(
 
         http.authorizeRequests()
                 .antMatchers("/admin/login").permitAll()
-                .antMatchers("/admin/**").authenticated()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated()
 
         http.formLogin()
                 .loginProcessingUrl("/admin/auth")

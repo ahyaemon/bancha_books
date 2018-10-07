@@ -14,15 +14,14 @@ import java.util.List;
         @Annotation(target = AnnotationTarget.CONSTRUCTOR, type = Autowired.class) })
 @Dao
 public interface DonationDao {
-    @Insert
-    @Transactional
-    int insert(DonationTable entity);
 
     @Select
-    @Transactional
+    List<DonationTable> select();
+
+    @Select
     TotalAmountEntity sum();
 
-    @Select
-    @Transactional
-    List<DonationTable> select();
+    @Insert
+    int insert(DonationTable entity);
+
 }

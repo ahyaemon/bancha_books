@@ -8,8 +8,8 @@ public class MenuTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "menu_id")
-    public Long menuId;
+    @Column(name = "id")
+    public Long id;
 
     @Column(name = "title")
     public String title;

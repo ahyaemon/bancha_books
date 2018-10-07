@@ -1,43 +1,57 @@
 package com.volundes.bancha.infra.repository
 
-import com.volundes.bancha.domain.book.Book
-import com.volundes.bancha.domain.book.Comment
-import com.volundes.bancha.domain.book.CommentCountedBook
-import com.volundes.bancha.domain.book.Sentence
-import com.volundes.bancha.domain.bookmenu.BookMenu
-import com.volundes.bancha.domain.paging.Page
+import com.volundes.bancha.domain.obj.book.*
+import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.infra.dao.*
+import com.volundes.bancha.infra.entity.CommentCountedSentenceEntity
 import com.volundes.bancha.infra.mapper.*
 import org.springframework.stereotype.Repository
 
 @Repository
 class BookRepository(
         private val bookDao: BookDao,
+        private val bookInfoDao: BookInfoDao,
         private val sentenceDao: SentenceDao,
         private val commentDao: CommentDao,
-        private val authorDao: AuthorDao
+        private val authorDao: AuthorDao,
+        private val licenseDao: LicenseDao
 ):
         Pageable,
         CommentMapperExtension,
         SentenceMapperExtension,
         BookMapperExtension,
+        BookInfoMapperExtension,
+        LicenseMapperExtension,
         AuthorMapperExtension
 {
 
-    fun getBookMenus(page: Page): List<BookMenu>{
-        return bookDao
-                .selectBookMenu(page.toSelectOptions())
-                .toBookMenus()
+    fun getBookInfos(page: Page): List<BookInfo>{
+        return bookInfoDao
+                .selectEntity(page.toSelectOptions())
+                .toBookInfos()
     }
 
-    fun getCommentCountedBookByBookId(
+    /**
+     * bookIdに対応するBookと、コメント数を取得します。
+     * 実際のコメントは取得しません。
+     */
+    fun getWithCommentCountMap(
             bookId: Long,
             page: Page
-    ): CommentCountedBook {
-        val selectOptions = page.toSelectOptions()
-        return bookDao
-                .selectBookSummaryByBookId(bookId, selectOptions)
-                .toCommentCountedBook()
+    ): Pair<Book, Map<Long, Long>> {
+        val entity =
+                bookDao.selectEntityByIdWithoutComment(page.toSelectOptions(), bookId)
+        val book = entity.toBook()
+        val sentenceIds = entity.map{ it.sentenceId }
+        val commentCount = sentenceDao.countSentenceComment(sentenceIds)
+        val commentCountMap = commentCount.toCommentCountMap()
+        return Pair(book, commentCountMap)
+    }
+
+    private fun List<CommentCountedSentenceEntity>.toCommentCountMap(): Map<Long, Long> {
+        val m = mutableMapOf<Long, Long>()
+        forEach{ m.put(it.sentenceId, it.commentCount)}
+        return m
     }
 
     fun insertComment(sentenceId: Long, comment: Comment) {
@@ -48,30 +62,39 @@ class BookRepository(
 
     fun addBook(book: Book){
         // Author
-        val authorEntityInDB = authorDao.selectByName(book.author.name)
-        val authorExists = authorEntityInDB != null
+        val authorTableInDB = authorDao.selectByName(book.bookInfo.author.name)
+        val authorExists = authorTableInDB != null
         if(!authorExists){
-            val authorEntity = book.author.toAuthorEntity()
-            authorDao.insert(authorEntity)
+            val authorTable = book.bookInfo.author.toAuthorEntity()
+            authorDao.insert(authorTable)
         }
         val authorId =
                 if (authorExists) {
-                    authorEntityInDB.authorId
+                    authorTableInDB.id
                 }
                 else{
-                    // 一旦INSERTしたものを抜き出し、IDを得る
-                    // TODO トランザクションレベルの考慮が必要
-                    authorDao.selectByName(book.author.name).authorId
+                    authorDao.selectByName(book.bookInfo.author.name).id
                 }
 
+        // BookInfo
+        val bookInfoTable = book.bookInfo.toTable()
+        val insertedBookInfoTable = bookInfoDao.insert(bookInfoTable)
+        val bookInfoId = insertedBookInfoTable.entity.id
+
         // Book
-        val bookEntity = book.toBookEntity(authorId)
-        bookDao.insert(bookEntity)
+        val bookTable = book.toTable(bookInfoId)
+        bookDao.insert(bookTable)
 
         //Sentence
-        val insertedBookId = bookDao.selectBookIdByNameAndAuthorId(book.name, authorId)
-        val sentenceEntities = book.sentences.toSentenceEntities(insertedBookId)
-        sentenceDao.insert(sentenceEntities)
+        val insertedBookId = bookDao.selectBookIdByNameAndAuthorId(book.bookInfo.title, authorId)
+        val sentenceTables = book.sentences.toTables(insertedBookId)
+        sentenceDao.insert(sentenceTables)
+
+        // License
+        if(book.bookInfo.license != null){
+            val licenseTable = book.bookInfo.license.toTable(insertedBookId)
+            licenseDao.insert(licenseTable)
+        }
     }
 
     fun getSentencesBySentenceId(
@@ -94,6 +117,21 @@ class BookRepository(
 
     fun getTotalCommentAmount(sentenceId: Long): Int {
         return commentDao.countCommentBySentenceId(sentenceId)
+    }
+
+    /**
+     * 著者のリストを取得します。
+     */
+    fun getAuthors(): List<Author> {
+        return authorDao.select().map{ it.toAuthor() }
+    }
+
+    /**
+     * ライセンスを登録します。
+     */
+    fun addLicense(license: License, bookId: Long) {
+        val licenseTable = license.toTable(bookId)
+        licenseDao.insert(licenseTable)
     }
 
 }

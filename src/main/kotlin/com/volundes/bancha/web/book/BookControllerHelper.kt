@@ -1,7 +1,7 @@
 package com.volundes.bancha.web.book
 
-import com.volundes.bancha.domain.book.service.BookService
-import com.volundes.bancha.domain.paging.Page
+import com.volundes.bancha.domain.service.book.BookService
+import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.env.setting.DisplayLimitSettings
 import com.volundes.bancha.env.setting.SubmitSettings
 import com.volundes.bancha.web.book.form.CommentForm
@@ -51,8 +51,8 @@ class BookControllerHelper(
             bookId: Long,
             page: Page
     ): CommentCountedBookItem {
-        val book = service.getCommentCountedBookByBookId(bookId, page)
-        return CommentCountedBookItem(book)
+        val (book, commentCountMap) = service.getWithCommentCountMap(bookId, page)
+        return CommentCountedBookItem.from(book, commentCountMap)
     }
 
     fun createSentencePage(pageNumber: Int?, bookId: Long): Page {
@@ -68,7 +68,7 @@ class BookControllerHelper(
         )
     }
 
-    fun createCommentPage(pageNumber: Int, sentenceId: Long): Page{
+    fun createCommentPage(pageNumber: Int, sentenceId: Long): Page {
         val totalCommentAmount = service.getTotalCommentAmount(sentenceId)
         return Page(
                 pageNumber,

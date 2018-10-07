@@ -1,6 +1,6 @@
 package com.volundes.bancha.infra.repository
 
-import com.volundes.bancha.domain.donation.Donation
+import com.volundes.bancha.domain.obj.donation.Donation
 import com.volundes.bancha.infra.dao.DonationDao
 import com.volundes.bancha.infra.mapper.DonationMapperExtension
 import org.springframework.stereotype.Repository

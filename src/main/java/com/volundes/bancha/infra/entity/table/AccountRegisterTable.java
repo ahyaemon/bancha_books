@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 public class AccountRegisterTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_register_id")
-    public Long accountRegisterId;
+    @Column(name = "id")
+    public Long id;
 
     @Column(name = "email")
     public String email;

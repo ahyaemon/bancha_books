@@ -1,5 +1,5 @@
 INSERT INTO author
-  (author_id, name)
+  (id, name)
 VALUES
   (1, 'あひゃえもん'),
   (2, 'いろんな人'),

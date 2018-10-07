@@ -1,7 +1,7 @@
 package com.volundes.bancha.web.bookmenu
 
-import com.volundes.bancha.domain.bookmenu.BookMenuService
-import com.volundes.bancha.domain.paging.Page
+import com.volundes.bancha.domain.service.bookmenu.BookMenuService
+import com.volundes.bancha.domain.page.Page
 import com.volundes.bancha.env.interceptor.subtitle.DynamicSubtitle
 import com.volundes.bancha.env.setting.DisplayLimitSettings
 import org.springframework.lang.Nullable
@@ -26,9 +26,8 @@ class BookMenuController(
         val page = pageNumber.createPage()
         model.addAttribute("page", page)
 
-        val bookMenus = service.getBookMenus(page)
-        val bookMenuItems: List<BookMenuItem> = bookMenus.map{ BookMenuItem(it) }
-        model.addAttribute("bookMenuItems", bookMenuItems)
+        val bookInfoItems = service.getBookInfos(page).map{ BookInfoItem(it) }
+        model.addAttribute("bookInfoItems", bookInfoItems)
 
         return "bookmenu/index"
     }

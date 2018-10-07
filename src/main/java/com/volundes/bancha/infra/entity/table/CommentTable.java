@@ -8,8 +8,8 @@ public class CommentTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comment_id")
-    public Long commentId;
+    @Column(name = "id")
+    public Long id;
 
     @Column(name = "sentence_id")
     public Long sentenceId;

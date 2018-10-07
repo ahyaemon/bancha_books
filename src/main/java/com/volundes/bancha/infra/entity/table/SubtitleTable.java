@@ -7,8 +7,8 @@ import org.seasar.doma.*;
 public class SubtitleTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "subtitle_id")
-    public Long subtitleId;
+    @Column(name = "id")
+    public Long id;
 
     @Column(name = "title_cd")
     public String titleCd;

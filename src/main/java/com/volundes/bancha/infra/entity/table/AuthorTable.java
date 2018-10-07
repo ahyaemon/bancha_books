@@ -8,8 +8,8 @@ public class AuthorTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "author_id")
-    public Long authorId;
+    @Column(name = "id")
+    public Long id;
 
     @Column(name = "name")
     public String name;

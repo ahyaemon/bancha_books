@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.book.item
 
-import com.volundes.bancha.domain.book.Sentence
+import com.volundes.bancha.domain.obj.book.Sentence
 
 class SentenceItem(
         val sentenceId: Long?,
@@ -10,7 +10,7 @@ class SentenceItem(
 
     constructor(sentence: Sentence, accountId: Long):
             this(
-                    sentence.sentenceId,
+                    sentence.id,
                     sentence.sentence,
                     sentence.comments.map{ CommentItem(it, accountId) }
             )

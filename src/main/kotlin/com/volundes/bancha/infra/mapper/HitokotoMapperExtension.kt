@@ -1,7 +1,6 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.general.profile.Hitokoto
-import com.volundes.bancha.domain.general.profile.Profile
+import com.volundes.bancha.domain.obj.account.Hitokoto
 import com.volundes.bancha.infra.entity.table.HitokotoTable
 
 interface HitokotoMapperExtension {
@@ -10,13 +9,13 @@ interface HitokotoMapperExtension {
         return if(this == null){
             null
         }else{
-            Hitokoto(hitokotoId, value)
+            Hitokoto(id, value)
         }
     }
 
     fun Hitokoto.toTable(accountId: Long): HitokotoTable {
         val table = HitokotoTable()
-        table.hitokotoId = hitokotoId
+        table.id = id
         table.accountId = accountId
         table.value = value
         return table

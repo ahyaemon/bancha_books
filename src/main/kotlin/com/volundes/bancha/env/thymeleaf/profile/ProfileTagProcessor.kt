@@ -27,10 +27,4 @@ abstract class ProfileTagProcessor(
         return isValidTag(attributeValue)
     }
 
-//    abstract fun isValidTag(attributeValue: String): Boolean
-
-//    protected fun isValidTag(attributeValue: String): Boolean{
-//        return false
-//    }
-
 }

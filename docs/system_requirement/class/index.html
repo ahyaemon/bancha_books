@@ -191,11 +191,23 @@
 <h2>ブック: Book<a class="headerlink" href="#book" title="このヘッドラインへのパーマリンク">¶</a></h2>
 <p>一冊の本を表す</p>
 <p class="plantuml">
-<img src="../../_images/plantuml-388a9599b1c341a4299fda6928b04f2880bbeb37.png" alt="class Book {
-  Long: id
+<img src="../../_images/plantuml-57ba0b90c0dadaf80eda7fc76f4909c0434ce4fa.png" alt="class Book {
+  id: Long
+  book_info: BookInfo
+  sentences: List&lt;Sentence&gt;
+}
+
+class BookInfo {
+  id: Long
   title: String
   author: Author
-  sentences: List&lt;Sentence&gt;
+  license: License
+}
+
+class License {
+  id: Long
+  notice: String
+  license_type: String
 }
 
 class Author {
@@ -214,15 +226,11 @@ class Comment {
   value: String
 }
 
-class DeleteKey {
-  id: Long
-  value: String
-}
-
-Book &quot;1&quot; *-- &quot;0..n&quot; Sentence
-Book &quot;1&quot; *-- &quot;1..n&quot; Author
-Sentence &quot;1&quot; *-- &quot;0..n&quot; Comment
-Comment &quot;1&quot; *-- &quot;0..1&quot; DeleteKey"/>
+Book &quot;1&quot; *-- &quot;1&quot; BookInfo
+Book &quot;1&quot; *-- &quot;1..n&quot; Sentence
+BookInfo &quot;1&quot; *-- &quot;1&quot; Author
+BookInfo &quot;1&quot; *-- &quot;0..1&quot; License
+Sentence &quot;1&quot; *-- &quot;0..n&quot; Comment"/>
 </p>
 </div>
 <div class="section" id="account">

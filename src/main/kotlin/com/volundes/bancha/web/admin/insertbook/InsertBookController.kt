@@ -1,22 +1,31 @@
 package com.volundes.bancha.web.admin.insertbook
 
-import com.volundes.bancha.domain.admin.insertbook.RawBook
-import com.volundes.bancha.domain.admin.insertbook.InsertBookService
+import com.volundes.bancha.domain.service.admin.insertbook.InsertBookService
+import com.volundes.bancha.domain.obj.book.Author
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
-import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.ModelAttribute
 import org.springframework.web.bind.annotation.RequestMapping
-import java.nio.charset.Charset
+import org.springframework.web.bind.annotation.SessionAttributes
 
 /**
  * 「本の追加」画面を担うControllerです。
  */
 @Controller
 @RequestMapping("/admin/insertbook")
+@SessionAttributes("authors")
 class InsertBookController(
         private val service: InsertBookService
 ) {
+
+    /**
+     * authorsをセッションで管理します。
+     */
+    @ModelAttribute("authors")
+    fun authors(): List<Author> {
+        return service.getAuthors()
+    }
 
     /**
      * indexへのマッピングです。
@@ -25,9 +34,8 @@ class InsertBookController(
     fun index(
             model: Model
     ): String{
-        val htmlBookUploadForm = HtmlBookUploadForm()
-        model.addAttribute("htmlBookUploadForm", htmlBookUploadForm)
-
+        model.addAttribute("htmlBookUploadForm", HtmlBookUploadForm.default())
+        model.addAttribute("bookCreateForm", BookCreateForm.default())
         return "admin/insertbook/index"
     }
 
@@ -35,20 +43,30 @@ class InsertBookController(
      * ajax。
      * html形式でpostされた本を新規追加します。
      */
-    @RequestMapping("/html")
-    fun insertHtml(
-            @Validated htmlBookUploadForm: HtmlBookUploadForm,
-            result: BindingResult
-    ): String{
-        val rawBook = createRowBook(htmlBookUploadForm)
-        service.addBook(rawBook)
-        return "admin/insertbook/index"
-    }
+//    @RequestMapping("/html")
+//    fun insertHtml(
+//            @Validated form: HtmlBookUploadForm,
+//            result: BindingResult
+//    ): String{
+//        val rawBook = RawBook.fromFile(form.file!!, "Shift-JIS")
+//        service.addBook(rawBook)
+//        return "admin/insertbook/index"
+//    }
 
-    private fun createRowBook(htmlBookUploadForm: HtmlBookUploadForm): RawBook {
-        val encode = "Shift-JIS"
-        val content = String(htmlBookUploadForm.file!!.bytes, Charset.forName(encode))
-        return RawBook(content)
+    /**
+     * 手動入力で本を新規登録します。
+     * TODO 既に同じ本が入っているか確認する
+     */
+    @RequestMapping("/create")
+    fun create(
+            form: BookCreateForm,
+            result: BindingResult,
+            @ModelAttribute(value="authors", binding = false) authors: List<Author>
+    ): String {
+        val book = form.tobook(authors, "UTF-8")
+        service.addBook(book)
+
+        return "redirect:/admin/insertbook/"
     }
 
 }

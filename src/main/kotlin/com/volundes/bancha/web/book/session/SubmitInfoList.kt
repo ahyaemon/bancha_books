@@ -14,7 +14,7 @@ class SubmitInfoList{
 
     /**
      * ユーザーの投稿情報をlistに追加する。
-     * bookId, sentenceIdがユニークにならない場合、
+     * id, sentenceIdがユニークにならない場合、
      * 旧情報を新情報で上書きする。
      */
     fun addNewInfo(bookId:Long, sentenceId: Long, submitDateTime: LocalDateTime) {

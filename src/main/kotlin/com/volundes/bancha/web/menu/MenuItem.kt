@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.menu
 
-import com.volundes.bancha.domain.menu.Menu
+import com.volundes.bancha.domain.obj.menu.Menu
 
 class MenuItem(
         var menuId: Long?,
@@ -8,5 +8,5 @@ class MenuItem(
         var subtitle: String,
         var url: String
 ) {
-    constructor(menu: Menu): this(menu.menuId, menu.title, menu.subtitle, menu.url)
+    constructor(menu: Menu): this(menu.id, menu.title, menu.subtitle, menu.url)
 }
