@@ -1,7 +1,7 @@
-package com.volundes.bancha.web.general.profile
+package com.volundes.bancha.web.general.account
 
 import com.volundes.bancha.domain.obj.account.Account
-import com.volundes.bancha.domain.service.general.profile.ProfileService
+import com.volundes.bancha.domain.service.general.profile.AccountService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping
 import javax.servlet.http.HttpSession
 
 @Controller
-@RequestMapping("profile")
-class ProfileController(
-        private val service: ProfileService
+@RequestMapping("account")
+class AccountController(
+        private val service: AccountService
 ) {
 
     /**
@@ -30,26 +30,18 @@ class ProfileController(
          * ほかの人の情報
          */
         if(!account.canEdit(accountId)){
-            val profile = service.getProfile(accountId.toLong())
-            val profileItem = ProfileItem(profile)
-            model.addAttribute("profileItem", profileItem)
-            return "general/profile/others/index"
+            val otherAccount = service.getAccount(accountId.toLong())
+            val accountItem = AccountItem(otherAccount)
+            model.addAttribute("accountItem", accountItem)
+            return "general/account/others/index"
         }
 
         /*
          * 自分の情報
          */
-        val hitokoto = service.getHitokoto(accountId.toLong())
-        // hitokotoは存在しない場合がある
-        val profileEditForm =
-                if(hitokoto == null){
-                    ProfileEditForm(account!!)
-                }
-                else{
-                    ProfileEditForm(account!!, hitokoto)
-                }
-        model.addAttribute("profileEditForm", profileEditForm)
-        return "general/profile/mine/index"
+        val accountEditForm = AccountEditForm(account!!)
+        model.addAttribute("accountEditForm", accountEditForm)
+        return "general/account/mine/index"
     }
 
     private fun Account?.canEdit(otherId: String): Boolean {
@@ -64,32 +56,19 @@ class ProfileController(
      */
     @RequestMapping("/edit")
     fun edit(
-            @Validated profileEditForm: ProfileEditForm,
+            @Validated accountEditForm: AccountEditForm,
             result: BindingResult,
             @ModelAttribute(binding = false) account: Account?,
             model: Model,
             httpSession: HttpSession
     ): String {
-        // TODO accountがnullの場合（ありえないけど。。）
-        if(account == null){
-            return "/"
-        }
-
         // TODO バリデーションエラー時の動作
 
         // 登録
-        val profile = profileEditForm.toProfile(account)
-        service.editProfile(profile)
-
-        // sessionn中のaccountも更新
-        val newAccount = account.copy(
-                nickname = profileEditForm.nickname,
-                email = profileEditForm.email
-        )
+        val newAccount = accountEditForm.toAccount(account!!)
+        service.editAccount(newAccount)
         httpSession.setAttribute("account", newAccount)
-
-        val accountId = account.id
-        return "redirect:/profile/$accountId"
+        return "redirect:/account/${account.id}"
     }
 
 }

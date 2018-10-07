@@ -4,7 +4,7 @@
 <body>
     <!--/* ヘッダー */-->
     <section class="sec-header" th:include="nav :: normal"></section>
-    
+
     <!--/* タイトル */-->
     <section class="sec-title" th:include="title :: normal(title='誰かの情報', subtitle='他人情報的な？')"></section>
 
@@ -21,9 +21,9 @@
         <div class="siimple-card" style="max-width: 800px;">
             <div class="siimple-card-body">
                 <div class="siimple-card-title">ニックネーム</div>
-                <p class="siimple-p" th:text="${profileItem.nickname}"></p>
+                <p class="siimple-p" th:text="${accountItem.name}"></p>
                 <div class="siimple-card-title">ひとこと</div>
-                <p class="siimple-p" th:text="${profileItem.hitokoto}"></p>
+                <p class="siimple-p" th:text="${accountItem.hitokoto}"></p>
             </div>
         </div>
     </section>

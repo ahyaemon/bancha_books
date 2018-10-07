@@ -25,11 +25,11 @@ class AccountUserDetailsService(
      * @return 認証を行うためのUserDetailsインスタンス
      */
     override fun loadUserByUsername(username: String): UserDetails{
-        val account = accountRepository.findByEmail(username)
-        val role = account.role.toUpperCase()
+        val authInfo = accountRepository.findAuthInfoByEmail(username)
+        val role = authInfo.role.toUpperCase()
         val grantedAuthorities = AuthorityUtils.createAuthorityList("ROLE_$role")
         val userDetails = AccountUserDetails(
-                account,
+                authInfo,
                 true,
                 true,
                 true,

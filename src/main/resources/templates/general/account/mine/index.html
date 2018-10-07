@@ -4,7 +4,7 @@
 <body>
     <!--/* ヘッダー */-->
     <section class="sec-header" th:include="nav :: normal"></section>
-    
+
     <!--/* タイトル */-->
     <section class="sec-title" th:include="title :: normal(title='自分の情報', subtitle='個人情報的な？')"></section>
 
@@ -21,11 +21,11 @@
         <div class="siimple-card" style="max-width: 800px;">
             <div class="siimple-card-header">基本情報</div>
             <div class="siimple-card-body">
-                <form action="/profile/edit" th:object="${profileEditForm}">
+                <form action="/account/edit" th:object="${accountEditForm}">
                     <div class="siimple-form">
                         <div class="siimple-field">
                             <div class="siimple-field-label">ニックネーム</div>
-                            <input class="siimple-input" type="text" th:field="*{nickname}">
+                            <input class="siimple-input" type="text" th:field="*{name}">
                         </div>
                         <div class="siimple-field">
                             <div class="siimple-field-label">メールアドレス</div>
@@ -34,7 +34,7 @@
                         <div class="siimple-field">
                             <div class="siimple-field-label">ひとこと</div>
                             <input type="hidden" th:field="*{hitokotoId}" />
-                            <textarea class="siimple-textarea siimple-textarea-fuild" th:field="*{hitokoto}"></textarea>
+                            <textarea class="siimple-textarea siimple-textarea-fuild" th:field="*{hitokotoValue}"></textarea>
                         </div>
                         <div class="siimple-field">
                             <button class="siimple-btn" type="submit">更新</button>
@@ -58,7 +58,7 @@
                 <div class="siimple-field">
                     <div class="siimple-field-label">新しいパスワード（再入力）</div>
                     <input class="siimple-input" type="text">
-                </div>                            
+                </div>
                 <div class="siimple-field">
                     <button class="siimple-btn mada" type="submit">更新</button>
                 </div>

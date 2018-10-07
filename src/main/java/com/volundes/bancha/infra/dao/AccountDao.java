@@ -1,12 +1,11 @@
 package com.volundes.bancha.infra.dao;
 
-import com.volundes.bancha.infra.entity.ProfileEntity;
+import com.volundes.bancha.infra.entity.AccountEntity;
 import com.volundes.bancha.infra.entity.table.AccountTable;
 import org.jetbrains.annotations.NotNull;
 import org.seasar.doma.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,10 +19,13 @@ public interface AccountDao {
     List<AccountTable> select();
 
     @Select
-    AccountTable selectByEmail(String email);
+    AccountTable selectByName(String name);
 
     @Select
-    ProfileEntity selectProfileByAccountId(Long accountId);
+    AccountEntity selectEntityById(Long accountId);
+
+    @Select
+    AccountEntity selectEntityByEmail(String email);
 
     @Insert
     int insert(AccountTable table);

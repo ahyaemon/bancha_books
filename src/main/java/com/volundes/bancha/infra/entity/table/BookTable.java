@@ -10,10 +10,7 @@ public class BookTable {
     @Column(name = "id")
     public Long id;
 
-    @Column(name = "name")
-    public String name;
-
-    @Column(name = "author_id")
-    public Long authorId;
+    @Column(name = "book_info_id")
+    public Long bookInfoId;
 
 }

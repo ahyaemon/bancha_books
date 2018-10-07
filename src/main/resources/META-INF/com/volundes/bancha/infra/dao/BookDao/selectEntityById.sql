@@ -13,7 +13,7 @@ SELECT
   c.id as comment_id,
   c.account_id as comment_account_id,
   c.comment as comment_value,
-  ac.nickname as comment_name
+  ac.name as comment_name
 FROM
   book b
 INNER JOIN

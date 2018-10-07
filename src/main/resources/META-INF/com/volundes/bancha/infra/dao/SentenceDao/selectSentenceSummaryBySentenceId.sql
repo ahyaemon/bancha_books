@@ -5,7 +5,7 @@ SELECT
   c.id as comment_id,
   c.account_id,
   c.comment,
-  a.nickname as comment_name
+  a.name as comment_name
 FROM
   sentence s
   LEFT OUTER JOIN

@@ -62,30 +62,33 @@ class BookRepository(
 
     fun addBook(book: Book){
         // Author
-        val authorEntityInDB = authorDao.selectByName(book.bookInfo.author.name)
-        val authorExists = authorEntityInDB != null
+        val authorTableInDB = authorDao.selectByName(book.bookInfo.author.name)
+        val authorExists = authorTableInDB != null
         if(!authorExists){
-            val authorEntity = book.bookInfo.author.toAuthorEntity()
-            authorDao.insert(authorEntity)
+            val authorTable = book.bookInfo.author.toAuthorEntity()
+            authorDao.insert(authorTable)
         }
         val authorId =
                 if (authorExists) {
-                    authorEntityInDB.id
+                    authorTableInDB.id
                 }
                 else{
-                    // 一旦INSERTしたものを抜き出し、IDを得る
-                    // TODO トランザクションレベルの考慮が必要
                     authorDao.selectByName(book.bookInfo.author.name).id
                 }
 
+        // BookInfo
+        val bookInfoTable = book.bookInfo.toTable()
+        val insertedBookInfoTable = bookInfoDao.insert(bookInfoTable)
+        val bookInfoId = insertedBookInfoTable.entity.id
+
         // Book
-        val bookEntity = book.toBookEntity(authorId)
-        bookDao.insert(bookEntity)
+        val bookTable = book.toTable(bookInfoId)
+        bookDao.insert(bookTable)
 
         //Sentence
         val insertedBookId = bookDao.selectBookIdByNameAndAuthorId(book.bookInfo.title, authorId)
-        val sentenceEntities = book.sentences.toTables(insertedBookId)
-        sentenceDao.insert(sentenceEntities)
+        val sentenceTables = book.sentences.toTables(insertedBookId)
+        sentenceDao.insert(sentenceTables)
 
         // License
         if(book.bookInfo.license != null){

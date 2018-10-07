@@ -1,6 +1,5 @@
 package com.volundes.bancha.web.general.register
 
-import com.volundes.bancha.domain.obj.general.profile.Hitokoto
 import com.volundes.bancha.domain.service.general.register.GeneralRegisterService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -46,11 +45,6 @@ class GeneralRegisterController(
 
         val account = accountCreateForm.toAccount()
         generalRegisterService.addAccount(account)
-
-        val accountId = generalRegisterService.getAccountId(account)
-        val hitokoto = Hitokoto(null, accountCreateForm.hitokoto)
-        generalRegisterService.addHitokoto(accountId, hitokoto)
-
         return "general/register/done"
     }
 

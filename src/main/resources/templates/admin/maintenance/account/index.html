@@ -35,7 +35,7 @@
             <div class="siimple-table-body">
                 <div class="siimple-table-row" th:each="item: ${accountMaintenanceItems}">
                     <div class="siimple-table-cell" th:text="${item.accountId}"></div>
-                    <div class="siimple-table-cell" th:text="${item.nickname}"></div>
+                    <div class="siimple-table-cell" th:text="${item.name}"></div>
                     <div class="siimple-table-cell" th:text="${item.email}"></div>
                     <div class="siimple-table-cell" th:text="${item.hitokoto}"></div>
                     <div class="siimple-table-cell" th:text="${item.role}"></div>
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-        
+
     </section>
 
     <!--/* フッター */-->

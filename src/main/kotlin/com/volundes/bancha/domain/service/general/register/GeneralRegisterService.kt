@@ -1,10 +1,8 @@
 package com.volundes.bancha.domain.service.general.register
 
 import com.volundes.bancha.domain.obj.account.Account
-import com.volundes.bancha.domain.obj.general.profile.Hitokoto
 import com.volundes.bancha.infra.repository.AccountRegisterRepository
 import com.volundes.bancha.infra.repository.AccountRepository
-import com.volundes.bancha.infra.repository.ProfileRepository
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -14,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional
 class GeneralRegisterService(
         private val accountRegisterRepository: AccountRegisterRepository,
         private val accountRepository: AccountRepository,
-        private val profileRepository: ProfileRepository,
         private val passwordEncoder: PasswordEncoder
 ) {
 
@@ -27,17 +24,13 @@ class GeneralRegisterService(
     }
 
     fun addAccount(account: Account) {
-        val passwordEncryptedAccount =
-                account.copy(pass = passwordEncoder.encode(account.pass))
+        val encryptedPassword = passwordEncoder.encode(account.authInfo.password)
+        val passwordEncryptedAccount = account.copy(
+                authInfo = account.authInfo.copy(
+                        password = encryptedPassword
+                )
+        )
         accountRepository.addAccount(passwordEncryptedAccount)
-    }
-
-    fun getAccountId(account: Account): Long {
-        return accountRepository.getAccountId(account)
-    }
-
-    fun addHitokoto(accountId: Long, hitokoto: Hitokoto) {
-        profileRepository.addHitokoto(accountId, hitokoto)
     }
 
 }

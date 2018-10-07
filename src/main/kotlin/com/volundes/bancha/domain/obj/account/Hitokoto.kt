@@ -1,4 +1,4 @@
-package com.volundes.bancha.domain.obj.general.profile
+package com.volundes.bancha.domain.obj.account
 
 data class Hitokoto(
         val id: Long?,

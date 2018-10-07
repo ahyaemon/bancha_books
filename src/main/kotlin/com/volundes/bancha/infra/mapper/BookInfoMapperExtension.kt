@@ -2,6 +2,7 @@ package com.volundes.bancha.infra.mapper
 
 import com.volundes.bancha.domain.obj.book.*
 import com.volundes.bancha.infra.entity.BookInfoEntity
+import com.volundes.bancha.infra.entity.table.BookInfoTable
 
 interface BookInfoMapperExtension {
 
@@ -16,5 +17,13 @@ interface BookInfoMapperExtension {
     }
 
     fun List<BookInfoEntity>.toBookInfos() = map { it.toBookInfo() }
+
+    fun BookInfo.toTable(): BookInfoTable {
+        val table = BookInfoTable(id, title, author.id)
+//        table.id = id
+//        table.title = title
+//        table.author_id = author.id
+        return table
+    }
 
 }
