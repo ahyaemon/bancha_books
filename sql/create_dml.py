@@ -48,7 +48,7 @@ def create_dml(tsv, table_name):
     return dml
 
 if __name__ == "__main__":
-    output_dir = "./_output"
+    output_dir = "./_output/dml"
 
     target_dirs = glob.glob("table/*")
     for target_dir in target_dirs:

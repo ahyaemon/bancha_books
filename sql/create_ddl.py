@@ -35,7 +35,7 @@ def create_ddl(tsv, table_name):
     return ddl
 
 if __name__ == "__main__":
-    output_dir = "./_output"
+    output_dir = "./_output/ddl"
 
     target_dirs = glob.glob("table/*")
     for target_dir in target_dirs:

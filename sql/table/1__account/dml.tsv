@@ -1,3 +1,3 @@
 物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
-id	アカウントID	SERIAL	〇	〇	〇	
-name	アカウント名	TEXT	〇	〇		
+id	アカウントID	SERIAL		y	y	
+name	アカウント名	TEXT	y	y		

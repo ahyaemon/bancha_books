@@ -1,0 +1,5 @@
+物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
+id	文ID	SERIAL		y	y	
+book_id	本ID	INTEGER		y		book(id)
+value	文値	TEXT		y		
+heading	ヘッディング	INTEGER		y		
