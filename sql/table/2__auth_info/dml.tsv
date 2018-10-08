@@ -1,0 +1,6 @@
+物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
+id	認証情報ID	SERIAL	〇	〇	〇	
+account_id	アカウントID	INTEGER	〇	〇		account(id)
+email	メール	TEXT		〇		
+password	パスワード	TEXT		〇		
+role	ロール	TEXT		〇		

@@ -1,0 +1,4 @@
+物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
+id	テーブル情報ID	SERIAL		y	y	
+name	テーブル名	TEXT	y	y		
+version	管理番号	TEXT		y		
