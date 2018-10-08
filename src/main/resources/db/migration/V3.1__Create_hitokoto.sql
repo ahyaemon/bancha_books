@@ -1,7 +1,7 @@
 CREATE TABLE hitokoto
 (
-    id serial NOT NULL,
-    account_id INTEGER UNIQUE NOT NULL REFERENCES account(id),
-    value CHARACTER VARYING(1024),
+    id SERIAL NOT NULL,
+    account_id INTEGER UNIQUE NOT NULL,
+    value TEXT,
     PRIMARY KEY (id)
 )

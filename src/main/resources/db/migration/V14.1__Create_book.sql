@@ -1,6 +1,6 @@
 CREATE TABLE book
 (
-    id serial NOT NULL,
-    book_info_id integer NOT NULL REFERENCES book_info(id),
+    id SERIAL NOT NULL,
+    book_info_id INTEGER NOT NULL,
     PRIMARY KEY (id)
 )

@@ -2,22 +2,29 @@ package com.volundes.bancha.infra.entity.table;
 
 import org.seasar.doma.*;
 
-@Entity
+@Entity(immutable = true)
 @Table(name = "sentence")
 public class SentenceTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public Long id;
+    final public Long id;
 
     @Column(name = "book_id")
-    public Long bookId;
+    final public Integer bookId;
 
-    @Column(name = "sentence")
-    public String sentence;
+    @Column(name = "value")
+    final public String value;
 
     @Column(name = "heading")
-    public Integer heading;
+    final public Integer heading;
+
+    public SentenceTable(Long id, Integer bookId, String value, Integer heading) {
+        this.id = id;
+        this.bookId = bookId;
+        this.value = value;
+        this.heading = heading;
+    }
 
 }

@@ -1,8 +1,8 @@
 CREATE TABLE account_register
 (
-    id serial NOT NULL,
-    email CHARACTER VARYING(255) UNIQUE NOT NULL,
-    url_key CHARACTER VARYING(255) UNIQUE NOT NULL,
-    create_date_time TIMESTAMP,
+    id SERIAL NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    url_key TEXT UNIQUE NOT NULL,
+    create_date_time TIMESTAMP NOT NULL,
     PRIMARY KEY (id)
 )

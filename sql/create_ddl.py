@@ -35,7 +35,7 @@ def create_ddl(tsv, table_name):
     return ddl
 
 if __name__ == "__main__":
-    output_dir = "./_output/ddl"
+    output_dir = "../src/main/resources/db/migration"
 
     target_dirs = glob.glob("table/*")
     for target_dir in target_dirs:
@@ -64,4 +64,3 @@ if __name__ == "__main__":
                 # nがある場合
                 output_path = output_dir + "/V" + version + ".2." + sp_file[1] + "__insert_" + table_name + ".sql"
             codecs.open(output_path, mode="w", encoding="UTF-8").write(ddl)
-        break

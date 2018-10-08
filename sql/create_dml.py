@@ -48,7 +48,7 @@ def create_dml(tsv, table_name):
     return dml
 
 if __name__ == "__main__":
-    output_dir = "./_output/dml"
+    output_dir = "../src/main/resources/db/migration"
 
     target_dirs = glob.glob("table/*")
     for target_dir in target_dirs:
@@ -66,4 +66,3 @@ if __name__ == "__main__":
         # 保存
         output_path = output_dir + "/V" + version + ".1__create_" + table_name + ".sql"
         codecs.open(output_path, mode="w", encoding="UTF-8").write(dml)
-        break

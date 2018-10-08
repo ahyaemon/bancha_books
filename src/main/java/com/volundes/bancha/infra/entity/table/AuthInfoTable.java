@@ -2,25 +2,33 @@ package com.volundes.bancha.infra.entity.table;
 
 import org.seasar.doma.*;
 
-@Entity
+@Entity(immutable = true)
 @Table(name = "auth_info")
 public class AuthInfoTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public Long id;
+    final public Long id;
 
     @Column(name = "account_id")
-    public Long accountId;
+    final public Integer accountId;
 
     @Column(name = "email")
-    public String email;
+    final public String email;
 
     @Column(name = "password")
-    public String password;
+    final public String password;
 
     @Column(name = "role")
-    public String role;
+    final public String role;
+
+    public AuthInfoTable(Long id, Integer accountId, String email, String password, String role) {
+        this.id = id;
+        this.accountId = accountId;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
 
 }

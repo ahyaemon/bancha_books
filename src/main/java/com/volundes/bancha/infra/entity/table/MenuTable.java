@@ -2,22 +2,29 @@ package com.volundes.bancha.infra.entity.table;
 
 import org.seasar.doma.*;
 
-@Entity
+@Entity(immutable = true)
 @Table(name = "menu")
 public class MenuTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public Long id;
+    final public Long id;
 
     @Column(name = "title")
-    public String title;
+    final public String title;
 
     @Column(name = "subtitle")
-    public String subtitle;
+    final public String subtitle;
 
     @Column(name = "url")
-    public String url;
+    final public String url;
+
+    public MenuTable(Long id, String title, String subtitle, String url) {
+        this.id = id;
+        this.title = title;
+        this.subtitle = subtitle;
+        this.url = url;
+    }
 
 }

@@ -55,6 +55,9 @@ def create_table(tsv, table_name):
     table += newline
     table += "import org.seasar.doma.*;" + newline
     table += newline
+    if "TIMESTAMP" in tsv:
+        table += "import java.time.LocalDateTime;" + newline
+        table += newline
     table += "@Entity(immutable = true)" + newline
     table += "@Table(name = \"{table_name}\")".format(table_name = table_name) + newline
     table += "public class {class_name} {{".format(class_name = class_name) + newline
@@ -80,9 +83,12 @@ def create_table(tsv, table_name):
 
     # コンストラクタの作成
     arguments = ", ".join([row.java_type_name + " " + row.column_name_camel for row in rows])
-    table += "    public BookInfoTable({arguments}) {{".format(arguments = arguments) + newline
+    table += "    public {class_name}({arguments}) {{".format(
+        class_name = class_name, arguments = arguments)
+    table += newline
+
     for row in rows:
-        table += "        this.{column_name_camel} = {column_name_camel}".format(
+        table += "        this.{column_name_camel} = {column_name_camel};".format(
             column_name_camel = row.column_name_camel)
         table += newline
 
@@ -95,7 +101,7 @@ def create_table(tsv, table_name):
 
 
 if __name__ == "__main__":
-    output_dir = "./_output/table"
+    output_dir = "../src/main/java/com/volundes/bancha/infra/entity/table"
 
     target_dirs = glob.glob("table/*")
     for target_dir in target_dirs:
