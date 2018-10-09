@@ -8,11 +8,11 @@ SELECT
   l.notice as license_notice,
   l.license_type as license_type,
   s.id as sentence_id,
-  s.sentence as sentence_value,
+  s.value as sentence_value,
   s.heading as sentence_heading,
   c.id as comment_id,
   c.account_id as comment_account_id,
-  c.comment as comment_value,
+  c.value as comment_value,
   ac.name as comment_name
 FROM
   book b

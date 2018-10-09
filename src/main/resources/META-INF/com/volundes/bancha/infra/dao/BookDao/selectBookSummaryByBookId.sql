@@ -18,7 +18,7 @@ SELECT
   l.notice,
   l.license_type,
   s.id as sentence_id,
-  s.sentence,
+  s.value,
   s.heading,
   CASE WHEN c.comment_count is null THEN 0
     ELSE c.comment_count
