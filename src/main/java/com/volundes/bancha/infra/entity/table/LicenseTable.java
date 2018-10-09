@@ -12,7 +12,7 @@ public class LicenseTable {
     final public Long id;
 
     @Column(name = "book_info_id")
-    final public String bookInfoId;
+    final public Integer bookInfoId;
 
     @Column(name = "notice")
     final public String notice;
@@ -20,7 +20,7 @@ public class LicenseTable {
     @Column(name = "license_type")
     final public String licenseType;
 
-    public LicenseTable(Long id, String bookInfoId, String notice, String licenseType) {
+    public LicenseTable(Long id, Integer bookInfoId, String notice, String licenseType) {
         this.id = id;
         this.bookInfoId = bookInfoId;
         this.notice = notice;

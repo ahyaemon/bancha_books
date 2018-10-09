@@ -13,12 +13,6 @@ interface HitokotoMapperExtension {
         }
     }
 
-    fun Hitokoto.toTable(accountId: Long): HitokotoTable {
-        val table = HitokotoTable()
-        table.id = id
-        table.accountId = accountId
-        table.value = value
-        return table
-    }
+    fun Hitokoto.toTable(accountId: Long) = HitokotoTable(id, accountId.toInt(), value)
 
 }

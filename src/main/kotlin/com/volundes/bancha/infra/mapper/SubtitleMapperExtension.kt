@@ -5,7 +5,7 @@ import com.volundes.bancha.infra.entity.table.SubtitleTable
 
 interface SubtitleMapperExtension {
 
-    fun SubtitleTable.toSubtitle() = Subtitle(id, titleCd, subtitle)
+    fun SubtitleTable.toSubtitle() = Subtitle(id, titleCd, value)
     fun List<SubtitleTable>.toSubtitles() = map{ it.toSubtitle() }
 
 }

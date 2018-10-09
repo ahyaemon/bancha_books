@@ -17,13 +17,6 @@ interface BookInfoMapperExtension {
     }
 
     fun List<BookInfoEntity>.toBookInfos() = map { it.toBookInfo() }
-
-    fun BookInfo.toTable(): BookInfoTable {
-        val table = BookInfoTable(id, title, author.id)
-//        table.id = id
-//        table.title = title
-//        table.author_id = author.id
-        return table
-    }
+    fun BookInfo.toTable() = BookInfoTable(id, title, author.id!!.toInt())
 
 }

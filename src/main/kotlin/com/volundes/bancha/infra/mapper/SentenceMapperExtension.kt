@@ -7,17 +7,8 @@ import com.volundes.bancha.infra.entity.table.SentenceTable
 
 interface SentenceMapperExtension{
 
-    fun Sentence.toTable(bookId: Long): SentenceTable {
-        val entity = SentenceTable()
-        entity.bookId = bookId
-        entity.sentence = sentence
-        entity.heading = heading
-        return entity
-    }
-
-    fun List<Sentence>.toTables(bookId: Long): List<SentenceTable> {
-        return map{ it.toTable(bookId) }
-    }
+    fun Sentence.toTable(bookId: Long) = SentenceTable(id, bookId.toInt(), sentence, heading)
+    fun List<Sentence>.toTables(bookId: Long) =  map{ it.toTable(bookId) }
 
     fun List<SentenceSummaryEntity>.toSentence(): Sentence {
         val firstEntity = first()
