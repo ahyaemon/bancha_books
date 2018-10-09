@@ -4,6 +4,7 @@ import com.volundes.bancha.infra.entity.CommentCountedSentenceEntity;
 import com.volundes.bancha.infra.entity.table.SentenceTable;
 import com.volundes.bancha.infra.entity.SentenceSummaryEntity;
 import org.seasar.doma.*;
+import org.seasar.doma.jdbc.BatchResult;
 import org.seasar.doma.jdbc.SelectOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,6 +31,6 @@ public interface SentenceDao {
     List<CommentCountedSentenceEntity> countSentenceComment(List<Long> sentenceIds);
 
     @BatchInsert
-    int[] insert(List<SentenceTable> entities);
+    BatchResult<SentenceTable> insert(List<SentenceTable> entities);
 
 }

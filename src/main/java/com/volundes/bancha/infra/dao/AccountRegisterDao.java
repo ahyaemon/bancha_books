@@ -2,6 +2,7 @@ package com.volundes.bancha.infra.dao;
 
 import com.volundes.bancha.infra.entity.table.AccountRegisterTable;
 import org.seasar.doma.*;
+import org.seasar.doma.jdbc.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,6 @@ public interface AccountRegisterDao {
     String selectEmailByUrlKey(String urlKey);
 
     @Insert
-    int insert(AccountRegisterTable entity);
+    Result<AccountRegisterTable> insert(AccountRegisterTable entity);
 
 }

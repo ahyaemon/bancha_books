@@ -3,6 +3,7 @@ package com.volundes.bancha.infra.dao;
 import com.volundes.bancha.infra.entity.table.DonationTable;
 import com.volundes.bancha.infra.entity.TotalAmountEntity;
 import org.seasar.doma.*;
+import org.seasar.doma.jdbc.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,6 @@ public interface DonationDao {
     TotalAmountEntity sum();
 
     @Insert
-    int insert(DonationTable entity);
+    Result<DonationTable> insert(DonationTable entity);
 
 }

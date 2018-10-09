@@ -3,6 +3,7 @@ package com.volundes.bancha.infra.dao;
 import com.volundes.bancha.infra.entity.table.LicenseTable;
 import org.jetbrains.annotations.NotNull;
 import org.seasar.doma.*;
+import org.seasar.doma.jdbc.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +20,6 @@ public interface LicenseDao {
     List<LicenseTable> select();
 
     @Insert
-    int insert(LicenseTable licenseTable);
+    Result<LicenseTable> insert(LicenseTable licenseTable);
 
 }

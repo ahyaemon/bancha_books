@@ -2,6 +2,7 @@ package com.volundes.bancha.infra.dao;
 
 import com.volundes.bancha.infra.entity.table.AuthInfoTable;
 import org.seasar.doma.*;
+import org.seasar.doma.jdbc.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,8 +21,8 @@ public interface AuthInfoDao {
     AuthInfoTable selectByEmail(String email);
 
     @Insert
-    int insert(AuthInfoTable table);
+    Result<AuthInfoTable> insert(AuthInfoTable table);
 
     @Update
-    int update(AuthInfoTable authInfoTable);
+    Result<AuthInfoTable> update(AuthInfoTable authInfoTable);
 }
