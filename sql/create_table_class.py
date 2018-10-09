@@ -112,7 +112,7 @@ if __name__ == "__main__":
         table_name = sp[1]
 
         # table_class を作成
-        tsv_path = target_dir + "/dml.tsv"
+        tsv_path = target_dir + "/ddl.tsv"
         tsv = codecs.open(tsv_path, mode="r", encoding="UTF-8").read()
         table = create_table(tsv, table_name)
 
