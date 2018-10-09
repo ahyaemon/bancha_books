@@ -1,6 +1,6 @@
 SELECT
   s.id as sentence_id,
-  s.value,
+  s.value as sentence,
   s.heading,
   c.id as comment_id,
   c.account_id,
