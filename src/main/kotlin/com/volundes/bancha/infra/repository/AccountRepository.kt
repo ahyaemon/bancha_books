@@ -38,6 +38,10 @@ class AccountRepository(
         }
     }
 
+    fun find(): List<Account> {
+        return accountDao.selectEntities().toAccount()
+    }
+
     fun findById(accountId: Long): Account {
         return accountDao.selectEntityById(accountId).toAccount()
     }

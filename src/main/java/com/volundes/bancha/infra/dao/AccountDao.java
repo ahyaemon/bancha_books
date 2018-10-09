@@ -23,6 +23,9 @@ public interface AccountDao {
     AccountTable selectByName(String name);
 
     @Select
+    List<AccountEntity> selectEntities();
+
+    @Select
     AccountEntity selectEntityById(Long accountId);
 
     @Select

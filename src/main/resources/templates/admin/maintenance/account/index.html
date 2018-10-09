@@ -23,12 +23,12 @@
         <div class="siimple-table">
             <div class="siimple-table-header">
                 <div class="siimple-table-row">
-                    <div class="siimple-table-cell">#</div>
-                    <div class="siimple-table-cell">ニックネーム</div>
-                    <div class="siimple-table-cell">email</div>
-                    <div class="siimple-table-cell">パスワード</div>
+                    <div class="siimple-table-cell">account id</div>
+                    <div class="siimple-table-cell">名前</div>
+                    <div class="siimple-table-cell">auth info id</div>
+                    <div class="siimple-table-cell">メール</div>
                     <div class="siimple-table-cell">ロール</div>
-                    <div class="siimple-table-cell">ひとこと</div>
+                    <div class="siimple-table-cell">hitokoto id</div>
                     <div class="siimple-table-cell">編集</div>
                 </div>
             </div>
@@ -36,9 +36,10 @@
                 <div class="siimple-table-row" th:each="item: ${accountMaintenanceItems}">
                     <div class="siimple-table-cell" th:text="${item.accountId}"></div>
                     <div class="siimple-table-cell" th:text="${item.name}"></div>
+                    <div class="siimple-table-cell" th:text="${item.authInfoId}"></div>
                     <div class="siimple-table-cell" th:text="${item.email}"></div>
-                    <div class="siimple-table-cell" th:text="${item.hitokoto}"></div>
                     <div class="siimple-table-cell" th:text="${item.role}"></div>
+                    <div class="siimple-table-cell" th:text="${item.hitokotoId}"></div>
                     <div class="siimple-table-cell">
                         <button class="siimple-btn blightgreen white" type="button">EDIT</button>
                     </div>

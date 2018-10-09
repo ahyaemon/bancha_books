@@ -19,6 +19,7 @@ interface AccountMapperExtension {
         }
         return Account(accountId, name, authInfo, hitokoto)
     }
+    fun List<AccountEntity>.toAccount() =  map{ it.toAccount() }
 
     fun AuthInfoTable.toAuthInfo() = AuthInfo(id, email, password, role)
     fun AuthInfo.toTable(accountId: Long) = AuthInfoTable(id, accountId.toInt(), email, password, role)
