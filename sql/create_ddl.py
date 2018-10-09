@@ -9,6 +9,7 @@ def create_ddl(tsv, table_name):
     lines = tsv.replace("\r\n", "\n").split("\n")
     header = lines[0]
     records = lines[1:len(lines)]
+    records = [record for record in records if record != ""]
 
     ddl = "INSERT INTO " + table_name + newline
     ddl += "    (" + header.replace("\t", ", ") + ")" + newline
@@ -31,7 +32,10 @@ def create_ddl(tsv, table_name):
 
             if icell < len(cells) - 1:
                 ddl += ", "
-        ddl += ")" + newline
+        ddl += ")"
+        if irecord < len(records) - 1:
+            ddl += ","
+        ddl += newline
     return ddl
 
 if __name__ == "__main__":

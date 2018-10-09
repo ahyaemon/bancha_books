@@ -1,4 +1,4 @@
-id	book_id	sentence	heading
+id	book_id	value	heading
 1	1	Banchaとは	6
 	1	Banchaは読書を目的として作られたサイトです。	7
 	1		7
