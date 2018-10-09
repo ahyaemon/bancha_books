@@ -1,4 +1,4 @@
-package com.volundes.bancha.domain.service.admin.updatebook
+package com.volundes.bancha.domain.service.admin.maintenance.book.updatebook
 
 import com.volundes.bancha.domain.obj.book.BookInfo
 import com.volundes.bancha.domain.page.Page

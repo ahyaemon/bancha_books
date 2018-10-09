@@ -1,10 +1,8 @@
-package com.volundes.bancha.web.admin.updatebook
+package com.volundes.bancha.web.admin.maintenance.book.updatebook
 
-import com.volundes.bancha.domain.service.admin.updatebook.UpdateBookService
-import com.volundes.bancha.web.book.item.CommentCountedBookItem
+import com.volundes.bancha.domain.service.admin.maintenance.book.updatebook.UpdateBookService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 
 /**

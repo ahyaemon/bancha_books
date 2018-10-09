@@ -1,6 +1,6 @@
-package com.volundes.bancha.web.admin.insertbook
+package com.volundes.bancha.web.admin.maintenance.book.insertbook
 
-import com.volundes.bancha.domain.service.admin.insertbook.InsertBookService
+import com.volundes.bancha.domain.service.admin.maintenance.book.insertbook.InsertBookService
 import com.volundes.bancha.domain.obj.book.Author
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model

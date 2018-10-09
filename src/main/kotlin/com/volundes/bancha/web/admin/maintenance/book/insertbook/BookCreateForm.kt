@@ -1,4 +1,4 @@
-package com.volundes.bancha.web.admin.insertbook
+package com.volundes.bancha.web.admin.maintenance.book.insertbook
 
 import com.volundes.bancha.domain.obj.book.*
 import org.springframework.web.multipart.MultipartFile

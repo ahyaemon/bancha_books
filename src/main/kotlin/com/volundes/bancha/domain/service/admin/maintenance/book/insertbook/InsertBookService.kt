@@ -1,4 +1,4 @@
-package com.volundes.bancha.domain.service.admin.insertbook
+package com.volundes.bancha.domain.service.admin.maintenance.book.insertbook
 
 import com.volundes.bancha.domain.obj.book.Author
 import com.volundes.bancha.domain.obj.book.Book
