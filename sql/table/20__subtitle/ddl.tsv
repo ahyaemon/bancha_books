@@ -1,13 +1,4 @@
-id	title_cd	value
-1	home	すべてはここから始まる
-	home	万物の根源
-	home	生きとし生ける生命たちよ、こんにちは
-	bookmenu	読みたい本を選ぶのじゃ
-	bookmenu	どれを読む？
-	bookmenu	選択肢が少なくてすまん
-	about	このページのこととか
-	about	ここにたいした情報はない
-	donation	ハートウォーミングな紳士淑女の集い場
-	donation	何をするにもお金が要り様となる世知辛い世の中
-	donation	私利私欲を肥やす訳ではありません
-	donation	さあ、寄付を始めよう！！
+物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
+id	サブタイトルID	SERIAL		y	y	
+title_cd	タイトルコード	TEXT		y		
+value	サブタイトル値	TEXT		y		

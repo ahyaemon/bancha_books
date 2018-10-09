@@ -6,45 +6,36 @@ import codecs
 newline = "\r\n"
 
 def create_dml(tsv, table_name):
-    dml = "CREATE TABLE " + table_name + newline
-    dml += "(" + newline
-
     lines = tsv.replace("\r\n", "\n").split("\n")
-    lines = lines[1:len(lines)]
-    pk_name = ""
-    for line in lines:
-        if line == "":
+    header = lines[0]
+    records = lines[1:len(lines)]
+    records = [record for record in records if record != ""]
+
+    dml = "INSERT INTO " + table_name + newline
+    dml += "    (" + header.replace("\t", ", ") + ")" + newline
+    dml += "VALUES" + newline
+
+    # 1列目は id なので、連番でふる
+    first_id = int(records[0].split("\t")[0])
+    for (irecord, record) in enumerate(records):
+        if record == "":
             continue
 
-        cells = line.split("\t")
+        id = first_id + irecord
+        cells = record.split("\t")
+        dml += "    ("
+        for (icell, cell) in enumerate(cells):
+            if icell == 0:
+                dml += "'" + str(id) + "'"
+            else:
+                dml += "'" + cell + "'"
 
-        # name
-        name = cells[0]
-        dml += "    " + name
-
-        # data type
-        data_type = cells[2]
-        dml += " " + data_type
-
-        # unique
-        is_unique = cells[3] == "y"
-        if is_unique:
-            dml += " UNIQUE"
-
-        # not null
-        is_not_null = cells[4] == "y"
-        if is_not_null:
-            dml += " NOT NULL"
-
-        # primary key
-        is_pk = cells[5] == "y"
-        if is_pk:
-            pk_name = name
-
-        dml += "," + newline
-
-    dml += "    PRIMARY KEY (" + pk_name + ")" + newline
-    dml += ")" + newline
+            if icell < len(cells) - 1:
+                dml += ", "
+        dml += ")"
+        if irecord < len(records) - 1:
+            dml += ","
+        dml += newline
     return dml
 
 if __name__ == "__main__":
@@ -59,10 +50,21 @@ if __name__ == "__main__":
         table_name = sp[1]
 
         # dml を作成
-        tsv_path = target_dir + "/dml.tsv"
-        tsv = codecs.open(tsv_path, mode="r", encoding="UTF-8").read()
-        dml = create_dml(tsv, table_name)
+        # 元ファイルが複数ある場合がある（dml.tsv, dml_2.tsv...）
+        target_files = glob.glob(target_dir + "/dml*.tsv")
+        for target_file in target_files:
+            # ファイル名が「dml_n.tsv」となっている場合がある
+            file_name = os.path.basename(target_file)
+            sp_file = file_name.split(".")[0].split("_")
 
-        # 保存
-        output_path = output_dir + "/V" + version + ".1__create_" + table_name + ".sql"
-        codecs.open(output_path, mode="w", encoding="UTF-8").write(dml)
+            tsv = codecs.open(target_file, mode="r", encoding="UTF-8").read()
+            dml = create_dml(tsv, table_name)
+
+            # 保存
+            if len(sp_file) == 1:
+                # n がない場合
+                output_path = output_dir + "/V" + version + ".2__insert_" + table_name + ".sql"
+            else:
+                # nがある場合
+                output_path = output_dir + "/V" + version + ".2." + sp_file[1] + "__insert_" + table_name + ".sql"
+            codecs.open(output_path, mode="w", encoding="UTF-8").write(dml)

@@ -1,3 +1,7 @@
-物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
-id	アカウントID	SERIAL		y	y	
-name	アカウント名	TEXT	y	y		
+id	name
+1	あひゃえもん
+	太郎
+	次郎
+	闇慈
+	梅喧
+	メイ

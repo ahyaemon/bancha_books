@@ -6,36 +6,45 @@ import codecs
 newline = "\r\n"
 
 def create_ddl(tsv, table_name):
+    ddl = "CREATE TABLE " + table_name + newline
+    ddl += "(" + newline
+
     lines = tsv.replace("\r\n", "\n").split("\n")
-    header = lines[0]
-    records = lines[1:len(lines)]
-    records = [record for record in records if record != ""]
-
-    ddl = "INSERT INTO " + table_name + newline
-    ddl += "    (" + header.replace("\t", ", ") + ")" + newline
-    ddl += "VALUES" + newline
-
-    # 1列目は id なので、連番でふる
-    first_id = int(records[0].split("\t")[0])
-    for (irecord, record) in enumerate(records):
-        if record == "":
+    lines = lines[1:len(lines)]
+    pk_name = ""
+    for line in lines:
+        if line == "":
             continue
 
-        id = first_id + irecord
-        cells = record.split("\t")
-        ddl += "    ("
-        for (icell, cell) in enumerate(cells):
-            if icell == 0:
-                ddl += "'" + str(id) + "'"
-            else:
-                ddl += "'" + cell + "'"
+        cells = line.split("\t")
 
-            if icell < len(cells) - 1:
-                ddl += ", "
-        ddl += ")"
-        if irecord < len(records) - 1:
-            ddl += ","
-        ddl += newline
+        # name
+        name = cells[0]
+        ddl += "    " + name
+
+        # data type
+        data_type = cells[2]
+        ddl += " " + data_type
+
+        # unique
+        is_unique = cells[3] == "y"
+        if is_unique:
+            ddl += " UNIQUE"
+
+        # not null
+        is_not_null = cells[4] == "y"
+        if is_not_null:
+            ddl += " NOT NULL"
+
+        # primary key
+        is_pk = cells[5] == "y"
+        if is_pk:
+            pk_name = name
+
+        ddl += "," + newline
+
+    ddl += "    PRIMARY KEY (" + pk_name + ")" + newline
+    ddl += ")" + newline
     return ddl
 
 if __name__ == "__main__":
@@ -50,21 +59,10 @@ if __name__ == "__main__":
         table_name = sp[1]
 
         # ddl を作成
-        # 元ファイルが複数ある場合がある（dml.tsv, dml_2.tsv...）
-        target_files = glob.glob(target_dir + "/ddl*.tsv")
-        for target_file in target_files:
-            # ファイル名が「ddl_n.tsv」となっている場合がある
-            file_name = os.path.basename(target_file)
-            sp_file = file_name.split(".")[0].split("_")
+        tsv_path = target_dir + "/ddl.tsv"
+        tsv = codecs.open(tsv_path, mode="r", encoding="UTF-8").read()
+        ddl = create_ddl(tsv, table_name)
 
-            tsv = codecs.open(target_file, mode="r", encoding="UTF-8").read()
-            ddl = create_ddl(tsv, table_name)
-
-            # 保存
-            if len(sp_file) == 1:
-                # n がない場合
-                output_path = output_dir + "/V" + version + ".2__insert_" + table_name + ".sql"
-            else:
-                # nがある場合
-                output_path = output_dir + "/V" + version + ".2." + sp_file[1] + "__insert_" + table_name + ".sql"
-            codecs.open(output_path, mode="w", encoding="UTF-8").write(ddl)
+        # 保存
+        output_path = output_dir + "/V" + version + ".1__create_" + table_name + ".sql"
+        codecs.open(output_path, mode="w", encoding="UTF-8").write(ddl)

@@ -1,5 +1,2 @@
-物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
-id	寄付ID	SERIAL		y	y	
-name	寄付者名	TEXT		y		
-comment	寄付コメント	TEXT				
-amount	寄付量	BIGINT		y		
+id	name	comment	amount
+1	あひゃえもん	セルフ募金	5000

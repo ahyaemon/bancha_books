@@ -1,4 +1,3 @@
-id	name
-1	あひゃえもん
-	いろんな人
-	福澤諭吉
+物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
+id	著者ID	SERIAL		y	y	
+name	著者名	TEXT		y		

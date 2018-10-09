@@ -1,3 +1,5 @@
-id	sentence_id	account_id	value
-1	1	2	そいつはすげえや！！
-	1	3	感動した
+物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
+id	コメントID	SERIAL		y	y	
+sentence_id	文ID	INTEGER		y		sentence(id)
+account_id	アカウントID	INTEGER		y		account(id)
+value	文値	TEXT		y		

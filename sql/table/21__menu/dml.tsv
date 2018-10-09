@@ -1,5 +1,4 @@
-物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
-id	メニューID	SERIAL		y	y	
-title	タイトル	TEXT		y		
-subtitle	サブタイトル	TEXT		y		
-url	URL	TEXT		y		
+id	title	subtitle	url
+1	Books	メインコンテンツ	/bookmenu
+	About	このページについて	/about
+	Donation	寄付	/donation
