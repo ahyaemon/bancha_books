@@ -8,7 +8,7 @@
     <section class="sec-header" th:include="nav :: normal"></section>
 
     <!--/* タイトル */-->
-    <section class="sec-title" th:include="title :: normal(title=${bookItem.name}, subtitle=${bookItem.author})"></section>
+    <section class="sec-title" th:include="title :: book(title=${bookItem.name}, subtitle=${bookItem.author})"></section>
 
     <!--/* パンくずリスト */-->
     <section class="sec-pankuzu">
