@@ -13,6 +13,6 @@ class SubtitleRepository(
 
     private val subtitles  by lazy { dao.select().toSubtitles() }
 
-    fun selectByTitleCd(titleCd: String) = subtitles.filter{ it.titleCd == titleCd }
+    fun findByTitleCd(titleCd: String) = subtitles.filter{ it.titleCd == titleCd }
 
 }

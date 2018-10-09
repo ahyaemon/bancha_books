@@ -13,6 +13,6 @@ class MenuRepository(
 
     private val menus by lazy { menuDao.select().toMenus() }
 
-    fun get() = menus
+    fun find() = menus
 
 }

@@ -46,7 +46,7 @@ class InsertBookService(
      * 著者のリストを取得します
      */
     fun getAuthors(): List<Author> {
-        return bookRepository.getAuthors()
+        return bookRepository.findAuthors()
     }
 
 }

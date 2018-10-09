@@ -32,7 +32,7 @@ class DonationService(
      * @return 今までの寄付の情報のリスト
      */
     fun getDonations(): List<Donation> {
-        return repository.get()
+        return repository.find()
     }
 
 }

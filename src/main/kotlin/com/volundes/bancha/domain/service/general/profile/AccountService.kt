@@ -16,7 +16,7 @@ class AccountService(
     }
 
     fun editAccount(account: Account) {
-        accountRepository.edit(account)
+        accountRepository.update(account)
     }
 
 }

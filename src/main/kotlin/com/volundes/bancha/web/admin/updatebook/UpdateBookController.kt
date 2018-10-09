@@ -35,7 +35,7 @@ class UpdateBookController(
 //     * 本を更新します。
 //     */
 //    @RequestMapping("/{id}")
-//    fun edit(
+//    fun update(
 //        @PathVariable("id") bookId: String,
 //        model: Model
 //    ): String{
@@ -43,7 +43,7 @@ class UpdateBookController(
 //        val bookItem = CommentCountedBookItem(book)
 //        model.addAttribute("bookItem", bookItem)
 //
-//        return "admin/updatebook/edit"
+//        return "admin/updatebook/update"
 //    }
 //
 }

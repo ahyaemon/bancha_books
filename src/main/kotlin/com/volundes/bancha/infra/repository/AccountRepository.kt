@@ -46,7 +46,7 @@ class AccountRepository(
         return accountDao.selectEntityByEmail(email).toAccount()
     }
 
-    fun edit(account: Account) {
+    fun update(account: Account) {
         val accountTable = account.toTable()
         accountDao.update(accountTable)
 

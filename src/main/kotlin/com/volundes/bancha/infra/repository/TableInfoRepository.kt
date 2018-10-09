@@ -12,7 +12,7 @@ class TableInfoRepository(
         TableInfoMapperExtension
 {
 
-    fun getTableInfo(): List<TableInfo> {
+    fun findTableInfo(): List<TableInfo> {
         return tableInfoDao.select().toTableInfos()
     }
 

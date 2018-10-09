@@ -19,7 +19,7 @@ class SubtitleProvider(
      * @return サブタイトル
      */
     fun get(titleCd: String): String {
-        val subtitles = repository.selectByTitleCd(titleCd)
+        val subtitles = repository.findByTitleCd(titleCd)
         val rand = abs(Random().nextInt()) % subtitles.size
         return subtitles[rand].subtitle
     }

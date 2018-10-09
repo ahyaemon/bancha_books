@@ -54,7 +54,7 @@ class AccountController(
     /**
      * 自分の情報を編集します。
      */
-    @RequestMapping("/edit")
+    @RequestMapping("/update")
     fun edit(
             @Validated accountEditForm: AccountEditForm,
             result: BindingResult,

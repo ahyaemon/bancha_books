@@ -22,7 +22,7 @@ class UpdateBookService(
      */
     fun getUpdateBookInfos(): List<BookInfo>{
         val page = Page(1, 10, 15, "/admin/book/update")
-        return repository.getBookInfos(page)
+        return repository.findBookInfos(page)
     }
 
 }
