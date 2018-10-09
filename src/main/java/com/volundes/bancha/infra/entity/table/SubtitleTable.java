@@ -3,7 +3,7 @@ package com.volundes.bancha.infra.entity.table;
 import org.seasar.doma.*;
 
 @Entity(immutable = true)
-@Table(name = "subtitle")
+@Table(name = "value")
 public class SubtitleTable {
 
     @Id

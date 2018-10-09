@@ -14,7 +14,7 @@ public class MenuTable {
     @Column(name = "title")
     final public String title;
 
-    @Column(name = "subtitle")
+    @Column(name = "value")
     final public String subtitle;
 
     @Column(name = "url")

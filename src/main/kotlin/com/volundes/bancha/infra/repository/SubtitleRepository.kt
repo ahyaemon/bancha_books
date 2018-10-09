@@ -1,5 +1,6 @@
 package com.volundes.bancha.infra.repository
 
+import com.volundes.bancha.domain.obj.subtitle.Subtitle
 import com.volundes.bancha.infra.dao.SubtitleDao
 import com.volundes.bancha.infra.mapper.SubtitleMapperExtension
 import org.springframework.stereotype.Repository
@@ -14,5 +15,10 @@ class SubtitleRepository(
     private val subtitles  by lazy { dao.select().toSubtitles() }
 
     fun findByTitleCd(titleCd: String) = subtitles.filter{ it.titleCd == titleCd }
+
+    fun find(): List<Subtitle> {
+        val tables = dao.select()
+        return tables.toSubtitles()
+    }
 
 }
