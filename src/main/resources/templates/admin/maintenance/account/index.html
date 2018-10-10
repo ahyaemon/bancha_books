@@ -41,7 +41,7 @@
                     <div class="siimple-table-cell" th:text="${item.role}"></div>
                     <div class="siimple-table-cell" th:text="${item.hitokotoId}"></div>
                     <div class="siimple-table-cell">
-                        <button class="siimple-btn blightgreen white" type="button">EDIT</button>
+                        <button class="siimple-btn blightgreen white" type="button" onclick="showEditModal()">EDIT</button>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,55 @@
         <div th:replace="footer :: footer"></div>
     </section>
 
+    <!--/* アカウント編集用フォーム */-->
+    <div class="modal micromodal-slide" id="modal-edit" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                <header class="modal__header">
+                    <h2 class="modal__title" id="modal-1-title">アカウント編集</h2>
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                </header>
+                <div class="modal__content" id="modal-1-content">
+                    <div class="siimple-field">
+                        <div class="siimple-form-field-label">account id</div>
+                        <input class="siimple-input" type="text"/>
+                    </div>
+                    <div class="siimple-field">
+                            <div class="siimple-form-field-label">名前</div>
+                            <input class="siimple-input" type="text"/>
+                        </div>
+                    <div class="siimple-field">
+                        <div class="siimple-form-field-label">auth info id</div>
+                        <input class="siimple-input" type="text"/>
+                    </div>
+                    <div class="siimple-field">
+                        <div class="siimple-form-field-label">メール</div>
+                        <input class="siimple-input" type="text"/>
+                    </div>
+                    <div class="siimple-field">
+                        <div class="siimple-form-field-label">ロール</div>
+                        <select class="siimple-select">
+                            <option>GENERAL</option>
+                            <option>ADMIN</option>
+                        </select>
+                    </div>
+                    <div class="siimple-field">
+                        <div class="siimple-form-field-label">hitokoto id</div>
+                        <input class="siimple-input" type="text"/>
+                    </div>
+                    <div class="siimple-field">
+                        <div class="siimple-form-field-label">ひとこと</div>
+                        <textarea id="" class="siimple-textarea bancha-input-textarea siimple-textarea-fuild input-comment"></textarea>
+                    </div>
+                    <button class="modal__btn modal__btn-primary">編集</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
+    <script src="/js/account_maintenance.js"></script>
+
 </body>
 </html>
