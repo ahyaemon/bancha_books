@@ -1,8 +1,10 @@
 package com.volundes.bancha.infra.dao;
 
+import com.volundes.bancha.infra.entity.CommentCountedSentenceEntity;
 import com.volundes.bancha.infra.entity.table.SentenceTable;
 import com.volundes.bancha.infra.entity.SentenceSummaryEntity;
 import org.seasar.doma.*;
+import org.seasar.doma.jdbc.BatchResult;
 import org.seasar.doma.jdbc.SelectOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,16 +19,18 @@ import java.util.List;
 public interface SentenceDao {
 
     @Select
-    @Transactional
     List<SentenceTable> select();
 
     @Select
     List<SentenceSummaryEntity> selectSentenceSummaryBySentenceId(Long sentenceId, SelectOptions selectOptions);
 
-    @BatchInsert
-    @Transactional
-    int[] insert(List<SentenceTable> entities);
-
     @Select
     int countSentenceByBookId(Long bookId);
+
+    @Select
+    List<CommentCountedSentenceEntity> countSentenceComment(List<Long> sentenceIds);
+
+    @BatchInsert
+    BatchResult<SentenceTable> insert(List<SentenceTable> entities);
+
 }

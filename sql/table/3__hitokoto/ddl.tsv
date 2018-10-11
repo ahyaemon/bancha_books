@@ -1,0 +1,4 @@
+物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
+id	ひとことID	SERIAL		y	y	
+account_id	アカウントID	INTEGER	y	y		account(id)
+value	ひとこと値	TEXT				

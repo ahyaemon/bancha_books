@@ -2,24 +2,21 @@ package com.volundes.bancha.infra.entity.table;
 
 import org.seasar.doma.*;
 
-@Entity
+@Entity(immutable = true)
 @Table(name = "account")
 public class AccountTable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_id")
-    public Long accountId;
+    @Column(name = "id")
+    final public Long id;
 
-    @Column(name = "email")
-    public String email;
+    @Column(name = "name")
+    final public String name;
 
-    @Column(name = "pass")
-    public String pass;
-
-    @Column(name = "role")
-    public String role;
-
-    @Column(name = "nickname")
-    public String nickname;
+    public AccountTable(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
 }

@@ -1,12 +1,14 @@
 package com.volundes.bancha.infra.dao;
 
-import com.volundes.bancha.infra.entity.ProfileEntity;
+import com.volundes.bancha.infra.entity.AccountEntity;
 import com.volundes.bancha.infra.entity.table.AccountTable;
 import org.jetbrains.annotations.NotNull;
 import org.seasar.doma.*;
+import org.seasar.doma.jdbc.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @AnnotateWith(annotations = {
         @Annotation(target = AnnotationTarget.CLASS, type = Component.class),
@@ -14,20 +16,25 @@ import org.springframework.transaction.annotation.Transactional;
 @Dao
 public interface AccountDao {
 
-    @Insert
-    @Transactional
-    int insert(AccountTable table);
+    @Select
+    List<AccountTable> select();
 
     @Select
-    @Transactional
-    AccountTable selectByEmail(String email);
+    AccountTable selectByName(String name);
+
+    @Select
+    List<AccountEntity> selectEntities();
+
+    @Select
+    AccountEntity selectEntityById(Long accountId);
+
+    @Select
+    AccountEntity selectEntityByEmail(String email);
+
+    @Insert
+    Result<AccountTable> insert(AccountTable table);
 
     @Update
-    @Transactional
-    int update(AccountTable accountTable);
-
-    @Select
-    @Transactional
-    ProfileEntity selectProfileByAccountId(Long accountId);
+    Result<AccountTable> update(AccountTable accountTable);
 
 }

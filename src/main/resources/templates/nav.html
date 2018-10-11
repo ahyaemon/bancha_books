@@ -6,7 +6,7 @@
             <!--/*
 
                 1. 未サインイン：Sign In
-                2. サインイン済：会員メニュー 
+                2. サインイン済：会員メニュー
 
                 ROLE_GENERALをサインイン済として扱う
 
@@ -17,10 +17,10 @@
             <th:block th:if="${hasGeneralRole}">
                 <div class="dropdown">
                     <a href="javascript:void(0);">
-                        <div class="general-name" onclick="showDropdown()" th:text="|${account.nickname}さん|"></div>
+                        <div class="general-name" onclick="showDropdown()" th:text="|${account.name}さん|"></div>
                     </a>
                     <div class="dropdown-content">
-                        <a th:href="|/profile/${account.accountId}|">会員ページ</a>
+                        <a th:href="|/account/${account.id}|">会員ページ</a>
                         <hr />
                         <a href="/bookmenu">Books</a>
                         <a href="/about">About</a>
@@ -47,7 +47,7 @@
 <!--/* 管理者用のナビ */-->
 <div th:fragment="admin">
     <div class="siimple-navbar siimple-navbar--fluid blightred">
-        <div th:replace="nav :: nav"></div>        
+        <div th:replace="nav :: nav"></div>
     </div>
 </div>
 

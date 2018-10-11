@@ -1,6 +1,6 @@
 package com.volundes.bancha.env.interceptor.subtitle
 
-import com.volundes.bancha.domain.subtitle.SubtitleProvider
+import com.volundes.bancha.domain.service.subtitle.SubtitleProvider
 import org.aspectj.lang.annotation.Aspect
 import org.springframework.stereotype.Component
 import org.springframework.web.method.HandlerMethod
@@ -29,6 +29,6 @@ class DynamicSubtitleInterceptor(
         val annotation = cls.getAnnotation(DynamicSubtitle::class.java)
         val titleCd = annotation.titleCd
         val subtitle = subtitleProvider.get(titleCd)
-        modelAndView.addObject("subtitle", subtitle)
+        modelAndView.addObject("value", subtitle)
     }
 }

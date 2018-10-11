@@ -1,7 +1,7 @@
 package com.volundes.bancha.web.book
 
-import com.volundes.bancha.domain.account.Account
-import com.volundes.bancha.domain.book.service.BookService
+import com.volundes.bancha.domain.obj.account.Account
+import com.volundes.bancha.domain.service.book.BookService
 import com.volundes.bancha.web.book.form.CommentForm
 import com.volundes.bancha.web.book.form.CommentPagingForm
 import com.volundes.bancha.web.book.item.SentenceIdItem
@@ -32,17 +32,18 @@ class BookController(
     /**
      * indexへのマッピングです。
      */
-    @RequestMapping("/{bookId}")
+    @RequestMapping("/{id}")
     fun index(
-            @PathVariable("bookId") bookId: String,
+            @PathVariable("id") bookId: String,
             @Nullable @RequestParam("page") pageNumber: Int?,
             model: Model
     ): String{
         val page = helper.createSentencePage(pageNumber, bookId.toLong())
         model.addAttribute("page", page)
 
-        model.addAttribute("bookItem",
-                helper.createCommentCountedBookItem(bookId.toLong(), page))
+        val bookItem = helper.createCommentCountedBookItem(bookId.toLong(), page)
+        model.addAttribute("bookItem", bookItem)
+
         return "book/index"
     }
 
@@ -64,7 +65,7 @@ class BookController(
             // FIXME どのaccountIdとマッチしないものの判定だけど、-1ってどうなの
             helper.createSentenceItem(sentenceIdItem.sentenceId, -1, page)
         } else {
-            helper.createSentenceItem(sentenceIdItem.sentenceId, account.accountId!!, page)
+            helper.createSentenceItem(sentenceIdItem.sentenceId, account.id!!, page)
         }
         model.addAttribute("sentenceItem", sentenceItem)
 
@@ -92,7 +93,7 @@ class BookController(
             // FIXME どのaccountIdとマッチしないものの判定だけど、-1ってどうなの
             helper.createSentenceItem(commentPagingForm.sentenceId, -1, page)
         } else {
-            helper.createSentenceItem(commentPagingForm.sentenceId, account.accountId!!, page)
+            helper.createSentenceItem(commentPagingForm.sentenceId, account.id!!, page)
         }
         model.addAttribute("sentenceItem", sentenceItem)
 
@@ -128,19 +129,19 @@ class BookController(
             model.addAttribute("page", page)
             model.addAttribute(
                     "sentenceItem",
-                    helper.createSentenceItem(sentenceId, account!!.accountId!!, page)
+                    helper.createSentenceItem(sentenceId, account!!.id!!, page)
             )
             return "book/comment :: comment"
         }
 
-        service.createComment(sentenceId, commentForm.toComment(account!!.accountId!!))
+        service.createComment(sentenceId, commentForm.toComment(account!!.id!!))
         submitInfoList.addNewInfo(bookId, sentenceId, submitDateTime)
         // FIXME とりあえず最初のページに戻している
         val page = helper.createCommentPage(1, sentenceId)
         model.addAttribute("page", page)
         model.addAttribute(
                 "sentenceItem",
-                helper.createSentenceItem(sentenceId, account.accountId!!, page)
+                helper.createSentenceItem(sentenceId, account.id!!, page)
         )
         model.addAttribute("commentForm", helper.createCommentForm(bookId))
         return "book/comment :: comment"

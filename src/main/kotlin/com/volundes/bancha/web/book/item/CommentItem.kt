@@ -1,6 +1,6 @@
 package com.volundes.bancha.web.book.item
 
-import com.volundes.bancha.domain.book.Comment
+import com.volundes.bancha.domain.obj.book.Comment
 
 class CommentItem(
         val commentId: Long?,
@@ -11,7 +11,7 @@ class CommentItem(
 
     constructor(comment: Comment, accountId: Long):
             this(
-                    comment.commentId,
+                    comment.id,
                     comment.name,
                     comment.comment,
                    comment.accountId == accountId

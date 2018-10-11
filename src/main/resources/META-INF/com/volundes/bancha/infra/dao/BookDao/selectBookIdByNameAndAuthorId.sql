@@ -1,5 +1,5 @@
 SELECT
-  book_id
+  id
 FROM
   book
 WHERE

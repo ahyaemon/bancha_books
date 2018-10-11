@@ -2,17 +2,25 @@ package com.volundes.bancha.infra.entity.table;
 
 import org.seasar.doma.*;
 
-@Entity
+@Entity(immutable = true)
 @Table(name = "subtitle")
 public class SubtitleTable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "subtitle_id")
-    public Long subtitleId;
+    @Column(name = "id")
+    final public Long id;
 
     @Column(name = "title_cd")
-    public String titleCd;
+    final public String titleCd;
 
-    @Column(name = "subtitle")
-    public String subtitle;
+    @Column(name = "value")
+    final public String value;
+
+    public SubtitleTable(Long id, String titleCd, String value) {
+        this.id = id;
+        this.titleCd = titleCd;
+        this.value = value;
+    }
+
 }

@@ -13,11 +13,11 @@ import java.util.List;
         @Annotation(target = AnnotationTarget.CONSTRUCTOR, type = Autowired.class) })
 @Dao
 public interface SubtitleDao {
-    @Select
-    @Transactional
-    List<SubtitleTable> selectByTitleCd(String titleCd);
 
     @Select
-    @Transactional
     List<SubtitleTable> select();
+
+    @Select
+    List<SubtitleTable> selectByTitleCd(String titleCd);
+
 }

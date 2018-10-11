@@ -2,6 +2,11 @@
 
     <!--/* HEADER 文の表示 */-->
     <header class="modal__header">
+        <th:block th:if="${hasGeneralRole}">
+            <div style="float: left; margin-right: 10px;">
+                <i class="fas fa-star fa-2x" style="color: #aaa;"></i>
+            </div>
+        </th:block>
         <h2 class="modal__title" id="modal-1-title" th:text="${sentenceItem.sentence}"></h2>
         <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
     </header>
@@ -21,13 +26,13 @@
         <hr>
         <th:block th:if="${hasGeneralRole}">
             <form th:object="${commentForm}">
-                <ul><li th:each="error: ${#fields.detailedErrors()}" th:text="${error.message}"></li></ul>                                    
+                <ul><li th:each="error: ${#fields.detailedErrors()}" th:text="${error.message}"></li></ul>
                 <div class="siimple-field">
-                    <textarea id="" class="siimple-textarea bancha-input-textarea siimple-textarea-fuild input-comment" 
+                    <textarea id="" class="siimple-textarea bancha-input-textarea siimple-textarea-fuild input-comment"
                         placeholder="コメント" th:field="*{comment}"></textarea>
                 </div>
             </form>
-            <button class="modal__btn modal__btn-primary" 
+            <button class="modal__btn modal__btn-primary"
                 th:onclick="|submitComment(${sentenceItem.sentenceId})|">コメントする</button>
             <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">閉じる</button>
         </th:block>

@@ -19,11 +19,23 @@ public class BookSummaryEntity {
     @Column(name = "author_name")
     public String authorName;
 
+    @Column(name = "license_id")
+    public Long licenseId;
+
+    @Column(name = "notice")
+    public String notice;
+
+    @Column(name = "license_type")
+    public String licenseType;
+
     @Column(name = "sentence_id")
     public Long sentenceId;
 
     @Column(name = "sentence")
     public String sentence;
+
+    @Column(name = "heading")
+    public Integer heading;
 
     @Column(name = "comment_count")
     public Long commentCount;

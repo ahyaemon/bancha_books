@@ -2,16 +2,21 @@ package com.volundes.bancha.infra.entity.table;
 
 import org.seasar.doma.*;
 
-@Entity
+@Entity(immutable = true)
 @Table(name = "author")
 public class AuthorTable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "author_id")
-    public Long authorId;
+    @Column(name = "id")
+    final public Long id;
 
     @Column(name = "name")
-    public String name;
+    final public String name;
+
+    public AuthorTable(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
 }

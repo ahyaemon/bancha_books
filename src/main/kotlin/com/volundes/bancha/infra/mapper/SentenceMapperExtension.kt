@@ -1,20 +1,14 @@
 package com.volundes.bancha.infra.mapper
 
-import com.volundes.bancha.domain.book.Comment
-import com.volundes.bancha.domain.book.Sentence
+import com.volundes.bancha.domain.obj.book.Comment
+import com.volundes.bancha.domain.obj.book.Sentence
 import com.volundes.bancha.infra.entity.SentenceSummaryEntity
 import com.volundes.bancha.infra.entity.table.SentenceTable
 
 interface SentenceMapperExtension{
 
-    fun List<Sentence>.toSentenceEntities(bookId: Long): List<SentenceTable> {
-        return map{
-            val entity = SentenceTable()
-            entity.bookId = bookId
-            entity.sentence = it.sentence
-            entity
-        }
-    }
+    fun Sentence.toTable(bookId: Long) = SentenceTable(id, bookId.toInt(), sentence, heading)
+    fun List<Sentence>.toTables(bookId: Long) =  map{ it.toTable(bookId) }
 
     fun List<SentenceSummaryEntity>.toSentence(): Sentence {
         val firstEntity = first()
@@ -24,7 +18,7 @@ interface SentenceMapperExtension{
                 }else{
                     map{ Comment(it.commentId, it.accountId, it.commentName, it.comment) }
                 }
-        return Sentence(firstEntity.sentenceId, firstEntity.sentence, comments)
+        return Sentence(firstEntity.sentenceId, firstEntity.sentence, firstEntity.heading, comments)
     }
 
 }
