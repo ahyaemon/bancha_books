@@ -4,6 +4,7 @@ import com.volundes.bancha.infra.entity.AccountEntity;
 import com.volundes.bancha.infra.entity.table.AccountTable;
 import org.jetbrains.annotations.NotNull;
 import org.seasar.doma.*;
+import org.seasar.doma.jdbc.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,15 +23,18 @@ public interface AccountDao {
     AccountTable selectByName(String name);
 
     @Select
+    List<AccountEntity> selectEntities();
+
+    @Select
     AccountEntity selectEntityById(Long accountId);
 
     @Select
     AccountEntity selectEntityByEmail(String email);
 
     @Insert
-    int insert(AccountTable table);
+    Result<AccountTable> insert(AccountTable table);
 
     @Update
-    int update(AccountTable accountTable);
+    Result<AccountTable> update(AccountTable accountTable);
 
 }

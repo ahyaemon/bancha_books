@@ -1,8 +1,8 @@
 CREATE TABLE sentence
 (
-    id serial NOT NULL,
-    book_id integer NOT NULL REFERENCES book(id),
-    sentence character varying(1023) NOT NULL,
-    heading integer NOT NULL,
+    id SERIAL NOT NULL,
+    book_id INTEGER NOT NULL,
+    value TEXT NOT NULL,
+    heading INTEGER NOT NULL,
     PRIMARY KEY (id)
 )

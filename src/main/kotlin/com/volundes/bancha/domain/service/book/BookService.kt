@@ -21,7 +21,7 @@ class BookService(
             bookId: Long,
             page: Page
     ): Pair<Book, Map<Long, Long>> {
-        return repository.getWithCommentCountMap(bookId, page)
+        return repository.findWithCommentCountMap(bookId, page)
     }
 
     /**
@@ -31,7 +31,7 @@ class BookService(
             sentenceId: Long,
             comment: Comment
     ) {
-        repository.insertComment(sentenceId, comment)
+        repository.addComment(sentenceId, comment)
     }
 
     /**
@@ -43,15 +43,15 @@ class BookService(
             sentenceId: Long,
             page: Page
     ): Sentence {
-        return repository.getSentencesBySentenceId(sentenceId, page)
+        return repository.findSentencesBySentenceId(sentenceId, page)
     }
 
     fun getTotalSentenceAmount(bookId: Long): Int {
-        return repository.getTotalSentenceAmount(bookId)
+        return repository.findTotalSentenceAmount(bookId)
     }
 
     fun getTotalCommentAmount(sentenceId: Long): Int {
-        return repository.getTotalCommentAmount(sentenceId)
+        return repository.findTotalCommentAmount(sentenceId)
     }
 
 }

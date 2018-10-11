@@ -1,9 +1,9 @@
 CREATE TABLE auth_info
 (
-    id serial NOT NULL,
-    account_id INTEGER UNIQUE NOT NULL REFERENCES account(id),
-    email CHARACTER varying(255) UNIQUE NOT NULL,
-    password CHARACTER varying(255) NOT NULL,
-    role CHARACTER varying(255) NOT NULL,
+    id SERIAL NOT NULL,
+    account_id INTEGER UNIQUE NOT NULL,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL,
+    role TEXT NOT NULL,
     PRIMARY KEY (id)
 )

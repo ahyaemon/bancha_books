@@ -24,6 +24,6 @@ class DonationRepository(
         }
     }
 
-    fun get() = donationDao.select().toDonations()
+    fun find() = donationDao.select().toDonations()
 
 }

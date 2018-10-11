@@ -11,6 +11,6 @@ class MenuProvider(
         private val menuRepository: MenuRepository
 ) {
 
-    fun get() = menuRepository.get()
+    fun get() = menuRepository.find()
 
 }

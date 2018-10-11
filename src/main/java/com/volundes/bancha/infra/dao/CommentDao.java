@@ -2,6 +2,7 @@ package com.volundes.bancha.infra.dao;
 
 import com.volundes.bancha.infra.entity.table.CommentTable;
 import org.seasar.doma.*;
+import org.seasar.doma.jdbc.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,9 +28,9 @@ public interface CommentDao {
     int countCommentBySentenceId(Long sentenceId);
 
     @Insert
-    int insert(CommentTable entity);
+    Result<CommentTable> insert(CommentTable entity);
 
     @Delete
-    int delete(CommentTable entity);
+    Result<CommentTable> delete(CommentTable entity);
 
 }

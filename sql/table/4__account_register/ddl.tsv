@@ -1,0 +1,5 @@
+物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
+id	アカウント登録ID	SERIAL		y	y	
+email	メール	TEXT	y	y		
+url_key	URLキー	TEXT	y	y		
+create_date_time	作成日時	TIMESTAMP		y		

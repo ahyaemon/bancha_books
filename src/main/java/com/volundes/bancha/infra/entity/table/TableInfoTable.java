@@ -2,20 +2,25 @@ package com.volundes.bancha.infra.entity.table;
 
 import org.seasar.doma.*;
 
-import java.time.LocalDateTime;
-
-@Entity
-@Table(name = "table_infor")
+@Entity(immutable = true)
+@Table(name = "table_info")
 public class TableInfoTable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public Long id;
+    final public Long id;
 
     @Column(name = "name")
-    public String name;
+    final public String name;
 
     @Column(name = "version")
-    public String version;
+    final public String version;
+
+    public TableInfoTable(Long id, String name, String version) {
+        this.id = id;
+        this.name = name;
+        this.version = version;
+    }
 
 }

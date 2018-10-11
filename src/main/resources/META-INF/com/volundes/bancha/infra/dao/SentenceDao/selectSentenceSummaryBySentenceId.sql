@@ -1,10 +1,10 @@
 SELECT
   s.id as sentence_id,
-  s.sentence,
+  s.value as sentence,
   s.heading,
   c.id as comment_id,
   c.account_id,
-  c.comment,
+  c.value as comment,
   a.name as comment_name
 FROM
   sentence s

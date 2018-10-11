@@ -16,6 +16,9 @@ class AccountMaintenanceController(
      */
     @RequestMapping
     fun index(model: Model): String {
+        val accountMaintenanceItems = service.getAccounts().map{ AccountMaintenanceItem(it) }
+        model.addAttribute("accountMaintenanceItems", accountMaintenanceItems)
+
         return "admin/maintenance/account/index"
     }
 

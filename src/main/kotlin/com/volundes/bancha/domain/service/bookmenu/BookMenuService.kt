@@ -19,11 +19,11 @@ class BookMenuService(
      * @return すべての本メニュー
      */
     fun getBookInfos(page: Page): List<BookInfo> {
-        return repository.getBookInfos(page)
+        return repository.findBookInfos(page)
     }
 
     fun getTotalBookAmount(): Int {
-        return repository.getTotalBookAmount()
+        return repository.findTotalBookAmount()
     }
 
 }

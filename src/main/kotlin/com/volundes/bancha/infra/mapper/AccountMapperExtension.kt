@@ -19,34 +19,11 @@ interface AccountMapperExtension {
         }
         return Account(accountId, name, authInfo, hitokoto)
     }
+    fun List<AccountEntity>.toAccount() =  map{ it.toAccount() }
 
-    fun AuthInfoTable.toAuthInfo(): AuthInfo {
-        return AuthInfo(id, email, password, role)
-    }
-
-    fun AuthInfo.toTable(accountId: Long): AuthInfoTable {
-        val table = AuthInfoTable()
-        table.id = id
-        table.accountId = accountId
-        table.email = email
-        table.password = password
-        table.role = role
-        return table
-    }
-
-    fun Account.toTable(): AccountTable {
-        val table = AccountTable()
-        table.id = id
-        table.name = name
-        return table
-    }
-
-    fun Hitokoto.toTable(accountId: Long): HitokotoTable {
-        val table = HitokotoTable()
-        table.id = id
-        table.accountId = accountId
-        table.value = value
-        return table
-    }
+    fun AuthInfoTable.toAuthInfo() = AuthInfo(id, email, password, role)
+    fun AuthInfo.toTable(accountId: Long) = AuthInfoTable(id, accountId.toInt(), email, password, role)
+    fun Account.toTable() = AccountTable(id, name)
+    fun Hitokoto.toTable(accountId: Long) = HitokotoTable(id, accountId.toInt(), value)
 
 }

@@ -1,0 +1,5 @@
+物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
+id	ライセンスID	SERIAL		y	y	
+book_info_id	本情報ID	INTEGER		y		book_info(id)
+notice	注意書き	TEXT		y		
+license_type	ライセンス種別	TEXT		y		

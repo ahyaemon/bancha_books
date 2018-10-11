@@ -25,8 +25,16 @@
         <a th:each="bookInfoItem: ${bookInfoItems}" th:href="|/book/${bookInfoItem.bookId}?page=1|">
             <div class="siimple-card bancha-card bancha-back-yellow">
                 <div class="siimple-card-body">
-                    <div class="siimple-card-title" th:text="${bookInfoItem.title}"></div>
-                    <div class="siimple-card-subtitle" th:text="${bookInfoItem.author}"></div>
+                    <th:block th:if="${hasGeneralRole}">
+                        <div style="float: left; margin-right: 10px;">
+                            <i class="fas fa-star fa-3x" style="color: #aaa;"></i>
+                        </div>
+                    </th:block>
+                    <div style="float: left;">
+                        <div class="siimple-card-title" th:text="${bookInfoItem.title}"></div>
+                        <div class="siimple-card-subtitle" th:text="${bookInfoItem.author}"></div>
+                    </div>
+                    <div style="clear: both;"></div>
                 </div>
             </div>
         </a>

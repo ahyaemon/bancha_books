@@ -1,8 +1,8 @@
 CREATE TABLE license
 (
-    id serial NOT NULL,
-    book_info_id integer NOT NULL REFERENCES book_info(id),
-    notice CHARACTER VARYING(1000) NOT NULL,
-    license_type CHARACTER VARYING(16) NOT NULL,
+    id SERIAL NOT NULL,
+    book_info_id INTEGER NOT NULL,
+    notice TEXT NOT NULL,
+    license_type TEXT NOT NULL,
     PRIMARY KEY (id)
 )

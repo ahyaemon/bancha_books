@@ -1,0 +1,4 @@
+物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
+id	サブタイトルID	SERIAL		y	y	
+title_cd	タイトルコード	TEXT		y		
+value	サブタイトル値	TEXT		y		

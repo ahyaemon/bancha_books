@@ -25,7 +25,7 @@ class BookRepository(
         AuthorMapperExtension
 {
 
-    fun getBookInfos(page: Page): List<BookInfo>{
+    fun findBookInfos(page: Page): List<BookInfo>{
         return bookInfoDao
                 .selectEntity(page.toSelectOptions())
                 .toBookInfos()
@@ -35,7 +35,7 @@ class BookRepository(
      * bookIdに対応するBookと、コメント数を取得します。
      * 実際のコメントは取得しません。
      */
-    fun getWithCommentCountMap(
+    fun findWithCommentCountMap(
             bookId: Long,
             page: Page
     ): Pair<Book, Map<Long, Long>> {
@@ -54,7 +54,7 @@ class BookRepository(
         return m
     }
 
-    fun insertComment(sentenceId: Long, comment: Comment) {
+    fun addComment(sentenceId: Long, comment: Comment) {
         // commentの登録
         val commentEntity = comment.toEntity(sentenceId)
         commentDao.insert(commentEntity)
@@ -97,7 +97,7 @@ class BookRepository(
         }
     }
 
-    fun getSentencesBySentenceId(
+    fun findSentencesBySentenceId(
             sentenceId: Long,
             page: Page
     ): Sentence {
@@ -107,31 +107,23 @@ class BookRepository(
                 .toSentence()
     }
 
-    fun getTotalBookAmount(): Int {
+    fun findTotalBookAmount(): Int {
         return bookDao.countBook()
     }
 
-    fun getTotalSentenceAmount(bookId: Long): Int {
+    fun findTotalSentenceAmount(bookId: Long): Int {
         return sentenceDao.countSentenceByBookId(bookId)
     }
 
-    fun getTotalCommentAmount(sentenceId: Long): Int {
+    fun findTotalCommentAmount(sentenceId: Long): Int {
         return commentDao.countCommentBySentenceId(sentenceId)
     }
 
     /**
      * 著者のリストを取得します。
      */
-    fun getAuthors(): List<Author> {
+    fun findAuthors(): List<Author> {
         return authorDao.select().map{ it.toAuthor() }
-    }
-
-    /**
-     * ライセンスを登録します。
-     */
-    fun addLicense(license: License, bookId: Long) {
-        val licenseTable = license.toTable(bookId)
-        licenseDao.insert(licenseTable)
     }
 
 }

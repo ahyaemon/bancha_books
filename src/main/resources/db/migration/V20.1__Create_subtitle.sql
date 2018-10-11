@@ -1,7 +1,7 @@
 CREATE TABLE subtitle
 (
-    id serial NOT NULL,
-    title_cd character varying(255) NOT NULL,
-    subtitle character varying(255) NOT NULL,
+    id SERIAL NOT NULL,
+    title_cd TEXT NOT NULL,
+    value TEXT NOT NULL,
     PRIMARY KEY (id)
 )

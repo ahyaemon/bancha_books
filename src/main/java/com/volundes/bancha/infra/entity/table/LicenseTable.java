@@ -2,20 +2,29 @@ package com.volundes.bancha.infra.entity.table;
 
 import org.seasar.doma.*;
 
-@Entity
+@Entity(immutable = true)
 @Table(name = "license")
 public class LicenseTable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public Long id;
+    final public Long id;
 
-    @Column(name = "book_id")
-    public Long bookId;
+    @Column(name = "book_info_id")
+    final public Integer bookInfoId;
 
     @Column(name = "notice")
-    public String notice;
+    final public String notice;
 
     @Column(name = "license_type")
-    public String licenseType;
+    final public String licenseType;
+
+    public LicenseTable(Long id, Integer bookInfoId, String notice, String licenseType) {
+        this.id = id;
+        this.bookInfoId = bookInfoId;
+        this.notice = notice;
+        this.licenseType = licenseType;
+    }
+
 }

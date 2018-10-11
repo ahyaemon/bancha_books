@@ -3,6 +3,7 @@ package com.volundes.bancha.infra.dao;
 import com.volundes.bancha.infra.entity.*;
 import com.volundes.bancha.infra.entity.table.BookTable;
 import org.seasar.doma.*;
+import org.seasar.doma.jdbc.Result;
 import org.seasar.doma.jdbc.SelectOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,6 +36,6 @@ public interface BookDao {
     Integer countBook();
 
     @Insert
-    int insert(BookTable entity);
+    Result<BookTable> insert(BookTable entity);
 
 }

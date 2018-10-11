@@ -17,14 +17,14 @@ class DownloadService(
 ) {
 
     fun getDmls(): List<Dml> {
-        val tableInfos = tableInfoRepository.getTableInfo()
+        val tableInfos = tableInfoRepository.findTableInfo()
         val rowDataList = getRowDataList(tableInfos)
         val dmls = rowDataList.map{ Dml(it) }
         return dmls
     }
 
     fun getTsvs(): List<Tsv> {
-        val tableInfos = tableInfoRepository.getTableInfo()
+        val tableInfos = tableInfoRepository.findTableInfo()
         val rowDataList = getRowDataList(tableInfos)
         val tsvs = rowDataList.map{ Tsv(it) }
         return tsvs

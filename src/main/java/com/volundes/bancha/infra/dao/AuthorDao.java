@@ -2,6 +2,7 @@ package com.volundes.bancha.infra.dao;
 
 import com.volundes.bancha.infra.entity.table.AuthorTable;
 import org.seasar.doma.*;
+import org.seasar.doma.jdbc.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +22,6 @@ public interface AuthorDao {
     AuthorTable selectByName(String name);
 
     @Insert
-    int insert(AuthorTable authorEntity);
+    Result<AuthorTable> insert(AuthorTable authorEntity);
 
 }

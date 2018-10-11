@@ -29,6 +29,6 @@ class DynamicSubtitleInterceptor(
         val annotation = cls.getAnnotation(DynamicSubtitle::class.java)
         val titleCd = annotation.titleCd
         val subtitle = subtitleProvider.get(titleCd)
-        modelAndView.addObject("subtitle", subtitle)
+        modelAndView.addObject("value", subtitle)
     }
 }

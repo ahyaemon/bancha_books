@@ -15,12 +15,12 @@ public class BookInfoTable {
     final public String title;
 
     @Column(name = "author_id")
-    final public Long author_id;
+    final public Integer authorId;
 
-    public BookInfoTable(Long id, String title, Long author_id) {
-        this.id =id;
+    public BookInfoTable(Long id, String title, Integer authorId) {
+        this.id = id;
         this.title = title;
-        this.author_id = author_id;
+        this.authorId = authorId;
     }
 
 }

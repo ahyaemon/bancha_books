@@ -1,0 +1,4 @@
+物理名	論理名	型	UNIQUE	NOT NULL	PK	FK
+id	本情報ID	SERIAL		y	y	
+title	本タイトル	TEXT		y		
+author_id	著者ID	INTEGER		y		author(id)

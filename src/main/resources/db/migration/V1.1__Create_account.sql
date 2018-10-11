@@ -1,6 +1,6 @@
 CREATE TABLE account
 (
-    id serial NOT NULL,
-    name CHARACTER VARYING(100) UNIQUE NOT NULL,
+    id SERIAL NOT NULL,
+    name TEXT UNIQUE NOT NULL,
     PRIMARY KEY (id)
 )

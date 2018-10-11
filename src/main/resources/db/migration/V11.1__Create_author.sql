@@ -1,6 +1,6 @@
 CREATE TABLE author
 (
-    id serial NOT NULL,
-    name character varying(255) NOT NULL,
+    id SERIAL NOT NULL,
+    name TEXT NOT NULL,
     PRIMARY KEY (id)
 )

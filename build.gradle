@@ -7,6 +7,7 @@ buildscript {
 		jsoupVersion = '1.11.3'
 		thymeleafSpringSecurityVersion = '3.0.2.RELEASE'
 		simpleJavaMailVersion = '5.0.3'
+//		lombokVersion = '1.18.2'
 	}
 	repositories {
 		mavenCentral()
@@ -87,6 +88,9 @@ dependencies {
     // simple java mail
     compile "org.simplejavamail:simple-java-mail:$simpleJavaMailVersion"
 
+    // lombok
+	// intellij での lombok の動作が不安定なためコメントアウト
+    // compile "org.projectlombok:lombok:$lombokVersion"
 }
 
 flyway {

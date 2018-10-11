@@ -8,7 +8,7 @@ SELECT
     l.notice as license_notice,
     l.license_type as license_type,
     s.id as sentence_id,
-    s.sentence as sentence_value,
+    s.value as sentence_value,
     s.heading as sentence_heading
 FROM
     book b

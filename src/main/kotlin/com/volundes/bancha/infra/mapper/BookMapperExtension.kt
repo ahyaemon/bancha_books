@@ -32,11 +32,6 @@ interface BookMapperExtension{
         return Book(entity.bookId, bookInfo, sentences)
     }
 
-    fun Book.toTable(bookInfoId: Long): BookTable {
-        val table = BookTable()
-        table.id = id
-        table.bookInfoId = bookInfoId
-        return table
-    }
+    fun Book.toTable(bookInfoId: Long) = BookTable(id, bookInfoId.toInt())
 
 }
