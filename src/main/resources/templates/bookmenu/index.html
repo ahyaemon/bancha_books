@@ -2,50 +2,53 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('Books')"></head>
 <body>
-    <!--/* ヘッダー */-->
-    <section class="sec-header" th:include="nav :: normal"></section>
+    <div id="app">
+        <!--/* ヘッダー */-->
+        <section class="sec-header" th:include="nav :: normal"></section>
 
-    <!--/* タイトル */-->
-    <section class="sec-title" th:include="title :: normal(title='Books', subtitle=${subtitle})"></section>
+        <!--/* タイトル */-->
+        <section class="sec-title" th:include="title :: normal(title='Books', subtitle=${subtitle})"></section>
 
-    <!--/* パンくずリスト */-->
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item here">Books</div>
-        </div>
-    </section>
-
-    <!--/* メインコンテンツ */-->
-    <section class="sec-content">
-        <!--/* ページング */-->
-        <div th:include="paging/paging :: paging_location(id='paging-book', page = ${page})"></div>
-
-        <!--/* 本のリスト */-->
-        <a th:each="bookInfoItem: ${bookInfoItems}" th:href="|/book/${bookInfoItem.bookId}?page=1|">
-            <div class="siimple-card bancha-card bancha-back-yellow">
-                <div class="siimple-card-body">
-                    <th:block th:if="${hasGeneralRole}">
-                        <div style="float: left; margin-right: 10px;">
-                            <i class="fas fa-star fa-3x" style="color: #aaa;"></i>
-                        </div>
-                    </th:block>
-                    <div style="float: left;">
-                        <div class="siimple-card-title" th:text="${bookInfoItem.title}"></div>
-                        <div class="siimple-card-subtitle" th:text="${bookInfoItem.author}"></div>
-                    </div>
-                    <div style="clear: both;"></div>
-                </div>
+        <!--/* パンくずリスト */-->
+        <section class="sec-pankuzu">
+            <div class="siimple-breadcrumb bancha-bread">
+                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+                <div class="siimple-breadcrumb-item here">Books</div>
             </div>
-        </a>
-    </section>
+        </section>
 
-    <!--/* フッター */-->
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
+        <!--/* メインコンテンツ */-->
+        <section class="sec-content">
+            <!--/* ページング */-->
+            <div th:include="paging/paging :: paging_location(id='paging-book', page = ${page})"></div>
 
+            <!--/* 本のリスト */-->
+            <th:block th:each="bookInfoItem: ${bookInfoItems}">
+                <th:block th:if="${hasGeneralRole}">
+                    <b-menuitem-yellow-favorite
+                            th:href="|/book/${bookInfoItem.bookId}?page=1|"
+                            th:title="${bookInfoItem.title}"
+                            th:subtitle="${bookInfoItem.author}">
+                    </b-menuitem-yellow-favorite>
+                </th:block>
+                <th:block th:if="!${hasGeneralRole}">
+                    <b-menuitem-yellow
+                            th:href="|/book/${bookInfoItem.bookId}?page=1|"
+                            th:title="${bookInfoItem.title}"
+                            th:subtitle="${bookInfoItem.author}">
+                    </b-menuitem-yellow>
+                </th:block>
+            </th:block>
+        </section>
+
+        <!--/* フッター */-->
+        <section class="sec-footer">
+            <div th:replace="footer :: footer"></div>
+        </section>
+    </div>
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
+    <script src="/lib/vue.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
