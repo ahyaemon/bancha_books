@@ -80,7 +80,6 @@ dependencies {
 
 	// Postgresql
 	runtime "org.postgresql:postgresql"
-	testCompile "org.springframework.boot:spring-boot-starter-test"
 
 	// reflection
 	compile "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
@@ -91,6 +90,11 @@ dependencies {
     // lombok
 	// intellij での lombok の動作が不安定なためコメントアウト
     // compile "org.projectlombok:lombok:$lombokVersion"
+
+	// test
+	testCompile "org.springframework.boot:spring-boot-starter-test"
+	testCompile 'org.assertj:assertj-core:3.2.0'
+
 }
 
 flyway {
