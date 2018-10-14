@@ -10,39 +10,38 @@
         <b-title-general title="Donation" subtitle="謝謝"></b-title-general>
 
         <!--/* パンくずリスト */-->
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item "><a href="/donation/">寄付</a></div>
-                <div class="siimple-breadcrumb-item here">寄付詳細</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-item href="/donation" content="寄付"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="寄付詳細"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
         <!--/* メインコンテンツ */-->
-        <section class="sec-content">
-            <div class="siimple-table" style="background-color: white;">
-                <div class="siimple-table-header">
-                    <div class="siimple-table-row">
-                        <div class="siimple-table-cell">名前</div>
-                        <div class="siimple-table-cell">コメント</div>
-                        <div class="siimple-table-cell">寄付金額</div>
-                    </div>
-                </div>
-                <div class="siimple-table-body">
-                    <div class="siimple-table-row" th:each="item: ${donationItems}">
-                        <div class="siimple-table-cell" th:text="${item.name}"></div>
-                        <div class="siimple-table-cell" th:text="${item.comment}"></div>
-                        <div class="siimple-table-cell number-format" th:text="${item.amount}"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <b-main>
+            <b-table>
+                <b-table-header>
+                    <b-row>
+                        <b-cell>名前</b-cell>
+                        <b-cell>コメント</b-cell>
+                        <b-cell>寄付金額</b-cell>
+                    </b-row>
+                </b-table-header>
+                <b-table-body>
+                    <b-row>
+                        <th:block th:each="item: ${donationItems}">
+                            <b-cell th:text="${item.name}"></b-cell>
+                            <b-cell th:text="${item.comment}"></b-cell>
+                            <b-cell><span th:text="${item.amount}" class="number-format"></span></b-cell>
+                        </th:block>
+                    </b-row>
+                </b-table-body>
+            </b-table>
+        </b-main>
 
         <!--/* フッター */-->
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
+
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
     <script th:inline="javascript">

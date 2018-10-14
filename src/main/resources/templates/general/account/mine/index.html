@@ -10,15 +10,13 @@
         <b-title-general title="自分の情報" subtitle="個人情報的な？"></b-title-general>
 
         <!--/* パンくずリスト */-->
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item here">自分の情報</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="自分の情報"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
         <!--/* メインコンテンツ */-->
-        <section class="sec-content">
+        <b-main>
             <div class="siimple-card" style="max-width: 800px;">
                 <div class="siimple-card-header">基本情報</div>
                 <div class="siimple-card-body">
@@ -63,17 +61,15 @@
                     <div class="siimple-field">
                         <button class="siimple-btn mada" type="submit">更新</button>
                     </div>
+                </div>
             </div>
-            </div>
-        </section>
+        </b-main>
 
         <!--/* フッター */-->
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
+
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
-
 </body>
 </html>

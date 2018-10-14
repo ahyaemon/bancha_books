@@ -7,15 +7,13 @@
 
         <b-title-admin title="暗号化の確認" subtitle="..."></b-title-admin>
 
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item"><a href="/admin/menu">管理者用メニュー</a></div>
-                <div class="siimple-breadcrumb-item here">暗号化の確認</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-item href="/admin/menu" content="管理者用メニュー"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="暗号化の確認"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
-        <section class="sec-content">
+        <b-main>
             <form action="/admin/auth" method="POST">
                 <div class="siimple-card" style="max-width: 800px;">
                     <div class="siimple-card-body">
@@ -38,15 +36,12 @@
                     </div>
                 </div>
             </form>
-        </section>
+        </b-main>
 
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
-    <script src="/lib/jquery/jquery-3.0.0.min.js"></script>
-    <script src="/js/component/ajax.js"></script>
-    <script src="/js/admin/crypt.js"></script>
 
+    <th:block th:replace="template/script :: script"></th:block>
+    <script src="/js/admin/crypt.js"></script>
 </body>
 </html>

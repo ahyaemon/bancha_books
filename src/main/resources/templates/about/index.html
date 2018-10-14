@@ -7,14 +7,12 @@
 
         <b-title-general title="About" th:subtitle="${subtitle}"></b-title-general>
 
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item here">このサイトについて</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="このサイトについて"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
-        <section class="sec-content">
+        <b-main>
             <div class="siimple-list siimple-list--hover">
                 <div class="siimple-list-item">
                     <a class="siimple-link" th:href=@{/about/creator}>製作者</a>
@@ -22,12 +20,11 @@
                 <div class="siimple-list-item">◯◯◯◯◯</div>
                 <div class="siimple-list-item">△△△△△</div>
             </div>
-        </section>
+        </b-main>
 
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
+
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
 </body>

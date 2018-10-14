@@ -10,25 +10,20 @@
         <b-title-general title="メール確認" subtitle="レッツ登録"></b-title-general>
 
         <!--/* パンくずリスト */-->
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item here">メール確認</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="メール確認"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
         <!--/* メインコンテンツ */-->
-        <section class="sec-content">
-            <p class="siimple-p">
-                登録用のメールを送ったから確認してみてね。
-            </p>
-        </section>
+        <b-main>
+            <b-p>登録用のメールを送ったから確認してみてね。</b-p>
+        </b-main>
 
         <!--/* フッター */-->
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
+
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
     <script src="/js/admin/login.js"></script>

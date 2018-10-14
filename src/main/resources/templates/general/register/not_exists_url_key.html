@@ -7,23 +7,18 @@
 
         <b-title-general title="なんかちがくない？" subtitle="気のせい？不正？"></b-title-general>
 
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item here">気の迷い？</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="気の迷い？"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
-        <section class="sec-content">
-            <p class="siimple-p">
-                思い違い？
-            </p>
-        </section>
+        <b-main>
+            <b-p>思い違い？</b-p>
+        </b-main>
 
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
+
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
     <script src="/js/admin/login.js"></script>

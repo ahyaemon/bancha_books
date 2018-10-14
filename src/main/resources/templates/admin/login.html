@@ -7,14 +7,13 @@
 
         <b-title-admin title="管理者ログイン" subtitle="貴様が管理者かどうか確かめてやる"></b-title-admin>
 
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item here">管理者用ログイン</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-item href="/admin/menu" content="管理者メニュー"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="管理者用ログイン"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
-        <section class="sec-content">
+        <b-main>
             <form action="/admin/auth" method="POST">
                 <div class="siimple-card" style="max-width: 800px;">
                     <div class="siimple-card-body">
@@ -35,12 +34,11 @@
                     </div>
                 </div>
             </form>
-        </section>
+        </b-main>
 
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
+
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
     <script src="/js/admin/login.js"></script>

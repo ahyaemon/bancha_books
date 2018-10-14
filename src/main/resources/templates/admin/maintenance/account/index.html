@@ -10,17 +10,15 @@
         <b-title-admin title="アカウントの編集" subtitle="アカウントを編集"></b-title-admin>
 
         <!--/* パンくずリスト */-->
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item here"><a href="/admin/menu">管理者メニュー</a></div>
-                <div class="siimple-breadcrumb-item here"><a href="/admin/maintenance">マスタメンテナンス</a></div>
-                <div class="siimple-breadcrumb-item here">Account</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-item href="/admin/menu" content="管理者メニュー"></b-pankuzu-item>
+            <b-pankuzu-item href="/admin/maintenance" content="マスタメンテナンス"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="Account"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
         <!--/* メインコンテンツ */-->
-        <section class="sec-content">
+        <b-main>
             <div class="siimple-table">
                 <div class="siimple-table-header">
                     <div class="siimple-table-row">
@@ -47,13 +45,10 @@
                     </div>
                 </div>
             </div>
-
-        </section>
+        </b-main>
 
         <!--/* フッター */-->
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
 
         <!--/* アカウント編集用フォーム */-->
         <div class="modal micromodal-slide" id="modal-edit" aria-hidden="true">

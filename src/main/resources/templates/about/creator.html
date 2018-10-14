@@ -7,25 +7,21 @@
 
         <b-title-general title="About" th:subtitle="${subtitle}"></b-title-general>
 
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item"><a href="/about/">このサイトについて</a></div>
-                <div class="siimple-breadcrumb-item here">製作者について</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-item href="/about" content="このサイトについて"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="製作者について"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
-        <section class="sec-content">
+        <b-main>
             <div class="siimple-jumbotron">
-                <div class="siimple-jumbotron-title">製作者</div>
-                <div class="siimple-jumbotron-subtitle">あひゃえもん</div>
-                <div class="siimple-jumbotron-detail">『かわいそうな にんじん』の作詞・作曲者である</div>
+                    <div class="siimple-jumbotron-title">製作者</div>
+                    <div class="siimple-jumbotron-subtitle">あひゃえもん</div>
+                    <div class="siimple-jumbotron-detail">『かわいそうな にんじん』の作詞・作曲者である</div>
             </div>
-        </section>
+        </b-main>
 
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
 
     <!--/* jsの読み込み */-->

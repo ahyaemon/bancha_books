@@ -7,16 +7,14 @@
 
         <b-title-admin title="編集" subtitle="本を登録"></b-title-admin>
 
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item"><a href="/admin/menu">管理者メニュー</a></div>
-                <div class="siimple-breadcrumb-item here"><a href="/admin/updatebook/">本の更新</a></div>
-                <div class="siimple-breadcrumb-item here">編集</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-item href="/admin/menu" content="管理者メニュー"></b-pankuzu-item>
+            <b-pankuzu-item href="/admin/updatebook" content="本の更新"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="編集"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
-        <section class="sec-content">
+        <b-main>
             <div>
                 <span>タイトル: </span>
                 <span th:text="${bookItem.name}"></span>
@@ -36,7 +34,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </b-main>
 
         <!--/* タイトル編集用フォーム */-->
         <div class="modal micromodal-slide" id="modal-title" aria-hidden="true">
@@ -65,10 +63,7 @@
             </div>
         </div>
 
-
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
     <script src="/lib/jquery/jquery-3.0.0.min.js"></script>
     <script src="/lib/micromodal/micromodal.min.js"></script>

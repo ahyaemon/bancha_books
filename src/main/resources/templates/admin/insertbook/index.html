@@ -7,15 +7,13 @@
 
         <b-title-admin title="本の登録" subtitle="本を登録"></b-title-admin>
 
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item"><a href="/admin/menu">管理者メニュー</a></div>
-                <div class="siimple-breadcrumb-item here">本の登録</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-item href="/admin/menu" content="管理者メニュー"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="本の登録"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
-        <section class="sec-content">
+        <b-main>
             <div class="siimple-card">
                 <div class="siimple-card-header">
                     青空HTMLのアップロード
@@ -73,14 +71,12 @@
                     </div>
                 </div>
             </div>
+        </b-main>
 
-        </section>
-
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
-    <script src="/lib/jquery/jquery-3.0.0.min.js"></script>
+
+    <th:block th:replace="template/script :: script"></th:block>
     <script src="/js/insertbook.js"></script>
 </body>
 </html>

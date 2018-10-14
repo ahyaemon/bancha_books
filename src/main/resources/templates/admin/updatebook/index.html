@@ -7,15 +7,13 @@
 
         <b-title-admin title="本の更新" subtitle="更新する本を選択する"></b-title-admin>
 
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item"><a href="/admin/menu">管理者メニュー</a></div>
-                <div class="siimple-breadcrumb-item here">本の更新</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-item href="/admin/menu" content="管理者メニュー"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="本の更新"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
-        <section class="sec-content">
+        <b-main>
             <div class="siimple-table">
                 <div class="siimple-table-header">
                     <div class="siimple-table-row">
@@ -46,11 +44,12 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </b-main>
 
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
+
+    <!--/* jsの読み込み */-->
+    <th:block th:replace="template/script :: script"></th:block>
 </body>
 </html>

@@ -10,15 +10,13 @@
         <b-title-general title="Donation" th:subtitle="${subtitle}"></b-title-general>
 
         <!--/* パンくずリスト */-->
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item here">寄付</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="寄付"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
         <!--/* メインコンテンツ */-->
-        <section class="sec-content">
+        <b-main>
             <div class="siimple-h1">
                 <span>現在の寄付総額: </span>
                 <span id="total-donation" data-from="0" th:data-to="${totalAmount}"></span>
@@ -31,14 +29,10 @@
                 </a>
             </div>
 
-            <div class="siimple-alert siimple-alert--warning">
-                <p class="siimple-p">
-                    herokuに毎月900円払わないと、DBに10,000行までしかデータが入らないのです。
-                </p>
-                <p class="siimple-p">
-                    つまり本のデータが入りきらない。あとコメントも。。。
-                </p>
-            </div>
+            <b-warning>
+                <b-p>herokuに毎月900円払わないと、DBに10,000行までしかデータが入らないのです。</b-p>
+                <b-p>つまり本のデータが入りきらない。あとコメントも。。。</b-p>
+            </b-warning>
 
             <div class="siimple-card" style="max-width: 800px;">
                 <div class="siimple-card-header">LINE Pay</div>
@@ -88,19 +82,17 @@
             </div>
 
             <div id="card-donated"
-            style="position: absolute; top: -300px; left: 100px; width: 200px; height: 200px; text-align: center; background-color: white; border: 10px solid grey; border-radius: 10px;">
+                    style="position: absolute; top: -300px; left: 100px; width: 200px; height: 200px; text-align: center; background-color: white; border: 10px solid grey; border-radius: 10px;">
                 <div class="" style="padding: 20px;">
                     <div class="" style=" font-size: 100px;">神</div>
                 </div>
             </div>
-
-        </section>
+        </b-main>
 
         <!--/* フッター */-->
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
+
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
     <script th:inline="javascript">

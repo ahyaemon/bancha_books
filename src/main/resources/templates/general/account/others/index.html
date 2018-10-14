@@ -10,15 +10,13 @@
         <b-title-general title="誰かの情報" subtitle="他人情報的な？"></b-title-general>
 
         <!--/* パンくずリスト */-->
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item here">誰かの情報</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="誰かの情報"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
         <!--/* メインコンテンツ */-->
-        <section class="sec-content">
+        <b-main>
             <div class="siimple-card" style="max-width: 800px;">
                 <div class="siimple-card-body">
                     <div class="siimple-card-title">ニックネーム</div>
@@ -27,13 +25,12 @@
                     <p class="siimple-p" th:text="${accountItem.hitokoto}"></p>
                 </div>
             </div>
-        </section>
+        </b-main>
 
         <!--/* フッター */-->
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
+
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
 </body>

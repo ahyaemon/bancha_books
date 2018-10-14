@@ -317,6 +317,52 @@ Vue.component('b-title-admin', {
     '
 })
 
+/**
+ * テーブル
+ */
+Vue.component('b-table', {
+    template: '\
+    <div class="siimple-table"><slot></slot></div>\
+    '
+})
+
+/**
+ * テーブルヘッダー
+ */
+Vue.component('b-table-header', {
+    template: '\
+    <div class="siimple-table-header"><slot></slot></div>\
+    '
+})
+
+/**
+ * テーブルボディ
+ */
+Vue.component('b-table-body', {
+    template: '\
+    <div class="siimple-table-body"><slot></slot></div>\
+    '
+})
+
+/**
+ * 行
+ */
+Vue.component('b-row', {
+    template: '\
+    <div class="siimple-table-row"><slot></slot></div>\
+    '
+})
+
+/**
+ * セル
+ */
+Vue.component('b-cell', {
+    template: '\
+    <div class="siimple-table-cell"><slot></slot></div>\
+    '
+})
+
+
 var app = new Vue({
     el: '#app',
 })

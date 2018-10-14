@@ -10,31 +10,21 @@
         <b-title-admin title="Sample" subtitle="さんぷる"></b-title-admin>
 
         <!--/* パンくずリスト */-->
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item"><a href="/admin/menu">管理者メニュー</a></div>
-                <div class="siimple-breadcrumb-item here">実装サンプル</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-item href="/admin/menu" content="管理者メニュー"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="実装サンプル"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
         <!--/* メインコンテンツ */-->
-        <section class="sec-content">
-            <a href="/admin/sample/validation">
-                <div class="siimple-card bancha-card bancha-back-blue">
-                    <div class="siimple-card-body">
-                        <div class="siimple-card-title">Validation</div>
-                        <div class="siimple-card-subtitle">入力チェック</div>
-                    </div>
-                </div>
-            </a>
-        </section>
+        <b-main>
+            <b-menuitem-blue href="/admin/sample/validation" title="Validation" subtitle="入力チェック"></b-menuitem-blue>
+        </b-main>
 
         <!--/* フッター */-->
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
+
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
 </body>

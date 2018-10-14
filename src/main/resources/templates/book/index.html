@@ -19,7 +19,7 @@
         </b-pankuzu>
 
         <!--/* メインコンテンツ */-->
-        <section class="sec-content">
+        <b-main>
             <!--/* ページング */-->
             <div th:include="paging/paging :: paging_location(id='paging-sentence', page=${page}) "></div>
 
@@ -57,12 +57,10 @@
                     </th:block>
                 </th:block>
             </div>
-        </section>
+        </b-main>
 
         <!--/* フッター */-->
-        <section class="sec-footer ">
-            <div th:replace="footer :: footer "></div>
-        </section>
+        <b-footer></b-footer>
 
         <!--/* コメント投稿用フォーム */-->
         <div class="modal micromodal-slide" id="modal-comment" aria-hidden="true">
