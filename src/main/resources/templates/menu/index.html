@@ -23,11 +23,7 @@
         <!--/* メインコンテンツ */-->
         <b-main>
             <th:block th:each="menuItem: ${menuItems}">
-                <b-menuitem-blue
-                    th:href="${menuItem.url}"
-                    th:title="${menuItem.title}"
-                    th:subtitle="${menuItem.subtitle}">
-                </b-menuitem-blue>
+                <b-menuitem-blue th:href="${menuItem.url}" th:title="${menuItem.title}" th:subtitle="${menuItem.subtitle}"></b-menuitem-blue>
             </th:block>
         </b-main>
 
