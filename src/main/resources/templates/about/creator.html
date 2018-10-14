@@ -5,7 +5,7 @@
     <div id="app">
         <div th:include="nav :: general"></div>
 
-        <section class="sec-title" th:include="title :: normal(title='About', subtitle=${subtitle})"></section>
+        <b-title-general title="About" th:subtitle="${subtitle}"></b-title-general>
 
         <section class="sec-pankuzu">
             <div class="siimple-breadcrumb bancha-bread">

@@ -255,6 +255,67 @@ Vue.component('b-nav-admin', {
     '
 })
 
+/**
+ * タイトル: テンプレ
+ */
+Vue.component('b-title-template', {
+    props: [
+        "title",
+        "subtitle",
+        "color"
+    ],
+    template: '\
+    <div class="siimple-jumbotron siimple-jumbotron--fluid" :class="color">\
+        <div class="siimple-jumbotron-title white" style="float: left;">{{ title }}</div>\
+        <slot></slot>\
+        <div style="clear: both;"></div>\
+        <div class="siimple-jumbotron-subtitle white">{{ subtitle }}</div>\
+    </div>\
+    '
+})
+
+/**
+ * タイトル: 一般
+ */
+Vue.component('b-title-general', {
+    props: [
+        "title",
+        "subtitle"
+    ],
+    template: '\
+        <b-title-template color="bgreen" :title="title" :subtitle="subtitle"></b-title-template>\
+    '
+})
+
+/**
+ * タイトル: 一般（お気に入りボタン付き）
+ */
+Vue.component('b-title-favorite', {
+    props: [
+        "title",
+        "subtitle"
+    ],
+    template: '\
+    <b-title-template color="bgreen" :title="title" :subtitle="subtitle">\
+        <div style="float: left; margin-left: 10px;">\
+            <i class="fas fa-star fa-3x" style="color: #aaa;"></i>\
+        </div>\
+    </b-title-template>\
+    '
+})
+
+/**
+ * タイトル: Admin
+ */
+Vue.component('b-title-admin', {
+    props: [
+        "title",
+        "subtitle"
+    ],
+    template: '\
+        <b-title-template color="bred" :title="title" :subtitle="subtitle"></b-title-template>\
+    '
+})
 
 var app = new Vue({
     el: '#app',

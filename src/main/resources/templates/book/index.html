@@ -9,7 +9,7 @@
         <div th:include="nav :: general"></div>
 
         <!--/* タイトル */-->
-        <section class="sec-title" th:include="title :: book(title=${bookItem.name}, subtitle=${bookItem.author})"></section>
+        <div th:include="title :: book"></div>
 
         <!--/* パンくずリスト */-->
         <b-pankuzu>
