@@ -8,41 +8,6 @@
     </th:block>
 </div>
 
-<b-nav-general>
-    <a class="siimple-navbar-item white" href="/general/login">Sign in</a>
-</b-nav-general>
-
-<!--/* 一般用：ログイン */-->
-<b-nav-general>
-    <div class="dropdown">
-        <a href="javascript:void(0);">
-            <div class="general-name" onclick="showDropdown()" th:text="|${account.name}さん|"></div>
-        </a>
-        <div class="dropdown-content">
-            <a th:href="|/account/${account.id}|">会員ページ</a>
-            <hr />
-            <a href="/bookmenu">Books</a>
-            <a href="/about">About</a>
-            <a href="/donation">Donation</a>
-            <hr />
-            <a href="/general/logout">ログアウト</a>
-            <div class="dropdown-up" onclick="hideDropdown()">
-                <i class="fas fa-angle-double-up"></i>
-            </div>
-        </div>
-    </div>
-            </th:block>
-        </div>
-    </div>
-</div>
-
-<!--/* 一般用のナビ（サインインページ） */-->
-<div th:fragment="normal-signin">
-    <div class="siimple-navbar siimple-navbar--fluid blightgreen">
-        <div th:replace="nav :: nav"></div>
-    </div>
-</div>
-
 <!--/* 管理者用のナビ */-->
 <div th:fragment="admin_bak">
     <div class="siimple-navbar siimple-navbar--fluid blightred">

@@ -183,9 +183,12 @@ Vue.component('b-footer', {
  * ナビ: テンプレ
  */
 Vue.component('b-nav-template', {
+    props: [
+        "color"
+    ],
     template: '\
     <section class="sec-header">\
-        <div class="siimple-navbar siimple-navbar--fluid blightgreen">\
+        <div class="siimple-navbar siimple-navbar--fluid" :class="color">\
             <a class="siimple-navbar-title white" href="/">Bancha</a>\
             <a class="siimple-navbar-subtitle white" href="/">v0.2.0</a>\
             <div class="siimple--float-right">\
@@ -197,24 +200,11 @@ Vue.component('b-nav-template', {
 })
 
 /**
- * ナビ: 一般
- */
-Vue.component('b-nav-general', {
-    props: [
-        "logged-in"
-    ],
-    template: '\
-        <b-nav-general_login v-if="loggedIn == \'true\'"></b-nav-general_login>\
-        <b-nav-general_not_login v-else></b-nav-general_not_login>\
-    '
-})
-
-/**
  * ナビ: 一般 & 未ログイン
  */
 Vue.component('b-nav-general_not_login', {
     template: '\
-    <b-nav-template>\
+    <b-nav-template color="blightgreen">\
         <a class="siimple-navbar-item white" href="/general/login">Sign in</a>\
     </b-nav-template>\
     '
@@ -230,7 +220,7 @@ Vue.component('b-nav-general_login', {
         "account-id"
     ],
     template: '\
-    <b-nav-template>\
+    <b-nav-template color="blightgreen">\
         <div class="dropdown">\
             <a href="javascript:void(0);">\
                 <div class="general-name" onclick="showDropdown()"> {{ accountName }}さん</div>\
@@ -252,15 +242,18 @@ Vue.component('b-nav-general_login', {
     '
 })
 
-
-/**
- * ナビ: 管理者 & 未ログイン
- */
-
 /**
  * ナビ: 管理者 & ログイン
  */
-
+Vue.component('b-nav-admin', {
+    props: [
+        "account-name",
+        "account-id"
+    ],
+    template: '\
+    <b-nav-template color="blightred"></b-nav-template>\
+    '
+})
 
 
 var app = new Vue({

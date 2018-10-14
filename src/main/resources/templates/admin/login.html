@@ -3,7 +3,7 @@
 <head th:replace="head :: head('管理者ログイン')"></head>
 <body>
     <div id="app">
-        <section class="sec-header" th:include="nav :: admin-signin"></section>
+        <b-nav-admin></b-nav-admin>
 
         <section class="sec-title" th:include="title :: admin(title='管理者ログイン', subtitle='貴様が管理者かどうか確かめてやる')"></section>
 
@@ -41,7 +41,8 @@
             <div th:replace="footer :: footer"></div>
         </section>
     </div>
-    <script src="/lib/anime-2.2.0/anime.min.js"></script>
+    <!--/* jsの読み込み */-->
+    <th:block th:replace="template/script :: script"></th:block>
     <script src="/js/admin/login.js"></script>
 
 </body>
