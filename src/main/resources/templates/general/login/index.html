@@ -2,89 +2,91 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('ログイン')"></head>
 <body>
-    <!--/* ヘッダー */-->
-    <section class="sec-header" th:include="nav :: normal-signin"></section>
+    <div id="app">
+        <!--/* ヘッダー */-->
+        <div th:include="nav :: general"></div>
 
-    <!--/* タイトル */-->
-    <section class="sec-title" th:include="title :: normal(title='ログイン', subtitle='よっ')"></section>
+        <!--/* タイトル */-->
+        <section class="sec-title" th:include="title :: normal(title='ログイン', subtitle='よっ')"></section>
 
-    <!--/* パンくずリスト */-->
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item here">ログイン</div>
+        <!--/* パンくずリスト */-->
+        <section class="sec-pankuzu">
+            <div class="siimple-breadcrumb bancha-bread">
+                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+                <div class="siimple-breadcrumb-item here">ログイン</div>
+            </div>
+        </section>
+
+        <!--/* 注意書き */-->
+        <div class="siimple-alert siimple-alert--warning">
+            <p class="siimple-p">
+                会員登録機能ができていないため、テストユーザーを用意しておきます。
+            </p>
+            <p class="siimple-p">
+                anji@test.com, baiken@test.com, may@test.com
+            </p>
+            <p class="siimple-p">
+                パスワードは一律 pass です。
+            </p>
         </div>
-    </section>
 
-    <!--/* 注意書き */-->
-    <div class="siimple-alert siimple-alert--warning">
-        <p class="siimple-p">
-            会員登録機能ができていないため、テストユーザーを用意しておきます。
-        </p>
-        <p class="siimple-p">
-            anji@test.com, baiken@test.com, may@test.com
-        </p>
-        <p class="siimple-p">
-            パスワードは一律 pass です。
-        </p>
+        <!--/* メインコンテンツ */-->
+        <section class="sec-content">
+            <!--/* ログインフォーム */-->
+            <div class="siimple-card" style="max-width: 800px;">
+                <div class="siimple-card-body">
+                    <div class="siimple-card-title">ロギングインニング</div>
+                    <p class="siimple-p">
+                        会員の方はここからログイン
+                    </p>
+                    <div class="siimple-form">
+                        <form action="/general/auth" method="POST">
+                            <div class="siimple-field">
+                                <div class="siimple-form-field-label">メールアドレス</div>
+                                <input class="siimple-input" type="text" id="email" name="email" />
+                            </div>
+                            <div class="siimple-field">
+                                <div class="siimple-form-field-label">パスワード</div>
+                                <input class="siimple-input" type="password" id="password" name="password" />
+                            </div>
+                            <div class="siimple-field">
+                                <button class="siimple-btn siimple-btn--blue" type="submit">ログイン</button>
+                            </div>
+                        </form>
+                    </div>
+                    <p class="siimple-p"><a href="" class="mada">パスワードを忘れたかな？と思ったら</a></p>
+                </div>
+            </div>
+
+            <!--/* 新規登録フォーム */-->
+            <div class="siimple-card" style="max-width: 800px;">
+                <div class="siimple-card-body">
+                    <div class="siimple-card-title">会員登録（新規）</div>
+                    <p class="siimple-p">
+                        会員登録するといろんなことができるようになる。
+                    </p>
+                    <div class="siimple-form">
+                        <form action="/general/sendmail" method="POST" th:object="${generalRegisterForm}">
+                            <div class="siimple-field">
+                                <div class="siimple-form-field-label">メールアドレス</div>
+                                <input class="siimple-input" type="text" th:field="*{email}" />
+                            </div>
+                            <div class="siimple-field">
+                                <button class="siimple-btn siimple-btn--blue" type="submit">新規登録</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!--/* フッター */-->
+        <section class="sec-footer">
+            <div th:replace="footer :: footer"></div>
+        </section>
+
     </div>
-
-    <!--/* メインコンテンツ */-->
-    <section class="sec-content">
-        <!--/* ログインフォーム */-->
-        <div class="siimple-card" style="max-width: 800px;">
-            <div class="siimple-card-body">
-                <div class="siimple-card-title">ロギングインニング</div>
-                <p class="siimple-p">
-                    会員の方はここからログイン
-                </p>
-                <div class="siimple-form">
-                    <form action="/general/auth" method="POST">
-                        <div class="siimple-field">
-                            <div class="siimple-form-field-label">メールアドレス</div>
-                            <input class="siimple-input" type="text" id="email" name="email" />
-                        </div>
-                        <div class="siimple-field">
-                            <div class="siimple-form-field-label">パスワード</div>
-                            <input class="siimple-input" type="password" id="password" name="password" />
-                        </div>
-                        <div class="siimple-field">
-                            <button class="siimple-btn siimple-btn--blue" type="submit">ログイン</button>
-                        </div>
-                    </form>
-                </div>
-                <p class="siimple-p"><a href="" class="mada">パスワードを忘れたかな？と思ったら</a></p>
-            </div>
-        </div>
-
-        <!--/* 新規登録フォーム */-->
-        <div class="siimple-card" style="max-width: 800px;">
-            <div class="siimple-card-body">
-                <div class="siimple-card-title">会員登録（新規）</div>
-                <p class="siimple-p">
-                    会員登録するといろんなことができるようになる。
-                </p>
-                <div class="siimple-form">
-                    <form action="/general/sendmail" method="POST" th:object="${generalRegisterForm}">
-                        <div class="siimple-field">
-                            <div class="siimple-form-field-label">メールアドレス</div>
-                            <input class="siimple-input" type="text" th:field="*{email}" />
-                        </div>
-                        <div class="siimple-field">
-                            <button class="siimple-btn siimple-btn--blue" type="submit">新規登録</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-    <!--/* フッター */-->
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
-
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
     <script src="/js/admin/login.js"></script>

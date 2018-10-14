@@ -4,44 +4,35 @@
 <body>
     <div id="app">
         <!--/* ヘッダー */-->
-        <section class="sec-header" th:include="nav :: normal"></section>
+        <div th:include="nav :: general"></div>
 
         <!--/* タイトル */-->
         <section class="sec-title" th:include="title :: normal(title='Bancha Home', subtitle=${subtitle})"></section>
 
         <!--/* パンくずリスト */-->
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item here">Home</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-hereitem href="/" content="Home"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
         <!--/* 注意書き */-->
-        <div class="siimple-alert siimple-alert--warning">
-            <p class="siimple-p">
-                banchaは試用運転中です。
-            </p>
-            <p class="siimple-p">
-                会員登録情報やコメントは予告なく突然初期化される可能性があります。
-            </p>
-        </div>
+        <b-warning>
+            <b-p>banchaは試用運転中です。</b-p>
+            <b-p>会員登録情報やコメントは予告なく突然初期化される可能性があります。</b-p>
+        </b-warning>
 
         <!--/* メインコンテンツ */-->
-        <section class="sec-content">
+        <b-main>
             <th:block th:each="menuItem: ${menuItems}">
                 <b-menuitem-blue
-                        th:href="${menuItem.url}"
-                        th:title="${menuItem.title}"
-                        th:subtitle="${menuItem.subtitle}">
-                    </b-menuitem-blue>
-                </th:block>
+                    th:href="${menuItem.url}"
+                    th:title="${menuItem.title}"
+                    th:subtitle="${menuItem.subtitle}">
+                </b-menuitem-blue>
             </th:block>
-        </section>
+        </b-main>
 
         <!--/* フッター */-->
-        <section class="sec-footer">
-            <div th:replace="footer :: footer"></div>
-        </section>
+        <b-footer></b-footer>
     </div>
 
     <!--/* jsの読み込み */-->

@@ -4,18 +4,16 @@
 <body>
     <div id="app">
         <!--/* ヘッダー */-->
-        <section class="sec-header" th:include="nav :: normal"></section>
+        <div th:include="nav :: general"></div>
 
         <!--/* タイトル */-->
         <section class="sec-title" th:include="title :: normal(title='Books', subtitle=${subtitle})"></section>
 
         <!--/* パンくずリスト */-->
-        <section class="sec-pankuzu">
-            <div class="siimple-breadcrumb bancha-bread">
-                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-                <div class="siimple-breadcrumb-item here">Books</div>
-            </div>
-        </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="Books"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
         <!--/* メインコンテンツ */-->
         <section class="sec-content">

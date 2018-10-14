@@ -4,75 +4,71 @@
 <head th:replace="head :: head('Book')"></head>
 
 <body>
-    <!--/* ヘッダー */-->
-    <section class="sec-header" th:include="nav :: normal"></section>
+    <div id="app">
+        <!--/* ヘッダー */-->
+        <div th:include="nav :: general"></div>
 
-    <!--/* タイトル */-->
-    <section class="sec-title" th:include="title :: book(title=${bookItem.name}, subtitle=${bookItem.author})"></section>
+        <!--/* タイトル */-->
+        <section class="sec-title" th:include="title :: book(title=${bookItem.name}, subtitle=${bookItem.author})"></section>
 
-    <!--/* パンくずリスト */-->
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item">
-                <a href="/">Home</a>
-            </div>
-            <div class="siimple-breadcrumb-item">
-                <a href="/bookmenu/">Books</a>
-            </div>
-            <div class="siimple-breadcrumb-item here" th:text="${bookItem.name}"></div>
-        </div>
-    </section>
+        <!--/* パンくずリスト */-->
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-item href="/bookmenu" content="Books"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" th:content="${bookItem.name}"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
-    <!--/* メインコンテンツ */-->
-    <section class="sec-content">
-        <!--/* ページング */-->
-        <div th:include="paging/paging :: paging_location(id='paging-sentence', page=${page}) "></div>
+        <!--/* メインコンテンツ */-->
+        <section class="sec-content">
+            <!--/* ページング */-->
+            <div th:include="paging/paging :: paging_location(id='paging-sentence', page=${page}) "></div>
 
-        <!--/* ライセンス */-->
-        <th:block th:with="licenseItem=${bookItem.licenseItem}" th:if="${bookItem.hasLicense()}">
-            <th:block th:if="${licenseItem.licenseType}=='Cc' ">
-                <div class="siimple-alert siimple-alert--warning ">
-                    <p class="siimple-p " th:text="${licenseItem.notice} "></p>
-                    <p class=" siimple-p ">
-                        各エッセイは
-                        <a href="https://creativecommons.org/licenses/by/3.0/us/deed.ja " target="new ">CC-by-3.0-US</a>
-                        によってライセンスされています。
-                    </p>
-                </div>
-            </th:block>
-        </th:block>
-
-        <!--/* 文のリスト */-->
-        <div class="sentence-list ">
-            <th:block th:each="sentenceItem, stat: ${bookItem.sentenceItems} " th:with="sid=${sentenceItem.sentenceId}
-            " th:id="|sentence-item-${sid}| " class="sentence-item ">
-                <!--/* sentenceが空の場合は<br> */-->
-                <th:block th:switch="${sentenceItem.sentence}=='' ">
-                    <th:block th:case="true ">
-                        <br>
-                        <br>
-                    </th:block>
-                    <th:block th:case="false ">
-                        <div th:classappend="|bancha-h${sentenceItem.heading}| ">
-                            <div class="sentence-close " th:onclick="|openSentence(${sid})| ">
-                                <span th:utext="${sentenceItem.sentence} " th:classappend="${sentenceItem.hasComment()}? 'b' "></span>
-                            </div>
-                        </div>
-                    </th:block>
+            <!--/* ライセンス */-->
+            <th:block th:with="licenseItem=${bookItem.licenseItem}" th:if="${bookItem.hasLicense()}">
+                <th:block th:if="${licenseItem.licenseType}=='Cc' ">
+                    <div class="siimple-alert siimple-alert--warning ">
+                        <p class="siimple-p " th:text="${licenseItem.notice} "></p>
+                        <p class=" siimple-p ">
+                            各エッセイは
+                            <a href="https://creativecommons.org/licenses/by/3.0/us/deed.ja " target="new ">CC-by-3.0-US</a>
+                            によってライセンスされています。
+                        </p>
+                    </div>
                 </th:block>
             </th:block>
-        </div>
-    </section>
 
-    <!--/* フッター */-->
-    <section class="sec-footer ">
-        <div th:replace="footer :: footer "></div>
-    </section>
+            <!--/* 文のリスト */-->
+            <div class="sentence-list ">
+                <th:block th:each="sentenceItem, stat: ${bookItem.sentenceItems} " th:with="sid=${sentenceItem.sentenceId}
+                " th:id="|sentence-item-${sid}| " class="sentence-item ">
+                    <!--/* sentenceが空の場合は<br> */-->
+                    <th:block th:switch="${sentenceItem.sentence}=='' ">
+                        <th:block th:case="true ">
+                            <br>
+                            <br>
+                        </th:block>
+                        <th:block th:case="false ">
+                            <div th:classappend="|bancha-h${sentenceItem.heading}| ">
+                                <div class="sentence-close " th:onclick="|openSentence(${sid})| ">
+                                    <span th:utext="${sentenceItem.sentence} " th:classappend="${sentenceItem.hasComment()}? 'b' "></span>
+                                </div>
+                            </div>
+                        </th:block>
+                    </th:block>
+                </th:block>
+            </div>
+        </section>
 
-    <!--/* コメント投稿用フォーム */-->
-    <div class="modal micromodal-slide" id="modal-comment" aria-hidden="true">
-        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title"></div>
+        <!--/* フッター */-->
+        <section class="sec-footer ">
+            <div th:replace="footer :: footer "></div>
+        </section>
+
+        <!--/* コメント投稿用フォーム */-->
+        <div class="modal micromodal-slide" id="modal-comment" aria-hidden="true">
+            <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+                <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title"></div>
+            </div>
         </div>
     </div>
 
@@ -82,6 +78,8 @@
     <script th:inline="text">
         bookPage.bookId = /* [[${bookItem.bookId}]] */ 1;
     </script>
+    <script src="/lib/vue.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 
 </html>

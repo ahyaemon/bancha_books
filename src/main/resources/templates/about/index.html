@@ -2,31 +2,33 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('About')"></head>
 <body>
-    <section class="sec-header" th:include="nav :: normal"></section>
-    
-    <section class="sec-title" th:include="title :: normal(title='About', subtitle=${subtitle})"></section>
+    <div id="app">
 
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item here">このサイトについて</div>
-        </div>
-    </section>
+        <div th:include="nav :: general"></div>
 
-    <section class="sec-content">
-        <div class="siimple-list siimple-list--hover">
-            <div class="siimple-list-item">
-                <a class="siimple-link" th:href=@{/about/creator}>製作者</a>
+        <section class="sec-title" th:include="title :: normal(title='About', subtitle=${subtitle})"></section>
+
+        <section class="sec-pankuzu">
+            <div class="siimple-breadcrumb bancha-bread">
+                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+                <div class="siimple-breadcrumb-item here">このサイトについて</div>
             </div>
-            <div class="siimple-list-item">◯◯◯◯◯</div>
-            <div class="siimple-list-item">△△△△△</div>
-        </div>
-    </section>
+        </section>
 
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
+        <section class="sec-content">
+            <div class="siimple-list siimple-list--hover">
+                <div class="siimple-list-item">
+                    <a class="siimple-link" th:href=@{/about/creator}>製作者</a>
+                </div>
+                <div class="siimple-list-item">◯◯◯◯◯</div>
+                <div class="siimple-list-item">△△△△△</div>
+            </div>
+        </section>
 
+        <section class="sec-footer">
+            <div th:replace="footer :: footer"></div>
+        </section>
+    </div>
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
 </body>

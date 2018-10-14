@@ -2,27 +2,28 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('どうなの？')"></head>
 <body>
-    <section class="sec-header" th:include="nav :: normal-signin"></section>
-    
-    <section class="sec-title" th:include="title :: normal(title='なんかちがくない？', subtitle='気のせい？不正？')"></section>
+    <div id="app">
+        <div th:include="nav :: general"></div>
 
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item here">気の迷い？</div>
-        </div>
-    </section>
+        <section class="sec-title" th:include="title :: normal(title='なんかちがくない？', subtitle='気のせい？不正？')"></section>
 
-    <section class="sec-content">
-        <p class="siimple-p">
-            思い違い？
-        </p>
-    </section>
+        <section class="sec-pankuzu">
+            <div class="siimple-breadcrumb bancha-bread">
+                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+                <div class="siimple-breadcrumb-item here">気の迷い？</div>
+            </div>
+        </section>
 
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
+        <section class="sec-content">
+            <p class="siimple-p">
+                思い違い？
+            </p>
+        </section>
 
+        <section class="sec-footer">
+            <div th:replace="footer :: footer"></div>
+        </section>
+    </div>
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
     <script src="/js/admin/login.js"></script>

@@ -2,32 +2,33 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('メール確認')"></head>
 <body>
-    <!--/* ヘッダー */-->
-    <section class="sec-header" th:include="nav :: normal-signin"></section>
-    
-    <!--/* タイトル */-->
-    <section class="sec-title" th:include="title :: normal(title='メール確認', subtitle='レッツ登録')"></section>
+    <div id="app">
+        <!--/* ヘッダー */-->
+        <div th:include="nav :: general"></div>
 
-    <!--/* パンくずリスト */-->
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item here">メール確認</div>
-        </div>
-    </section>
+        <!--/* タイトル */-->
+        <section class="sec-title" th:include="title :: normal(title='メール確認', subtitle='レッツ登録')"></section>
 
-    <!--/* メインコンテンツ */-->
-    <section class="sec-content">
-        <p class="siimple-p">
-            登録用のメールを送ったから確認してみてね。
-        </p>
-    </section>
+        <!--/* パンくずリスト */-->
+        <section class="sec-pankuzu">
+            <div class="siimple-breadcrumb bancha-bread">
+                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+                <div class="siimple-breadcrumb-item here">メール確認</div>
+            </div>
+        </section>
 
-    <!--/* フッター */-->
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
+        <!--/* メインコンテンツ */-->
+        <section class="sec-content">
+            <p class="siimple-p">
+                登録用のメールを送ったから確認してみてね。
+            </p>
+        </section>
 
+        <!--/* フッター */-->
+        <section class="sec-footer">
+            <div th:replace="footer :: footer"></div>
+        </section>
+    </div>
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
     <script src="/js/admin/login.js"></script>

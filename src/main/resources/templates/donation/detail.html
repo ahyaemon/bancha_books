@@ -2,46 +2,47 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('寄付詳細')"></head>
 <body>
-    <!--/* ヘッダー */-->
-    <section class="sec-header" th:include="nav :: normal"></section>
-    
-    <!--/* タイトル */-->
-    <section class="sec-title" th:include="title :: normal(title='Donation', subtitle='謝謝')"></section>
+    <div id="app">
+        <!--/* ヘッダー */-->
+        <div th:include="nav :: general"></div>
 
-    <!--/* パンくずリスト */-->
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item "><a href="/donation/">寄付</a></div>
-            <div class="siimple-breadcrumb-item here">寄付詳細</div>
-        </div>
-    </section>
+        <!--/* タイトル */-->
+        <section class="sec-title" th:include="title :: normal(title='Donation', subtitle='謝謝')"></section>
 
-    <!--/* メインコンテンツ */-->
-    <section class="sec-content">
-        <div class="siimple-table" style="background-color: white;">
-            <div class="siimple-table-header">
-                <div class="siimple-table-row">
-                    <div class="siimple-table-cell">名前</div>
-                    <div class="siimple-table-cell">コメント</div>
-                    <div class="siimple-table-cell">寄付金額</div>
+        <!--/* パンくずリスト */-->
+        <section class="sec-pankuzu">
+            <div class="siimple-breadcrumb bancha-bread">
+                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+                <div class="siimple-breadcrumb-item "><a href="/donation/">寄付</a></div>
+                <div class="siimple-breadcrumb-item here">寄付詳細</div>
+            </div>
+        </section>
+
+        <!--/* メインコンテンツ */-->
+        <section class="sec-content">
+            <div class="siimple-table" style="background-color: white;">
+                <div class="siimple-table-header">
+                    <div class="siimple-table-row">
+                        <div class="siimple-table-cell">名前</div>
+                        <div class="siimple-table-cell">コメント</div>
+                        <div class="siimple-table-cell">寄付金額</div>
+                    </div>
+                </div>
+                <div class="siimple-table-body">
+                    <div class="siimple-table-row" th:each="item: ${donationItems}">
+                        <div class="siimple-table-cell" th:text="${item.name}"></div>
+                        <div class="siimple-table-cell" th:text="${item.comment}"></div>
+                        <div class="siimple-table-cell number-format" th:text="${item.amount}"></div>
+                    </div>
                 </div>
             </div>
-            <div class="siimple-table-body">
-                <div class="siimple-table-row" th:each="item: ${donationItems}">
-                    <div class="siimple-table-cell" th:text="${item.name}"></div>
-                    <div class="siimple-table-cell" th:text="${item.comment}"></div>
-                    <div class="siimple-table-cell number-format" th:text="${item.amount}"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!--/* フッター */-->
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>    
-
+        <!--/* フッター */-->
+        <section class="sec-footer">
+            <div th:replace="footer :: footer"></div>
+        </section>
+    </div>
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
     <script th:inline="javascript">

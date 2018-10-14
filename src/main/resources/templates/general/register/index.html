@@ -2,58 +2,59 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('会員登録')"></head>
 <body>
-    <section class="sec-header" th:include="nav :: normal-signin"></section>
+    <div id="app">
+        <div th:include="nav :: general"></div>
 
-    <section class="sec-title" th:include="title :: normal(title='会員登録', subtitle='レッツ登録')"></section>
+        <section class="sec-title" th:include="title :: normal(title='会員登録', subtitle='レッツ登録')"></section>
 
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item here">会員登録</div>
-        </div>
-    </section>
+        <section class="sec-pankuzu">
+            <div class="siimple-breadcrumb bancha-bread">
+                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+                <div class="siimple-breadcrumb-item here">会員登録</div>
+            </div>
+        </section>
 
-    <section class="sec-content">
-        <div class="siimple-card" style="max-width: 800px;">
-            <div class="siimple-card-header">新規会員登録</div>
-            <div class="siimple-card-body">
-                <div class="siimple-form">
-                    <form action="/thank-you-for-register/create" method="POST" th:object="${accountCreateForm}">
-                        <ul><li th:each="error: ${#fields.detailedErrors()}" th:text="${error.message}"></li></ul>
-                        <div class="siimple-field">
-                            <div class="siimple-field-label">メールアドレス</div>
-                            <input class="siimple-input" type="text" th:field="*{email}" readonly="readonly">
-                        </div>
-                        <div class="siimple-field">
-                            <div class="siimple-field-label">パスワード</div>
-                            <input class="siimple-input" type="password" th:field="*{password}">
-                        </div>
-                        <div class="siimple-field">
-                            <div class="siimple-field-label">パスワード（確認）</div>
-                            <input class="siimple-input" type="password" th:field="*{password2}">
-                        </div>
-                        <div class="siimple-field">
-                            <div class="siimple-field-label">ニックネーム</div>
-                            <input class="siimple-input" type="text" th:field="*{name}">
-                        </div>
-                        <div class="siimple-field">
-                            <div class="siimple-field-label">ひとこと（あれば）</div>
-                            <textarea class="siimple-textarea siimple-textarea-fuild"
-                                th:field="*{hitokoto}"></textarea>
-                        </div>
-                        <div class="siimple-field">
-                            <button class="siimple-btn" type="submit">登録</button>
-                        </div>
-                    </form>
+        <section class="sec-content">
+            <div class="siimple-card" style="max-width: 800px;">
+                <div class="siimple-card-header">新規会員登録</div>
+                <div class="siimple-card-body">
+                    <div class="siimple-form">
+                        <form action="/thank-you-for-register/create" method="POST" th:object="${accountCreateForm}">
+                            <ul><li th:each="error: ${#fields.detailedErrors()}" th:text="${error.message}"></li></ul>
+                            <div class="siimple-field">
+                                <div class="siimple-field-label">メールアドレス</div>
+                                <input class="siimple-input" type="text" th:field="*{email}" readonly="readonly">
+                            </div>
+                            <div class="siimple-field">
+                                <div class="siimple-field-label">パスワード</div>
+                                <input class="siimple-input" type="password" th:field="*{password}">
+                            </div>
+                            <div class="siimple-field">
+                                <div class="siimple-field-label">パスワード（確認）</div>
+                                <input class="siimple-input" type="password" th:field="*{password2}">
+                            </div>
+                            <div class="siimple-field">
+                                <div class="siimple-field-label">ニックネーム</div>
+                                <input class="siimple-input" type="text" th:field="*{name}">
+                            </div>
+                            <div class="siimple-field">
+                                <div class="siimple-field-label">ひとこと（あれば）</div>
+                                <textarea class="siimple-textarea siimple-textarea-fuild"
+                                    th:field="*{hitokoto}"></textarea>
+                            </div>
+                            <div class="siimple-field">
+                                <button class="siimple-btn" type="submit">登録</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
-
+        <section class="sec-footer">
+            <div th:replace="footer :: footer"></div>
+        </section>
+    </div>
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
     <script src="/js/admin/login.js"></script>
