@@ -2,47 +2,48 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('管理者メニュー')"></head>
 <body>
-    <!--/* ヘッダー */-->
-    <section class="sec-header" th:include="nav :: admin"></section>
-    
-    <!--/* タイトル */-->
-    <section class="sec-title" th:include="title :: admin(title='Admin Menu', subtitle='管理しちゃう？')"></section>
+    <div id="app">
+        <!--/* ヘッダー */-->
+        <section class="sec-header" th:include="nav :: admin"></section>
 
-    <!--/* パンくずリスト */-->
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item here"><a href="/admin/menu">管理者メニュー</a></div>
-            <div class="siimple-breadcrumb-item here"><a href="/admin/maintenance">マスタメンテナンス</a></div>
-            <div class="siimple-breadcrumb-item here">Book</div>
-        </div>        
-    </section>
-    
-    <!--/* メインコンテンツ */-->
-    <section class="sec-content">
-        <a href="/admin/insertbook/">
-            <div class="siimple-card bancha-card bancha-back-blue">
-                <div class="siimple-card-body">
-                    <div class="siimple-card-title">INSERT BOOK</div>
-                    <div class="siimple-card-subtitle">本の新規登録</div>
-                </div>
+        <!--/* タイトル */-->
+        <section class="sec-title" th:include="title :: admin(title='Admin Menu', subtitle='管理しちゃう？')"></section>
+
+        <!--/* パンくずリスト */-->
+        <section class="sec-pankuzu">
+            <div class="siimple-breadcrumb bancha-bread">
+                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+                <div class="siimple-breadcrumb-item here"><a href="/admin/menu">管理者メニュー</a></div>
+                <div class="siimple-breadcrumb-item here"><a href="/admin/maintenance">マスタメンテナンス</a></div>
+                <div class="siimple-breadcrumb-item here">Book</div>
             </div>
-        </a>
-        <a href="/admin/updatebook/">
-            <div class="siimple-card bancha-card bancha-back-blue">
-                <div class="siimple-card-body">
-                    <div class="siimple-card-title">UPDATE BOOK</div>
-                    <div class="siimple-card-subtitle">本の更新</div>
+        </section>
+
+        <!--/* メインコンテンツ */-->
+        <section class="sec-content">
+            <a href="/admin/insertbook/">
+                <div class="siimple-card bancha-card bancha-back-blue">
+                    <div class="siimple-card-body">
+                        <div class="siimple-card-title">INSERT BOOK</div>
+                        <div class="siimple-card-subtitle">本の新規登録</div>
+                    </div>
                 </div>
-            </div>
-        </a>
-    </section>
+            </a>
+            <a href="/admin/updatebook/">
+                <div class="siimple-card bancha-card bancha-back-blue">
+                    <div class="siimple-card-body">
+                        <div class="siimple-card-title">UPDATE BOOK</div>
+                        <div class="siimple-card-subtitle">本の更新</div>
+                    </div>
+                </div>
+            </a>
+        </section>
 
-    <!--/* フッター */-->
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
-
+        <!--/* フッター */-->
+        <section class="sec-footer">
+            <div th:replace="footer :: footer"></div>
+        </section>
+    </div>
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
 </body>

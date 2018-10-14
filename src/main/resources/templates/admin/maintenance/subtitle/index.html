@@ -2,52 +2,53 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('管理者メニュー')"></head>
 <body>
-    <!--/* ヘッダー */-->
-    <section class="sec-header" th:include="nav :: admin"></section>
+    <div id="app">
+        <!--/* ヘッダー */-->
+        <section class="sec-header" th:include="nav :: admin"></section>
 
-    <!--/* タイトル */-->
-    <section class="sec-title" th:include="title :: admin(title='サブタイトル管理', subtitle='いかしたやつをたのむ')"></section>
+        <!--/* タイトル */-->
+        <section class="sec-title" th:include="title :: admin(title='サブタイトル管理', subtitle='いかしたやつをたのむ')"></section>
 
-    <!--/* パンくずリスト */-->
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item here"><a href="/admin/menu">管理者メニュー</a></div>
-            <div class="siimple-breadcrumb-item here"><a href="/admin/maintenance">マスタメンテナンス</a></div>
-            <div class="siimple-breadcrumb-item here">Subtitle</div>
-        </div>
-    </section>
-
-    <!--/* メインコンテンツ */-->
-    <section class="sec-content">
-        <div class="siimple-table">
-            <div class="siimple-table-header">
-                <div class="siimple-table-row">
-                    <div class="siimple-table-cell">subtitle id</div>
-                    <div class="siimple-table-cell">タイトルコード</div>
-                    <div class="siimple-table-cell">サブタイトル</div>
-                    <div class="siimple-table-cell">編集</div>
-                </div>
+        <!--/* パンくずリスト */-->
+        <section class="sec-pankuzu">
+            <div class="siimple-breadcrumb bancha-bread">
+                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+                <div class="siimple-breadcrumb-item here"><a href="/admin/menu">管理者メニュー</a></div>
+                <div class="siimple-breadcrumb-item here"><a href="/admin/maintenance">マスタメンテナンス</a></div>
+                <div class="siimple-breadcrumb-item here">Subtitle</div>
             </div>
-            <div class="siimple-table-body">
-                <div class="siimple-table-row" th:each="item: ${subtitleMaintenanceItems}">
-                    <div class="siimple-table-cell" th:text="${item.subtitleId}"></div>
-                    <div class="siimple-table-cell" th:text="${item.titleCd}"></div>
-                    <div class="siimple-table-cell" th:text="${item.subtitleValue}"></div>
-                    <div class="siimple-table-cell">
-                        <button class="siimple-btn blightgreen white" type="button">EDIT</button>
+        </section>
+
+        <!--/* メインコンテンツ */-->
+        <section class="sec-content">
+            <div class="siimple-table">
+                <div class="siimple-table-header">
+                    <div class="siimple-table-row">
+                        <div class="siimple-table-cell">subtitle id</div>
+                        <div class="siimple-table-cell">タイトルコード</div>
+                        <div class="siimple-table-cell">サブタイトル</div>
+                        <div class="siimple-table-cell">編集</div>
+                    </div>
+                </div>
+                <div class="siimple-table-body">
+                    <div class="siimple-table-row" th:each="item: ${subtitleMaintenanceItems}">
+                        <div class="siimple-table-cell" th:text="${item.subtitleId}"></div>
+                        <div class="siimple-table-cell" th:text="${item.titleCd}"></div>
+                        <div class="siimple-table-cell" th:text="${item.subtitleValue}"></div>
+                        <div class="siimple-table-cell">
+                            <button class="siimple-btn blightgreen white" type="button">EDIT</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </section>
+        </section>
 
-    <!--/* フッター */-->
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
-
+        <!--/* フッター */-->
+        <section class="sec-footer">
+            <div th:replace="footer :: footer"></div>
+        </section>
+    </div>
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
 </body>

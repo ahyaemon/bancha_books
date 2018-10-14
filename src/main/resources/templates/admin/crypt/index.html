@@ -2,47 +2,48 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('管理者ログイン')"></head>
 <body>
-    <section class="sec-header" th:include="nav :: admin"></section>
-    
-    <section class="sec-title" th:include="title :: admin(title='暗号化の確認', subtitle='...')"></section>
+    <div id="app">
+        <section class="sec-header" th:include="nav :: admin"></section>
 
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item"><a href="/admin/menu">管理者用メニュー</a></div>
-            <div class="siimple-breadcrumb-item here">暗号化の確認</div>
-        </div>
-    </section>
+        <section class="sec-title" th:include="title :: admin(title='暗号化の確認', subtitle='...')"></section>
 
-    <section class="sec-content">
-        <form action="/admin/auth" method="POST">
-            <div class="siimple-card" style="max-width: 800px;">
-                <div class="siimple-card-body">
-                    <div class="siimple-card-title">暗号化</div>
-                    <div class="siimple-form">
-                        <div class="siimple-field">
-                            <div class="siimple-form-field-label">暗号化したい文字列</div>
-                            <input class="siimple-input" type="text" id="plain" style="width:700px;" />
-                        </div>
-                        <div class="siimple-field">
-                            <button class="siimple-btn siimple-btn--blue" type="button" onclick="encrypt()">
-                                確認する
-                            </button>
-                        </div>
-                        <div class="siimple-field">
-                            <div class="siimple-form-field-label">結果</div>
-                            <input class="siimple-input" type="text" id="encrypted" readonly="readonly" style="width:700px;" />
-                        </div>
-                    </div>        
-                </div>
+        <section class="sec-pankuzu">
+            <div class="siimple-breadcrumb bancha-bread">
+                <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
+                <div class="siimple-breadcrumb-item"><a href="/admin/menu">管理者用メニュー</a></div>
+                <div class="siimple-breadcrumb-item here">暗号化の確認</div>
             </div>
-        </form>
-    </section>
+        </section>
 
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
+        <section class="sec-content">
+            <form action="/admin/auth" method="POST">
+                <div class="siimple-card" style="max-width: 800px;">
+                    <div class="siimple-card-body">
+                        <div class="siimple-card-title">暗号化</div>
+                        <div class="siimple-form">
+                            <div class="siimple-field">
+                                <div class="siimple-form-field-label">暗号化したい文字列</div>
+                                <input class="siimple-input" type="text" id="plain" style="width:700px;" />
+                            </div>
+                            <div class="siimple-field">
+                                <button class="siimple-btn siimple-btn--blue" type="button" onclick="encrypt()">
+                                    確認する
+                                </button>
+                            </div>
+                            <div class="siimple-field">
+                                <div class="siimple-form-field-label">結果</div>
+                                <input class="siimple-input" type="text" id="encrypted" readonly="readonly" style="width:700px;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
 
+        <section class="sec-footer">
+            <div th:replace="footer :: footer"></div>
+        </section>
+    </div>
     <script src="/lib/jquery/jquery-3.0.0.min.js"></script>
     <script src="/js/component/ajax.js"></script>
     <script src="/js/admin/crypt.js"></script>
