@@ -1,28 +1,7 @@
-<div th:fragment="normal(title, subtitle)">
-    <div class="siimple-jumbotron siimple-jumbotron--fluid bgreen">
-        <div class="siimple-jumbotron-title white" th:text="${title}"></div>
-        <div class="siimple-jumbotron-subtitle white" th:text="${subtitle}"></div>
-    </div>
-</div>
-
-<div th:fragment="book(title, subtitle)">
-        <div class="siimple-jumbotron siimple-jumbotron--fluid bgreen">
-            <div style="float: left;">
-                <div class="siimple-jumbotron-title white" th:text="${title}"></div>
-            </div>
-            <th:block th:if="${hasGeneralRole}">
-                <div style="float: left; margin-left: 10px;">
-                    <i class="fas fa-star fa-3x" style="color: #aaa;"></i>
-                </div>
-            </th:block>
-            <div style="clear: both;"></div>
-            <div class="siimple-jumbotron-subtitle white" th:text="${subtitle}"></div>
-        </div>
-    </div>
-
-<div th:fragment="admin(title, subtitle)">
-    <div class="siimple-jumbotron siimple-jumbotron--fluid bred">
-        <div class="siimple-jumbotron-title white" th:text="${title}"></div>
-        <div class="siimple-jumbotron-subtitle white" th:text="${subtitle}"></div>
-    </div>
+<!--/* ログイン状態によって表示するナビを切り替え */-->
+<div th:fragment="book">
+    <th:block th:switch="${hasGeneralRole}">
+        <b-title-favorite th:case="true" th:title="${bookItem.name}" th:subtitle="${bookItem.author}"></b-title-favorite>
+        <b-title-general th:case="false" th:title="${bookItem.name}" th:subtitle="${bookItem.author}"></b-title-general>
+    </th:block>
 </div>

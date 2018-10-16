@@ -2,54 +2,54 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('管理者ログイン')"></head>
 <body>
-    <section class="sec-header" th:include="nav :: admin"></section>
+    <div id="app">
+        <b-nav-admin></b-nav-admin>
 
-    <section class="sec-title" th:include="title :: admin(title='本の更新', subtitle='更新する本を選択する')"></section>
+        <b-title-admin title="本の更新" subtitle="更新する本を選択する"></b-title-admin>
 
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item"><a href="/admin/menu">管理者メニュー</a></div>
-            <div class="siimple-breadcrumb-item here">本の更新</div>
-        </div>
-    </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-item href="/admin/menu" content="管理者メニュー"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="本の更新"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
-    <section class="sec-content">
-        <div class="siimple-table">
-            <div class="siimple-table-header">
-                <div class="siimple-table-row">
-                    <div class="siimple-table-cell">#</div>
-                    <div class="siimple-table-cell">タイトル</div>
-                    <div class="siimple-table-cell">著者</div>
-                    <div class="siimple-table-cell">文</div>
-                    <div class="siimple-table-cell">編集</div>
-                    <div class="siimple-table-cell">削除</div>
-                </div>
-            </div>
-            <div class="siimple-table-body">
-                <div class="siimple-table-row" th:each="updateBookMenuItem: ${updateBookMenuItems}">
-                    <div class="siimple-table-cell" th:text="${updateBookMenuItem.bookId}"></div>
-                    <div class="siimple-table-cell" th:text="${updateBookMenuItem.title}"></div>
-                    <div class="siimple-table-cell" th:text="${updateBookMenuItem.author}"></div>
-                    <div class="siimple-table-cell">
-                        <button class="siimple-btn blightgreen white" type="button">SENTENCE</button>
-                    </div>
-                    <div class="siimple-table-cell">
-                        <a th:href="|/admin/updatebook/${updateBookMenuItem.bookId}|">
-                            <button class="siimple-btn blightgreen white" type="button">EDIT</button>
-                        </a>
-                    </div>
-                    <div class="siimple-table-cell">
-                        <button class="siimple-btn blightgreen white" type="button">DELETE</button>
+        <b-main>
+            <div class="siimple-table">
+                <div class="siimple-table-header">
+                    <div class="siimple-table-row">
+                        <div class="siimple-table-cell">#</div>
+                        <div class="siimple-table-cell">タイトル</div>
+                        <div class="siimple-table-cell">著者</div>
+                        <div class="siimple-table-cell">文</div>
+                        <div class="siimple-table-cell">編集</div>
+                        <div class="siimple-table-cell">削除</div>
                     </div>
                 </div>
+                <div class="siimple-table-body">
+                    <div class="siimple-table-row" th:each="updateBookMenuItem: ${updateBookMenuItems}">
+                        <div class="siimple-table-cell" th:text="${updateBookMenuItem.bookId}"></div>
+                        <div class="siimple-table-cell" th:text="${updateBookMenuItem.title}"></div>
+                        <div class="siimple-table-cell" th:text="${updateBookMenuItem.author}"></div>
+                        <div class="siimple-table-cell">
+                            <button class="siimple-btn blightgreen white" type="button">SENTENCE</button>
+                        </div>
+                        <div class="siimple-table-cell">
+                            <a th:href="|/admin/updatebook/${updateBookMenuItem.bookId}|">
+                                <button class="siimple-btn blightgreen white" type="button">EDIT</button>
+                            </a>
+                        </div>
+                        <div class="siimple-table-cell">
+                            <button class="siimple-btn blightgreen white" type="button">DELETE</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </b-main>
 
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
+        <b-footer></b-footer>
+    </div>
 
+    <!--/* jsの読み込み */-->
+    <th:block th:replace="template/script :: script"></th:block>
 </body>
 </html>

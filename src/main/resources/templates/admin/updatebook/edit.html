@@ -2,73 +2,69 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('管理者ログイン')"></head>
 <body>
-    <section class="sec-header" th:include="nav :: admin"></section>
-    
-    <section class="sec-title" th:include="title :: admin(title='編集', subtitle='本を登録')"></section>
+    <div id="app">
+        <b-nav-admin></b-nav-admin>
 
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item"><a href="/admin/menu">管理者メニュー</a></div>
-            <div class="siimple-breadcrumb-item here"><a href="/admin/updatebook/">本の更新</a></div>
-            <div class="siimple-breadcrumb-item here">編集</div>
-        </div>
-    </section>
+        <b-title-admin title="編集" subtitle="本を登録"></b-title-admin>
 
-    <section class="sec-content">
-        <div>
-            <span>タイトル: </span>
-            <span th:text="${bookItem.name}"></span>
-            <button type="button" onclick="editTitle()">編集</button>
-        </div>
-        <div>
-            <span>著者: </span>
-            <span th:text="${bookItem.author}"></span>
-            <button type="button" onclick="editAuthor()">編集</button>
-        </div>
-        <div>
-            <p>本文↓</p>
-            <div th:each="sentenceItem, stat: ${bookItem.sentenceItems}" th:with="sid=${sentenceItem.sentenceId}" 
-                th:id="|sentence-item-${sid}|" class="sentence-item">
-                <div class="sentence-close" th:onclick="|editSentence(${sid})|">
-                    <p th:utext="${sentenceItem.sentence}" th:classappend="${sentenceItem.hasComment()} ? 'b'"></p>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-item href="/admin/menu" content="管理者メニュー"></b-pankuzu-item>
+            <b-pankuzu-item href="/admin/updatebook" content="本の更新"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="編集"></b-pankuzu-hereitem>
+        </b-pankuzu>
+
+        <b-main>
+            <div>
+                <span>タイトル: </span>
+                <span th:text="${bookItem.name}"></span>
+                <button type="button" onclick="editTitle()">編集</button>
+            </div>
+            <div>
+                <span>著者: </span>
+                <span th:text="${bookItem.author}"></span>
+                <button type="button" onclick="editAuthor()">編集</button>
+            </div>
+            <div>
+                <p>本文↓</p>
+                <div th:each="sentenceItem, stat: ${bookItem.sentenceItems}" th:with="sid=${sentenceItem.sentenceId}"
+                    th:id="|sentence-item-${sid}|" class="sentence-item">
+                    <div class="sentence-close" th:onclick="|editSentence(${sid})|">
+                        <p th:utext="${sentenceItem.sentence}" th:classappend="${sentenceItem.hasComment()} ? 'b'"></p>
+                    </div>
+                </div>
+            </div>
+        </b-main>
+
+        <!--/* タイトル編集用フォーム */-->
+        <div class="modal micromodal-slide" id="modal-title" aria-hidden="true">
+            <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+                <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                    まだできてにゃ～よ
                 </div>
             </div>
         </div>
-    </section>
 
-    <!--/* タイトル編集用フォーム */-->
-    <div class="modal micromodal-slide" id="modal-title" aria-hidden="true">
-        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-                まだできてにゃ～よ
+        <!--/* 著者編集用フォーム */-->
+        <div class="modal micromodal-slide" id="modal-author" aria-hidden="true">
+            <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+                <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                    まだできてにゃ～よ
+                </div>
             </div>
         </div>
+
+        <!--/* 文編集用フォーム */-->
+        <div class="modal micromodal-slide" id="modal-sentence" aria-hidden="true">
+            <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+                <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+                    まだできてにゃ～よ
+                </div>
+            </div>
+        </div>
+
+        <b-footer></b-footer>
     </div>
-
-    <!--/* 著者編集用フォーム */-->
-    <div class="modal micromodal-slide" id="modal-author" aria-hidden="true">
-        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-                まだできてにゃ～よ
-            </div>
-        </div>
-    </div>            
-
-    <!--/* 文編集用フォーム */-->
-    <div class="modal micromodal-slide" id="modal-sentence" aria-hidden="true">
-        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
-                まだできてにゃ～よ
-            </div>
-        </div>
-    </div>            
-        
-        
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
-
     <script src="/lib/jquery/jquery-3.0.0.min.js"></script>
     <script src="/lib/micromodal/micromodal.min.js"></script>
     <script src="/js/updatebook.js"></script>

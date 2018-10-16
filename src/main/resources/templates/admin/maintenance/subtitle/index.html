@@ -2,51 +2,50 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('管理者メニュー')"></head>
 <body>
-    <!--/* ヘッダー */-->
-    <section class="sec-header" th:include="nav :: admin"></section>
+    <div id="app">
+        <!--/* ヘッダー */-->
+        <b-nav-admin></b-nav-admin>
 
-    <!--/* タイトル */-->
-    <section class="sec-title" th:include="title :: admin(title='サブタイトル管理', subtitle='いかしたやつをたのむ')"></section>
+        <!--/* タイトル */-->
+        <b-title-admin title="サブタイトル管理" subtitle="いかしたやつをたのむ"></b-title-admin>
 
-    <!--/* パンくずリスト */-->
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item here"><a href="/admin/menu">管理者メニュー</a></div>
-            <div class="siimple-breadcrumb-item here"><a href="/admin/maintenance">マスタメンテナンス</a></div>
-            <div class="siimple-breadcrumb-item here">Subtitle</div>
-        </div>
-    </section>
+        <!--/* パンくずリスト */-->
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-item href="/admin/menu" content="管理者メニュー"></b-pankuzu-item>
+            <b-pankuzu-item href="/admin/maintenance" content="マスタメンテナンス"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="Subtitle"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
-    <!--/* メインコンテンツ */-->
-    <section class="sec-content">
-        <div class="siimple-table">
-            <div class="siimple-table-header">
-                <div class="siimple-table-row">
-                    <div class="siimple-table-cell">subtitle id</div>
-                    <div class="siimple-table-cell">タイトルコード</div>
-                    <div class="siimple-table-cell">サブタイトル</div>
-                    <div class="siimple-table-cell">編集</div>
-                </div>
-            </div>
-            <div class="siimple-table-body">
-                <div class="siimple-table-row" th:each="item: ${subtitleMaintenanceItems}">
-                    <div class="siimple-table-cell" th:text="${item.subtitleId}"></div>
-                    <div class="siimple-table-cell" th:text="${item.titleCd}"></div>
-                    <div class="siimple-table-cell" th:text="${item.subtitleValue}"></div>
-                    <div class="siimple-table-cell">
-                        <button class="siimple-btn blightgreen white" type="button">EDIT</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!--/* メインコンテンツ */-->
+        <b-main>
+            <b-table>
+                <b-table-header>
+                    <b-row>
+                        <b-cell>subtitle id</b-cell>
+                        <b-cell>タイトルコード</b-cell>
+                        <b-cell>サブタイトル</b-cell>
+                        <b-cell>編集</b-cell>
+                    </b-row>
+                </b-table-header>
+                <b-table-body>
+                    <th:block  th:each="item: ${subtitleMaintenanceItems}">
+                        <b-row>
+                            <b-cell th:text="${item.subtitleId}"></b-cell>
+                            <b-cell th:text="${item.titleCd}"></b-cell>
+                            <b-cell th:text="${item.subtitleValue}"></b-cell>
+                            <b-cell>
+                                <button class="siimple-btn blightgreen white" type="button">EDIT</button>
+                            </b-cell>
+                        </b-row>
+                    </th:block>
+                </b-table-body>
+            </b-table>
+        </b-main>
 
-    </section>
-
-    <!--/* フッター */-->
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
+        <!--/* フッター */-->
+        <b-footer></b-footer>
+    </div>
 
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>

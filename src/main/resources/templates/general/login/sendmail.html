@@ -2,31 +2,27 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('メール確認')"></head>
 <body>
-    <!--/* ヘッダー */-->
-    <section class="sec-header" th:include="nav :: normal-signin"></section>
-    
-    <!--/* タイトル */-->
-    <section class="sec-title" th:include="title :: normal(title='メール確認', subtitle='レッツ登録')"></section>
+    <div id="app">
+        <!--/* ヘッダー */-->
+        <div th:include="nav :: general"></div>
 
-    <!--/* パンくずリスト */-->
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item here">メール確認</div>
-        </div>
-    </section>
+        <!--/* タイトル */-->
+        <b-title-general title="メール確認" subtitle="レッツ登録"></b-title-general>
 
-    <!--/* メインコンテンツ */-->
-    <section class="sec-content">
-        <p class="siimple-p">
-            登録用のメールを送ったから確認してみてね。
-        </p>
-    </section>
+        <!--/* パンくずリスト */-->
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="メール確認"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
-    <!--/* フッター */-->
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
+        <!--/* メインコンテンツ */-->
+        <b-main>
+            <b-p>登録用のメールを送ったから確認してみてね。</b-p>
+        </b-main>
+
+        <!--/* フッター */-->
+        <b-footer></b-footer>
+    </div>
 
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>

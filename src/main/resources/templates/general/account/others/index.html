@@ -2,36 +2,34 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('会員情報')"></head>
 <body>
-    <!--/* ヘッダー */-->
-    <section class="sec-header" th:include="nav :: normal"></section>
+    <div id="app">
+        <!--/* ヘッダー */-->
+        <div th:include="nav :: general"></div>
 
-    <!--/* タイトル */-->
-    <section class="sec-title" th:include="title :: normal(title='誰かの情報', subtitle='他人情報的な？')"></section>
+        <!--/* タイトル */-->
+        <b-title-general title="誰かの情報" subtitle="他人情報的な？"></b-title-general>
 
-    <!--/* パンくずリスト */-->
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item here">誰かの情報</div>
-        </div>
-    </section>
+        <!--/* パンくずリスト */-->
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="誰かの情報"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
-    <!--/* メインコンテンツ */-->
-    <section class="sec-content">
-        <div class="siimple-card" style="max-width: 800px;">
-            <div class="siimple-card-body">
-                <div class="siimple-card-title">ニックネーム</div>
-                <p class="siimple-p" th:text="${accountItem.name}"></p>
-                <div class="siimple-card-title">ひとこと</div>
-                <p class="siimple-p" th:text="${accountItem.hitokoto}"></p>
+        <!--/* メインコンテンツ */-->
+        <b-main>
+            <div class="siimple-card" style="max-width: 800px;">
+                <div class="siimple-card-body">
+                    <div class="siimple-card-title">ニックネーム</div>
+                    <p class="siimple-p" th:text="${accountItem.name}"></p>
+                    <div class="siimple-card-title">ひとこと</div>
+                    <p class="siimple-p" th:text="${accountItem.hitokoto}"></p>
+                </div>
             </div>
-        </div>
-    </section>
+        </b-main>
 
-    <!--/* フッター */-->
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
+        <!--/* フッター */-->
+        <b-footer></b-footer>
+    </div>
 
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>

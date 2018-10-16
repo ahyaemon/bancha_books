@@ -2,26 +2,22 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="head :: head('会員登録完了')"></head>
 <body>
-    <section class="sec-header" th:include="nav :: normal-signin"></section>
-    
-    <section class="sec-title" th:include="title :: normal(title='登録完了！！', subtitle='おめでとう！！')"></section>
+    <div id="app">
+        <div th:include="nav :: general"></div>
 
-    <section class="sec-pankuzu">
-        <div class="siimple-breadcrumb bancha-bread">
-            <div class="siimple-breadcrumb-item"><a href="/">Home</a></div>
-            <div class="siimple-breadcrumb-item here">会員登録完了</div>
-        </div>
-    </section>
+        <b-title-general title="登録完了！！" subtitle="おめでとう！！"></b-title-general>
 
-    <section class="sec-content">
-        <p class="siimple-p">
-            ごゆるりと楽しんでいってくだされ
-        </p>
-    </section>
+        <b-pankuzu>
+            <b-pankuzu-item href="/" content="Home"></b-pankuzu-item>
+            <b-pankuzu-hereitem href="" content="会員登録完了"></b-pankuzu-hereitem>
+        </b-pankuzu>
 
-    <section class="sec-footer">
-        <div th:replace="footer :: footer"></div>
-    </section>
+        <b-main>
+            <b-p>ごゆるりと楽しんでいってくだされ</b-p>
+        </b-main>
+
+        <b-footer></b-footer>
+    </div>
 
     <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>

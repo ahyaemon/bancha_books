@@ -1,65 +1,7 @@
-<!--/* 一般用のナビ */-->
-<div th:fragment="normal">
-    <div class="siimple-navbar siimple-navbar--fluid blightgreen">
-        <div th:replace="nav :: nav"></div>
-        <div class="siimple--float-right">
-            <!--/*
-
-                1. 未サインイン：Sign In
-                2. サインイン済：会員メニュー
-
-                ROLE_GENERALをサインイン済として扱う
-
-            */-->
-            <th:block th:if="${!hasGeneralRole}">
-                <a class="siimple-navbar-item white" href="/general/login">Sign in</a>
-            </th:block>
-            <th:block th:if="${hasGeneralRole}">
-                <div class="dropdown">
-                    <a href="javascript:void(0);">
-                        <div class="general-name" onclick="showDropdown()" th:text="|${account.name}さん|"></div>
-                    </a>
-                    <div class="dropdown-content">
-                        <a th:href="|/account/${account.id}|">会員ページ</a>
-                        <hr />
-                        <a href="/bookmenu">Books</a>
-                        <a href="/about">About</a>
-                        <a href="/donation">Donation</a>
-                        <hr />
-                        <a href="/general/logout">ログアウト</a>
-                        <div class="dropdown-up" onclick="hideDropdown()">
-                            <i class="fas fa-angle-double-up"></i>
-                        </div>
-                    </div>
-                </div>
-            </th:block>
-        </div>
-    </div>
+<!--/* ログイン状態によって表示するナビを切り替え */-->
+<div th:fragment="general">
+    <th:block th:switch="${hasGeneralRole}">
+        <b-nav-general_login th:case="true" th:account-id="${account.id}" th:account-name="${account.name}"></b-nav-general_login>
+        <b-nav-general_not_login th:case="false"></b-nav-general_not_login>
+    </th:block>
 </div>
-
-<!--/* 一般用のナビ（サインインページ） */-->
-<div th:fragment="normal-signin">
-    <div class="siimple-navbar siimple-navbar--fluid blightgreen">
-        <div th:replace="nav :: nav"></div>
-    </div>
-</div>
-
-<!--/* 管理者用のナビ */-->
-<div th:fragment="admin">
-    <div class="siimple-navbar siimple-navbar--fluid blightred">
-        <div th:replace="nav :: nav"></div>
-    </div>
-</div>
-
-<!--/* 管理者用のナビ（サインインページ） */-->
-<div th:fragment="admin-signin">
-    <div class="siimple-navbar siimple-navbar--fluid blightred">
-        <div threplace="nav :: nav"></div>
-    </div>
-</div>
-
-<!--/* 共通部分 */-->
-<th:block th:fragment="nav">
-    <a class="siimple-navbar-title white" href="/">Bancha</a>
-    <a class="siimple-navbar-subtitle white" href="/">v0.2.0</a>
-</th:block>
