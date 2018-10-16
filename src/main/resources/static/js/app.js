@@ -362,6 +362,73 @@ Vue.component('b-cell', {
     '
 })
 
+/**
+ * カード
+ */
+Vue.component('b-card', {
+    template: '\
+    <div class="siimple-card" style="max-width: 800px;">\
+        <slot></slot>\
+    </div>\
+    '
+})
+
+/**
+ * カードボディ
+ */
+Vue.component('b-card-body', {
+    template: '\
+    <div class="siimple-card-body">\
+        <slot></slot>\
+    </div>\
+    '
+})
+
+/**
+ * カードタイトル
+ */
+Vue.component('b-card-title', {
+    template: '\
+    <div class="siimple-card-title">\
+        <slot></slot>\
+    </div>\
+    '
+})
+
+/**
+ * フォーム
+ */
+Vue.component('b-form', {
+    props: [
+        "action",
+        "method"
+    ],
+    template: '\
+    <div class="siimple-form">\
+        <form :action="action" :method="method">\
+            <slot></slot>\
+        </form>\
+    </div>\
+'
+})
+
+/**
+ * input text
+ */
+Vue.component('b-input-text', {
+    props: [
+        "title",
+        "input-id"
+    ],
+    template: '\
+    <div class="siimple-field">\
+        <div class="siimple-form-field-label">{{ title }}</div>\
+        <input class="siimple-input" type="text" :id="inputId" style="width:700px;" />\
+    </div>\
+'
+})
+
+
 
 var app = new Vue({
     el: '#app',

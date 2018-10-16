@@ -14,28 +14,23 @@
         </b-pankuzu>
 
         <b-main>
-            <form action="/admin/auth" method="POST">
-                <div class="siimple-card" style="max-width: 800px;">
-                    <div class="siimple-card-body">
-                        <div class="siimple-card-title">暗号化</div>
-                        <div class="siimple-form">
-                            <div class="siimple-field">
-                                <div class="siimple-form-field-label">暗号化したい文字列</div>
-                                <input class="siimple-input" type="text" id="plain" style="width:700px;" />
-                            </div>
-                            <div class="siimple-field">
-                                <button class="siimple-btn siimple-btn--blue" type="button" onclick="encrypt()">
-                                    確認する
-                                </button>
-                            </div>
-                            <div class="siimple-field">
-                                <div class="siimple-form-field-label">結果</div>
-                                <input class="siimple-input" type="text" id="encrypted" readonly="readonly" style="width:700px;" />
-                            </div>
+            <b-card>
+                <b-card-body>
+                    <b-card-title>暗号化</b-card-title>
+                    <b-form action="/admin/auth" method="POST">
+                        <b-input-text title="暗号化したい文字列" input-id="plain"></b-input-text>
+                        <div class="siimple-field">
+                            <button class="siimple-btn siimple-btn--blue" type="button" onclick="encrypt()">
+                                確認する
+                            </button>
                         </div>
-                    </div>
-                </div>
-            </form>
+                        <div class="siimple-field">
+                            <div class="siimple-form-field-label">結果</div>
+                            <input class="siimple-input" type="text" id="encrypted" readonly="readonly" style="width:700px;" />
+                        </div>
+                    </b-form>
+                </b-card-body>
+            </b-card>
         </b-main>
 
         <b-footer></b-footer>
