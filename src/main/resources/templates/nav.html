@@ -1,7 +1,7 @@
 <!--/* ログイン状態によって表示するナビを切り替え */-->
 <div th:fragment="general">
     <th:block th:switch="${hasGeneralRole}">
-        <b-nav-general_login th:case="true" th:account-id="${account.id}" th:account-name="${account.name}"></b-nav-general_login>
-        <b-nav-general_not_login th:case="false"></b-nav-general_not_login>
+        <b-nav-general th:case="true" th:account-id="${account.id}" th:account-name="${account.name}"></b-nav-general>
+        <b-nav-anonymous th:case="false"></b-nav-anonymous>
     </th:block>
 </div>

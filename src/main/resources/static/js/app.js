@@ -80,7 +80,7 @@ Vue.component('b-pankuzu-item', {
 /**
  * パンくずアイテム（そのページ）
  */
-Vue.component('b-pankuzu-hereitem', {
+Vue.component('b-pankuzu-item-here', {
     props: [
         "href",
         "content"

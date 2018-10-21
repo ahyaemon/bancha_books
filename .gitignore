@@ -30,3 +30,8 @@
 
 ### Sphinx ###
 /sphinx/_build/
+
+### front ###
+/front/.vscode/
+/front/node_modules/
+/front/yarn-error.log

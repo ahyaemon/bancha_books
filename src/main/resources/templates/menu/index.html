@@ -3,37 +3,22 @@
 <head th:replace="head :: head('Home')"></head>
 <body>
     <div id="app">
-        <!--/* ヘッダー */-->
         <div th:include="nav :: general"></div>
-
-        <!--/* タイトル */-->
         <b-title-general title="Bancha Home" th:subtitle="${subtitle}"></b-title-general>
-
-        <!--/* パンくずリスト */-->
         <b-pankuzu>
-            <b-pankuzu-hereitem href="/" content="Home"></b-pankuzu-hereitem>
+            <b-pankuzu-item-here href="/" content="Home"></b-pankuzu-item-here>
         </b-pankuzu>
-
-        <!--/* 注意書き */-->
         <b-warning>
             <b-p>banchaは試用運転中です。</b-p>
             <b-p>会員登録情報やコメントは予告なく突然初期化される可能性があります。</b-p>
         </b-warning>
-
-        <!--/* メインコンテンツ */-->
         <b-main>
             <th:block th:each="menuItem: ${menuItems}">
                 <b-menuitem-blue th:href="${menuItem.url}" th:title="${menuItem.title}" th:subtitle="${menuItem.subtitle}"></b-menuitem-blue>
             </th:block>
         </b-main>
-
-        <!--/* フッター */-->
         <b-footer></b-footer>
     </div>
-
-    <!--/* jsの読み込み */-->
     <th:block th:replace="template/script :: script"></th:block>
-    <script src="/js/menu.js"></script>
-
 </body>
 </html>

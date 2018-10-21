@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "dom",
+      "es5",
+      "es2015.promise"
+    ],
+    "module": "es2015",
+    "moduleResolution": "node",
+    "isolatedModules": false,
+    "strict": true,
+    "target": "es5",
+    "experimentalDecorators": true, // Experimental support for decorators のエラー回避
+    "allowJs": true, // Experimental support for decorators のエラー回避
+    "esModuleInterop": true,
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "baseUrl": ".",
+}

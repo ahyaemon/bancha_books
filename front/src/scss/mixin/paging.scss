@@ -1,4 +1,4 @@
-@import "./color.less";
+@import "./color";
 
 .paging{
 
@@ -14,11 +14,11 @@
     }
 
     a{
-        color: @grey;
+        color: $grey;
     }
 
     .disabled{
-        color: @light-grey;
+        color: $light-grey;
     }
 
 }

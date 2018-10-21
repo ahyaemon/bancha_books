@@ -1,15 +1,15 @@
-@import "./color.less";
+@import "./color";
 
 .bancha-card{
     max-width: 800px;
 }
 
 .bancha-back-blue{
-    background-color:  @super-light-blue !important;
+    background-color:  $super-light-blue !important;
 }
 
 .bancha-back-yellow{
-    background-color:  @super-light-yellow !important;
+    background-color:  $super-light-yellow !important;
 }
 
 .bancha-input-text{
@@ -21,17 +21,17 @@
 }
 
 .bancha-nav-green{
-    background-color: @light-green !important;
+    background-color: $light-green !important;
     color: white !important;
 }
 
 .bancha-jumbotron-green{
-    background-color: @green;
+    background-color: $green;
     color: white;
 }
 
 .bancha-red{
-    background-color: @red;
+    background-color: $red;
     color: white;
 }
 
@@ -41,31 +41,31 @@
 }
 
 .bancha-ul a{
-    color: @dark-grey;
+    color: $dark-grey;
 }
 
 .bancha-bread a{
-    color: @grey;
+    color: $grey;
 }
 
 .bancha-bread .here a{
-    color: @dark-grey;
+    color: $dark-grey;
 }
 
 .bgreen{
-    background-color: @green !important;
+    background-color: $green !important;
 }
 
 .blightgreen{
-    background-color: @light-green !important;
+    background-color: $light-green !important;
 }
 
 .bred{
-    background-color: @red !important;
+    background-color: $red !important;
 }
 
 .blightred{
-    background-color: @light-red !important;
+    background-color: $light-red !important;
 }
 
 .white{
@@ -73,9 +73,9 @@
 }
 
 .green{
-    color: @green !important;
+    color: $green !important;
 }
 
 .red{
-    color: @red !important;
+    color: $red !important;
 }

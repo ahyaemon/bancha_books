@@ -22,4 +22,9 @@ class MenuController(
     fun index(): String{
         return "menu/index"
     }
+
+    @RequestMapping("/test")
+    fun test(): String {
+        return "menu/test"
+    }
 }
