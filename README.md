@@ -1,3 +1,5 @@
+**※ bancha_booksは、vueを使ったSPAにすることにしました。一旦更新は停止しています。**
+
 # bancha_books
 herokuブランチの更新で、herokuに自動デプロイされる  
 https://banchabooks.herokuapp.com/
