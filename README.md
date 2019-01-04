@@ -2,7 +2,8 @@
 
 # bancha_books
 herokuブランチの更新で、herokuに自動デプロイされる  
-https://banchabooks.herokuapp.com/
+~https://banchabooks.herokuapp.com/~
+公開停止中
 
 ## 1. 概要
 文章に対してコメントができるサービス
